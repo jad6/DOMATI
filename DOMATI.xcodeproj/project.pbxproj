@@ -192,6 +192,9 @@
 				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = Jad;
 				TargetAttributes = {
+					05098F1317B62859009D4FF5 = {
+						DevelopmentTeam = GGB7WW5V29;
+					};
 					05098F2E17B62859009D4FF5 = {
 						TestTargetID = 05098F1317B62859009D4FF5;
 					};
@@ -358,10 +361,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "DOMATI/DOMATI-Prefix.pch";
 				INFOPLIST_FILE = "DOMATI/DOMATI-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -371,10 +377,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "DOMATI/DOMATI-Prefix.pch";
 				INFOPLIST_FILE = "DOMATI/DOMATI-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -438,6 +447,7 @@
 				05098F4217B62859009D4FF5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		05098F4317B62859009D4FF5 /* Build configuration list for PBXNativeTarget "DOMATITests" */ = {
 			isa = XCConfigurationList;
@@ -446,6 +456,7 @@
 				05098F4517B62859009D4FF5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
