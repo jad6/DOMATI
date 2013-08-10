@@ -19,6 +19,17 @@
 		05098F3317B62859009D4FF5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05098F1B17B62859009D4FF5 /* UIKit.framework */; };
 		05098F3B17B62859009D4FF5 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 05098F3917B62859009D4FF5 /* InfoPlist.strings */; };
 		05098F3D17B62859009D4FF5 /* DOMATITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 05098F3C17B62859009D4FF5 /* DOMATITests.m */; };
+		05098F4717B62BC8009D4FF5 /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 05098F4617B62BC8009D4FF5 /* MainStoryboard_iPhone.storyboard */; };
+		05098F4817B62BC8009D4FF5 /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 05098F4617B62BC8009D4FF5 /* MainStoryboard_iPhone.storyboard */; };
+		05098F4B17B62CF8009D4FF5 /* DOMObjectModelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05098F4A17B62CF8009D4FF5 /* DOMObjectModelViewController.m */; };
+		05098F4C17B62CF8009D4FF5 /* DOMObjectModelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05098F4A17B62CF8009D4FF5 /* DOMObjectModelViewController.m */; };
+		05098F4E17B62D42009D4FF5 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05098F4D17B62D42009D4FF5 /* GLKit.framework */; };
+		05098F5017B62D48009D4FF5 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05098F4F17B62D48009D4FF5 /* OpenGLES.framework */; };
+		05098F5317B62F7D009D4FF5 /* DOMInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05098F5217B62F7D009D4FF5 /* DOMInfoViewController.m */; };
+		05098F5417B62F7D009D4FF5 /* DOMInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05098F5217B62F7D009D4FF5 /* DOMInfoViewController.m */; };
+		05098F5A17B63820009D4FF5 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05098F5917B63820009D4FF5 /* MessageUI.framework */; };
+		05098F6117B639C4009D4FF5 /* DOMCalibrationDataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05098F6017B639C4009D4FF5 /* DOMCalibrationDataViewController.m */; };
+		05098F6217B639C4009D4FF5 /* DOMCalibrationDataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05098F6017B639C4009D4FF5 /* DOMCalibrationDataViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +59,16 @@
 		05098F3817B62859009D4FF5 /* DOMATITests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "DOMATITests-Info.plist"; sourceTree = "<group>"; };
 		05098F3A17B62859009D4FF5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		05098F3C17B62859009D4FF5 /* DOMATITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DOMATITests.m; sourceTree = "<group>"; };
+		05098F4617B62BC8009D4FF5 /* MainStoryboard_iPhone.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
+		05098F4917B62CF8009D4FF5 /* DOMObjectModelViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DOMObjectModelViewController.h; sourceTree = "<group>"; };
+		05098F4A17B62CF8009D4FF5 /* DOMObjectModelViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DOMObjectModelViewController.m; sourceTree = "<group>"; };
+		05098F4D17B62D42009D4FF5 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
+		05098F4F17B62D48009D4FF5 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		05098F5117B62F7D009D4FF5 /* DOMInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DOMInfoViewController.h; sourceTree = "<group>"; };
+		05098F5217B62F7D009D4FF5 /* DOMInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DOMInfoViewController.m; sourceTree = "<group>"; };
+		05098F5917B63820009D4FF5 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		05098F5F17B639C4009D4FF5 /* DOMCalibrationDataViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DOMCalibrationDataViewController.h; sourceTree = "<group>"; };
+		05098F6017B639C4009D4FF5 /* DOMCalibrationDataViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DOMCalibrationDataViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,6 +76,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				05098F5A17B63820009D4FF5 /* MessageUI.framework in Frameworks */,
+				05098F5017B62D48009D4FF5 /* OpenGLES.framework in Frameworks */,
+				05098F4E17B62D42009D4FF5 /* GLKit.framework in Frameworks */,
 				05098F1A17B62859009D4FF5 /* CoreGraphics.framework in Frameworks */,
 				05098F1C17B62859009D4FF5 /* UIKit.framework in Frameworks */,
 				05098F1817B62859009D4FF5 /* Foundation.framework in Frameworks */,
@@ -96,6 +120,9 @@
 		05098F1617B62859009D4FF5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				05098F5917B63820009D4FF5 /* MessageUI.framework */,
+				05098F4F17B62D48009D4FF5 /* OpenGLES.framework */,
+				05098F4D17B62D42009D4FF5 /* GLKit.framework */,
 				05098F1717B62859009D4FF5 /* Foundation.framework */,
 				05098F1917B62859009D4FF5 /* CoreGraphics.framework */,
 				05098F1B17B62859009D4FF5 /* UIKit.framework */,
@@ -109,6 +136,13 @@
 			children = (
 				05098F2617B62859009D4FF5 /* DOMAppDelegate.h */,
 				05098F2717B62859009D4FF5 /* DOMAppDelegate.m */,
+				05098F4617B62BC8009D4FF5 /* MainStoryboard_iPhone.storyboard */,
+				05098F4917B62CF8009D4FF5 /* DOMObjectModelViewController.h */,
+				05098F4A17B62CF8009D4FF5 /* DOMObjectModelViewController.m */,
+				05098F5117B62F7D009D4FF5 /* DOMInfoViewController.h */,
+				05098F5217B62F7D009D4FF5 /* DOMInfoViewController.m */,
+				05098F5F17B639C4009D4FF5 /* DOMCalibrationDataViewController.h */,
+				05098F6017B639C4009D4FF5 /* DOMCalibrationDataViewController.m */,
 				05098F2917B62859009D4FF5 /* Images.xcassets */,
 				05098F1E17B62859009D4FF5 /* Supporting Files */,
 			);
@@ -223,6 +257,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				05098F4717B62BC8009D4FF5 /* MainStoryboard_iPhone.storyboard in Resources */,
 				05098F2217B62859009D4FF5 /* InfoPlist.strings in Resources */,
 				05098F2A17B62859009D4FF5 /* Images.xcassets in Resources */,
 			);
@@ -232,6 +267,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				05098F4817B62BC8009D4FF5 /* MainStoryboard_iPhone.storyboard in Resources */,
 				05098F3B17B62859009D4FF5 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -244,6 +280,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				05098F2417B62859009D4FF5 /* main.m in Sources */,
+				05098F5317B62F7D009D4FF5 /* DOMInfoViewController.m in Sources */,
+				05098F6117B639C4009D4FF5 /* DOMCalibrationDataViewController.m in Sources */,
+				05098F4B17B62CF8009D4FF5 /* DOMObjectModelViewController.m in Sources */,
 				05098F2817B62859009D4FF5 /* DOMAppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -252,6 +291,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				05098F5417B62F7D009D4FF5 /* DOMInfoViewController.m in Sources */,
+				05098F4C17B62CF8009D4FF5 /* DOMObjectModelViewController.m in Sources */,
+				05098F6217B639C4009D4FF5 /* DOMCalibrationDataViewController.m in Sources */,
 				05098F3D17B62859009D4FF5 /* DOMATITests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
