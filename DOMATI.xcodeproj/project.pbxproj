@@ -1,0 +1,453 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		05098F1817B62859009D4FF5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05098F1717B62859009D4FF5 /* Foundation.framework */; };
+		05098F1A17B62859009D4FF5 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05098F1917B62859009D4FF5 /* CoreGraphics.framework */; };
+		05098F1C17B62859009D4FF5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05098F1B17B62859009D4FF5 /* UIKit.framework */; };
+		05098F2217B62859009D4FF5 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 05098F2017B62859009D4FF5 /* InfoPlist.strings */; };
+		05098F2417B62859009D4FF5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 05098F2317B62859009D4FF5 /* main.m */; };
+		05098F2817B62859009D4FF5 /* DOMAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 05098F2717B62859009D4FF5 /* DOMAppDelegate.m */; };
+		05098F2A17B62859009D4FF5 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 05098F2917B62859009D4FF5 /* Images.xcassets */; };
+		05098F3117B62859009D4FF5 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05098F3017B62859009D4FF5 /* XCTest.framework */; };
+		05098F3217B62859009D4FF5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05098F1717B62859009D4FF5 /* Foundation.framework */; };
+		05098F3317B62859009D4FF5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05098F1B17B62859009D4FF5 /* UIKit.framework */; };
+		05098F3B17B62859009D4FF5 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 05098F3917B62859009D4FF5 /* InfoPlist.strings */; };
+		05098F3D17B62859009D4FF5 /* DOMATITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 05098F3C17B62859009D4FF5 /* DOMATITests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		05098F3417B62859009D4FF5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 05098F0C17B62859009D4FF5 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 05098F1317B62859009D4FF5;
+			remoteInfo = DOMATI;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		05098F1417B62859009D4FF5 /* DOMATI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DOMATI.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		05098F1717B62859009D4FF5 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		05098F1917B62859009D4FF5 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		05098F1B17B62859009D4FF5 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		05098F1F17B62859009D4FF5 /* DOMATI-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "DOMATI-Info.plist"; sourceTree = "<group>"; };
+		05098F2117B62859009D4FF5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		05098F2317B62859009D4FF5 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		05098F2517B62859009D4FF5 /* DOMATI-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DOMATI-Prefix.pch"; sourceTree = "<group>"; };
+		05098F2617B62859009D4FF5 /* DOMAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DOMAppDelegate.h; sourceTree = "<group>"; };
+		05098F2717B62859009D4FF5 /* DOMAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DOMAppDelegate.m; sourceTree = "<group>"; };
+		05098F2917B62859009D4FF5 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		05098F2F17B62859009D4FF5 /* DOMATITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DOMATITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		05098F3017B62859009D4FF5 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		05098F3817B62859009D4FF5 /* DOMATITests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "DOMATITests-Info.plist"; sourceTree = "<group>"; };
+		05098F3A17B62859009D4FF5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		05098F3C17B62859009D4FF5 /* DOMATITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DOMATITests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		05098F1117B62859009D4FF5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				05098F1A17B62859009D4FF5 /* CoreGraphics.framework in Frameworks */,
+				05098F1C17B62859009D4FF5 /* UIKit.framework in Frameworks */,
+				05098F1817B62859009D4FF5 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		05098F2C17B62859009D4FF5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				05098F3117B62859009D4FF5 /* XCTest.framework in Frameworks */,
+				05098F3317B62859009D4FF5 /* UIKit.framework in Frameworks */,
+				05098F3217B62859009D4FF5 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		05098F0B17B62859009D4FF5 = {
+			isa = PBXGroup;
+			children = (
+				05098F1D17B62859009D4FF5 /* DOMATI */,
+				05098F3617B62859009D4FF5 /* DOMATITests */,
+				05098F1617B62859009D4FF5 /* Frameworks */,
+				05098F1517B62859009D4FF5 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		05098F1517B62859009D4FF5 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				05098F1417B62859009D4FF5 /* DOMATI.app */,
+				05098F2F17B62859009D4FF5 /* DOMATITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		05098F1617B62859009D4FF5 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				05098F1717B62859009D4FF5 /* Foundation.framework */,
+				05098F1917B62859009D4FF5 /* CoreGraphics.framework */,
+				05098F1B17B62859009D4FF5 /* UIKit.framework */,
+				05098F3017B62859009D4FF5 /* XCTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		05098F1D17B62859009D4FF5 /* DOMATI */ = {
+			isa = PBXGroup;
+			children = (
+				05098F2617B62859009D4FF5 /* DOMAppDelegate.h */,
+				05098F2717B62859009D4FF5 /* DOMAppDelegate.m */,
+				05098F2917B62859009D4FF5 /* Images.xcassets */,
+				05098F1E17B62859009D4FF5 /* Supporting Files */,
+			);
+			path = DOMATI;
+			sourceTree = "<group>";
+		};
+		05098F1E17B62859009D4FF5 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				05098F1F17B62859009D4FF5 /* DOMATI-Info.plist */,
+				05098F2017B62859009D4FF5 /* InfoPlist.strings */,
+				05098F2317B62859009D4FF5 /* main.m */,
+				05098F2517B62859009D4FF5 /* DOMATI-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		05098F3617B62859009D4FF5 /* DOMATITests */ = {
+			isa = PBXGroup;
+			children = (
+				05098F3C17B62859009D4FF5 /* DOMATITests.m */,
+				05098F3717B62859009D4FF5 /* Supporting Files */,
+			);
+			path = DOMATITests;
+			sourceTree = "<group>";
+		};
+		05098F3717B62859009D4FF5 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				05098F3817B62859009D4FF5 /* DOMATITests-Info.plist */,
+				05098F3917B62859009D4FF5 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		05098F1317B62859009D4FF5 /* DOMATI */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 05098F4017B62859009D4FF5 /* Build configuration list for PBXNativeTarget "DOMATI" */;
+			buildPhases = (
+				05098F1017B62859009D4FF5 /* Sources */,
+				05098F1117B62859009D4FF5 /* Frameworks */,
+				05098F1217B62859009D4FF5 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = DOMATI;
+			productName = DOMATI;
+			productReference = 05098F1417B62859009D4FF5 /* DOMATI.app */;
+			productType = "com.apple.product-type.application";
+		};
+		05098F2E17B62859009D4FF5 /* DOMATITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 05098F4317B62859009D4FF5 /* Build configuration list for PBXNativeTarget "DOMATITests" */;
+			buildPhases = (
+				05098F2B17B62859009D4FF5 /* Sources */,
+				05098F2C17B62859009D4FF5 /* Frameworks */,
+				05098F2D17B62859009D4FF5 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				05098F3517B62859009D4FF5 /* PBXTargetDependency */,
+			);
+			name = DOMATITests;
+			productName = DOMATITests;
+			productReference = 05098F2F17B62859009D4FF5 /* DOMATITests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		05098F0C17B62859009D4FF5 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = DOM;
+				LastUpgradeCheck = 0500;
+				ORGANIZATIONNAME = Jad;
+				TargetAttributes = {
+					05098F2E17B62859009D4FF5 = {
+						TestTargetID = 05098F1317B62859009D4FF5;
+					};
+				};
+			};
+			buildConfigurationList = 05098F0F17B62859009D4FF5 /* Build configuration list for PBXProject "DOMATI" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 05098F0B17B62859009D4FF5;
+			productRefGroup = 05098F1517B62859009D4FF5 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				05098F1317B62859009D4FF5 /* DOMATI */,
+				05098F2E17B62859009D4FF5 /* DOMATITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		05098F1217B62859009D4FF5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				05098F2217B62859009D4FF5 /* InfoPlist.strings in Resources */,
+				05098F2A17B62859009D4FF5 /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		05098F2D17B62859009D4FF5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				05098F3B17B62859009D4FF5 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		05098F1017B62859009D4FF5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				05098F2417B62859009D4FF5 /* main.m in Sources */,
+				05098F2817B62859009D4FF5 /* DOMAppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		05098F2B17B62859009D4FF5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				05098F3D17B62859009D4FF5 /* DOMATITests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		05098F3517B62859009D4FF5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 05098F1317B62859009D4FF5 /* DOMATI */;
+			targetProxy = 05098F3417B62859009D4FF5 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		05098F2017B62859009D4FF5 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				05098F2117B62859009D4FF5 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		05098F3917B62859009D4FF5 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				05098F3A17B62859009D4FF5 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		05098F3E17B62859009D4FF5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		05098F3F17B62859009D4FF5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		05098F4117B62859009D4FF5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "DOMATI/DOMATI-Prefix.pch";
+				INFOPLIST_FILE = "DOMATI/DOMATI-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		05098F4217B62859009D4FF5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "DOMATI/DOMATI-Prefix.pch";
+				INFOPLIST_FILE = "DOMATI/DOMATI-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		05098F4417B62859009D4FF5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/DOMATI.app/DOMATI";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "DOMATI/DOMATI-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "DOMATITests/DOMATITests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		05098F4517B62859009D4FF5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/DOMATI.app/DOMATI";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "DOMATI/DOMATI-Prefix.pch";
+				INFOPLIST_FILE = "DOMATITests/DOMATITests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		05098F0F17B62859009D4FF5 /* Build configuration list for PBXProject "DOMATI" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				05098F3E17B62859009D4FF5 /* Debug */,
+				05098F3F17B62859009D4FF5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		05098F4017B62859009D4FF5 /* Build configuration list for PBXNativeTarget "DOMATI" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				05098F4117B62859009D4FF5 /* Debug */,
+				05098F4217B62859009D4FF5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		05098F4317B62859009D4FF5 /* Build configuration list for PBXNativeTarget "DOMATITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				05098F4417B62859009D4FF5 /* Debug */,
+				05098F4517B62859009D4FF5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 05098F0C17B62859009D4FF5 /* Project object */;
+}
