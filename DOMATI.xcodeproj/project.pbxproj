@@ -36,6 +36,11 @@
 		054C30A917B7366800ABC9CF /* DOMCalibrationMonthsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 054C30A717B7366800ABC9CF /* DOMCalibrationMonthsViewController.m */; };
 		054C30AC17B7368200ABC9CF /* DOMCalibrationMothDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 054C30AB17B7368200ABC9CF /* DOMCalibrationMothDetailViewController.m */; };
 		054C30AD17B7368200ABC9CF /* DOMCalibrationMothDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 054C30AB17B7368200ABC9CF /* DOMCalibrationMothDetailViewController.m */; };
+		05577B4617B789A2007802E6 /* Project Proposal.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 05577B4517B789A2007802E6 /* Project Proposal.pdf */; };
+		05577B4717B789A2007802E6 /* Project Proposal.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 05577B4517B789A2007802E6 /* Project Proposal.pdf */; };
+		05577B4C17B78A9A007802E6 /* QuickLook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05577B4B17B78A9A007802E6 /* QuickLook.framework */; };
+		05577B4F17B78B5D007802E6 /* DOMPreviewItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 05577B4E17B78B5D007802E6 /* DOMPreviewItem.m */; };
+		05577B5017B78B5D007802E6 /* DOMPreviewItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 05577B4E17B78B5D007802E6 /* DOMPreviewItem.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -81,6 +86,10 @@
 		054C30A717B7366800ABC9CF /* DOMCalibrationMonthsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DOMCalibrationMonthsViewController.m; sourceTree = "<group>"; };
 		054C30AA17B7368200ABC9CF /* DOMCalibrationMothDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DOMCalibrationMothDetailViewController.h; sourceTree = "<group>"; };
 		054C30AB17B7368200ABC9CF /* DOMCalibrationMothDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DOMCalibrationMothDetailViewController.m; sourceTree = "<group>"; };
+		05577B4517B789A2007802E6 /* Project Proposal.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "Project Proposal.pdf"; sourceTree = "<group>"; };
+		05577B4B17B78A9A007802E6 /* QuickLook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuickLook.framework; path = System/Library/Frameworks/QuickLook.framework; sourceTree = SDKROOT; };
+		05577B4D17B78B5D007802E6 /* DOMPreviewItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DOMPreviewItem.h; sourceTree = "<group>"; };
+		05577B4E17B78B5D007802E6 /* DOMPreviewItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DOMPreviewItem.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +97,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				05577B4C17B78A9A007802E6 /* QuickLook.framework in Frameworks */,
 				05098F5A17B63820009D4FF5 /* MessageUI.framework in Frameworks */,
 				05098F5017B62D48009D4FF5 /* OpenGLES.framework in Frameworks */,
 				05098F4E17B62D42009D4FF5 /* GLKit.framework in Frameworks */,
@@ -132,6 +142,7 @@
 		05098F1617B62859009D4FF5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				05577B4B17B78A9A007802E6 /* QuickLook.framework */,
 				05098F5917B63820009D4FF5 /* MessageUI.framework */,
 				05098F4F17B62D48009D4FF5 /* OpenGLES.framework */,
 				05098F4D17B62D42009D4FF5 /* GLKit.framework */,
@@ -150,6 +161,7 @@
 				05098F2717B62859009D4FF5 /* DOMAppDelegate.m */,
 				05098F4617B62BC8009D4FF5 /* MainStoryboard_iPhone.storyboard */,
 				054BA47417B7789D005532CE /* View Controllers */,
+				05577B4817B789B7007802E6 /* Resources */,
 				05098F2917B62859009D4FF5 /* Images.xcassets */,
 				05098F1E17B62859009D4FF5 /* Supporting Files */,
 			);
@@ -192,6 +204,7 @@
 				05098F4A17B62CF8009D4FF5 /* DOMObjectModelViewController.m */,
 				05098F5117B62F7D009D4FF5 /* DOMInfoViewController.h */,
 				05098F5217B62F7D009D4FF5 /* DOMInfoViewController.m */,
+				05577B5117B78B61007802E6 /* Quick Look */,
 				054C30A517B7363800ABC9CF /* Calibration */,
 			);
 			name = "View Controllers";
@@ -210,6 +223,23 @@
 				054BA47617B778CB005532CE /* DOMCalibrationExpiryViewController.m */,
 			);
 			name = Calibration;
+			sourceTree = "<group>";
+		};
+		05577B4817B789B7007802E6 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				05577B4517B789A2007802E6 /* Project Proposal.pdf */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		05577B5117B78B61007802E6 /* Quick Look */ = {
+			isa = PBXGroup;
+			children = (
+				05577B4D17B78B5D007802E6 /* DOMPreviewItem.h */,
+				05577B4E17B78B5D007802E6 /* DOMPreviewItem.m */,
+			);
+			name = "Quick Look";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -294,6 +324,7 @@
 				05098F4717B62BC8009D4FF5 /* MainStoryboard_iPhone.storyboard in Resources */,
 				05098F2217B62859009D4FF5 /* InfoPlist.strings in Resources */,
 				05098F2A17B62859009D4FF5 /* Images.xcassets in Resources */,
+				05577B4617B789A2007802E6 /* Project Proposal.pdf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -301,6 +332,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				05577B4717B789A2007802E6 /* Project Proposal.pdf in Resources */,
 				05098F4817B62BC8009D4FF5 /* MainStoryboard_iPhone.storyboard in Resources */,
 				05098F3B17B62859009D4FF5 /* InfoPlist.strings in Resources */,
 			);
@@ -321,6 +353,7 @@
 				05098F2817B62859009D4FF5 /* DOMAppDelegate.m in Sources */,
 				054C30A817B7366800ABC9CF /* DOMCalibrationMonthsViewController.m in Sources */,
 				054BA47717B778CB005532CE /* DOMCalibrationExpiryViewController.m in Sources */,
+				05577B4F17B78B5D007802E6 /* DOMPreviewItem.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -332,6 +365,7 @@
 				05098F4C17B62CF8009D4FF5 /* DOMObjectModelViewController.m in Sources */,
 				054BA47817B778CB005532CE /* DOMCalibrationExpiryViewController.m in Sources */,
 				054C30A417B7363000ABC9CF /* DOMCalibrationDataViewController.m in Sources */,
+				05577B5017B78B5D007802E6 /* DOMPreviewItem.m in Sources */,
 				054C30AD17B7368200ABC9CF /* DOMCalibrationMothDetailViewController.m in Sources */,
 				054C30A917B7366800ABC9CF /* DOMCalibrationMonthsViewController.m in Sources */,
 				05098F3D17B62859009D4FF5 /* DOMATITests.m in Sources */,

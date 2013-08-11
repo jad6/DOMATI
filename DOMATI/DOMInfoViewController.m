@@ -10,9 +10,15 @@
 
 #import "DOMInfoViewController.h"
 
-@interface DOMInfoViewController () <MFMailComposeViewControllerDelegate>
+#import "DOMPreviewItem.h"
 
-@property (weak, nonatomic) IBOutlet UITableViewCell *feedbackCell, *calibrationExpiryCell;
+@interface DOMInfoViewController () <MFMailComposeViewControllerDelegate, QLPreviewControllerDataSource>
+
+@property (weak, nonatomic) IBOutlet UITableViewCell *feedbackCell;
+@property (weak, nonatomic) IBOutlet UITableViewCell *calibrationExpiryCell;
+@property (weak, nonatomic) IBOutlet UITableViewCell *projectProposalCell;
+
+@property (strong, nonatomic) DOMPreviewItem *previewItem;
 
 @end
 
@@ -83,6 +89,30 @@
     }];
 }
 
+#pragma mark - Quick Look
+
+- (void)pushDocumentWithLocalURL:(NSURL *)url andTitle:(NSString *)title
+{
+    self.previewItem = [[DOMPreviewItem alloc] init];
+    self.previewItem.localURL = url;
+    self.previewItem.documentTitle = title;
+    if ([QLPreviewController canPreviewItem:self.previewItem]) {
+        QLPreviewController *quickLookC = [[QLPreviewController alloc] init];
+        quickLookC.dataSource = self;
+        [self.navigationController pushViewController:quickLookC animated:YES];
+    }
+}
+
+- (NSInteger)numberOfPreviewItemsInPreviewController:(QLPreviewController *)controller
+{
+    return 1;
+}
+
+- (id<QLPreviewItem>)previewController:(QLPreviewController *)controller previewItemAtIndex:(NSInteger)index;
+{
+    return self.previewItem;
+}
+
 #pragma mark - Table view
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -91,6 +121,9 @@
     
     if ([cell isEqual:self.feedbackCell]) {
         [self feedback:cell];
+    } else if ([cell isEqual:self.projectProposalCell]) {
+        [self pushDocumentWithLocalURL:[[NSBundle mainBundle] URLForResource:@"Project Proposal" withExtension:@"pdf"]
+                              andTitle:@"Project Proposal"];
     }
 }
 
