@@ -12,7 +12,7 @@
 
 @interface DOMInfoViewController () <MFMailComposeViewControllerDelegate>
 
-@property (weak, nonatomic) IBOutlet UITableViewCell *feedbackCell;
+@property (weak, nonatomic) IBOutlet UITableViewCell *feedbackCell, *calibrationExpiryCell;
 
 @end
 
@@ -25,21 +25,30 @@
     self.feedbackCell.textLabel.textColor = TINT_COLOR;
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    [self refreshCalibrationExpiryText];
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - Table view
+#pragma mark - Logic
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+- (void)refreshCalibrationExpiryText
 {
-    id cell = [tableView cellForRowAtIndexPath:indexPath];
+    NSString *text = [[NSUserDefaults standardUserDefaults] valueForKey:DEFAULTS_CALI_EXPR_TEXT];
     
-    if ([cell isEqual:self.feedbackCell]) {
-        [self feedback:cell];
+    if (!text) {
+        text = @"Never";
     }
+    
+    self.calibrationExpiryCell.detailTextLabel.text = text;
 }
 
 #pragma mark - Actions
@@ -72,6 +81,17 @@
     [self dismissViewControllerAnimated:YES completion:^{
         [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForCell:self.feedbackCell] animated:YES];
     }];
+}
+
+#pragma mark - Table view
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    id cell = [tableView cellForRowAtIndexPath:indexPath];
+    
+    if ([cell isEqual:self.feedbackCell]) {
+        [self feedback:cell];
+    }
 }
 
 #pragma mark - Navigation
