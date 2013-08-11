@@ -1,5 +1,5 @@
 //
-//  DOMCalibrationDataViewController.h
+//  DOMCalibrationMonthsViewController.h
 //  DOMATI
 //
 //  Created by Jad Osseiran on 11/08/13.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface DOMCalibrationDataViewController : UIViewController
+@interface DOMCalibrationMonthsViewController : UITableViewController
 
 @end
