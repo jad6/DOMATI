@@ -8,6 +8,10 @@
 
 #import "DOMObjectModelViewController.h"
 
+#import "DOMCalibrationViewController.h"
+
+#import "UIImage+ImageEffects.h"
+
 // This data type is used to store information for each vertex
 typedef struct {
     GLKVector3  positionCoords;
@@ -28,7 +32,6 @@ static const SceneVertex vertices[] =
 
 @property (nonatomic) GLuint vertexBufferID;
 
-
 @end
 
 @implementation DOMObjectModelViewController
@@ -48,9 +51,9 @@ static const SceneVertex vertices[] =
 }
 
 #warning Might need to remove this in future iOS 7 seeds.
-- (BOOL)prefersStatusBarHidden
+- (UIStatusBarStyle)preferredStatusBarStyle
 {
-    return YES;
+    return UIStatusBarStyleLightContent;
 }
 
 #pragma mark - Open GL
@@ -140,11 +143,6 @@ static const SceneVertex vertices[] =
 
 #pragma mark - Actions
 
-- (IBAction)calibrate:(id)sender
-{
-    
-}
-
 - (IBAction)reset:(id)sender
 {
     UIAlertView *resetAV = [[UIAlertView alloc] initWithTitle:@"Reset Model"
@@ -154,5 +152,28 @@ static const SceneVertex vertices[] =
                                             otherButtonTitles:@"Yes", nil];
     [resetAV show];
 }
+
+#pragma mark - Navigation
+
+// In a story board-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
+    if ([segue.identifier isEqualToString:@"Calibration Segue"]) {
+        DOMCalibrationViewController *calibrationVC = [segue destinationViewController];
+        
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            
+            UIGraphicsBeginImageContextWithOptions(self.view.frame.size, NO, [[UIScreen mainScreen] scale]);
+            [self.view drawViewHierarchyInRect:self.view.bounds afterScreenUpdates:NO];
+            UIImage *scaledImage = UIGraphicsGetImageFromCurrentImageContext();
+            UIGraphicsEndImageContext();
+            
+            calibrationVC.backgroundImage = scaledImage;
+        });
+    }
+}
+
 
 @end

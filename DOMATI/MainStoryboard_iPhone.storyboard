@@ -33,19 +33,19 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="awc-6i-adJ">
-                                <rect key="frame" x="123" y="0.0" width="75" height="30"/>
+                                <rect key="frame" x="123" y="522" width="75" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <state key="normal" title="Calibration">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="calibrate:" destination="a4x-KL-l4b" eventType="touchUpInside" id="PSb-JZ-mRu"/>
+                                    <segue destination="4gz-PS-vUy" kind="modal" identifier="Calibration Segue" modalTransitionStyle="crossDissolve" id="3Xk-3H-DmC"/>
                                 </connections>
                             </button>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="awc-6i-adJ" firstAttribute="top" secondItem="l60-S8-Fod" secondAttribute="top" id="3oF-MJ-zDu"/>
+                            <constraint firstAttribute="bottom" secondItem="awc-6i-adJ" secondAttribute="bottom" constant="16" id="4Iu-Ue-Ioz"/>
                             <constraint firstAttribute="trailing" secondItem="5xu-eH-iFY" secondAttribute="trailing" constant="20" symbolic="YES" id="AhI-om-5ak"/>
                             <constraint firstAttribute="bottom" secondItem="NyK-LG-2f4" secondAttribute="bottom" constant="14" id="DPx-tG-l0Z"/>
                             <constraint firstAttribute="bottom" secondItem="5xu-eH-iFY" secondAttribute="bottom" constant="20" symbolic="YES" id="bao-Xv-vVX"/>
@@ -61,6 +61,68 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XTL-Ad-Sri" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-183" y="-489"/>
+        </scene>
+        <!--Calibration View Controller-->
+        <scene sceneID="5h0-Cd-bZY">
+            <objects>
+                <collectionViewController autoresizesArchivedViewToFullSize="NO" id="4gz-PS-vUy" customClass="DOMCalibrationViewController" sceneMemberID="viewController">
+                    <collectionView key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" id="6Ec-Rr-21W">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="0.0" id="hcu-cv-bjs">
+                            <size key="itemSize" width="156" height="161"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                        <cells>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Finger Cell" id="fnz-an-daA" customClass="DOMFingerCell">
+                                <rect key="frame" x="0.0" y="0.0" width="156" height="161"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="156" height="161"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="J5J-gx-MgT">
+                                            <rect key="frame" x="20" y="12" width="116" height="112"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        </imageView>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Finger Size" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VM9-sc-sN7">
+                                            <rect key="frame" x="0.0" y="132" width="156" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                            <color key="textColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                                <constraints>
+                                    <constraint firstItem="VM9-sc-sN7" firstAttribute="centerX" secondItem="J5J-gx-MgT" secondAttribute="centerX" id="4un-UL-PIL"/>
+                                    <constraint firstAttribute="bottom" secondItem="VM9-sc-sN7" secondAttribute="bottom" constant="8" id="BHG-8d-t3o"/>
+                                    <constraint firstItem="VM9-sc-sN7" firstAttribute="top" secondItem="J5J-gx-MgT" secondAttribute="bottom" constant="8" id="JvY-Ar-SEh"/>
+                                    <constraint firstItem="J5J-gx-MgT" firstAttribute="leading" secondItem="fnz-an-daA" secondAttribute="leading" constant="20" id="O1H-5p-upQ"/>
+                                    <constraint firstAttribute="trailing" secondItem="VM9-sc-sN7" secondAttribute="trailing" id="QAb-sI-KCS"/>
+                                    <constraint firstItem="J5J-gx-MgT" firstAttribute="top" secondItem="fnz-an-daA" secondAttribute="top" constant="12" id="QlW-ym-HLO"/>
+                                    <constraint firstItem="VM9-sc-sN7" firstAttribute="leading" secondItem="fnz-an-daA" secondAttribute="leading" id="bjr-ki-Pvw"/>
+                                    <constraint firstItem="VM9-sc-sN7" firstAttribute="top" secondItem="J5J-gx-MgT" secondAttribute="bottom" constant="8" symbolic="YES" id="nJB-LR-wcT"/>
+                                </constraints>
+                                <size key="customSize" width="156" height="161"/>
+                                <connections>
+                                    <outlet property="imageView" destination="J5J-gx-MgT" id="q7U-Yt-yOw"/>
+                                    <outlet property="titleLabel" destination="VM9-sc-sN7" id="nOd-dW-dyd"/>
+                                </connections>
+                            </collectionViewCell>
+                        </cells>
+                        <connections>
+                            <outlet property="dataSource" destination="4gz-PS-vUy" id="O2V-vo-Hps"/>
+                            <outlet property="delegate" destination="4gz-PS-vUy" id="hsz-j0-DjN"/>
+                        </connections>
+                    </collectionView>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sP7-2q-NgA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-183" y="169"/>
         </scene>
         <!--Info View Controller - DOMATI-->
         <scene sceneID="wfy-8r-pE9">
@@ -561,12 +623,20 @@
                                     <fragment content="DOMATI">
                                         <attributes>
                                             <font key="NSFont" size="18" name="HelveticaNeue-Bold"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment>
+                                        <string key="content" base64-UTF8="YES">
+Cg
+</string>
+                                        <attributes>
+                                            <font key="NSFont" size="14" name="HelveticaNeue"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
                                         </attributes>
                                     </fragment>
                                     <fragment>
                                         <string key="content">
-
 This is Jad Osseiran’s Final Year Project iOS application implementing Dynamic Object Modelling for Advanced Touch Interactions (DOMATI). This application will determine the strength of a touch on a multitouch display and its effect on a rendered 3D model.</string>
                                         <attributes>
                                             <font key="NSFont" size="14" name="HelveticaNeue"/>
