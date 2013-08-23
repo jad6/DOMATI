@@ -142,7 +142,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" ambiguous="YES" text="Application Info" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="2BI-ka-Lzv">
+                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" ambiguous="YES" text="Project Summary" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="2BI-ka-Lzv">
                                                     <rect key="frame" x="15" y="0.0" width="270" height="43"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
@@ -603,7 +603,7 @@
             </objects>
             <point key="canvasLocation" x="2256" y="-622"/>
         </scene>
-        <!--View Controller - Application Info-->
+        <!--View Controller - Project Summary-->
         <scene sceneID="Z2b-hj-vDu">
             <objects>
                 <viewController id="kD8-4U-YbG" sceneMemberID="viewController">
@@ -620,7 +620,7 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <attributedString key="attributedText">
-                                    <fragment content="DOMATI">
+                                    <fragment content="Dynamic Object Modelling for Advanced Touch Interactions">
                                         <attributes>
                                             <font key="NSFont" size="18" name="HelveticaNeue-Bold"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
@@ -637,7 +637,9 @@ Cg
                                     </fragment>
                                     <fragment>
                                         <string key="content">
-This is Jad Osseiran’s Final Year Project iOS application implementing Dynamic Object Modelling for Advanced Touch Interactions (DOMATI). This application will determine the strength of a touch on a multitouch display and its effect on a rendered 3D model.</string>
+Current standard touch interactions on familiar multitouch devices such as smartphones and tablets are limited. Devices are aware of: the location of a touch on the display, the time of the interaction, the current phase (beginning, dragging, end) of the touch, and the number of repetitive interactions such as a double or triple taps. In addition to these variables, further information could be extrapolated to facilitate new ways of controlling software.
+
+This Final Year Project aims to enable multitouch devices to recognise 'advanced touch interactions' (standard interactions which also take into account the strength of a touch). Further, a software application will be created to model the effects of advanced touch interactions on a 3D rendered object. Strength detection algorithms combining the radius and duration of a touch along with its effect on a gyroscope and accelerometer will be researched, implemented, tested and calibrated. This project aims to significantly improve software for scientific research, open up new user interfaces, and enrich entertainment applications.</string>
                                         <attributes>
                                             <font key="NSFont" size="14" name="HelveticaNeue"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
@@ -656,7 +658,7 @@ This is Jad Osseiran’s Final Year Project iOS application implementing Dynamic
                             <constraint firstAttribute="trailing" secondItem="Ktk-Gl-A4X" secondAttribute="trailing" id="eg6-g7-0rg"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Application Info" id="6T6-rX-fjg"/>
+                    <navigationItem key="navigationItem" title="Project Summary" id="6T6-rX-fjg"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3l7-vA-Lan" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

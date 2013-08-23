@@ -41,7 +41,8 @@
 		05577B4C17B78A9A007802E6 /* QuickLook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05577B4B17B78A9A007802E6 /* QuickLook.framework */; };
 		05577B4F17B78B5D007802E6 /* DOMPreviewItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 05577B4E17B78B5D007802E6 /* DOMPreviewItem.m */; };
 		05577B5017B78B5D007802E6 /* DOMPreviewItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 05577B4E17B78B5D007802E6 /* DOMPreviewItem.m */; };
-		059E749517B7C1D80026EC36 /* Project Proposal.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 059E749417B7C1D80026EC36 /* Project Proposal.pdf */; };
+		0579798A17C70D3A005959E4 /* Project Proposal.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 0579798917C70D3A005959E4 /* Project Proposal.pdf */; };
+		0579798B17C70D3A005959E4 /* Project Proposal.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 0579798917C70D3A005959E4 /* Project Proposal.pdf */; };
 		05CDCD1F17BA0B7F00BA12E3 /* DOMCalibrationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05CDCD1E17BA0B7F00BA12E3 /* DOMCalibrationViewController.m */; };
 		05CDCD2017BA0B7F00BA12E3 /* DOMCalibrationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05CDCD1E17BA0B7F00BA12E3 /* DOMCalibrationViewController.m */; };
 		05CDCD2217BA0D3C00BA12E3 /* FingerSizes.plist in Resources */ = {isa = PBXBuildFile; fileRef = 05CDCD2117BA0D3C00BA12E3 /* FingerSizes.plist */; };
@@ -98,7 +99,7 @@
 		05577B4B17B78A9A007802E6 /* QuickLook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuickLook.framework; path = System/Library/Frameworks/QuickLook.framework; sourceTree = SDKROOT; };
 		05577B4D17B78B5D007802E6 /* DOMPreviewItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DOMPreviewItem.h; sourceTree = "<group>"; };
 		05577B4E17B78B5D007802E6 /* DOMPreviewItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DOMPreviewItem.m; sourceTree = "<group>"; };
-		059E749417B7C1D80026EC36 /* Project Proposal.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "Project Proposal.pdf"; sourceTree = "<group>"; };
+		0579798917C70D3A005959E4 /* Project Proposal.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "Project Proposal.pdf"; sourceTree = "<group>"; };
 		05CDCD1D17BA0B7F00BA12E3 /* DOMCalibrationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DOMCalibrationViewController.h; sourceTree = "<group>"; };
 		05CDCD1E17BA0B7F00BA12E3 /* DOMCalibrationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DOMCalibrationViewController.m; sourceTree = "<group>"; };
 		05CDCD2117BA0D3C00BA12E3 /* FingerSizes.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = FingerSizes.plist; sourceTree = "<group>"; };
@@ -252,7 +253,7 @@
 			isa = PBXGroup;
 			children = (
 				05CDCD2117BA0D3C00BA12E3 /* FingerSizes.plist */,
-				059E749417B7C1D80026EC36 /* Project Proposal.pdf */,
+				0579798917C70D3A005959E4 /* Project Proposal.pdf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -384,9 +385,9 @@
 			files = (
 				05098F4717B62BC8009D4FF5 /* MainStoryboard_iPhone.storyboard in Resources */,
 				05098F2217B62859009D4FF5 /* InfoPlist.strings in Resources */,
+				0579798A17C70D3A005959E4 /* Project Proposal.pdf in Resources */,
 				05098F2A17B62859009D4FF5 /* Images.xcassets in Resources */,
 				05CDCD2217BA0D3C00BA12E3 /* FingerSizes.plist in Resources */,
-				059E749517B7C1D80026EC36 /* Project Proposal.pdf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -397,6 +398,7 @@
 				05098F4817B62BC8009D4FF5 /* MainStoryboard_iPhone.storyboard in Resources */,
 				05CDCD2317BA0D3C00BA12E3 /* FingerSizes.plist in Resources */,
 				05098F3B17B62859009D4FF5 /* InfoPlist.strings in Resources */,
+				0579798B17C70D3A005959E4 /* Project Proposal.pdf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
