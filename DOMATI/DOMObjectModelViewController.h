@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <GLKit/GLKit.h>
 
-@interface DOMObjectModelViewController : GLKViewController
+#import "DOMTouchViewController.h"
+
+@interface DOMObjectModelViewController : DOMTouchViewController
 
 @end

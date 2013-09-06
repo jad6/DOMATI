@@ -8,6 +8,8 @@
 
 #import "DOMAppDelegate.h"
 
+#import "DOMCoreDataManager.h"
+
 @implementation DOMAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -15,6 +17,8 @@
     // Override point for customization after application launch.
     self.window.backgroundColor = BACKGROUND_COLOR;
     self.window.tintColor = TINT_COLOR;
+    
+    [[DOMCoreDataManager sharedManager] setupCoreData];
     
     return YES;
 }
