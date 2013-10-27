@@ -50,7 +50,6 @@ static const SceneVertex vertices[] =
     [self clearObject];
 }
 
-#warning Might need to remove this in future iOS 7 seeds.
 - (UIStatusBarStyle)preferredStatusBarStyle
 {
     return UIStatusBarStyleLightContent;
@@ -62,17 +61,16 @@ static const SceneVertex vertices[] =
 {
     // Verify the type of view created automatically by the
     // Interface Builder storyboard
-    GLKView *view = (GLKView *)self.view;
-    NSAssert([view isKindOfClass:[GLKView class]],
+    GLKView *glView = (GLKView *)self.view;
+    NSAssert([glView isKindOfClass:[GLKView class]],
              @"View controller's view is not a GLKView");
     
     // Create an OpenGL ES 2.0 context and provide it to the
     // view
-    view.context = [[EAGLContext alloc]
-                    initWithAPI:kEAGLRenderingAPIOpenGLES2];
+    glView.context = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES2];
     
     // Make the new context current
-    [EAGLContext setCurrentContext:view.context];
+    [EAGLContext setCurrentContext:glView.context];
     
     // Create a base effect that provides standard OpenGL ES 2.0
     // Shading Language programs and set constants to be used for
@@ -127,8 +125,8 @@ static const SceneVertex vertices[] =
 - (void)clearObject
 {
     // Make the view's context current
-    GLKView *view = (GLKView *)self.view;
-    [EAGLContext setCurrentContext:view.context];
+    GLKView *glView = (GLKView *)self.view;
+    [EAGLContext setCurrentContext:glView.context];
     
     // Delete buffers that aren't needed when view is unloaded
     if (0 != _vertexBufferID) {
@@ -137,8 +135,16 @@ static const SceneVertex vertices[] =
     }
     
     // Stop using the context created in -viewDidLoad
-    ((GLKView *)self.view).context = nil;
+    glView.context = nil;
     [EAGLContext setCurrentContext:nil];
+}
+
+#pragma mark - Logic
+
+- (UIImage *)objectSnapshot
+{
+    GLKView *glView = (GLKView *)self.view;
+    return [glView snapshot];
 }
 
 #pragma mark - Actions
@@ -153,6 +159,13 @@ static const SceneVertex vertices[] =
     [resetAV show];
 }
 
+#pragma mark - Orientation
+
+- (void)deviceOrientationDidChangeNotification:(NSNotification *)notification
+{
+    
+}
+
 #pragma mark - Navigation
 
 // In a story board-based application, you will often want to do a little preparation before navigation
@@ -161,19 +174,9 @@ static const SceneVertex vertices[] =
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
     if ([segue.identifier isEqualToString:@"Calibration Segue"]) {
-        DOMCalibrationViewController *calibrationVC = [segue destinationViewController];
-        
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-            
-            UIGraphicsBeginImageContextWithOptions(self.view.frame.size, NO, [[UIScreen mainScreen] scale]);
-            [self.view drawViewHierarchyInRect:self.view.bounds afterScreenUpdates:NO];
-            UIImage *scaledImage = UIGraphicsGetImageFromCurrentImageContext();
-            UIGraphicsEndImageContext();
-            
-            calibrationVC.backgroundImage = scaledImage;
-        });
+        DOMCalibrationViewController *calibrationVC = (DOMCalibrationViewController *)[[segue destinationViewController] topViewController];
+        calibrationVC.backgroundImage = [self objectSnapshot];
     }
 }
-
 
 @end

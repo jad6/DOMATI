@@ -19,13 +19,13 @@
     return self;
 }
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
+- (void)setTitleLabel:(UILabel *)titleLabel
 {
-    // Drawing code
+    if (_titleLabel != titleLabel) {
+        _titleLabel = titleLabel;
+        
+        _titleLabel.textColor = DOMATI_COLOR;
+    }
 }
-*/
 
 @end

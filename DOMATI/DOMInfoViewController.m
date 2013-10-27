@@ -28,7 +28,7 @@
 {
     [super viewDidLoad];
     
-    self.feedbackCell.textLabel.textColor = TINT_COLOR;
+    self.feedbackCell.textLabel.textColor = DOMATI_COLOR;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -71,7 +71,6 @@
     if ([MFMailComposeViewController canSendMail]) {
         MFMailComposeViewController *composer = [[MFMailComposeViewController alloc] init];
         composer.mailComposeDelegate = self;
-        composer.view.tintColor = TINT_COLOR;
         [composer setToRecipients:@[@"20507033@student.uwa.edu.au"]];
         [composer setSubject:@"DOMATI Feedback"];
         [composer setMessageBody:@"Something constructive right here..." isHTML:NO];

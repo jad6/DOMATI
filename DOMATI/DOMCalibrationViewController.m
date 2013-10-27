@@ -36,10 +36,14 @@
     self.fingerSizesData = [[NSArray alloc] initWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"FingerSizes" withExtension:@"plist"]];
 }
 
-#warning Might need to remove this in future iOS 7 seeds.
 - (UIStatusBarStyle)preferredStatusBarStyle
 {
     return UIStatusBarStyleLightContent;
+}
+
+- (IBAction)dissmiss:(id)sender
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark - Setter & Getters
@@ -69,14 +73,14 @@
     NSDictionary *fingerData = self.fingerSizesData[indexPath.row];
     
     cell.titleLabel.text = fingerData[@"title"];
-    cell.imageView.backgroundColor = TINT_COLOR;
+    cell.imageView.backgroundColor = DOMATI_COLOR;
     
     return cell;
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [self dissmiss:nil];
 }
 
 @end

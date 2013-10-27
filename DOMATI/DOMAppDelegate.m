@@ -9,6 +9,7 @@
 #import "DOMAppDelegate.h"
 
 #import "DOMCoreDataManager.h"
+#import "DOMThemeManager.h"
 
 @implementation DOMAppDelegate
 
@@ -16,8 +17,9 @@
 {
     // Override point for customization after application launch.
     self.window.backgroundColor = BACKGROUND_COLOR;
-    self.window.tintColor = TINT_COLOR;
+    self.window.tintColor = DOMATI_COLOR;
     
+    [DOMThemeManager customiseAppAppearance];
     [[DOMCoreDataManager sharedManager] setupCoreData];
     
     return YES;

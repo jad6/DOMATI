@@ -16,10 +16,6 @@
 
 @interface DOMTouchViewController ()
 
-@property (strong, nonatomic) CADisplayLink *displayLink;
-
-@property (strong, nonatomic) NSMutableDictionary *touchesTimestamps;
-
 @property (nonatomic) BOOL monitoring;
 
 @end
@@ -29,34 +25,23 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    self.displayLink = [CADisplayLink displayLinkWithTarget:nil
-                                                   selector:nil];
-    self.touchesTimestamps = [[NSMutableDictionary alloc] init];
 }
 
 #pragma mark - Touches
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    NSLog(@"%@", [touches anyObject]);
-    
-    [touches enumerateObjectsUsingBlock:^(UITouch *touch, BOOL *stop) {
-        self.touchesTimestamps[[touch pointerStr]] = @(touch.timestamp);
-    }];
+//    NSLog(@"%@", touches);
 }
 
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    [touches enumerateObjectsUsingBlock:^(UITouch *touch, BOOL *stop) {
-        [self.touchesTimestamps removeObjectForKey:[touch pointerStr]];
-    }];
+//    NSLog(@"%@", touches);
 }
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    NSLog(@"%@", [touches anyObject]);
-    
+//    NSLog(@"%@", touches);
 }
 
 @end

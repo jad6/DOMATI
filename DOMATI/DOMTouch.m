@@ -12,10 +12,11 @@
 
 @interface DOMTouch ()
 
+@property (strong, nonatomic) UITouch *touch;
+
 @property (strong, nonatomic) NSDictionary *gyroscopeInfo, *accelerometerInfo, *microphoneInfo;
 
 @property (nonatomic) CGFloat strength, radius, avgStrength;
-@property (nonatomic) NSTimeInterval duration;
 
 @property (nonatomic) CGFloat x, y;
 
@@ -23,13 +24,11 @@
 
 @implementation DOMTouch
 
-- (id)initWithTouch:(UITouch *)touch duration:(NSTimeInterval)duration
+- (instancetype)initWithTouch:(UITouch *)touch
 {
     self = [super init];
     if (self) {
-        [touch enumeratePropertiesNames:^(NSString *propertyName) {
-            [self setValue:[touch valueForKey:propertyName] forKey:propertyName];
-        }];
+        self.touch = touch;
         
         CGPoint location = [touch locationInView:[UIApplication sharedApplication].keyWindow];
         self.x = location.x;
@@ -39,6 +38,23 @@
         self.radius = [[touch valueForKey:@"pathMajorRadius"] floatValue];
     }
     return self;
+}
+
+#pragma mark - Object Forwarding
+
+- (NSMethodSignature *)methodSignatureForSelector:(SEL)aSelector
+{
+    NSMethodSignature *signature = [_touch methodSignatureForSelector:aSelector];
+    if (!signature) {
+        if ([self respondsToSelector:aSelector])
+            return [super methodSignatureForSelector:aSelector];
+    }
+    return signature;
+}
+
+- (void)forwardInvocation:(NSInvocation *)anInvocation
+{
+    [anInvocation invokeWithTarget:_touch];
 }
 
 @end

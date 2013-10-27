@@ -14,10 +14,12 @@
     #import <UIKit/UIKit.h>
     #import <Foundation/Foundation.h>
 
+    #define DOMATI_COLOR [UIColor orangeColor]
+    #define BACKGROUND_COLOR [UIColor blackColor]
+    #define TEXT_COLOR [UIColor whiteColor]
+    #define SELECTION_COLOR [UIColor darkGrayColor]
+
     #define DEFAULTS_CALI_EXPR_DURATION_DATA @"DOMCalibrationExipryDurationData"
     #define DEFAULTS_CALI_EXPR_INDEX @"DOMCalibrationExipryIndex"
     #define DEFAULTS_CALI_EXPR_TEXT @"DOMCalibrationExipryText"
-
-    #define TINT_COLOR [UIColor orangeColor]
-    #define BACKGROUND_COLOR [UIColor blackColor]
 #endif

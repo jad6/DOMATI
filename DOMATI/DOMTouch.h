@@ -18,6 +18,6 @@
 // Always in relation to the UIWindow.
 @property (nonatomic, readonly) CGFloat x, y;
 
-- (id)initWithTouch:(UITouch *)touch duration:(NSTimeInterval)duration;
+- (instancetype)initWithTouch:(UITouch *)touch;
 
 @end

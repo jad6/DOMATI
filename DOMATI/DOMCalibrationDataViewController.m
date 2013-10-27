@@ -10,6 +10,8 @@
 
 @interface DOMCalibrationDataViewController ()
 
+@property (weak, nonatomic) IBOutlet UITextView *textView;
+
 @end
 
 @implementation DOMCalibrationDataViewController
@@ -26,13 +28,31 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
+    
+    self.textView.backgroundColor = BACKGROUND_COLOR;
+    self.textView.textColor = TEXT_COLOR;
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - Actions
+
+- (IBAction)share:(id)sender
+{
+    UIActivityViewController *activityVC = [[UIActivityViewController alloc] initWithActivityItems:@[self.textView.text] applicationActivities:nil];
+    
+    activityVC.excludedActivityTypes = @[UIActivityTypePostToWeibo, UIActivityTypeAssignToContact, UIActivityTypeAddToReadingList, UIActivityTypeSaveToCameraRoll, UIActivityTypePostToFacebook,  UIActivityTypePostToTwitter, UIActivityTypeMessage, UIActivityTypePostToFlickr, UIActivityTypePostToVimeo, UIActivityTypePostToTencentWeibo, ];
+    
+    activityVC.completionHandler = ^(NSString *activityType, BOOL completed) {
+        NSLog(@" activityType: %@", activityType);
+        NSLog(@" completed: %i", completed);
+    };
+    
+    [self presentViewController:activityVC animated:YES completion:nil];
 }
 
 @end
