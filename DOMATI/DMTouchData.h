@@ -1,8 +1,8 @@
 //
-//  Touch.h
+//  DMTouchData.h
 //  DOMATI
 //
-//  Created by Jad Osseiran on 12/09/13.
+//  Created by Jad Osseiran on 28/10/2013.
 //  Copyright (c) 2013 Jad. All rights reserved.
 //
 
@@ -10,12 +10,13 @@
 #import <CoreData/CoreData.h>
 
 
-@interface Touch : NSManagedObject
+@interface DMTouchData : NSManagedObject
 
 @property (nonatomic, retain) NSData * accelerometerInfo;
 @property (nonatomic, retain) NSNumber * avgStrength;
 @property (nonatomic, retain) NSNumber * duration;
 @property (nonatomic, retain) NSData * gyroscopeInfo;
+@property (nonatomic, retain) NSString * identifier;
 @property (nonatomic, retain) NSData * microphoneInfo;
 @property (nonatomic, retain) NSNumber * phase;
 @property (nonatomic, retain) NSNumber * radius;
@@ -24,6 +25,5 @@
 @property (nonatomic, retain) NSNumber * timestamp;
 @property (nonatomic, retain) NSNumber * x;
 @property (nonatomic, retain) NSNumber * y;
-@property (nonatomic, retain) NSString * identifier;
 
 @end

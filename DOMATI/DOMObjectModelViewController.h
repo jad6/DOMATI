@@ -6,10 +6,8 @@
 //  Copyright (c) 2013 Jad. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import <GLKit/GLKit.h>
 
-#import "DOMTouchViewController.h"
-
-@interface DOMObjectModelViewController : DOMTouchViewController
+@interface DOMObjectModelViewController : GLKViewController
 
 @end

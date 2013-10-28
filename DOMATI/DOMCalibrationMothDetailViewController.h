@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface DOMCalibrationMothDetailViewController : UITableViewController
+#import "DOMCalibrationListViewController.h"
+
+@interface DOMCalibrationMothDetailViewController : DOMCalibrationListViewController
 
 @end

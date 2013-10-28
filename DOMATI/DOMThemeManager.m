@@ -10,6 +10,10 @@
 
 #import "DOMThemeResources.h"
 
+#import "DOMTableViewCell.h"
+#import "DOMTableView.h"
+#import "DOMNavigationBar.h"
+
 @implementation DOMThemeManager
 
 + (id<DOMTheme>)sharedTheme
@@ -27,12 +31,12 @@
 
 + (void)customiseAppAppearance
 {
-    [[UINavigationBar appearance] setBarTintColor:BACKGROUND_COLOR];
+    [[DOMNavigationBar appearance] setBarTintColor:BACKGROUND_COLOR];
     NSDictionary *navAttributes = @{NSForegroundColorAttributeName : TEXT_COLOR};
-    [[UINavigationBar appearance] setTitleTextAttributes:navAttributes];
+    [[DOMNavigationBar appearance] setTitleTextAttributes:navAttributes];
     
-    [[UITableView appearance] setBackgroundColor:BACKGROUND_COLOR];
-    [[UITableViewCell appearance] setBackgroundColor:BACKGROUND_COLOR];
+    [[DOMTableView appearance] setBackgroundColor:BACKGROUND_COLOR];
+    [[DOMTableViewCell appearance] setBackgroundColor:BACKGROUND_COLOR];
 }
 
 @end

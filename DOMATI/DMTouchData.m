@@ -1,20 +1,21 @@
 //
-//  Touch.m
+//  DMTouchData.m
 //  DOMATI
 //
-//  Created by Jad Osseiran on 12/09/13.
+//  Created by Jad Osseiran on 28/10/2013.
 //  Copyright (c) 2013 Jad. All rights reserved.
 //
 
-#import "Touch.h"
+#import "DMTouchData.h"
 
 
-@implementation Touch
+@implementation DMTouchData
 
 @dynamic accelerometerInfo;
 @dynamic avgStrength;
 @dynamic duration;
 @dynamic gyroscopeInfo;
+@dynamic identifier;
 @dynamic microphoneInfo;
 @dynamic phase;
 @dynamic radius;
@@ -23,6 +24,5 @@
 @dynamic timestamp;
 @dynamic x;
 @dynamic y;
-@dynamic identifier;
 
 @end

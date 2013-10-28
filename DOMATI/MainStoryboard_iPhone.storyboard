@@ -138,7 +138,7 @@
         <scene sceneID="wfy-8r-pE9">
             <objects>
                 <tableViewController id="MMF-XX-Iq2" customClass="DOMInfoViewController" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="2Gw-SL-z6R">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="2Gw-SL-z6R" customClass="DOMTableView">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
@@ -353,15 +353,15 @@
         <scene sceneID="Ci6-2w-mkQ">
             <objects>
                 <tableViewController id="lk0-18-Njk" customClass="DOMCalibrationExpiryViewController" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="9Mn-Pa-YjC">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="9Mn-Pa-YjC" customClass="DOMTableView">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <sections>
                             <tableViewSection id="8d5-sg-BTa">
                                 <cells>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="FKR-SR-fYg" style="IBUITableViewCellStyleDefault" id="fgI-4y-30C" customClass="DOMTableViewCell">
-                                        <rect key="frame" x="0.0" y="64" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="99" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="fgI-4y-30C" id="yES-jT-1uO">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
@@ -378,7 +378,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="CCF-Et-FP0" style="IBUITableViewCellStyleDefault" id="Ndg-aD-54v" customClass="DOMTableViewCell">
-                                        <rect key="frame" x="0.0" y="108" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="143" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ndg-aD-54v" id="LEt-m3-FLl">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
@@ -395,7 +395,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="ERd-Df-yzX" style="IBUITableViewCellStyleDefault" id="qEH-BF-z6l" customClass="DOMTableViewCell">
-                                        <rect key="frame" x="0.0" y="152" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="187" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qEH-BF-z6l" id="AaH-d9-QZO">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
@@ -412,7 +412,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="0Ez-Vw-SQm" style="IBUITableViewCellStyleDefault" id="2ZT-hA-paM" customClass="DOMTableViewCell">
-                                        <rect key="frame" x="0.0" y="196" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="231" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="2ZT-hA-paM" id="Wqn-R4-cmf">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
@@ -429,7 +429,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="mUC-5l-gi2" style="IBUITableViewCellStyleDefault" id="sbs-TJ-KSG" customClass="DOMTableViewCell">
-                                        <rect key="frame" x="0.0" y="240" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="275" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="sbs-TJ-KSG" id="hZV-yL-kKh">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
@@ -446,7 +446,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="Bkj-Ub-m42" style="IBUITableViewCellStyleDefault" id="KcV-iX-08D" customClass="DOMTableViewCell">
-                                        <rect key="frame" x="0.0" y="284" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="319" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KcV-iX-08D" id="zrB-V3-BSu">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
@@ -463,7 +463,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="2zA-D7-A4i" style="IBUITableViewCellStyleDefault" id="z0d-ww-Ny3" customClass="DOMTableViewCell">
-                                        <rect key="frame" x="0.0" y="328" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="363" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="z0d-ww-Ny3" id="VaN-yW-ans">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
@@ -497,7 +497,7 @@
         <scene sceneID="ZNg-Pi-xbg">
             <objects>
                 <tableViewController id="12s-hT-z4L" customClass="DOMCalibrationMonthsViewController" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="YPb-Q4-a2T">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="YPb-Q4-a2T" customClass="DOMTableView">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -538,7 +538,7 @@
         <scene sceneID="dc4-og-Gss">
             <objects>
                 <tableViewController id="lAm-Qs-BbM" customClass="DOMCalibrationMothDetailViewController" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="drr-Mb-bdv">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="drr-Mb-bdv" customClass="DOMTableView">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -626,10 +626,10 @@
             </objects>
             <point key="canvasLocation" x="2256" y="-622"/>
         </scene>
-        <!--View Controller - Project Summary-->
+        <!--Project Summary View Controller - Project Summary-->
         <scene sceneID="Z2b-hj-vDu">
             <objects>
-                <viewController id="kD8-4U-YbG" sceneMemberID="viewController">
+                <viewController id="kD8-4U-YbG" customClass="DOMProjectSummaryViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="W89-Uo-IwU"/>
                         <viewControllerLayoutGuide type="bottom" id="r7v-dX-gMM"/>
@@ -681,7 +681,16 @@ This Final Year Project aims to enable multitouch devices to recognise 'advanced
                             <constraint firstAttribute="trailing" secondItem="Ktk-Gl-A4X" secondAttribute="trailing" id="eg6-g7-0rg"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Project Summary" id="6T6-rX-fjg"/>
+                    <navigationItem key="navigationItem" title="Project Summary" id="6T6-rX-fjg">
+                        <barButtonItem key="rightBarButtonItem" systemItem="action" id="dgK-QP-1TH">
+                            <connections>
+                                <action selector="share:" destination="kD8-4U-YbG" id="dTy-ih-vlr"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="textView" destination="Ktk-Gl-A4X" id="zxQ-aO-jhC"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3l7-vA-Lan" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -774,7 +783,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</stri
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="eRb-eU-bHx" customClass="DOMNavigationController" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="BZl-KB-gC7">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="BZl-KB-gC7" customClass="DOMNavigationBar">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -792,7 +801,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</stri
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="tH7-mb-I2w" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" translucent="NO" id="7Ml-T6-IDB">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="7Ml-T6-IDB" customClass="DOMNavigationBar">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

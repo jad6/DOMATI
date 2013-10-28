@@ -1,22 +1,22 @@
 //
-//  DOMCalibrationDataViewController.m
+//  DOMProjectSummaryViewController.m
 //  DOMATI
 //
-//  Created by Jad Osseiran on 11/08/13.
+//  Created by Jad Osseiran on 28/10/2013.
 //  Copyright (c) 2013 Jad. All rights reserved.
 //
 
-#import "DOMCalibrationDataViewController.h"
+#import "DOMProjectSummaryViewController.h"
 
 #import "UITextView+Sharing.h"
 
-@interface DOMCalibrationDataViewController ()
+@interface DOMProjectSummaryViewController ()
 
 @property (weak, nonatomic) IBOutlet UITextView *textView;
 
 @end
 
-@implementation DOMCalibrationDataViewController
+@implementation DOMProjectSummaryViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -30,9 +30,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    self.textView.backgroundColor = BACKGROUND_COLOR;
-    self.textView.textColor = TEXT_COLOR;
+	// Do any additional setup after loading the view.
 }
 
 - (void)didReceiveMemoryWarning

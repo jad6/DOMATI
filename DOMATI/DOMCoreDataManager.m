@@ -10,11 +10,7 @@
 
 #import "DOMCoreDataManager.h"
 
-#import "DOMTouch.h"
-
-#import "NSObject+Extension.h"
 #import "NSManagedObject+Appulse.h"
-#import "Touch.h"
 
 #define DATABASE_NAME @"DOMATI"
 
@@ -38,36 +34,6 @@
     });
     
     return singletonObject;
-}
-
-#pragma mark - Manipulation
-
-- (Touch *)saveTouch:(DOMTouch *)touch
-{    
-    Touch *t = [Touch newEntity:@"Touch"
-                  inContext:self.mainContext
-                idAttribute:@"timestamp"
-                      value:@(touch.timestamp)
-                   onInsert:^(Touch *newTouch) {
-                       [newTouch enumeratePropertiesNames:^(NSString *propertyName) {
-//                           NSLog(@"Key: %@, Value: %@", propertyName, [touch valueForKey:propertyName]);
-                           id value = [touch valueForKey:propertyName];
-                           if ([value isKindOfClass:[NSDictionary class]]) {
-                               
-                           } else {
-                               [newTouch setValue:value forKey:propertyName];
-                           }
-                       }];
-                   }];
-    
-    NSLog(@"%@", t);
-    
-    return t;
-}
-
-- (void)deleteTouch:(Touch *)touch
-{
-    
 }
 
 #pragma mark - Core Data Core

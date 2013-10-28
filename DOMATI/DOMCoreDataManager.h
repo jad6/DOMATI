@@ -8,15 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
-@class DOMTouch;
-@class Touch;
-
 @interface DOMCoreDataManager : NSObject
 
 + (instancetype)sharedManager;
 
 - (void)setupCoreData;
-
-- (Touch *)saveTouch:(DOMTouch *)touch;
 
 @end
