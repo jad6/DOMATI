@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		05084EA7181FECD500FFFB93 /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 05084EA6181FECD500FFFB93 /* MainStoryboard_iPad.storyboard */; };
 		05098F1817B62859009D4FF5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05098F1717B62859009D4FF5 /* Foundation.framework */; };
 		05098F1A17B62859009D4FF5 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05098F1917B62859009D4FF5 /* CoreGraphics.framework */; };
 		05098F1C17B62859009D4FF5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05098F1B17B62859009D4FF5 /* UIKit.framework */; };
@@ -28,8 +29,6 @@
 		05098F5317B62F7D009D4FF5 /* DOMInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05098F5217B62F7D009D4FF5 /* DOMInfoViewController.m */; };
 		05098F5417B62F7D009D4FF5 /* DOMInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05098F5217B62F7D009D4FF5 /* DOMInfoViewController.m */; };
 		05098F5A17B63820009D4FF5 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05098F5917B63820009D4FF5 /* MessageUI.framework */; };
-		050D46E717B931A9009B2885 /* UIImage+ImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = 050D46E617B931A9009B2885 /* UIImage+ImageEffects.m */; };
-		050D46E817B931A9009B2885 /* UIImage+ImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = 050D46E617B931A9009B2885 /* UIImage+ImageEffects.m */; };
 		05430128181D23ED0077435C /* DOMThemeResources.m in Sources */ = {isa = PBXBuildFile; fileRef = 05430127181D23ED0077435C /* DOMThemeResources.m */; };
 		0543012B181D55660077435C /* DOMTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0543012A181D55660077435C /* DOMTableViewCell.m */; };
 		0543012E181D57290077435C /* DOMSwitchTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0543012D181D57290077435C /* DOMSwitchTableViewCell.m */; };
@@ -82,6 +81,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		05084EA6181FECD500FFFB93 /* MainStoryboard_iPad.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
+		05084EA8181FF27B00FFFB93 /* sharedHeaders.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sharedHeaders.h; sourceTree = "<group>"; };
 		05098F1417B62859009D4FF5 /* DOMATI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DOMATI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		05098F1717B62859009D4FF5 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		05098F1917B62859009D4FF5 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -106,8 +107,6 @@
 		05098F5117B62F7D009D4FF5 /* DOMInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DOMInfoViewController.h; sourceTree = "<group>"; };
 		05098F5217B62F7D009D4FF5 /* DOMInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DOMInfoViewController.m; sourceTree = "<group>"; };
 		05098F5917B63820009D4FF5 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
-		050D46E517B931A9009B2885 /* UIImage+ImageEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+ImageEffects.h"; sourceTree = "<group>"; };
-		050D46E617B931A9009B2885 /* UIImage+ImageEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ImageEffects.m"; sourceTree = "<group>"; };
 		05430126181D23ED0077435C /* DOMThemeResources.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DOMThemeResources.h; sourceTree = "<group>"; };
 		05430127181D23ED0077435C /* DOMThemeResources.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DOMThemeResources.m; sourceTree = "<group>"; };
 		05430129181D55660077435C /* DOMTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DOMTableViewCell.h; sourceTree = "<group>"; };
@@ -186,6 +185,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		05084EF7181FFE9B00FFFB93 /* Submodules */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Submodules;
+			sourceTree = "<group>";
+		};
+		05084F01181FFF1F00FFFB93 /* 3rd Party */ = {
+			isa = PBXGroup;
+			children = (
+				05084EF7181FFE9B00FFFB93 /* Submodules */,
+			);
+			name = "3rd Party";
+			sourceTree = "<group>";
+		};
 		05098F0B17B62859009D4FF5 = {
 			isa = PBXGroup;
 			children = (
@@ -228,13 +242,15 @@
 				05098F2617B62859009D4FF5 /* DOMAppDelegate.h */,
 				05098F2717B62859009D4FF5 /* DOMAppDelegate.m */,
 				05098F4617B62BC8009D4FF5 /* MainStoryboard_iPhone.storyboard */,
+				05084EA6181FECD500FFFB93 /* MainStoryboard_iPad.storyboard */,
 				054BA47417B7789D005532CE /* Views & Controllers */,
 				058FFC0A17D9FBCE008ECB1B /* Touch Strength */,
 				05CDCD2417BA101E00BA12E3 /* Others */,
 				058FFC0717D9FAE5008ECB1B /* Core Data */,
+				05084F01181FFF1F00FFFB93 /* 3rd Party */,
 				05577B4817B789B7007802E6 /* Resources */,
-				05098F2917B62859009D4FF5 /* Images.xcassets */,
 				05098F1E17B62859009D4FF5 /* Supporting Files */,
+				05098F2917B62859009D4FF5 /* Images.xcassets */,
 			);
 			path = DOMATI;
 			sourceTree = "<group>";
@@ -244,8 +260,9 @@
 			children = (
 				05098F1F17B62859009D4FF5 /* DOMATI-Info.plist */,
 				05098F2017B62859009D4FF5 /* InfoPlist.strings */,
-				05098F2317B62859009D4FF5 /* main.m */,
 				05098F2517B62859009D4FF5 /* DOMATI-Prefix.pch */,
+				05084EA8181FF27B00FFFB93 /* sharedHeaders.h */,
+				05098F2317B62859009D4FF5 /* main.m */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -273,8 +290,6 @@
 			children = (
 				058FFC2017DA0AB0008ECB1B /* NSManagedObject+Appulse.h */,
 				058FFC2117DA0AB0008ECB1B /* NSManagedObject+Appulse.m */,
-				050D46E517B931A9009B2885 /* UIImage+ImageEffects.h */,
-				050D46E617B931A9009B2885 /* UIImage+ImageEffects.m */,
 				05D273DD181E67110005E31E /* UITextView+Sharing.h */,
 				05D273DE181E67110005E31E /* UITextView+Sharing.m */,
 			);
@@ -545,6 +560,7 @@
 			files = (
 				05098F4717B62BC8009D4FF5 /* MainStoryboard_iPhone.storyboard in Resources */,
 				05098F2217B62859009D4FF5 /* InfoPlist.strings in Resources */,
+				05084EA7181FECD500FFFB93 /* MainStoryboard_iPad.storyboard in Resources */,
 				0579798A17C70D3A005959E4 /* Project Proposal.pdf in Resources */,
 				05098F2A17B62859009D4FF5 /* Images.xcassets in Resources */,
 				05CDCD2217BA0D3C00BA12E3 /* FingerSizes.plist in Resources */,
@@ -587,7 +603,6 @@
 				05098F2817B62859009D4FF5 /* DOMAppDelegate.m in Sources */,
 				0543012E181D57290077435C /* DOMSwitchTableViewCell.m in Sources */,
 				05F0780C181CC4D2006EA8B0 /* DOMThemeManager.m in Sources */,
-				050D46E717B931A9009B2885 /* UIImage+ImageEffects.m in Sources */,
 				05CDCD1F17BA0B7F00BA12E3 /* DOMCalibrationViewController.m in Sources */,
 				054C30A817B7366800ABC9CF /* DOMCalibrationMonthsViewController.m in Sources */,
 				05D273DF181E67110005E31E /* UITextView+Sharing.m in Sources */,
@@ -604,7 +619,6 @@
 			files = (
 				05098F5417B62F7D009D4FF5 /* DOMInfoViewController.m in Sources */,
 				05098F4C17B62CF8009D4FF5 /* DOMObjectModelViewController.m in Sources */,
-				050D46E817B931A9009B2885 /* UIImage+ImageEffects.m in Sources */,
 				05CDCD2A17BA107800BA12E3 /* DOMFingerCell.m in Sources */,
 				054BA47817B778CB005532CE /* DOMCalibrationExpiryViewController.m in Sources */,
 				05CDCD2017BA0B7F00BA12E3 /* DOMCalibrationViewController.m in Sources */,
@@ -730,8 +744,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "DOMATI/DOMATI-Prefix.pch";
 				INFOPLIST_FILE = "DOMATI/DOMATI-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -746,8 +762,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "DOMATI/DOMATI-Prefix.pch";
 				INFOPLIST_FILE = "DOMATI/DOMATI-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

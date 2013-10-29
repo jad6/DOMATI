@@ -28,6 +28,7 @@
 {
     [super viewDidLoad];
     
+    self.title = @"DOMATI";
     self.feedbackCell.textLabel.textColor = DOMATI_COLOR;
 }
 
@@ -66,7 +67,7 @@
 
 #pragma mark - Feedback
 
-- (void)feedback:(id)sender
+- (void)sendFeedback:(id)sender
 {
     if ([MFMailComposeViewController canSendMail]) {
         MFMailComposeViewController *composer = [[MFMailComposeViewController alloc] init];
@@ -90,7 +91,7 @@
 
 #pragma mark - Quick Look
 
-- (void)pushDocumentWithLocalURL:(NSURL *)url andTitle:(NSString *)title
+- (void)showDocumentWithLocalURL:(NSURL *)url andTitle:(NSString *)title
 {
     self.previewItem = [[DOMPreviewItem alloc] init];
     self.previewItem.localURL = url;
@@ -98,6 +99,7 @@
     if ([QLPreviewController canPreviewItem:self.previewItem]) {
         QLPreviewController *quickLookC = [[QLPreviewController alloc] init];
         quickLookC.dataSource = self;
+        
         [self.navigationController pushViewController:quickLookC animated:YES];
     }
 }
@@ -119,9 +121,9 @@
     id cell = [tableView cellForRowAtIndexPath:indexPath];
     
     if ([cell isEqual:self.feedbackCell]) {
-        [self feedback:cell];
+        [self sendFeedback:cell];
     } else if ([cell isEqual:self.projectProposalCell]) {
-        [self pushDocumentWithLocalURL:[[NSBundle mainBundle] URLForResource:@"Project Proposal" withExtension:@"pdf"]
+        [self showDocumentWithLocalURL:[[NSBundle mainBundle] URLForResource:@"Project Proposal" withExtension:@"pdf"]
                               andTitle:@"Project Proposal"];
     }
 }

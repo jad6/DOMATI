@@ -10,6 +10,4 @@
 
 @interface DOMCalibrationViewController : UICollectionViewController
 
-@property (strong, nonatomic) UIImage *backgroundImage;
-
 @end

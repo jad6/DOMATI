@@ -9,8 +9,7 @@
 #import "DOMObjectModelViewController.h"
 
 #import "DOMCalibrationViewController.h"
-
-#import "UIImage+ImageEffects.h"
+#import "DOMInfoViewController.h"
 
 // This data type is used to store information for each vertex
 typedef struct {
@@ -171,12 +170,7 @@ static const SceneVertex vertices[] =
 // In a story board-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-    if ([segue.identifier isEqualToString:@"Calibration Segue"]) {
-        DOMCalibrationViewController *calibrationVC = (DOMCalibrationViewController *)[[segue destinationViewController] topViewController];
-        calibrationVC.backgroundImage = [self objectSnapshot];
-    }
+    
 }
 
 @end

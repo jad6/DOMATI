@@ -10,8 +10,6 @@
 
 #import "DOMFingerCell.h"
 
-#import "UIImage+ImageEffects.h"
-
 @interface DOMCalibrationViewController ()
 
 @property (strong, nonatomic) NSArray *fingerSizesData;
@@ -32,7 +30,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
+    
+    self.collectionView.backgroundColor = BACKGROUND_COLOR;
     self.fingerSizesData = [[NSArray alloc] initWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"FingerSizes" withExtension:@"plist"]];
 }
 
@@ -44,19 +43,6 @@
 - (IBAction)dissmiss:(id)sender
 {
     [self dismissViewControllerAnimated:YES completion:nil];
-}
-
-#pragma mark - Setter & Getters
-
-- (void)setBackgroundImage:(UIImage *)backgroundImage
-{
-    if (_backgroundImage != backgroundImage) {
-        _backgroundImage = backgroundImage;
-    }
-    
-    UIImageView *backgroundImageView = [[UIImageView alloc] initWithFrame:self.view.frame];
-    backgroundImageView.image = [backgroundImage applyDarkEffect];
-    self.collectionView.backgroundView = backgroundImageView;
 }
 
 #pragma mark - Collection View
