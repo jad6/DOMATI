@@ -16,7 +16,6 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
-    self.window.backgroundColor = BACKGROUND_COLOR;
     self.window.tintColor = DOMATI_COLOR;
     
     [DOMThemeManager customiseAppAppearance];

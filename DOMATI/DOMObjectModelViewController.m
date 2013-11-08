@@ -11,6 +11,8 @@
 #import "DOMCalibrationViewController.h"
 #import "DOMInfoViewController.h"
 
+#import "DOMStrengthGestureRecognizer.h"
+
 // This data type is used to store information for each vertex
 typedef struct {
     GLKVector3  positionCoords;
@@ -25,7 +27,7 @@ static const SceneVertex vertices[] =
     {{-0.5f,  0.5f, 0.0}}  // upper left corner
 };
 
-@interface DOMObjectModelViewController ()
+@interface DOMObjectModelViewController () <UIGestureRecognizerDelegate>
 
 @property (strong, nonatomic) GLKBaseEffect *baseEffect;
 
@@ -38,6 +40,10 @@ static const SceneVertex vertices[] =
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+        
+    DOMStrengthGestureRecognizer *strengthGR = [[DOMStrengthGestureRecognizer alloc] initWithTarget:self action:@selector(saveTouch:)];
+    strengthGR.delegate = self;
+    [self.view addGestureRecognizer:strengthGR];
     
     [self prepareObject];
 }
@@ -52,6 +58,21 @@ static const SceneVertex vertices[] =
 - (UIStatusBarStyle)preferredStatusBarStyle
 {
     return UIStatusBarStyleLightContent;
+}
+
+#pragma mark - Touch Strnegth Recognizer
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch
+{
+    if ([touch.view isKindOfClass:[UIButton class]]) {
+        return NO;
+    }
+    return YES;
+}
+
+- (void)saveTouch:(DOMStrengthGestureRecognizer *)strengthGR
+{
+    
 }
 
 #pragma mark - Open GL
