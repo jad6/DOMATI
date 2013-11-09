@@ -10,6 +10,7 @@
 
 #import "DOMCoreDataManager.h"
 
+#import "DOMTouchData+Extension.h"
 #import "NSManagedObject+Appulse.h"
 
 #define DATABASE_NAME @"DOMATI"
@@ -36,6 +37,18 @@
     return singletonObject;
 }
 
+#pragma mark - Logic
+
+- (void)saveTouchData:(void (^)(DOMTouchData *touchData))touchDataBlock
+{
+    [DOMTouchData newEntity:NSStringFromClass([DOMTouchData class])
+                  inContext:self.mainContext
+                idAttribute:@"identifier"
+                      value:[DOMTouchData uniqueIndentifier]
+                   onInsert:touchDataBlock];
+    [self saveContext];
+}
+
 #pragma mark - Core Data Core
 
 - (void)setupCoreData
@@ -58,11 +71,6 @@
     [self.mainContext setPersistentStoreCoordinator:self.persistentStoreCoordinator];
 }
 
-- (void)applicationShouldSaveContext:(NSNotification *)notification
-{
-    [self saveContext:self.mainContext];
-}
-
 - (void)saveContext:(NSManagedObjectContext *)context
 {
     NSError *childError = nil;
@@ -79,6 +87,16 @@
     
     task = [[UIApplication sharedApplication] beginBackgroundTaskWithExpirationHandler:NULL];
     [self.mainContext performBlock:block];
+}
+
+- (void)saveContext
+{
+    [self saveContext:self.mainContext];
+}
+
+- (void)applicationShouldSaveContext:(NSNotification *)notification
+{
+    [self saveContext];
 }
 
 @end

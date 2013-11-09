@@ -24,8 +24,8 @@
 
 @end
 
-// 100 Hz update interval to get best feedback rate of readings
-static NSTimeInterval kUpdateInterval = 0.01;
+// 60 Hz update interval to match the 60 fps of the display.
+static NSTimeInterval kUpdateInterval = 0.06;
 
 @implementation DOMMotionManager
 
