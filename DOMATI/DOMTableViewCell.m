@@ -29,6 +29,7 @@
     self.selectedBackgroundView = backgroundView;
     
     self.textLabel.textColor = TEXT_COLOR;
+    self.detailTextLabel.textColor = DETAIL_TEXT_COLOR;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated

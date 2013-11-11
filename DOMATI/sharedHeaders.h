@@ -12,9 +12,10 @@
 #define IPAD ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad)
 
 #define DOMATI_COLOR [UIColor orangeColor]
-#define BACKGROUND_COLOR [UIColor colorWithRed:29.0f/255.0f green:31.0f/255.0f blue:33.0f/255.0f alpha:1.0f]
-#define TEXT_COLOR [UIColor whiteColor]
+#define BACKGROUND_COLOR [UIColor colorWithRed:38.0f/255.0f green:41.0f/255.0f blue:44.0f/255.0f alpha:1.0f]
 #define SELECTION_COLOR [UIColor darkGrayColor]
+#define TEXT_COLOR [UIColor whiteColor]
+#define DETAIL_TEXT_COLOR [UIColor lightGrayColor]
 
 #define DEFAULTS_CALI_EXPR_DURATION_DATA @"DOMCalibrationExipryDurationData"
 #define DEFAULTS_CALI_EXPR_INDEX @"DOMCalibrationExipryIndex"

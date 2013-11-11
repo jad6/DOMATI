@@ -18,7 +18,7 @@
 
 @interface DOMStrengthGestureRecognizer ()
 
-@property (strong, nonatomic) NSMutableDictionary *touchesDurations;
+@property (strong, nonatomic) NSMutableDictionary *touchesDurations, *touchStates;
 
 @property (nonatomic) CGFloat strength;
 
@@ -66,7 +66,8 @@
         NSTimeInterval duration = touch.timestamp - [self.touchesDurations[pointerKey] floatValue];
         
         [[DOMCoreDataManager sharedManager] saveTouchData:^(DOMTouchData *touchData) {
-            
+            touchData.duration = @(duration);
+            [[DOMMotionManager sharedManager] setMotionDataOnTouchData:touchData];
         }];
     }];
 }
