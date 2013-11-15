@@ -8,8 +8,10 @@
 
 #import "DOMObjectModelViewController.h"
 
-#import "DOMCalibrationViewController.h"
+#import "DOMGroupSelectionViewController.h"
 #import "DOMInfoViewController.h"
+
+#import "DOMCalibrationPresenter.h"
 
 #import "DOMStrengthGestureRecognizer.h"
 
@@ -46,6 +48,20 @@ static const SceneVertex vertices[] =
     [self.view addGestureRecognizer:strengthGR];
     
     [self prepareObject];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+        
+    if (FIRST_LAUNCH) {
+        [DOMCalibrationPresenter showCalibrationFromController:self
+                                                    completion:nil];
+        
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        [defaults setBool:YES forKey:@"DOMAlreadyLaunched"];
+        [defaults synchronize];
+    }
 }
 
 - (void)viewDidDisappear:(BOOL)animated

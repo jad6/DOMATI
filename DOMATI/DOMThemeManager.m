@@ -37,6 +37,8 @@
     
     [[DOMTableView appearance] setBackgroundColor:BACKGROUND_COLOR];
     [[DOMTableViewCell appearance] setBackgroundColor:BACKGROUND_COLOR];
+    
+    [[UIPickerView appearance] setBackgroundColor:BACKGROUND_COLOR];
 }
 
 @end

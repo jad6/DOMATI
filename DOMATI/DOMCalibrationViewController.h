@@ -2,12 +2,14 @@
 //  DOMCalibrationViewController.h
 //  DOMATI
 //
-//  Created by Jad Osseiran on 13/08/13.
+//  Created by Jad Osseiran on 11/11/2013.
 //  Copyright (c) 2013 Jad. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 
-@interface DOMCalibrationViewController : UICollectionViewController
+@interface DOMCalibrationViewController : UITableViewController
+
+@property (nonatomic) BOOL pushedOnNavigation;
 
 @end

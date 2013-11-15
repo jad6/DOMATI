@@ -1,8 +1,8 @@
 //
-//  DOMSwitchTableViewCell.h
+//  DOMSwitchCell.h
 //  DOMATI
 //
-//  Created by Jad Osseiran on 27/10/2013.
+//  Created by Jad Osseiran on 11/11/2013.
 //  Copyright (c) 2013 Jad. All rights reserved.
 //
 
@@ -10,9 +10,9 @@
 
 #import "DOMTableViewCell.h"
 
-@interface DOMSwitchTableViewCell : DOMTableViewCell
+@interface DOMSwitchCell : DOMTableViewCell
 
-@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+@property (weak, nonatomic) IBOutlet UILabel *switchInfoLabel;
 @property (weak, nonatomic) IBOutlet UISwitch *cellSwitch;
 
 @end

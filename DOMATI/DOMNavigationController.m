@@ -39,4 +39,9 @@
     return UIStatusBarStyleLightContent;
 }
 
+- (NSUInteger)supportedInterfaceOrientations
+{
+    return (IPAD) ? UIInterfaceOrientationMaskAll : UIInterfaceOrientationMaskPortrait;
+}
+
 @end
