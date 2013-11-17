@@ -13,13 +13,10 @@
 #define FIRST_LAUNCH ![[NSUserDefaults standardUserDefaults] boolForKey:@"DOMAlreadyLaunched"]
 
 #define DOMATI_COLOR [UIColor orangeColor]
-#define BACKGROUND_COLOR [UIColor colorWithRed:30.0f/255.0f green:30.0f/255.0f blue:30.0f/255.0f alpha:1.0f]
+#define BACKGROUND_COLOR [UIColor colorWithRed:30.0/255.0 green:30.0/255.0 blue:30.0/255.0 alpha:1.0]
 #define SELECTION_COLOR [UIColor darkGrayColor]
 #define TEXT_COLOR [UIColor whiteColor]
 #define DETAIL_TEXT_COLOR [UIColor lightGrayColor]
-
-#define MALE_SWITCH_COLOR [UIColor blueColor]
-#define FEMALE_SWITCH_COLOR [UIColor redColor]
 
 #define DEFAULTS_CALI_EXPR_DURATION_DATA @"DOMCalibrationExipryDurationData"
 #define DEFAULTS_CALI_EXPR_INDEX @"DOMCalibrationExipryIndex"

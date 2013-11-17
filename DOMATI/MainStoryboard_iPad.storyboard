@@ -13,43 +13,8 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Switch Cell" id="ewe-fB-Agn" customClass="DOMGenderSwitchCell">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Age Cell" textLabel="UUs-ol-AgJ" detailTextLabel="QwP-sb-Snu" style="IBUITableViewCellStyleValue1" id="gi1-3g-vxV" customClass="DOMTableViewCell">
                                 <rect key="frame" x="0.0" y="119" width="540" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ewe-fB-Agn" id="kp9-04-k8a">
-                                    <rect key="frame" x="0.0" y="0.0" width="540" height="43"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u09-BP-huj">
-                                            <rect key="frame" x="15" y="0.0" width="74" height="43"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" constant="74" id="VYm-PO-18j"/>
-                                            </constraints>
-                                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ls5-p5-5RG">
-                                            <rect key="frame" x="478" y="6" width="51" height="31"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        </switch>
-                                    </subviews>
-                                    <constraints>
-                                        <constraint firstAttribute="bottom" secondItem="u09-BP-huj" secondAttribute="bottom" id="3U0-4v-0QO"/>
-                                        <constraint firstAttribute="trailing" secondItem="ls5-p5-5RG" secondAttribute="trailing" constant="13" id="4SG-0z-TMw"/>
-                                        <constraint firstItem="ls5-p5-5RG" firstAttribute="centerY" secondItem="u09-BP-huj" secondAttribute="centerY" id="HPW-mP-Jd2"/>
-                                        <constraint firstItem="u09-BP-huj" firstAttribute="leading" secondItem="kp9-04-k8a" secondAttribute="leading" constant="15" id="VsA-ey-5db"/>
-                                        <constraint firstItem="u09-BP-huj" firstAttribute="top" secondItem="kp9-04-k8a" secondAttribute="top" id="mbG-CW-dFn"/>
-                                    </constraints>
-                                </tableViewCellContentView>
-                                <connections>
-                                    <outlet property="cellSwitch" destination="ls5-p5-5RG" id="AjW-rV-Igp"/>
-                                    <outlet property="switchInfoLabel" destination="u09-BP-huj" id="1a3-1o-wRx"/>
-                                </connections>
-                            </tableViewCell>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Detail Cell" textLabel="UUs-ol-AgJ" detailTextLabel="QwP-sb-Snu" style="IBUITableViewCellStyleValue1" id="gi1-3g-vxV" customClass="DOMTableViewCell">
-                                <rect key="frame" x="0.0" y="163" width="540" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gi1-3g-vxV" id="Vxb-sP-mMe">
                                     <rect key="frame" x="0.0" y="0.0" width="540" height="43"/>
@@ -73,7 +38,7 @@
                                 </tableViewCellContentView>
                             </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Picker Cell" rowHeight="216" id="th9-sS-pnM" customClass="DOMPickerCell">
-                                <rect key="frame" x="0.0" y="207" width="540" height="216"/>
+                                <rect key="frame" x="0.0" y="163" width="540" height="216"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="th9-sS-pnM" id="A0i-yz-zYr">
                                     <rect key="frame" x="0.0" y="0.0" width="540" height="215"/>
@@ -88,6 +53,54 @@
                                 <connections>
                                     <outlet property="picker" destination="wSD-QI-SAl" id="mdL-Ne-lPL"/>
                                 </connections>
+                            </tableViewCell>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Gender Cell" id="ewe-fB-Agn" customClass="DOMGenderSegmentCell">
+                                <rect key="frame" x="0.0" y="379" width="540" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ewe-fB-Agn" id="kp9-04-k8a">
+                                    <rect key="frame" x="0.0" y="0.0" width="540" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u09-BP-huj">
+                                            <rect key="frame" x="15" y="0.0" width="74" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="74" id="VYm-PO-18j"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="f11-cZ-k5R">
+                                            <rect key="frame" x="253" y="8" width="279" height="29"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <segments>
+                                                <segment title="Undisclosed"/>
+                                                <segment title="Male"/>
+                                                <segment title="Female"/>
+                                            </segments>
+                                            <connections>
+                                                <action selector="setGender:" destination="ewe-fB-Agn" eventType="valueChanged" id="uGP-Km-5H8"/>
+                                            </connections>
+                                        </segmentedControl>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="bottom" secondItem="u09-BP-huj" secondAttribute="bottom" id="3U0-4v-0QO"/>
+                                        <constraint firstItem="u09-BP-huj" firstAttribute="leading" secondItem="kp9-04-k8a" secondAttribute="leading" constant="15" id="VsA-ey-5db"/>
+                                        <constraint firstItem="u09-BP-huj" firstAttribute="top" secondItem="kp9-04-k8a" secondAttribute="top" id="mbG-CW-dFn"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="titleLabel" destination="u09-BP-huj" id="FeE-FS-b53"/>
+                                </connections>
+                            </tableViewCell>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Calibrate Cell" rowHeight="308" id="dKF-bC-QAg" customClass="DOMCalibrateCell">
+                                <rect key="frame" x="0.0" y="423" width="540" height="308"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dKF-bC-QAg" id="VJo-wV-jg9">
+                                    <rect key="frame" x="0.0" y="0.0" width="540" height="307"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -864,7 +877,6 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</stri
         <!--Navigation Controller-->
         <scene sceneID="RC7-g2-6b8">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Ice-HN-hKB" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController storyboardIdentifier="DOMCalibrationNavController" automaticallyAdjustsScrollViewInsets="NO" id="xVm-1d-qSH" customClass="DOMNavigationController" sceneMemberID="viewController">
                     <toolbarItems/>
                     <modalFormSheetSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
@@ -877,6 +889,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</stri
                         <segue destination="Q8p-KP-WDT" kind="relationship" relationship="rootViewController" id="Frw-uy-CSa"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ice-HN-hKB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-2014" y="-1363"/>
         </scene>

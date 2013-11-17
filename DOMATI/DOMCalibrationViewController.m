@@ -10,8 +10,9 @@
 
 #import "DOMYearsPickerHandler.h"
 
-#import "DOMGenderSwitchCell.h"
+#import "DOMGenderSegmentCell.h"
 #import "DOMPickerCell.h"
+#import "DOMCalibrateCell.h"
 
 @interface DOMCalibrationViewController () <DOMYearsPickerHandlerDelegate>
 
@@ -24,9 +25,10 @@
 
 @end
 
-static NSString *SwitchCellIdentifier = @"Switch Cell";
-static NSString *DetailCellIdentifier = @"Detail Cell";
+static NSString *GenderCellIdentifier = @"Gender Cell";
+static NSString *AgeCellIdentifier = @"Age Cell";
 static NSString *PickerCellIdentifier = @"Picker Cell";
+static NSString *CalibrateCellIdentifier = @"Calibrate Cell";
 
 @implementation DOMCalibrationViewController
 
@@ -57,7 +59,7 @@ static NSString *PickerCellIdentifier = @"Picker Cell";
 - (UITableViewCell *)birthYearCell
 {
     if (!_birthYearCell) {
-        _birthYearCell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]];
+        _birthYearCell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
     }
     
     return _birthYearCell;
@@ -68,6 +70,23 @@ static NSString *PickerCellIdentifier = @"Picker Cell";
 - (void)done:(id)sender
 {
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+#pragma mark - Logic
+
+- (id)setupCell:(UITableViewCell *)cell withIdentider:(NSString *)CellIdentifier
+{
+    if ([CellIdentifier isEqualToString:GenderCellIdentifier]) {
+        DOMGenderSegmentCell *genderCell = (DOMGenderSegmentCell *)cell;
+        genderCell.titleLabel.text = @"Gender";
+        
+        return genderCell;
+    } else if ([CellIdentifier isEqualToString:AgeCellIdentifier]) {
+        cell.textLabel.text = @"Birth Year";
+        cell.detailTextLabel.text = @"Select Year";
+    }
+    
+    return cell;
 }
 
 #pragma mark - Table view logic
@@ -81,12 +100,11 @@ static NSString *PickerCellIdentifier = @"Picker Cell";
     
     [self.tableView insertRowsAtIndexPaths:@[self.visiblePickerIndexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
     
-    DOMPickerCell *pickerCell = (DOMPickerCell *)[self.tableView cellForRowAtIndexPath:self.visiblePickerIndexPath];
-    pickerCell.picker.hidden = NO;
-
-    self.yearsPickerHandler = [[DOMYearsPickerHandler alloc] initWithPicker:pickerCell.picker
+    DOMPickerCell *yearPickerCell = (DOMPickerCell *)[self.tableView cellForRowAtIndexPath:self.visiblePickerIndexPath];
+    self.yearsPickerHandler = [[DOMYearsPickerHandler alloc] initWithPicker:yearPickerCell.picker
                                                                    withYear:1990
                                                                    delegate:self];
+    yearPickerCell.picker.hidden = NO;
     
     [self.tableView scrollToRowAtIndexPath:self.visiblePickerIndexPath
                           atScrollPosition:UITableViewScrollPositionMiddle
@@ -98,8 +116,8 @@ static NSString *PickerCellIdentifier = @"Picker Cell";
     self.showingPicker = NO;
     self.birthYearCell.detailTextLabel.textColor = DETAIL_TEXT_COLOR;
     
-    DOMPickerCell *cell = (DOMPickerCell *)[self.tableView cellForRowAtIndexPath:self.visiblePickerIndexPath];
-    cell.picker.hidden = YES;
+    DOMPickerCell *yearPickerCell = (DOMPickerCell *)[self.tableView cellForRowAtIndexPath:self.visiblePickerIndexPath];
+    yearPickerCell.picker.hidden = YES;
     
     [self.tableView deleteRowsAtIndexPaths:@[self.visiblePickerIndexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
     self.visiblePickerIndexPath = nil;
@@ -121,17 +139,71 @@ static NSString *PickerCellIdentifier = @"Picker Cell";
 
 #pragma mark - Table view data source
 
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 2;
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    // Return the number of rows in the section.
-    return (self.showingPicker) ? 3 : 2;
+    switch (section) {
+        case 0:
+            return (self.showingPicker) ? 3 : 2;
+            break;
+            
+        default:
+            return 1;
+            break;
+    }
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    switch (section) {
+        case 0:
+            return @"Personal Information";
+            break;
+            
+        case 1:
+            return @"Touch Calibration";
+            break;
+            
+        default:
+            return nil;
+            break;
+    }
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section
+{
+    switch (section) {
+        case 0:
+            return @"The data collected above will be used to better understand the collected data. Whilst not compulsary, it would be fantastic if you could enter your details.";
+            break;
+            
+        default:
+            return nil;
+            break;
+    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (indexPath.section == 1) {
+        return (IPAD) ? 308.0 : 220.0;
+    }
+    
     switch (indexPath.row) {
+        case 1:
+            if (self.showingPicker) {
+                return 216.0;
+            } else {
+                return (IPAD) ? 44.0 : 88.0;
+            }
+            break;
+            
         case 2:
-            return 216.0;
+            return (IPAD) ? 44.0 : 88.0;
             break;
             
         default:
@@ -143,52 +215,37 @@ static NSString *PickerCellIdentifier = @"Picker Cell";
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = nil;
-    switch (indexPath.row) {
-        case 0:
-            CellIdentifier = SwitchCellIdentifier;
-            break;
-            
-        case 1:
-            CellIdentifier = DetailCellIdentifier;
-            break;
-            
-        case 2:
-            CellIdentifier = PickerCellIdentifier;
-            break;
-            
-        default:
-            break;
+
+    if (indexPath.section == 1) {
+        CellIdentifier = CalibrateCellIdentifier;
+    } else {
+        switch (indexPath.row) {
+            case 0:
+                CellIdentifier = AgeCellIdentifier;
+                break;
+                
+            case 1:
+                CellIdentifier = (self.showingPicker) ? PickerCellIdentifier : GenderCellIdentifier;
+                break;
+                
+            case 2:
+                CellIdentifier = GenderCellIdentifier;
+                break;
+                
+            default:
+                break;
+        }
     }
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
-    // Configure the cell...
-    switch (indexPath.row) {
-        case 0: {
-            DOMGenderSwitchCell *switchCell = (DOMGenderSwitchCell *)cell;
-            switchCell.switchInfoLabel.text = @"Gender";
-            
-            return switchCell;
-            break;
-        }
-            
-        case 1: {
-            cell.textLabel.text = @"Birth Year";
-            cell.detailTextLabel.text = @"Select Year";
-            return cell;
-            break;
-        }
-            
-        default:
-            return cell;
-            break;
-    }
+    return [self setupCell:cell withIdentider:CellIdentifier];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    if ([cell.reuseIdentifier isEqualToString:DetailCellIdentifier]) {
+    if ([cell.reuseIdentifier isEqualToString:AgeCellIdentifier]) {
         if (self.visiblePickerIndexPath) {
             [self deleteVisiblePickerCell];
         } else {
@@ -197,6 +254,13 @@ static NSString *PickerCellIdentifier = @"Picker Cell";
     }
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if ([cell.reuseIdentifier isEqualToString:CalibrateCellIdentifier]) {
+        cell.backgroundColor = [UIColor blackColor];
+    }
 }
 
 @end
