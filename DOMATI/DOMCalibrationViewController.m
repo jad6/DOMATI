@@ -45,7 +45,7 @@ static NSString *CalibrateCellIdentifier = @"Calibrate Cell";
 {
     [super viewDidLoad];
     
-    if (!self.pushedOnNavigation) {
+    if (self.showDoneBarButton) {
         // TODO: Only show the button when the details have been filled.
         self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(done:)];
     }

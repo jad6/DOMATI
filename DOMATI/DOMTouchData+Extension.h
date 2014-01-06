@@ -16,7 +16,7 @@ typedef NS_ENUM(NSInteger, DOMDataFileKind) {
 
 @interface DOMTouchData (Extension)
 
-+ (NSString *)uniqueIndentifier;
++ (NSNumber *)localIdentifier;
 
 - (DOMDataFile *)motionDataFile;
 - (DOMDataFile *)touchDataFile;

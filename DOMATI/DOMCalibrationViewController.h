@@ -10,6 +10,6 @@
 
 @interface DOMCalibrationViewController : UITableViewController
 
-@property (nonatomic) BOOL pushedOnNavigation;
+@property (nonatomic) BOOL showDoneBarButton;
 
 @end

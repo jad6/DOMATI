@@ -44,7 +44,7 @@
     [DOMTouchData newEntity:NSStringFromClass([DOMTouchData class])
                   inContext:self.mainContext
                 idAttribute:@"identifier"
-                      value:[DOMTouchData uniqueIndentifier]
+                      value:[DOMTouchData localIdentifier]
                    onInsert:touchDataBlock];
     [self saveContext];
 }

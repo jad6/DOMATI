@@ -47,7 +47,7 @@
         }
     }
     
-    return [dataSubDirectory stringByAppendingPathComponent:self.identifier];
+    return [dataSubDirectory stringByAppendingPathComponent:[[NSString alloc] initWithFormat:@"%@", self.identifier]];
 }
 
 - (DOMDataFile *)dataFileWithKind:(DOMDataFileKind)kind
@@ -80,25 +80,25 @@
 #pragma mark - Public
 
 /**
- *  Watch out as when the app does get run from fresh the counter will start at zero again.
+ *  This gives back a negative identifer value which indicates that the 
+ *  touch still needs to be synced.
  *
- *  @return unique identifier on that device only
+ *  @return the negative identifier value.
  */
-+ (NSString *)uniqueIndentifier
++ (NSNumber *)localIdentifier
 {
-    NSString *udid = [[[UIDevice currentDevice] identifierForVendor] UUIDString];
-    
+#warning need to figure out a mechnism for overflow.
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    if (![defaults valueForKey:DEFAULTS_UDID_TOUCH_DATA_VALUE_KEY]) {
-        [defaults setValue:@(0) forKey:DEFAULTS_UDID_TOUCH_DATA_VALUE_KEY];
+    if (![defaults valueForKey:DEFAULTS_NEGATIVE_IDENTIFIER]) {
+        [defaults setValue:@(-1) forKey:DEFAULTS_NEGATIVE_IDENTIFIER];
     }
     
-    NSInteger incrementNuumber = [[defaults valueForKey:DEFAULTS_UDID_TOUCH_DATA_VALUE_KEY] integerValue];
-    incrementNuumber++;
-    [defaults setObject:@(incrementNuumber) forKey:DEFAULTS_UDID_TOUCH_DATA_VALUE_KEY];
+    NSInteger decrementNumber = [[defaults valueForKey:DEFAULTS_NEGATIVE_IDENTIFIER] integerValue];
+    decrementNumber--;
+    [defaults setObject:@(decrementNumber) forKey:DEFAULTS_NEGATIVE_IDENTIFIER];
     [defaults synchronize];
     
-    return [udid stringByAppendingFormat:@"%i", incrementNuumber];
+    return @(decrementNumber);
 }
 
 - (DOMDataFile *)motionDataFile

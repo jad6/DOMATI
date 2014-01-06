@@ -22,6 +22,6 @@
 #define DEFAULTS_CALI_EXPR_INDEX @"DOMCalibrationExipryIndex"
 #define DEFAULTS_CALI_EXPR_TEXT @"DOMCalibrationExipryText"
 
-#define DEFAULTS_UDID_TOUCH_DATA_VALUE_KEY @"DOMTouchDataUDIDKey"
+#define DEFAULTS_NEGATIVE_IDENTIFIER @"DOMNegativeIdentifierKey"
 
 #endif

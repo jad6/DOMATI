@@ -21,6 +21,9 @@
     calibrationNC.modalTransitionStyle = style;
     calibrationNC.modalPresentationStyle = UIModalPresentationFormSheet;
     
+    DOMCalibrationViewController *calibrationVC = (DOMCalibrationViewController *)calibrationNC.topViewController;
+    calibrationVC.showDoneBarButton = YES;
+    
     [controller presentViewController:calibrationNC animated:YES completion:completionBlock];
 }
 
@@ -33,11 +36,17 @@
 }
 
 + (void)pushCalibrationFromController:(UIViewController *)controller
+                 showingDoneBarButton:(BOOL)showDoneBarButton
 {
     DOMCalibrationViewController *calibrationVC = [controller.storyboard instantiateViewControllerWithIdentifier:@"DOMCalibrationViewController"];
-    calibrationVC.pushedOnNavigation = YES;
+    calibrationVC.showDoneBarButton = showDoneBarButton;
     
     [controller.navigationController pushViewController:calibrationVC animated:YES];
+}
+
++ (void)pushCalibrationFromController:(UIViewController *)controller
+{
+    [self pushCalibrationFromController:controller showingDoneBarButton:NO];
 }
 
 @end

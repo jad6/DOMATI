@@ -10,7 +10,6 @@
 		05084EA7181FECD500FFFB93 /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 05084EA6181FECD500FFFB93 /* MainStoryboard_iPad.storyboard */; };
 		05087D701824DE8300219AA7 /* DOMTouchData+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 05087D6F1824DE8300219AA7 /* DOMTouchData+Extension.m */; };
 		05087D791824E65600219AA7 /* DOMDataFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 05087D781824E65600219AA7 /* DOMDataFile.m */; };
-		05087D7F1824E6E800219AA7 /* DOMTouchData.m in Sources */ = {isa = PBXBuildFile; fileRef = 05087D7E1824E6E800219AA7 /* DOMTouchData.m */; };
 		05098F1817B62859009D4FF5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05098F1717B62859009D4FF5 /* Foundation.framework */; };
 		05098F1A17B62859009D4FF5 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05098F1917B62859009D4FF5 /* CoreGraphics.framework */; };
 		05098F1C17B62859009D4FF5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05098F1B17B62859009D4FF5 /* UIKit.framework */; };
@@ -67,6 +66,8 @@
 		0599C56D17E58AD800F708C6 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0599C56C17E58AD800F708C6 /* CoreMotion.framework */; };
 		059F3689182494B700927A2A /* DOMMotionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 059F3688182494B700927A2A /* DOMMotionManager.m */; };
 		059F368E18249D0900927A2A /* DOMErrors.m in Sources */ = {isa = PBXBuildFile; fileRef = 059F368D18249D0900927A2A /* DOMErrors.m */; };
+		05A5FD6A183A2DBF000F57C4 /* DOMTouchData.m in Sources */ = {isa = PBXBuildFile; fileRef = 05A5FD69183A2DBF000F57C4 /* DOMTouchData.m */; };
+		05A5FD6D183A2F8F000F57C4 /* DOMCircleTouchView.m in Sources */ = {isa = PBXBuildFile; fileRef = 05A5FD6C183A2F8F000F57C4 /* DOMCircleTouchView.m */; };
 		05C4C660182F118A00E45F9D /* Project Proposal.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 05C4C65F182F118A00E45F9D /* Project Proposal.pdf */; };
 		05CDCD1F17BA0B7F00BA12E3 /* DOMGroupSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05CDCD1E17BA0B7F00BA12E3 /* DOMGroupSelectionViewController.m */; };
 		05CDCD2017BA0B7F00BA12E3 /* DOMGroupSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05CDCD1E17BA0B7F00BA12E3 /* DOMGroupSelectionViewController.m */; };
@@ -79,6 +80,7 @@
 		05D273DF181E67110005E31E /* UITextView+Sharing.m in Sources */ = {isa = PBXBuildFile; fileRef = 05D273DE181E67110005E31E /* UITextView+Sharing.m */; };
 		05D273E2181E67B70005E31E /* DOMProjectSummaryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05D273E1181E67B70005E31E /* DOMProjectSummaryViewController.m */; };
 		05F0780C181CC4D2006EA8B0 /* DOMThemeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 05F0780B181CC4D2006EA8B0 /* DOMThemeManager.m */; };
+		A5BF660DD26743C69D6E328A /* libPods-DOMATI.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AD90268F6126446CA72059D3 /* libPods-DOMATI.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -98,8 +100,6 @@
 		05087D6F1824DE8300219AA7 /* DOMTouchData+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "DOMTouchData+Extension.m"; sourceTree = "<group>"; };
 		05087D771824E65600219AA7 /* DOMDataFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DOMDataFile.h; sourceTree = "<group>"; };
 		05087D781824E65600219AA7 /* DOMDataFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DOMDataFile.m; sourceTree = "<group>"; };
-		05087D7D1824E6E800219AA7 /* DOMTouchData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DOMTouchData.h; sourceTree = "<group>"; };
-		05087D7E1824E6E800219AA7 /* DOMTouchData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DOMTouchData.m; sourceTree = "<group>"; };
 		05098F1417B62859009D4FF5 /* DOMATI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DOMATI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		05098F1717B62859009D4FF5 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		05098F1917B62859009D4FF5 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -172,6 +172,10 @@
 		059F3688182494B700927A2A /* DOMMotionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DOMMotionManager.m; sourceTree = "<group>"; };
 		059F368C18249D0900927A2A /* DOMErrors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DOMErrors.h; sourceTree = "<group>"; };
 		059F368D18249D0900927A2A /* DOMErrors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DOMErrors.m; sourceTree = "<group>"; };
+		05A5FD68183A2DBF000F57C4 /* DOMTouchData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DOMTouchData.h; sourceTree = "<group>"; };
+		05A5FD69183A2DBF000F57C4 /* DOMTouchData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DOMTouchData.m; sourceTree = "<group>"; };
+		05A5FD6B183A2F8F000F57C4 /* DOMCircleTouchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DOMCircleTouchView.h; sourceTree = "<group>"; };
+		05A5FD6C183A2F8F000F57C4 /* DOMCircleTouchView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DOMCircleTouchView.m; sourceTree = "<group>"; };
 		05C4C65F182F118A00E45F9D /* Project Proposal.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "Project Proposal.pdf"; sourceTree = "<group>"; };
 		05CDCD1D17BA0B7F00BA12E3 /* DOMGroupSelectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DOMGroupSelectionViewController.h; sourceTree = "<group>"; };
 		05CDCD1E17BA0B7F00BA12E3 /* DOMGroupSelectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DOMGroupSelectionViewController.m; sourceTree = "<group>"; };
@@ -188,6 +192,8 @@
 		05D273E1181E67B70005E31E /* DOMProjectSummaryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DOMProjectSummaryViewController.m; sourceTree = "<group>"; };
 		05F0780A181CC4D2006EA8B0 /* DOMThemeManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DOMThemeManager.h; sourceTree = "<group>"; };
 		05F0780B181CC4D2006EA8B0 /* DOMThemeManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DOMThemeManager.m; sourceTree = "<group>"; };
+		63A432A8A6054321847F6A3E /* Pods-DOMATI.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DOMATI.xcconfig"; path = "Pods/Pods-DOMATI.xcconfig"; sourceTree = "<group>"; };
+		AD90268F6126446CA72059D3 /* libPods-DOMATI.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-DOMATI.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -204,6 +210,7 @@
 				05098F1A17B62859009D4FF5 /* CoreGraphics.framework in Frameworks */,
 				05098F1C17B62859009D4FF5 /* UIKit.framework in Frameworks */,
 				05098F1817B62859009D4FF5 /* Foundation.framework in Frameworks */,
+				A5BF660DD26743C69D6E328A /* libPods-DOMATI.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -242,6 +249,7 @@
 				05098F3617B62859009D4FF5 /* DOMATITests */,
 				05098F1617B62859009D4FF5 /* Frameworks */,
 				05098F1517B62859009D4FF5 /* Products */,
+				63A432A8A6054321847F6A3E /* Pods-DOMATI.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -267,6 +275,7 @@
 				05098F1917B62859009D4FF5 /* CoreGraphics.framework */,
 				05098F1B17B62859009D4FF5 /* UIKit.framework */,
 				05098F3017B62859009D4FF5 /* XCTest.framework */,
+				AD90268F6126446CA72059D3 /* libPods-DOMATI.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -328,6 +337,7 @@
 				052DEBCE1835DE20009DEEF4 /* Presenter */,
 				052DEBCF1835DE2F009DEEF4 /* Picker */,
 				051A8E311830CB14007F9DCD /* Cells */,
+				05A5FD6E183A2F93000F57C4 /* Circle Touch */,
 			);
 			name = Calibration;
 			sourceTree = "<group>";
@@ -473,8 +483,8 @@
 		058FFC3417DA1424008ECB1B /* Managed Objects */ = {
 			isa = PBXGroup;
 			children = (
-				05087D7D1824E6E800219AA7 /* DOMTouchData.h */,
-				05087D7E1824E6E800219AA7 /* DOMTouchData.m */,
+				05A5FD68183A2DBF000F57C4 /* DOMTouchData.h */,
+				05A5FD69183A2DBF000F57C4 /* DOMTouchData.m */,
 				05087D771824E65600219AA7 /* DOMDataFile.h */,
 				05087D781824E65600219AA7 /* DOMDataFile.m */,
 				059F36B61824DCC300927A2A /* Categories */,
@@ -498,6 +508,15 @@
 				05087D6F1824DE8300219AA7 /* DOMTouchData+Extension.m */,
 			);
 			name = Categories;
+			sourceTree = "<group>";
+		};
+		05A5FD6E183A2F93000F57C4 /* Circle Touch */ = {
+			isa = PBXGroup;
+			children = (
+				05A5FD6B183A2F8F000F57C4 /* DOMCircleTouchView.h */,
+				05A5FD6C183A2F8F000F57C4 /* DOMCircleTouchView.m */,
+			);
+			name = "Circle Touch";
 			sourceTree = "<group>";
 		};
 		05CDCD2417BA101E00BA12E3 /* Others */ = {
@@ -609,9 +628,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 05098F4017B62859009D4FF5 /* Build configuration list for PBXNativeTarget "DOMATI" */;
 			buildPhases = (
+				8AAA5317B92C48F18363D6E5 /* Check Pods Manifest.lock */,
 				05098F1017B62859009D4FF5 /* Sources */,
 				05098F1117B62859009D4FF5 /* Frameworks */,
 				05098F1217B62859009D4FF5 /* Resources */,
+				1CCB5E19B38E4655AE643056 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -652,6 +673,11 @@
 				TargetAttributes = {
 					05098F1317B62859009D4FF5 = {
 						DevelopmentTeam = GGB7WW5V29;
+						SystemCapabilities = {
+							com.apple.InterAppAudio = {
+								enabled = 0;
+							};
+						};
 					};
 					05098F2E17B62859009D4FF5 = {
 						TestTargetID = 05098F1317B62859009D4FF5;
@@ -702,6 +728,39 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		1CCB5E19B38E4655AE643056 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-DOMATI-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8AAA5317B92C48F18363D6E5 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		05098F1017B62859009D4FF5 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -725,6 +784,7 @@
 				059F3689182494B700927A2A /* DOMMotionManager.m in Sources */,
 				0555262A1838BA0500659796 /* DOMSegmentCell.m in Sources */,
 				054C30AC17B7368200ABC9CF /* DOMCalibrationMothDetailViewController.m in Sources */,
+				05A5FD6A183A2DBF000F57C4 /* DOMTouchData.m in Sources */,
 				058FFC2617DA0AE0008ECB1B /* DOMCoreDataManager.m in Sources */,
 				058FFC0517D9FAE1008ECB1B /* DOMATI.xcdatamodeld in Sources */,
 				051A8E291830C7EA007F9DCD /* DOMCalibrationViewController.m in Sources */,
@@ -732,10 +792,10 @@
 				05098F2817B62859009D4FF5 /* DOMAppDelegate.m in Sources */,
 				051A8E341830CB52007F9DCD /* DOMPickerCell.m in Sources */,
 				059F368E18249D0900927A2A /* DOMErrors.m in Sources */,
-				05087D7F1824E6E800219AA7 /* DOMTouchData.m in Sources */,
 				05087D791824E65600219AA7 /* DOMDataFile.m in Sources */,
 				0598D8CE1824F040007A526F /* UITouch+Extension.m in Sources */,
 				05F0780C181CC4D2006EA8B0 /* DOMThemeManager.m in Sources */,
+				05A5FD6D183A2F8F000F57C4 /* DOMCircleTouchView.m in Sources */,
 				055526301838FDA400659796 /* DOMCalibrateCell.m in Sources */,
 				05CDCD1F17BA0B7F00BA12E3 /* DOMGroupSelectionViewController.m in Sources */,
 				054C30A817B7366800ABC9CF /* DOMCalibrationMonthsViewController.m in Sources */,
@@ -870,6 +930,7 @@
 		};
 		05098F4117B62859009D4FF5 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 63A432A8A6054321847F6A3E /* Pods-DOMATI.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -888,6 +949,7 @@
 		};
 		05098F4217B62859009D4FF5 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 63A432A8A6054321847F6A3E /* Pods-DOMATI.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;

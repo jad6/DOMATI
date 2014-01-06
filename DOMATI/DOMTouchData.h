@@ -2,7 +2,7 @@
 //  DOMTouchData.h
 //  DOMATI
 //
-//  Created by Jad Osseiran on 2/11/2013.
+//  Created by Jad Osseiran on 18/11/2013.
 //  Copyright (c) 2013 Jad. All rights reserved.
 //
 
@@ -15,12 +15,11 @@
 
 @property (nonatomic, retain) NSNumber * acceleration;
 @property (nonatomic, retain) NSNumber * duration;
-@property (nonatomic, retain) NSString * identifier;
+@property (nonatomic, retain) NSNumber * identifier;
 @property (nonatomic, retain) NSNumber * numTouches;
 @property (nonatomic, retain) NSNumber * radius;
 @property (nonatomic, retain) NSNumber * rotation;
 @property (nonatomic, retain) NSNumber * strength;
-@property (nonatomic, retain) NSNumber * synced;
 @property (nonatomic, retain) NSNumber * x;
 @property (nonatomic, retain) NSNumber * y;
 @property (nonatomic, retain) NSSet *dataFiles;
