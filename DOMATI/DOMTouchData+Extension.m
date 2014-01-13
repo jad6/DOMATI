@@ -42,7 +42,7 @@
                     withIntermediateDirectories:YES
                                      attributes:nil
                                           error:&error]) {
-            NSLog(@"%@", error);
+            [error show];
             return nil;
         }
     }
@@ -87,7 +87,6 @@
  */
 + (NSNumber *)localIdentifier
 {
-#warning need to figure out a mechnism for overflow.
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     if (![defaults valueForKey:DEFAULTS_NEGATIVE_IDENTIFIER]) {
         [defaults setValue:@(-1) forKey:DEFAULTS_NEGATIVE_IDENTIFIER];

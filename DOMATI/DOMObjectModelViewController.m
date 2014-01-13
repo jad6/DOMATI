@@ -31,7 +31,7 @@ static const SceneVertex vertices[] =
 
 @interface DOMObjectModelViewController () <UIGestureRecognizerDelegate>
 
-@property (strong, nonatomic) GLKBaseEffect *baseEffect;
+@property (nonatomic, strong) GLKBaseEffect *baseEffect;
 
 @property (nonatomic) GLuint vertexBufferID;
 

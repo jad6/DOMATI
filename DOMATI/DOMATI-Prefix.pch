@@ -15,4 +15,5 @@
     #import <Foundation/Foundation.h>
 
     #import "sharedHeaders.h"
+    #import "NSError+Extension.h"
 #endif

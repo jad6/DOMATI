@@ -42,9 +42,16 @@
     return UIStatusBarStyleLightContent;
 }
 
+#pragma mark - Actions
+
 - (IBAction)dissmiss:(id)sender
 {
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (IBAction)calibrate:(id)sender
+{
+    [DOMCalibrationPresenter pushCalibrationFromController:self];
 }
 
 #pragma mark - Collection View
@@ -68,12 +75,7 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row == ([self.fingerSizesData count] - 1)) {
-        [DOMCalibrationPresenter pushCalibrationFromController:self];
-    } else {
-        [self dissmiss:nil];
-    }
-    
+    [self dissmiss:nil];
 }
 
 @end

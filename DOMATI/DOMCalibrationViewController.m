@@ -46,7 +46,6 @@ static NSString *CalibrateCellIdentifier = @"Calibrate Cell";
     [super viewDidLoad];
     
     if (self.showDoneBarButton) {
-        // TODO: Only show the button when the details have been filled.
         self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(done:)];
     }
 }
@@ -83,7 +82,7 @@ static NSString *CalibrateCellIdentifier = @"Calibrate Cell";
         return genderCell;
     } else if ([CellIdentifier isEqualToString:AgeCellIdentifier]) {
         cell.textLabel.text = @"Birth Year";
-        cell.detailTextLabel.text = @"Select Year";
+        cell.detailTextLabel.text = @"Undisclosed";
     }
     
     return cell;
@@ -98,7 +97,7 @@ static NSString *CalibrateCellIdentifier = @"Calibrate Cell";
     
     self.visiblePickerIndexPath = [NSIndexPath indexPathForRow:indexPath.row + 1 inSection:indexPath.section];
     
-    [self.tableView insertRowsAtIndexPaths:@[self.visiblePickerIndexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+    [self.tableView insertRowsAtIndexPaths:@[self.visiblePickerIndexPath] withRowAnimation:UITableViewRowAnimationTop];
     
     DOMPickerCell *yearPickerCell = (DOMPickerCell *)[self.tableView cellForRowAtIndexPath:self.visiblePickerIndexPath];
     self.yearsPickerHandler = [[DOMYearsPickerHandler alloc] initWithPicker:yearPickerCell.picker
@@ -119,7 +118,7 @@ static NSString *CalibrateCellIdentifier = @"Calibrate Cell";
     DOMPickerCell *yearPickerCell = (DOMPickerCell *)[self.tableView cellForRowAtIndexPath:self.visiblePickerIndexPath];
     yearPickerCell.picker.hidden = YES;
     
-    [self.tableView deleteRowsAtIndexPaths:@[self.visiblePickerIndexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+    [self.tableView deleteRowsAtIndexPaths:@[self.visiblePickerIndexPath] withRowAnimation:UITableViewRowAnimationTop];
     self.visiblePickerIndexPath = nil;
 }
 

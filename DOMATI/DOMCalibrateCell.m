@@ -10,6 +10,8 @@
 
 #import "DOMCircleTouchView.h"
 
+#import "DOMStrengthGestureRecognizer.h"
+
 @interface DOMCalibrateCell ()
 
 @property (strong, nonatomic) DOMCircleTouchView *circleTouchView;
@@ -29,9 +31,25 @@ static CGFloat kTouchCircleRadius = 44.0;
     return self;
 }
 
-- (void)changeCircleTouchStrength
+- (void)changeCircleTouchStrengthHard
 {
     self.circleTouchView.circleTouchStrength = DOMCircleTouchStrengthHard;
+    
+    [self performSelector:@selector(changeCircleTouchStrengthMed) withObject:nil afterDelay:2.0];
+}
+
+- (void)changeCircleTouchStrengthSoft
+{
+    self.circleTouchView.circleTouchStrength = DOMCircleTouchStrengthSoft;
+    
+    [self performSelector:@selector(changeCircleTouchStrengthHard) withObject:nil afterDelay:2.0];
+}
+
+- (void)changeCircleTouchStrengthMed
+{
+    self.circleTouchView.circleTouchStrength = DOMCircleTouchStrengthModerate;
+    
+    [self performSelector:@selector(changeCircleTouchStrengthSoft) withObject:nil afterDelay:2.0];
 }
 
 - (void)awakeFromNib
@@ -42,11 +60,23 @@ static CGFloat kTouchCircleRadius = 44.0;
                                   (self.frame.size.height / 2.0) - kTouchCircleRadius,
                                   kTouchCircleRadius * 2.0, kTouchCircleRadius * 2.0);
     
-    self.circleTouchView = [[DOMCircleTouchView alloc] initWithFrame:frame
-                                                 circleTouchStrength:DOMCircleTouchStrengthSoft];
-    [self addSubview:self.circleTouchView];
+    DOMCircleTouchView *circleTouchView = [[DOMCircleTouchView alloc] initWithFrame:frame
+                                                 circleTouchStrength:DOMCircleTouchStrengthModerate];
+    DOMStrengthGestureRecognizer *strengthGR = [[DOMStrengthGestureRecognizer alloc] initWithTarget:self action:@selector(strengthDetected:)];
+    
+    [circleTouchView addGestureRecognizer:strengthGR];
+    [self addSubview:circleTouchView];
+    
+    self.circleTouchView = circleTouchView;
 
-    [self performSelector:@selector(changeCircleTouchStrength) withObject:Nil afterDelay:2.0];
+    [self performSelector:@selector(changeCircleTouchStrengthSoft) withObject:nil afterDelay:2.0];
+}
+
+#pragma mark - Actions
+
+- (void)strengthDetected:(DOMStrengthGestureRecognizer *)strnegthGR
+{
+    
 }
 
 @end

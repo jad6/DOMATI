@@ -6,19 +6,13 @@
 //  Copyright (c) 2013 Jad. All rights reserved.
 //
 
-#import <CoreMotion/CoreMotion.h>
-
 #import "DOMMotionManager.h"
 
 #import "DOMErrors.h"
 
-#import "NSManagedObject+Appulse.h"
-#import "DOMTouchData+Extension.h"
-#import "DOMDataFile.h"
-
 @interface DOMMotionManager ()
 
-@property (strong, nonatomic) CMMotionManager *motionManager;
+@property (nonatomic, copy) DOMMotionProcessCompletionBlock motionProcessCompletionBlock;
 
 @property (strong, nonatomic) NSMutableArray *motions;
 
@@ -31,62 +25,73 @@ static NSTimeInterval kUpdateInterval = 0.06;
 
 + (instancetype)sharedManager
 {
-    static __DISPATCH_ONCE__ DOMMotionManager *singletonObject = nil;
+    static __DISPATCH_ONCE__ id singletonObject = nil;
     
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         singletonObject = [[self alloc] init];
-        singletonObject.motionManager = [[CMMotionManager alloc] init];
-        singletonObject.motions = [[NSMutableArray alloc] init];
     });
     
     return singletonObject;
 }
 
+- (NSArray *)currentDeviceMotions
+{
+    return [self.motions copy];
+}
+
 - (void)startDeviceMotion:(NSError * __autoreleasing *)error
 {
-    if (![self.motionManager isDeviceMotionAvailable]) {
+    if ([self isDeviceMotionActive]) {
+        return;
+    }
+    
+    if (![self isDeviceMotionAvailable]) {
         *error = [DOMErrors noDeviceMotionError];
         return;
     }
     
-    self.motionManager.deviceMotionUpdateInterval = kUpdateInterval;
-    // Attitude that is referenced to true north
+    self.motions = [[NSMutableArray alloc] init];
+    self.deviceMotionUpdateInterval = kUpdateInterval;
+
     NSOperationQueue *queue = [NSOperationQueue currentQueue];
-    [self.motionManager startDeviceMotionUpdatesToQueue:queue withHandler:^(CMDeviceMotion *motion, NSError *error) {
+    [queue addObserver:self
+            forKeyPath:NSStringFromSelector(@selector(operationCount))
+               options:0
+               context:NULL];
+
+    [self startDeviceMotionUpdatesToQueue:queue withHandler:^(CMDeviceMotion *motion, NSError *error) {
         if (!error) {
             [self.motions addObject:motion];
         } else {
-            NSLog(@"%@", error);
+            [error show];
         }
     }];
 }
 
-- (void)stopDeviceMotion
+- (void)stopDeviceMotion:(DOMMotionProcessCompletionBlock)motionProcessCompletionBlock
 {
-    if ([self.motionManager isDeviceMotionActive]) {
-        [self.motionManager stopDeviceMotionUpdates];
-    }
-}
-
-#pragma mark - Logic
-
-- (void)setMotionDataOnTouchData:(DOMTouchData *)touchData
-{
-    NSError *error = nil;
-    [self saveMotionDataFromLastTouch:touchData error:&error];
-    if (error) {
-        NSLog(@"%@", error);
-    }
-}
-
-- (void)saveMotionDataFromLastTouch:(DOMTouchData *)touchData
-                              error:(NSError *__autoreleasing *)error
-{    
-    DOMDataFile *dataFile = [touchData motionDataFile];
+    self.motionProcessCompletionBlock = motionProcessCompletionBlock;
     
-    if (![NSKeyedArchiver archiveRootObject:self.motions toFile:dataFile.path]) {
-        *error = [DOMErrors couldNotWriteFileError];
+    if ([self isDeviceMotionActive]) {
+        [self stopDeviceMotionUpdates];
+    }
+}
+
+#pragma mark - KVO
+
+- (void)observeValueForKeyPath:(NSString *)keyPath
+                      ofObject:(id)object
+                        change:(NSDictionary *)change
+                       context:(void *)context
+{
+    if ([object isKindOfClass:[NSOperationQueue class]] &&
+        [keyPath isEqualToString:NSStringFromSelector(@selector(operationCount))]) {
+        if ([object operationCount] == 0) {            
+            if (self.motionProcessCompletionBlock) {
+                self.motionProcessCompletionBlock([self.motions copy]);
+            }
+        }
     }
 }
 
