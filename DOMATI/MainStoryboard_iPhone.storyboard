@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13A2093" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="a4x-KL-l4b">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13B3116" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="RR9-60-etM">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
     </dependencies>
@@ -123,9 +123,14 @@
                         </connections>
                     </collectionView>
                     <navigationItem key="navigationItem" title="DOMATI Groups" id="quL-Nq-l7q">
-                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="done" id="PAF-hL-F7F">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="PAF-hL-F7F">
                             <connections>
                                 <action selector="dissmiss:" destination="4gz-PS-vUy" id="4Nm-lP-wIs"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Calibrate" style="done" id="Omd-gy-Y1O">
+                            <connections>
+                                <action selector="calibrate:" destination="4gz-PS-vUy" id="nrc-oA-9QE"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -579,7 +584,7 @@
         <!--Project Summary View Controller - Project Summary-->
         <scene sceneID="Z2b-hj-vDu">
             <objects>
-                <viewController id="kD8-4U-YbG" customClass="DOMProjectSummaryViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DOMProjectSummaryViewController" id="kD8-4U-YbG" customClass="DOMProjectSummaryViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="W89-Uo-IwU"/>
                         <viewControllerLayoutGuide type="bottom" id="r7v-dX-gMM"/>
@@ -644,7 +649,7 @@ This Final Year Project aims to enable multitouch devices to recognise 'advanced
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3l7-vA-Lan" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="831" y="-1320"/>
+            <point key="canvasLocation" x="1350" y="-1324"/>
         </scene>
         <!--View Controller - License-->
         <scene sceneID="RJc-1q-1f6">
@@ -726,7 +731,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</stri
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pF3-hX-XTk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1258" y="-1320"/>
+            <point key="canvasLocation" x="1777" y="-1324"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="WP9-Mu-fvd">
@@ -872,30 +877,246 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</stri
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Calibration" id="eOF-9b-mdw"/>
+                    <connections>
+                        <segue destination="kXs-Px-bfh" kind="push" identifier="Done Calibration Segue" id="dXR-Mj-RYb"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mhs-wt-ZgQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="250" y="-1230"/>
+            <point key="canvasLocation" x="265" y="-1222"/>
+        </scene>
+        <!--View Controller - Congratulations-->
+        <scene sceneID="doa-aX-C3E">
+            <objects>
+                <viewController id="kXs-Px-bfh" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="M7Q-II-4s5"/>
+                        <viewControllerLayoutGuide type="bottom" id="MC3-qp-cq7"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="sZv-2w-8w2">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nmo-9A-ywU">
+                                <rect key="frame" x="137" y="470" width="40" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Close">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Congrats thingo here" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nG8-QM-V0A">
+                                <rect key="frame" x="79" y="273" width="162" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Congratulations" id="col-e4-htI"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Gbb-Py-R3X" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="722" y="-1222"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="xjQ-9c-6TZ">
             <objects>
-                <navigationController storyboardIdentifier="DOMCalibrationNavController" automaticallyAdjustsScrollViewInsets="NO" id="RR9-60-etM" customClass="DOMNavigationController" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="DOMCalibrationNavController" automaticallyAdjustsScrollViewInsets="NO" toolbarHidden="NO" id="RR9-60-etM" customClass="DOMNavigationController" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="f2M-cx-7Kf" customClass="DOMNavigationBar">
                         <rect key="frame" x="0.0" y="0.0" width="768" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="MX1-Mn-4Ra">
+                        <rect key="frame" x="0.0" y="524" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
                     <connections>
-                        <segue destination="eAv-XD-PG0" kind="relationship" relationship="rootViewController" id="1gc-HA-vLK"/>
+                        <segue destination="bjf-EF-0BK" kind="relationship" relationship="rootViewController" id="iBY-Wk-934"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FlA-Rh-bhB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-292" y="-1230"/>
+            <point key="canvasLocation" x="-677" y="-1222"/>
+        </scene>
+        <!--Welcome View Controller - Welcome-->
+        <scene sceneID="U6q-LW-eGU">
+            <objects>
+                <viewController id="bjf-EF-0BK" customClass="DOMWelcomeViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="zo2-1w-Cev"/>
+                        <viewControllerLayoutGuide type="bottom" id="keb-gn-xtU"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="dE8-Ue-LjM">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="I9l-xk-nps">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <attributedString key="attributedText">
+                                    <fragment>
+                                        <string key="content">Hi,
+
+Thank you for helping me with my thesis project: DOMATI (Dynamic Object Modelling for Advanced Touch Interactions). The aim of this thesis is to produce a user calibrated algorithm that calculates the strength of a touch on a capacitive display device using its movements in 3D space as well as the touch’s properties. If you like to read more about it tap on the “More Info” button on the bottom. This algorithm will be implemented in iOS devices and you are currently looking at the application in its infancy form. 
+
+</string>
+                                        <attributes>
+                                            <font key="NSFont" size="14" name=".LucidaGrandeUI"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural">
+                                                <tabStops>
+                                                    <textTab alignment="left" location="28.299999237060547"/>
+                                                    <textTab alignment="left" location="56.650001525878906"/>
+                                                    <textTab alignment="left" location="85"/>
+                                                    <textTab alignment="left" location="113.34999847412109"/>
+                                                    <textTab alignment="left" location="141.69999694824219"/>
+                                                    <textTab alignment="left" location="170.05000305175781"/>
+                                                    <textTab alignment="left" location="198.39999389648438"/>
+                                                    <textTab alignment="left" location="226.75"/>
+                                                    <textTab alignment="left" location="255.10000610351562"/>
+                                                    <textTab alignment="left" location="283.45001220703125"/>
+                                                    <textTab alignment="left" location="311.79998779296875"/>
+                                                    <textTab alignment="left" location="340.14999389648438"/>
+                                                </tabStops>
+                                            </paragraphStyle>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment>
+                                        <string key="content">Version 0.1
+</string>
+                                        <attributes>
+                                            <font key="NSFont" size="14" name="HelveticaNeue-Bold"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural">
+                                                <tabStops>
+                                                    <textTab alignment="left" location="28.299999237060547"/>
+                                                    <textTab alignment="left" location="56.650001525878906"/>
+                                                    <textTab alignment="left" location="85"/>
+                                                    <textTab alignment="left" location="113.34999847412109"/>
+                                                    <textTab alignment="left" location="141.69999694824219"/>
+                                                    <textTab alignment="left" location="170.05000305175781"/>
+                                                    <textTab alignment="left" location="198.39999389648438"/>
+                                                    <textTab alignment="left" location="226.75"/>
+                                                    <textTab alignment="left" location="255.10000610351562"/>
+                                                    <textTab alignment="left" location="283.45001220703125"/>
+                                                    <textTab alignment="left" location="311.79998779296875"/>
+                                                    <textTab alignment="left" location="340.14999389648438"/>
+                                                </tabStops>
+                                            </paragraphStyle>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment>
+                                        <string key="content"> 
+This version asks the user to input three touches:
+	1. a soft touch;
+	2. a normal touch;
+	3. a hard touch.
+
+The app then stores these and will upload them to a server when connected to WiFi. The more input from the user the better. The data will be stored anonymously and will be used for future versions to create well defined groups for calibrations.  
+
+This version will remind the user exactly three times if there are not enough input data.
+
+</string>
+                                        <attributes>
+                                            <font key="NSFont" size="14" name=".LucidaGrandeUI"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural">
+                                                <tabStops>
+                                                    <textTab alignment="left" location="28.299999237060547"/>
+                                                    <textTab alignment="left" location="56.650001525878906"/>
+                                                    <textTab alignment="left" location="85"/>
+                                                    <textTab alignment="left" location="113.34999847412109"/>
+                                                    <textTab alignment="left" location="141.69999694824219"/>
+                                                    <textTab alignment="left" location="170.05000305175781"/>
+                                                    <textTab alignment="left" location="198.39999389648438"/>
+                                                    <textTab alignment="left" location="226.75"/>
+                                                    <textTab alignment="left" location="255.10000610351562"/>
+                                                    <textTab alignment="left" location="283.45001220703125"/>
+                                                    <textTab alignment="left" location="311.79998779296875"/>
+                                                    <textTab alignment="left" location="340.14999389648438"/>
+                                                </tabStops>
+                                            </paragraphStyle>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment>
+                                        <string key="content">-
+</string>
+                                        <attributes>
+                                            <font key="NSFont" size="14" name="HelveticaNeue-Bold"/>
+                                            <font key="NSOriginalFont" size="14" name="HelveticaNeue-Bold"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural">
+                                                <tabStops>
+                                                    <textTab alignment="left" location="28.299999237060547"/>
+                                                    <textTab alignment="left" location="56.650001525878906"/>
+                                                    <textTab alignment="left" location="85"/>
+                                                    <textTab alignment="left" location="113.34999847412109"/>
+                                                    <textTab alignment="left" location="141.69999694824219"/>
+                                                    <textTab alignment="left" location="170.05000305175781"/>
+                                                    <textTab alignment="left" location="198.39999389648438"/>
+                                                    <textTab alignment="left" location="226.75"/>
+                                                    <textTab alignment="left" location="255.10000610351562"/>
+                                                    <textTab alignment="left" location="283.45001220703125"/>
+                                                    <textTab alignment="left" location="311.79998779296875"/>
+                                                    <textTab alignment="left" location="340.14999389648438"/>
+                                                </tabStops>
+                                            </paragraphStyle>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment>
+                                        <string key="content">
+Thank you very much,
+Jad</string>
+                                        <attributes>
+                                            <font key="NSFont" size="14" name=".LucidaGrandeUI"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural">
+                                                <tabStops>
+                                                    <textTab alignment="left" location="28.299999237060547"/>
+                                                    <textTab alignment="left" location="56.650001525878906"/>
+                                                    <textTab alignment="left" location="85"/>
+                                                    <textTab alignment="left" location="113.34999847412109"/>
+                                                    <textTab alignment="left" location="141.69999694824219"/>
+                                                    <textTab alignment="left" location="170.05000305175781"/>
+                                                    <textTab alignment="left" location="198.39999389648438"/>
+                                                    <textTab alignment="left" location="226.75"/>
+                                                    <textTab alignment="left" location="255.10000610351562"/>
+                                                    <textTab alignment="left" location="283.45001220703125"/>
+                                                    <textTab alignment="left" location="311.79998779296875"/>
+                                                    <textTab alignment="left" location="340.14999389648438"/>
+                                                </tabStops>
+                                            </paragraphStyle>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <toolbarItems>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="WrD-QI-nMM"/>
+                        <barButtonItem title="More Info" id="Ojb-UC-OW5">
+                            <connections>
+                                <action selector="moreInfo:" destination="bjf-EF-0BK" id="O65-5F-Wqq"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="CsF-wE-Qg8"/>
+                    </toolbarItems>
+                    <navigationItem key="navigationItem" title="Welcome" id="Deg-Gk-aPt">
+                        <barButtonItem key="rightBarButtonItem" title="Next" style="done" id="3dO-YG-P7D">
+                            <connections>
+                                <segue destination="eAv-XD-PG0" kind="push" id="KA9-Hl-b9C"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NSJ-1h-aLX" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-193" y="-1222"/>
         </scene>
     </scenes>
+    <color key="tintColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

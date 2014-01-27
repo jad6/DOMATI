@@ -16,11 +16,6 @@
     
     activityVC.excludedActivityTypes = @[UIActivityTypePostToWeibo, UIActivityTypeAssignToContact, UIActivityTypeAddToReadingList, UIActivityTypeSaveToCameraRoll, UIActivityTypePostToFacebook,  UIActivityTypePostToTwitter, UIActivityTypeMessage, UIActivityTypePostToFlickr, UIActivityTypePostToVimeo, UIActivityTypePostToTencentWeibo];
     
-    activityVC.completionHandler = ^(NSString *activityType, BOOL completed) {
-        NSLog(@" activityType: %@", activityType);
-        NSLog(@" completed: %i", completed);
-    };
-    
     [controller presentViewController:activityVC animated:YES completion:nil];
 }
 

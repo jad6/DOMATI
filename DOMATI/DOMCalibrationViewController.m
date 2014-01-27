@@ -45,8 +45,10 @@ static NSString *CalibrateCellIdentifier = @"Calibrate Cell";
 {
     [super viewDidLoad];
     
+    self.navigationController.toolbarHidden = YES;
+    
     if (self.showDoneBarButton) {
-        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(done:)];
+        [self showDoneButtonWithTitle:@"Done" animated:NO];
     }
 }
 
@@ -72,6 +74,16 @@ static NSString *CalibrateCellIdentifier = @"Calibrate Cell";
 }
 
 #pragma mark - Logic
+
+- (void)hideDoneButtonAnimated:(BOOL)animated
+{
+    [self.navigationItem setRightBarButtonItem:nil animated:animated];
+}
+
+- (void)showDoneButtonWithTitle:(NSString *)title animated:(BOOL)animated
+{
+    [self.navigationItem setRightBarButtonItem:[[UIBarButtonItem alloc] initWithTitle:title style:UIBarButtonItemStyleDone target:self action:@selector(done:)] animated:animated];
+}
 
 - (id)setupCell:(UITableViewCell *)cell withIdentider:(NSString *)CellIdentifier
 {

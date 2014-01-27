@@ -42,7 +42,7 @@
                     withIntermediateDirectories:YES
                                      attributes:nil
                                           error:&error]) {
-            [error show];
+            [error handle];
             return nil;
         }
     }

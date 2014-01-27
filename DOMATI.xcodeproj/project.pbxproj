@@ -53,6 +53,7 @@
 		05577B4C17B78A9A007802E6 /* QuickLook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05577B4B17B78A9A007802E6 /* QuickLook.framework */; };
 		05577B4F17B78B5D007802E6 /* DOMPreviewItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 05577B4E17B78B5D007802E6 /* DOMPreviewItem.m */; };
 		05577B5017B78B5D007802E6 /* DOMPreviewItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 05577B4E17B78B5D007802E6 /* DOMPreviewItem.m */; };
+		056D2BF71896444100C5910A /* DOMWelcomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 056D2BF61896444100C5910A /* DOMWelcomeViewController.m */; };
 		058FFC0117D9FA0B008ECB1B /* DOMCalibrationListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 058FFC0017D9FA0B008ECB1B /* DOMCalibrationListViewController.m */; };
 		058FFC0217D9FA0B008ECB1B /* DOMCalibrationListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 058FFC0017D9FA0B008ECB1B /* DOMCalibrationListViewController.m */; };
 		058FFC0517D9FAE1008ECB1B /* DOMATI.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 058FFC0317D9FAE1008ECB1B /* DOMATI.xcdatamodeld */; };
@@ -158,6 +159,8 @@
 		05577B4B17B78A9A007802E6 /* QuickLook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuickLook.framework; path = System/Library/Frameworks/QuickLook.framework; sourceTree = SDKROOT; };
 		05577B4D17B78B5D007802E6 /* DOMPreviewItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DOMPreviewItem.h; sourceTree = "<group>"; };
 		05577B4E17B78B5D007802E6 /* DOMPreviewItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DOMPreviewItem.m; sourceTree = "<group>"; };
+		056D2BF51896444100C5910A /* DOMWelcomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DOMWelcomeViewController.h; sourceTree = "<group>"; };
+		056D2BF61896444100C5910A /* DOMWelcomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DOMWelcomeViewController.m; sourceTree = "<group>"; };
 		058FFBFF17D9FA0B008ECB1B /* DOMCalibrationListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DOMCalibrationListViewController.h; sourceTree = "<group>"; };
 		058FFC0017D9FA0B008ECB1B /* DOMCalibrationListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DOMCalibrationListViewController.m; sourceTree = "<group>"; };
 		058FFC0417D9FAE1008ECB1B /* DOMATI.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DOMATI.xcdatamodel; sourceTree = "<group>"; };
@@ -230,21 +233,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		05084EF7181FFE9B00FFFB93 /* Submodules */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Submodules;
-			sourceTree = "<group>";
-		};
-		05084F01181FFF1F00FFFB93 /* 3rd Party */ = {
-			isa = PBXGroup;
-			children = (
-				05084EF7181FFE9B00FFFB93 /* Submodules */,
-			);
-			name = "3rd Party";
-			sourceTree = "<group>";
-		};
 		05098F0B17B62859009D4FF5 = {
 			isa = PBXGroup;
 			children = (
@@ -294,7 +282,6 @@
 				058FFC0A17D9FBCE008ECB1B /* Event Handling */,
 				05CDCD2417BA101E00BA12E3 /* Others */,
 				058FFC0717D9FAE5008ECB1B /* Core Data */,
-				05084F01181FFF1F00FFFB93 /* 3rd Party */,
 				05577B4817B789B7007802E6 /* Resources */,
 				05098F1E17B62859009D4FF5 /* Supporting Files */,
 				05098F2917B62859009D4FF5 /* Images.xcassets */,
@@ -428,6 +415,7 @@
 			children = (
 				05098F4917B62CF8009D4FF5 /* DOMObjectModelViewController.h */,
 				05098F4A17B62CF8009D4FF5 /* DOMObjectModelViewController.m */,
+				056D2BF81896444400C5910A /* Welcome */,
 				051A8E2A1830C7ED007F9DCD /* Calibration */,
 				05CDCD2617BA104D00BA12E3 /* Group Selection */,
 				058FFC0917D9FBB3008ECB1B /* Info Menu */,
@@ -451,6 +439,15 @@
 				05577B4E17B78B5D007802E6 /* DOMPreviewItem.m */,
 			);
 			name = "Quick Look";
+			sourceTree = "<group>";
+		};
+		056D2BF81896444400C5910A /* Welcome */ = {
+			isa = PBXGroup;
+			children = (
+				056D2BF51896444100C5910A /* DOMWelcomeViewController.h */,
+				056D2BF61896444100C5910A /* DOMWelcomeViewController.m */,
+			);
+			name = Welcome;
 			sourceTree = "<group>";
 		};
 		058FFC0717D9FAE5008ECB1B /* Core Data */ = {
@@ -795,6 +792,7 @@
 				058FFC0517D9FAE1008ECB1B /* DOMATI.xcdatamodeld in Sources */,
 				051A8E291830C7EA007F9DCD /* DOMCalibrationViewController.m in Sources */,
 				05087D701824DE8300219AA7 /* DOMTouchData+Extension.m in Sources */,
+				056D2BF71896444100C5910A /* DOMWelcomeViewController.m in Sources */,
 				05098F2817B62859009D4FF5 /* DOMAppDelegate.m in Sources */,
 				051A8E341830CB52007F9DCD /* DOMPickerCell.m in Sources */,
 				059F368E18249D0900927A2A /* DOMErrors.m in Sources */,

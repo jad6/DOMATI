@@ -64,7 +64,7 @@ static NSTimeInterval kUpdateInterval = 0.06;
         if (!error) {
             [self.motions addObject:motion];
         } else {
-            [error show];
+            [error handle];
         }
     }];
 }

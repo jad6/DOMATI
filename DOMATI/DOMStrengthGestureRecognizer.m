@@ -19,11 +19,14 @@
 
 #import "DOMErrors.h"
 
+#define PRESS_DELTA 0.5
+
 @interface DOMStrengthGestureRecognizer ()
 
-@property (nonatomic, strong) NSMutableDictionary *touchesDurations, *touchStates;
-
 @property (nonatomic, strong) DOMMotionManager *motionManager;
+
+@property (nonatomic, strong) NSMutableDictionary *touchesDurations;
+@property (nonatomic, strong) NSTimer *longPressTimer;
 
 @property (nonatomic) CGFloat strength;
 
@@ -72,15 +75,13 @@
         NSString *pointerKey = [touch pointerString];
         self.touchesDurations[pointerKey] = @(touch.timestamp);
     }
-    
-    NSLog(@"BEGAN %@", self);
-    
+        
     DOMMotionManager *motionManager = self.motionManager;
     if (![motionManager isDeviceMotionActive]) {
         NSError *error = nil;
         [motionManager startDeviceMotion:&error];
         if (error) {
-            [error show];
+            [error handle];
         }
     }
 }
@@ -109,7 +110,6 @@
     } else {
         savedMotions = [motionManager currentDeviceMotions];
     }
-    
     
     for (UITouch *touch in touches) {
         NSString *pointerKey = [touch pointerString];
@@ -155,7 +155,7 @@
                 error:&error];
     
     if (error) {
-        NSLog(@"%@", error);
+        [error handle];
     }
 }
 

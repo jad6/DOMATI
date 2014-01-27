@@ -88,7 +88,7 @@ static const SceneVertex vertices[] =
 
 - (void)saveTouch:(DOMStrengthGestureRecognizer *)strengthGR
 {
-    
+    NSLog(@"saveTouch");
 }
 
 #pragma mark - Open GL

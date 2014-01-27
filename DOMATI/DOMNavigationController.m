@@ -26,6 +26,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.navigationBar.barTintColor = BACKGROUND_COLOR;
+    NSDictionary *navAttributes = @{NSForegroundColorAttributeName : TEXT_COLOR};
+    [self.navigationBar setTitleTextAttributes:navAttributes];
 }
 
 - (void)didReceiveMemoryWarning

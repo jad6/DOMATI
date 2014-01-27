@@ -62,7 +62,7 @@
 
 - (IBAction)done:(id)sender
 {
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [self performSegueWithIdentifier:@"Done Calibration Segue" sender:sender];
 }
 
 #pragma mark - Feedback
@@ -84,6 +84,10 @@
           didFinishWithResult:(MFMailComposeResult)result
                         error:(NSError *)error
 {
+    if (error) {
+        [error handle];
+    }
+    
     [self dismissViewControllerAnimated:YES completion:^{
         [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForCell:self.feedbackCell] animated:YES];
     }];

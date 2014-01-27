@@ -67,7 +67,7 @@
     }
     
     if (error) {
-        [error show];
+        [error handle];
     }
     
     self.mainContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSMainQueueConcurrencyType];
@@ -78,12 +78,15 @@
 {
     NSError *childError = nil;
     [context save:&childError];
+    if (childError) {
+        [childError handle];
+    }
     
     UIBackgroundTaskIdentifier task = UIBackgroundTaskInvalid;
     dispatch_block_t block = ^{
         NSError *parentError = nil;
         if ([self.mainContext hasChanges] && ![self.mainContext save:&parentError]) {
-            NSLog(@"Error saving context: %@", parentError);
+            [parentError handle];
         }
         [[UIApplication sharedApplication] endBackgroundTask:task];
     };
