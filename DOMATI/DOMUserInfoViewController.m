@@ -205,7 +205,7 @@ static NSString *PickerCellIdentifier = @"Picker Cell";
                     text = @"Height (cm)";
                     
                     if (user.height > 0) {
-                        detailText = [[NSString alloc] initWithFormat:@"%.2f", user.height];
+                        textFieldCell.textField.text = [[NSString alloc] initWithFormat:@"%.2f", user.height];
                     }
                     break;
                     
@@ -214,7 +214,7 @@ static NSString *PickerCellIdentifier = @"Picker Cell";
                     text = @"Weight (kg)";
                     
                     if (user.weight > 0) {
-                        detailText = [[NSString alloc] initWithFormat:@"%.2f", user.weight];
+                        textFieldCell.textField.text = [[NSString alloc] initWithFormat:@"%.2f", user.weight];
                     }
                     break;
                 }
