@@ -6,26 +6,28 @@
 //  Copyright (c) 2013 Jad. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import "DOMPickerHandler.h"
 
-@protocol DOMYearsPickerHandlerDelegate <NSObject>
+@protocol DOMYearsPickerHandlerDelegate <DOMPickerHandlerDelegate>
 
+@optional
 - (void)pickerView:(UIPickerView *)pickerView didChangeYear:(NSInteger)year;
 
 @end
 
-@interface DOMYearsPickerHandler : NSObject 
+@interface DOMYearsPickerHandler : DOMPickerHandler
 
 @property (weak, nonatomic) id<DOMYearsPickerHandlerDelegate> delegate;
 
 @property (nonatomic) NSInteger selectedYear;
 
-+ (NSString *)undisclosedYear;
-
-- (id)initWithPicker:(UIPickerView *)pickerView
-            withYear:(NSInteger)year
-            delegate:(id<DOMYearsPickerHandlerDelegate>)delegate;
+- (void)populatedPicker:(UIPickerView *)pickerView
+        withInitialYear:(NSInteger)year
+               delegate:(id<DOMYearsPickerHandlerDelegate>)delegate;
 
 - (void)selectYear:(NSInteger)year;
+
++ (NSInteger)yearForTitile:(NSString *)title;
++ (NSString *)titleForYear:(NSInteger)year;
 
 @end

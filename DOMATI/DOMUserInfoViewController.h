@@ -1,5 +1,5 @@
 //
-//  DOMCalibrationViewController.h
+//  DOMUserInfoViewController.h
 //  DOMATI
 //
 //  Created by Jad Osseiran on 11/11/2013.
@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface DOMCalibrationViewController : UITableViewController
+@interface DOMUserInfoViewController : UITableViewController
 
 @property (nonatomic) BOOL showDoneBarButton;
 

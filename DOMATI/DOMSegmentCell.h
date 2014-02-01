@@ -6,13 +6,11 @@
 //  Copyright (c) 2013 Jad. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-
 #import "DOMTableViewCell.h"
 
 @interface DOMSegmentCell : DOMTableViewCell
 
-@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
-@property (weak, nonatomic) IBOutlet UISegmentedControl *segmentedControl;
+@property (nonatomic, weak) IBOutlet UILabel *textLabel;
+@property (nonatomic, weak) IBOutlet UISegmentedControl *segmentedControl;
 
 @end

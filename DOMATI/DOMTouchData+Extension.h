@@ -21,4 +21,6 @@ typedef NS_ENUM(NSInteger, DOMDataFileKind) {
 - (DOMDataFile *)motionDataFile;
 - (DOMDataFile *)touchDataFile;
 
+- (NSDictionary *)postDictionary;
+
 @end

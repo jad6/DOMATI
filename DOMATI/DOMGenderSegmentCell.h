@@ -8,11 +8,7 @@
 
 #import "DOMSegmentCell.h"
 
-typedef NS_ENUM(NSInteger, DOMGender) {
-    DOMGenderUndisclosed,
-    DOMGenderMale,
-    DOMGenderFemale
-};
+#import "DOMUser.h"
 
 @interface DOMGenderSegmentCell : DOMSegmentCell
 

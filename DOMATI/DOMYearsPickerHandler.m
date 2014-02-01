@@ -8,43 +8,25 @@
 
 #import "DOMYearsPickerHandler.h"
 
-@interface DOMYearsPickerHandler () <UIPickerViewDataSource, UIPickerViewDelegate>
+@interface DOMYearsPickerHandler ()
 
-@property (strong, nonatomic) UIPickerView *pickerView;
 @property (nonatomic) NSInteger currentYear;
-
-@property (strong, nonatomic) UILabel *oldSelectionLabel, *selectionLabel;
 
 @end
 
 @implementation DOMYearsPickerHandler
 
-- (id)initWithPicker:(UIPickerView *)pickerView
-            withYear:(NSInteger)year
-            delegate:(id<DOMYearsPickerHandlerDelegate>)delegate
+- (void)populatedPicker:(UIPickerView *)pickerView
+        withInitialYear:(NSInteger)year
+               delegate:(id<DOMYearsPickerHandlerDelegate>)delegate
 {
-    self = [super init];
-    if (self) {
-        pickerView.delegate = self;
-        pickerView.dataSource = self;
-        self.pickerView = pickerView;
-        
-        self.delegate = delegate;
-        
-        [self selectYear:year animated:NO];
-    }
-    return self;
-}
-
-- (void)dealloc
-{
-    if (self.pickerView.delegate == self) {
-        self.pickerView.delegate = nil;
-    }
+    pickerView.delegate = self;
+    pickerView.dataSource = self;
+    self.pickerView = pickerView;
     
-    if (self.pickerView.dataSource == self) {
-        self.pickerView.dataSource = nil;
-    }
+    self.delegate = delegate;
+    
+    [self selectYear:year animated:NO];
 }
 
 - (NSInteger)currentYear
@@ -55,11 +37,6 @@
     }
     
     return _currentYear;
-}
-
-+ (NSString *)undisclosedYear
-{
-    return @"Undisclosed";
 }
 
 #pragma mark - Logic
@@ -93,12 +70,19 @@
     return (row == 0) ? -1 : self.currentYear - (row - 1);
 }
 
-#pragma mark - Picker data source
+#pragma mark - Helper Class Methods
 
-- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
++ (NSInteger)yearForTitile:(NSString *)title
 {
-    return 1;
+    return [title integerValue];
 }
+
++ (NSString *)titleForYear:(NSInteger)year
+{
+    return [[NSString alloc] initWithFormat:@"%i", year];
+}
+
+#pragma mark - Picker data source
 
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
 {
@@ -112,16 +96,13 @@
           forComponent:(NSInteger)component
            reusingView:(UIView *)view
 {
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0.0f, 0.0f, pickerView.frame.size.width, 44.0f)];
-    label.backgroundColor = [UIColor clearColor];
-    label.textAlignment = NSTextAlignmentCenter;
-    label.textColor = TEXT_COLOR;
-    label.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:18];
+    UILabel *label = (UILabel *)[super pickerView:pickerView
+                                       viewForRow:row
+                                     forComponent:component
+                                      reusingView:view];
     
-    if (row == 0) {
-        label.text = [[self class] undisclosedYear];
-    } else {
-        label.text = [[NSString alloc] initWithFormat:@"%i", [self yearFromRow:row]];
+    if (row > 0) {
+        label.text = [[self class] titleForYear:[self yearFromRow:row]];
     }
     
     return label;

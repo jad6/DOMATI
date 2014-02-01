@@ -26,12 +26,4 @@
     // Configure the view for the selected state
 }
 
-- (void)setTitleLabel:(UILabel *)titleLabel
-{
-    if (_titleLabel != titleLabel) {
-        _titleLabel = titleLabel;
-        _titleLabel.textColor = TEXT_COLOR;
-    }
-}
-
 @end

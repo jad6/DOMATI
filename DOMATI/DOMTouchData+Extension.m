@@ -10,7 +10,8 @@
 
 #import "NSManagedObject+Appulse.h"
 
-#import "DOMDataFile.h"
+#import "DOMDataFile+Extension.h"
+#import "DOMUser.h"
 
 @implementation DOMTouchData (Extension)
 
@@ -108,6 +109,32 @@
 - (DOMDataFile *)touchDataFile
 {
     return [self dataFileWithKind:DOMDataFileKindTouch];
+}
+
+#pragma mark - Network
+
+- (NSDictionary *)postDictionary
+{
+    NSMutableDictionary *dictionary = [[NSMutableDictionary alloc] init];
+    
+    dictionary[@"acceleration"] = self.acceleration;
+    dictionary[@"duration"] = self.duration;
+    dictionary[@"numTouches"] = self.numTouches;
+    dictionary[@"radius"] = self.radius;
+    dictionary[@"rotation"] = self.rotation;
+    dictionary[@"strength"] = self.strength;
+    dictionary[@"x"] = self.x;
+    dictionary[@"y"] = self.y;
+    
+    NSMutableArray *rawData = [[NSMutableArray alloc] init];
+    for (DOMDataFile *dataFile in self.dataFiles) {
+        [rawData addObject:[dataFile postDictionary]];
+    }
+    dictionary[@"rawData"] = rawData;
+    
+    dictionary[@"user_id"] = @([DOMUser currentUser].identifier);
+    
+    return dictionary;
 }
 
 @end

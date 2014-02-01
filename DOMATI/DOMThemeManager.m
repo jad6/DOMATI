@@ -40,6 +40,8 @@
     [[DOMTableViewCell appearance] setBackgroundColor:BACKGROUND_COLOR];
     
     [[UIPickerView appearance] setBackgroundColor:BACKGROUND_COLOR];
+    
+    [[UITextField appearance] setKeyboardAppearance:UIKeyboardAppearanceDark];
 }
 
 @end
