@@ -10,8 +10,6 @@
 
 @implementation DOMGenderSegmentCell
 
-@synthesize segmentedControl = _segmentedControl;
-
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
@@ -24,6 +22,10 @@
 - (IBAction)setGender:(UISegmentedControl *)segmentedControl
 {
     self.selectedGender = segmentedControl.selectedSegmentIndex;
+    
+    if ([self.delegate respondsToSelector:@selector(segmentedControl:didChangeGender:)]) {
+        [self.delegate segmentedControl:self.segmentedControl didChangeGender:self.selectedGender];
+    }
 }
 
 @end

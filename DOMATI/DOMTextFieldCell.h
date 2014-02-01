@@ -8,9 +8,25 @@
 
 #import "DOMTableViewCell.h"
 
+typedef NS_ENUM(NSInteger, DOMTextFieldCellType) {
+    DOMTextFieldCellTypeNone,
+    DOMTextFieldCellTypeHeight,
+    DOMTextFieldCellTypeWeight
+};
+
+@protocol DOMTextFieldCellDelegate <NSObject>
+
+- (void)textFieldDidEndEditing:(UITextField *)textField withCellType:(DOMTextFieldCellType)type;
+
+@end
+
 @interface DOMTextFieldCell : DOMTableViewCell
+
+@property (nonatomic, weak) id<DOMTextFieldCellDelegate> delegate;
 
 @property (nonatomic, weak) IBOutlet UILabel *textLabel;
 @property (nonatomic, weak) IBOutlet UITextField *textField;
+
+@property (nonatomic) DOMTextFieldCellType type;
 
 @end

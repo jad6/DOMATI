@@ -30,7 +30,7 @@ typedef NS_ENUM(NSInteger, DOMTechnologyExperience) {
 @property (nonatomic) DOMTechnologyExperience techExp;
 
 @property (nonatomic) NSInteger identifier;
-@property (nonatomic) NSUInteger age;
+@property (nonatomic) NSUInteger birthYear;
 @property (nonatomic) CGFloat weight, height;
 
 + (instancetype)currentUser;

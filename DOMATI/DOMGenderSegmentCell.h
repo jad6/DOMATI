@@ -10,7 +10,16 @@
 
 #import "DOMUser.h"
 
+@protocol DOMGenderSegmentCellDelegate <NSObject>
+
+- (void)segmentedControl:(UISegmentedControl *)segmentedControl
+         didChangeGender:(DOMGender)gender;
+
+@end
+
 @interface DOMGenderSegmentCell : DOMSegmentCell
+
+@property (nonatomic, weak) id<DOMGenderSegmentCellDelegate> delegate;
 
 @property (nonatomic) DOMGender selectedGender;
 

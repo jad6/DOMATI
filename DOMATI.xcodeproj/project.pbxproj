@@ -31,6 +31,7 @@
 		05098F5317B62F7D009D4FF5 /* DOMInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05098F5217B62F7D009D4FF5 /* DOMInfoViewController.m */; };
 		05098F5417B62F7D009D4FF5 /* DOMInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05098F5217B62F7D009D4FF5 /* DOMInfoViewController.m */; };
 		05098F5A17B63820009D4FF5 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05098F5917B63820009D4FF5 /* MessageUI.framework */; };
+		050A8F40189CCBE30073E487 /* DOMCalibrationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 050A8F3F189CCBE30073E487 /* DOMCalibrationViewController.m */; };
 		050ACB15189A4DAC006F74DD /* DOMRequestOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 050ACB14189A4DAC006F74DD /* DOMRequestOperationManager.m */; };
 		050ACB18189A4ED1006F74DD /* DOMDataFile+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 050ACB17189A4ED1006F74DD /* DOMDataFile+Extension.m */; };
 		050ACB1A189A4F41006F74DD /* Network.plist in Resources */ = {isa = PBXBuildFile; fileRef = 050ACB19189A4F41006F74DD /* Network.plist */; };
@@ -135,6 +136,8 @@
 		05098F5117B62F7D009D4FF5 /* DOMInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DOMInfoViewController.h; sourceTree = "<group>"; };
 		05098F5217B62F7D009D4FF5 /* DOMInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DOMInfoViewController.m; sourceTree = "<group>"; };
 		05098F5917B63820009D4FF5 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		050A8F3E189CCBE30073E487 /* DOMCalibrationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DOMCalibrationViewController.h; sourceTree = "<group>"; };
+		050A8F3F189CCBE30073E487 /* DOMCalibrationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DOMCalibrationViewController.m; sourceTree = "<group>"; };
 		050ACB13189A4DAC006F74DD /* DOMRequestOperationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DOMRequestOperationManager.h; sourceTree = "<group>"; };
 		050ACB14189A4DAC006F74DD /* DOMRequestOperationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DOMRequestOperationManager.m; sourceTree = "<group>"; };
 		050ACB16189A4ED1006F74DD /* DOMDataFile+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "DOMDataFile+Extension.h"; sourceTree = "<group>"; };
@@ -358,6 +361,8 @@
 			children = (
 				051A8E271830C7EA007F9DCD /* DOMUserInfoViewController.h */,
 				051A8E281830C7EA007F9DCD /* DOMUserInfoViewController.m */,
+				050A8F3E189CCBE30073E487 /* DOMCalibrationViewController.h */,
+				050A8F3F189CCBE30073E487 /* DOMCalibrationViewController.m */,
 				052DEBCE1835DE20009DEEF4 /* Presenter */,
 				052DEBCF1835DE2F009DEEF4 /* Picker Handlers */,
 				051A8E311830CB14007F9DCD /* Cells */,
@@ -849,6 +854,7 @@
 				054C30AC17B7368200ABC9CF /* DOMCalibrationMothDetailViewController.m in Sources */,
 				05C702F7189C8DF500E0AC35 /* DOMPickerHandler.m in Sources */,
 				05A5FD6A183A2DBF000F57C4 /* DOMTouchData.m in Sources */,
+				050A8F40189CCBE30073E487 /* DOMCalibrationViewController.m in Sources */,
 				058FFC2617DA0AE0008ECB1B /* DOMCoreDataManager.m in Sources */,
 				058FFC0517D9FAE1008ECB1B /* DOMATI.xcdatamodeld in Sources */,
 				0567AB0E189BE6E300BB74AF /* DOMTextFieldCell.m in Sources */,

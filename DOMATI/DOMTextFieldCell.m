@@ -52,17 +52,44 @@
 - (void)textFieldDidEndEditing:(UITextField *)textField
 {
     textField.textColor = DETAIL_TEXT_COLOR;
+    
+    if ([self.delegate respondsToSelector:@selector(textFieldDidEndEditing:withCellType:)]) {
+        [self.delegate textFieldDidEndEditing:self.textField withCellType:self.type];
+    }
 }
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
 {
-    NSString *newText = [textField.text stringByReplacingCharactersInRange:range withString:string];
+    // Allow backspace
+    if ([string length] == 0) {
+        return YES;
+    }
+    
+    if ([textField.text length] > 8) {
+        return NO;
+    }
     
     NSLocale *locale = [NSLocale currentLocale];
-    NSArray *rateComps = [newText componentsSeparatedByString:[locale objectForKey:NSLocaleDecimalSeparator]];
-    if ([rateComps count] == 2) {
-        return [[rateComps lastObject] length] <= 2;
-    } else if ([rateComps count] > 2) {
+    NSString *decimalSeparator = [locale objectForKey:NSLocaleDecimalSeparator];
+    
+    // Do not allow decimalSeparator at the beggining
+    if (range.location == 0 && [string isEqualToString:decimalSeparator]) {
+        return NO;
+    }
+    
+    NSMutableCharacterSet *validCharacterSet = [[NSMutableCharacterSet alloc] init];
+    [validCharacterSet formUnionWithCharacterSet:[NSCharacterSet decimalDigitCharacterSet]];
+    [validCharacterSet addCharactersInString:decimalSeparator];
+    
+    if ([string rangeOfCharacterFromSet:validCharacterSet].location == NSNotFound) {
+        return NO;
+    }
+    
+    NSString *newText = [textField.text stringByReplacingCharactersInRange:range withString:string];
+    NSArray *comps = [newText componentsSeparatedByString:decimalSeparator];
+    if ([comps count] == 2) {
+        return [[comps lastObject] length] <= 2;
+    } else if ([comps count] > 2) {
         return NO;
     }
     

@@ -18,7 +18,7 @@ static NSString *kIdentifierKey = @"DOMUserIdentifierKey";
 static NSString *kProfessionKey = @"DOMUserProfessionKey";
 static NSString *kGenderKey = @"DOMUserGenderKey";
 static NSString *kTechExpKey = @"DOMUserTechnologyExperienceKey";
-static NSString *kAgeKey = @"DOMUserAgeKey";
+static NSString *kBirthYearKey = @"DOMUserBirthYearKey";
 static NSString *kWeightKey = @"DOMUserWeightKey";
 static NSString *kHeightKey = @"DOMUserHeightKey";
 
@@ -28,7 +28,7 @@ static NSString *kHeightKey = @"DOMUserHeightKey";
 @synthesize profession = _profession;
 @synthesize gender = _gender;
 @synthesize techExp = _techExp;
-@synthesize age = _age;
+@synthesize birthYear = _birthYear;
 @synthesize weight = _weight;
 @synthesize height = _height;
 
@@ -55,17 +55,10 @@ static NSString *kHeightKey = @"DOMUserHeightKey";
     return _keyStore;
 }
 
-- (void)keyStoreSetBool:(BOOL)boolean forKey:(NSString *)key
-{
-    NSUbiquitousKeyValueStore *store = self.keyStore;
-    [store setBool:boolean forKey:key];
-    [store synchronize];
-}
-
 - (void)keyStoreSetValue:(id)value forKey:(NSString *)key
 {
     NSUbiquitousKeyValueStore *store = self.keyStore;
-    [store setValue:value forKey:key];
+    [store setObject:value forKey:key];
     [store synchronize];
 }
 
@@ -76,7 +69,7 @@ static NSString *kHeightKey = @"DOMUserHeightKey";
     NSMutableDictionary *dictionary = [[NSMutableDictionary alloc] init];
     
     dictionary[@"device"] = [[UIDevice currentDevice] model];
-    dictionary[@"age"] = @(self.age);
+    dictionary[@"age"] = @(self.birthYear);
     dictionary[@"gender"] = @(self.gender);
     dictionary[@"weight"] = @(self.weight);
     dictionary[@"height"] = @(self.height);
@@ -100,7 +93,7 @@ static NSString *kHeightKey = @"DOMUserHeightKey";
 - (NSInteger)identifier
 {
     if (!_identifier) {
-        NSNumber *identifier = [self.keyStore valueForKey:kIdentifierKey];
+        NSNumber *identifier = [self.keyStore objectForKey:kIdentifierKey];
         _identifier = (identifier) ? [identifier integerValue] : -1;
     }
     
@@ -119,7 +112,7 @@ static NSString *kHeightKey = @"DOMUserHeightKey";
 - (NSString *)profession
 {
     if (!_profession) {
-        _profession = [self.keyStore valueForKey:kProfessionKey];
+        _profession = [self.keyStore objectForKey:kProfessionKey];
     }
     
     return _profession;
@@ -137,7 +130,7 @@ static NSString *kHeightKey = @"DOMUserHeightKey";
 - (DOMGender)gender
 {
     if (!_gender) {
-        _gender = [[self.keyStore valueForKey:kGenderKey] integerValue];
+        _gender = [[self.keyStore objectForKey:kGenderKey] integerValue];
     }
     
     return _gender;
@@ -155,28 +148,28 @@ static NSString *kHeightKey = @"DOMUserHeightKey";
 - (DOMTechnologyExperience)techExp
 {
     if (!_techExp) {
-        _techExp = [[self.keyStore valueForKey:kTechExpKey] integerValue];
+        _techExp = [[self.keyStore objectForKey:kTechExpKey] integerValue];
     }
     
     return _techExp;
 }
 
-- (void)setAge:(NSUInteger)age
+- (void)setBirthYear:(NSUInteger)age
 {
-    if (_age != age) {
-        _age = age;
+    if (_birthYear != age) {
+        _birthYear = age;
     }
     
-    [self keyStoreSetValue:@(age) forKey:kAgeKey];
+    [self keyStoreSetValue:@(age) forKey:kBirthYearKey];
 }
 
-- (NSUInteger)age
+- (NSUInteger)birthYear
 {
-    if (!_age) {
-        _age = [[self.keyStore valueForKey:kAgeKey] unsignedIntegerValue];
+    if (!_birthYear) {
+        _birthYear = [[self.keyStore objectForKey:kBirthYearKey] unsignedIntegerValue];
     }
     
-    return _age;
+    return _birthYear;
 }
 
 - (void)setWeight:(CGFloat)weight
@@ -191,7 +184,7 @@ static NSString *kHeightKey = @"DOMUserHeightKey";
 - (CGFloat)weight
 {
     if (!_weight) {
-        NSNumber *weight = [self.keyStore valueForKey:kWeightKey];
+        NSNumber *weight = [self.keyStore objectForKey:kWeightKey];
         _weight = (CGFLOAT_IS_DOUBLE) ? [weight doubleValue] : [weight floatValue];
     }
     
@@ -210,7 +203,7 @@ static NSString *kHeightKey = @"DOMUserHeightKey";
 - (CGFloat)height
 {
     if (!_height) {
-        NSNumber *height = [self.keyStore valueForKey:kHeightKey];
+        NSNumber *height = [self.keyStore objectForKey:kHeightKey];
         _height = (CGFLOAT_IS_DOUBLE) ? [height doubleValue] : [height floatValue];
     }
     

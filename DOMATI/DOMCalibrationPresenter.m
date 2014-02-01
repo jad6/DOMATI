@@ -8,7 +8,7 @@
 
 #import "DOMCalibrationPresenter.h"
 
-#import "DOMUserInfoViewController.h"
+#import "DOMCalibrationViewController.h"
 
 @implementation DOMCalibrationPresenter
 
@@ -20,9 +20,6 @@
     
     calibrationNC.modalTransitionStyle = style;
     calibrationNC.modalPresentationStyle = UIModalPresentationFormSheet;
-    
-    DOMUserInfoViewController *calibrationVC = (DOMUserInfoViewController *)calibrationNC.topViewController;
-    calibrationVC.showDoneBarButton = YES;
     
     [controller presentViewController:calibrationNC animated:YES completion:completionBlock];
 }
@@ -36,17 +33,10 @@
 }
 
 + (void)pushCalibrationFromController:(UIViewController *)controller
-                 showingDoneBarButton:(BOOL)showDoneBarButton
 {
-    DOMUserInfoViewController *calibrationVC = [controller.storyboard instantiateViewControllerWithIdentifier:@"DOMCalibrationViewController"];
-    calibrationVC.showDoneBarButton = showDoneBarButton;
+    DOMCalibrationViewController *calibrationVC = [controller.storyboard instantiateViewControllerWithIdentifier:@"DOMCalibrationViewController"];
     
     [controller.navigationController pushViewController:calibrationVC animated:YES];
-}
-
-+ (void)pushCalibrationFromController:(UIViewController *)controller
-{
-    [self pushCalibrationFromController:controller showingDoneBarButton:NO];
 }
 
 @end

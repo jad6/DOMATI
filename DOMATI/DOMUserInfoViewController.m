@@ -16,12 +16,16 @@
 #import "DOMPickerCell.h"
 #import "DOMTextFieldCell.h"
 
-@interface DOMUserInfoViewController () <DOMYearsPickerHandlerDelegate, DOMExperiencePickerHandlerDelegate, DOMProfessionPickerHandlerDelegate>
+#import "DOMUser.h"
+
+@interface DOMUserInfoViewController () <DOMYearsPickerHandlerDelegate, DOMExperiencePickerHandlerDelegate, DOMProfessionPickerHandlerDelegate, DOMTextFieldCellDelegate, DOMGenderSegmentCellDelegate>
 
 @property (nonatomic, strong) UILabel *pickerLabel;
 @property (nonatomic, strong) NSIndexPath *visiblePickerIndexPath;
 @property (nonatomic, strong) DOMPickerHandler *currentPickerHandler;
 @property (nonatomic, strong) id currentFirstResponder;
+
+@property (nonatomic, strong) DOMUser *user;
 
 @end
 
@@ -47,9 +51,7 @@ static NSString *PickerCellIdentifier = @"Picker Cell";
     
     self.navigationController.toolbarHidden = YES;
     
-    if (self.showDoneBarButton) {
-        [self showDoneButtonWithTitle:@"Done" animated:NO];
-    }
+    self.user = [DOMUser currentUser];
 }
 
 - (void)didReceiveMemoryWarning
@@ -165,48 +167,88 @@ static NSString *PickerCellIdentifier = @"Picker Cell";
         return;
     }
     
+    DOMUser *user = self.user;
+    
     NSString *text = nil;
+    NSString *detailText = nil;
     switch (indexPath.section) {
-        case 0:
+        case 0: {
             switch (indexPath.row) {
-                case 0:
+                case 0: {
                     text = @"Gender";
+                    
+                    DOMGenderSegmentCell *genderCell = (DOMGenderSegmentCell *)cell;
+                    
+                    genderCell.segmentedControl.selectedSegmentIndex = user.gender;
+                    genderCell.delegate = self;
+                    
+                    cell = genderCell;
                     break;
+                }
                     
                 case 1:
                     text = @"Birth Year";
+                    if (user.birthYear > 0) {
+                        detailText = [DOMYearsPickerHandler titleForYear:user.birthYear];
+                    }
                     break;
             }
             break;
+        }
             
-        case 1:
+        case 1: {
+            DOMTextFieldCell *textFieldCell = (DOMTextFieldCell *)cell;
+            
             switch (indexPath.row) {
                 case 0:
+                    textFieldCell.type = DOMTextFieldCellTypeHeight;
                     text = @"Height (cm)";
+                    
+                    if (user.height > 0) {
+                        detailText = [[NSString alloc] initWithFormat:@"%.2f", user.height];
+                    }
                     break;
                     
                 case 1:
+                    textFieldCell.type = DOMTextFieldCellTypeWeight;
                     text = @"Weight (kg)";
+                    
+                    if (user.weight > 0) {
+                        detailText = [[NSString alloc] initWithFormat:@"%.2f", user.weight];
+                    }
                     break;
                 }
-            break;
             
-        case 2:
+            textFieldCell.delegate = self;
+            cell = textFieldCell;
+            break;
+        }
+            
+        case 2: {
             switch (indexPath.row) {
                 case 0:
                     text = @"Profession";
+                    
+                    if (user.profession) {
+                        detailText = user.profession;
+                    }
                     break;
                     
                 case 1:
                 case 2:
                     text = @"Tech Experience";
+                    
+                    if (user.techExp != DOMTechnologyExperienceUndisclosed) {
+                        detailText = [DOMExperiencePickerHandler titleForTechExp:user.techExp];
+                    }
                     break;
             }
             break;
+        }
     }
     
     cell.textLabel.text = text;
-    cell.detailTextLabel.text = @"Undisclosed";
+    cell.detailTextLabel.text = (detailText) ? detailText : @"Undisclosed";
 }
 
 - (NSString *)cellIdentiferForIndexPath:(NSIndexPath *)indexPath
@@ -372,10 +414,6 @@ static NSString *PickerCellIdentifier = @"Picker Cell";
         
         DOMTextFieldCell *textFieldCell = (DOMTextFieldCell *)cell;
         textFieldCell.textField.enabled = YES;
-        if (self.currentFirstResponder && [self.currentFirstResponder respondsToSelector:@selector(setEnabled:)]) {
-            [self.currentFirstResponder setEnabled:NO];
-        }
-        
         [textFieldCell.textField becomeFirstResponder];
         self.currentFirstResponder = textFieldCell.textField;
         
@@ -399,24 +437,65 @@ static NSString *PickerCellIdentifier = @"Picker Cell";
     [self resignCurrentResponder];
 }
 
-#pragma mark - Picker Handlers Delegate
+#pragma mark - Information Delegate
 
 - (void)pickerView:(UIPickerView *)pickerView didChangeYear:(NSInteger)year;
 {
+    BOOL undisclosed = (year <= 0);
+    
     [self setDetailText:[DOMYearsPickerHandler titleForYear:year]
-            undisclosed:(year <= 0)];
+            undisclosed:undisclosed];
+    
+    if (!undisclosed) {
+        self.user.birthYear = year;
+    }
 }
 
 - (void)pickerView:(UIPickerView *)pickerView didChangeExperience:(DOMTechnologyExperience)techExp
 {
+    BOOL undisclosed = (techExp == DOMTechnologyExperienceUndisclosed);
+
     [self setDetailText:[DOMExperiencePickerHandler titleForTechExp:techExp]
-            undisclosed:techExp == DOMTechnologyExperienceUndisclosed];
+            undisclosed:undisclosed];
+    
+    if (!undisclosed) {
+        self.user.techExp = techExp;
+    }
 }
 
 - (void)pickerView:(UIPickerView *)pickerView didChangeProfession:(NSString *)profession
 {
+    BOOL undisclosed = (profession == nil);
+    
     [self setDetailText:profession
-            undisclosed:(profession == nil)];
+            undisclosed:undisclosed];
+    
+    if (!undisclosed) {
+        self.user.profession = profession;
+    }
+}
+
+- (void)textFieldDidEndEditing:(UITextField *)textField withCellType:(DOMTextFieldCellType)type
+{
+    CGFloat value = (CGFLOAT_IS_DOUBLE) ? [textField.text doubleValue] : [textField.text floatValue];
+    
+    switch (type) {
+        case DOMTextFieldCellTypeHeight:
+            self.user.height = value;
+            break;
+            
+        case DOMTextFieldCellTypeWeight:
+            self.user.weight = value;
+            break;
+            
+        default:
+            break;
+    }
+}
+
+- (void)segmentedControl:(UISegmentedControl *)segmentedControl didChangeGender:(DOMGender)gender
+{
+    self.user.gender = gender;
 }
 
 @end

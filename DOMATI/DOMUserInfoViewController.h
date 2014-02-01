@@ -10,6 +10,4 @@
 
 @interface DOMUserInfoViewController : UITableViewController
 
-@property (nonatomic) BOOL showDoneBarButton;
-
 @end

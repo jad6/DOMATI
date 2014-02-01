@@ -17,9 +17,6 @@
 + (void)showCalibrationFromController:(UIViewController *)controller
                            completion:(void (^)())completionBlock;
 
-+ (void)pushCalibrationFromController:(UIViewController *)controller
-                 showingDoneBarButton:(BOOL)showDoneBarButton;
-
 + (void)pushCalibrationFromController:(UIViewController *)controller;
 
 @end
