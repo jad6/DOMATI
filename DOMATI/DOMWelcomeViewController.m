@@ -10,7 +10,7 @@
 
 #import "DOMNavigationController.h"
 
-@interface DOMWelcomeViewController ()
+@interface DOMWelcomeViewController () <UIAlertViewDelegate>
 
 @end
 
@@ -43,22 +43,67 @@
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - Actions
+#pragma mark - Logic
 
-- (void)dismissInfo:(id)sender
+- (void)presentViewControllerWithIdentifier:(NSString *)identifier withTitle:(NSString *)title
 {
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
-
-- (IBAction)moreInfo:(id)sender
-{
-    id controller = [self.storyboard instantiateViewControllerWithIdentifier:@"DOMProjectSummaryViewController"];
+    UIViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:identifier];
     
     DOMNavigationController *navController = [[DOMNavigationController alloc] initWithRootViewController:controller];
-    UIBarButtonItem *closeBarButton = [[UIBarButtonItem alloc] initWithTitle:@"Close" style:UIBarButtonItemStyleBordered target:self action:@selector(dismissInfo:)];
+    UIBarButtonItem *closeBarButton = [[UIBarButtonItem alloc] initWithTitle:@"Close" style:UIBarButtonItemStyleBordered target:self action:@selector(dismissAction:)];
     [[controller navigationItem] setLeftBarButtonItem:closeBarButton];
     
+    if (title) {
+        controller.title = title;
+    }
+    
     [self presentViewController:navController animated:YES completion:nil];
+}
+
+- (void)presentViewControllerWithIdentifier:(NSString *)identifier
+{
+    [self presentViewControllerWithIdentifier:identifier withTitle:nil];
+}
+
+#pragma mark - Alert View
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 1) {
+        [self pcfAction:nil];
+    }
+    
+    if (buttonIndex == 0) {
+        [self performSegueWithIdentifier:@"User Info Segue" sender:self];
+    }
+}
+
+#pragma mark - Actions
+
+- (IBAction)nextAction:(id)sender
+{
+    UIAlertView *pcfAV = [[UIAlertView alloc] initWithTitle:@"Consent" message:@"By selecting \"I Agree\" you agree to the terms in the Participant Consent Form (PCF) and can proceed with the app." delegate:self cancelButtonTitle:@"I Agree" otherButtonTitles:@"Show PCF", @"Cancel", nil];
+    [pcfAV show];
+}
+
+- (IBAction)pcfAction:(id)sender
+{
+    [self presentViewControllerWithIdentifier:@"DOMPCFViewController" withTitle:@"Participant Consent Form"];
+}
+
+- (IBAction)pifAction:(id)sender
+{
+    [self presentViewControllerWithIdentifier:@"DOMPIFViewController" withTitle:@"Participant Information Form"];
+}
+
+- (IBAction)moreInfoAction:(id)sender
+{
+    [self presentViewControllerWithIdentifier:@"DOMProjectSummaryViewController"];
+}
+
+- (void)dismissAction:(id)sender
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

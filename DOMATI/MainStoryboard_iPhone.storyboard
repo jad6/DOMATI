@@ -290,7 +290,7 @@
                     <navigationItem key="navigationItem" title="DOMATI" id="OvZ-72-xKa">
                         <barButtonItem key="rightBarButtonItem" style="done" systemItem="done" id="Yhg-Qa-ANE">
                             <connections>
-                                <action selector="done:" destination="MMF-XX-Iq2" id="pdx-V7-gH6"/>
+                                <action selector="doneAction:" destination="MMF-XX-Iq2" id="rUd-3S-enA"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -850,10 +850,16 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</stri
                             <outlet property="delegate" destination="LJn-aZ-Nka" id="mac-wg-2fj"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="User Information" id="LzH-AJ-oy8"/>
+                    <navigationItem key="navigationItem" title="User Information" id="LzH-AJ-oy8">
+                        <barButtonItem key="rightBarButtonItem" title="Next" style="done" id="gGX-eG-Fwd">
+                            <connections>
+                                <action selector="nextAction:" destination="LJn-aZ-Nka" id="erY-Y9-GUO"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <segue destination="mFH-7u-g38" kind="push" identifier="Calibration Segue" id="PQ9-TC-Wz3"/>
+                        <segue destination="mFH-7u-g38" kind="push" identifier="Calibration Segue" id="Fbr-2s-8VZ"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wAh-cP-pBh" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -889,7 +895,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</stri
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
-                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="EIi-MN-gnb">
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translucent="NO" id="EIi-MN-gnb">
                         <rect key="frame" x="0.0" y="524" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -902,6 +908,126 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</stri
             </objects>
             <point key="canvasLocation" x="-637" y="-1246"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="VsD-wm-gf6">
+            <objects>
+                <viewController storyboardIdentifier="DOMPIFViewController" id="4jW-uL-3TE" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="BnI-cs-Cea"/>
+                        <viewControllerLayoutGuide type="bottom" id="aKp-IK-aw6"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="jFp-5u-gxh">
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GRc-lj-THG">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <mutableString key="text">In this research project,  Dynamic Object Modelling for Advanced Touch Interactions (DOMATI), you will be asked to provide your:
+
+- Gender;
+- Date of Birth;
+- Height;
+- Weight;
+- Profession;
+- Technology Experience.
+
+You may select “Undisclosed” for any of  the above information if you deem a field to be insensible. 
+
+Further, the following information about your device will also be collected:
+
+- Gyroscope readings;
+- Accelerometer readings;
+- Touches durations;
+- Touches locations;
+- Touches radii;
+- Device model name;
+
+The collected data will be synced only when the device is connected to WiFi. The data will then be stored on a secure server and used anonymously to assist in optimising a strength recognition user calibrated algorithm.
+
+-
+
+Approval to conduct this research has been provided by the University of Western Australia, in accordance with its ethics review and approval procedures. Any person considering participation in this research project, or agreeing to participate, may raise any questions or issues with the researchers at any time.
+
+In addition, any person not satisfied with the response of researchers may raise ethics issues or concerns, and may make any complaints about this research project by contacting the Human Research Ethics Office at the University of Western Australia on (08) 6488 3703 or by emailing to hreo-research@uwa.edu.au
+
+All research participants are entitles to retain a copy of any Participant Information For and/or Participant Consent Form relating to this research project.</mutableString>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <dataDetectorType key="dataDetectorTypes" phoneNumber="YES" link="YES" address="YES"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="GRc-lj-THG" firstAttribute="leading" secondItem="jFp-5u-gxh" secondAttribute="leading" id="auh-uD-p20"/>
+                            <constraint firstItem="GRc-lj-THG" firstAttribute="top" secondItem="jFp-5u-gxh" secondAttribute="top" id="mDo-gg-cFX"/>
+                            <constraint firstAttribute="bottom" secondItem="GRc-lj-THG" secondAttribute="bottom" id="pvm-Hw-Ctv"/>
+                            <constraint firstAttribute="trailing" secondItem="GRc-lj-THG" secondAttribute="trailing" id="z9D-9K-QxU"/>
+                        </constraints>
+                    </view>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
+                    <nil key="simulatedBottomBarMetrics"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="GK7-1d-0TV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-410" y="-1955"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="eXD-jD-Iyi">
+            <objects>
+                <viewController storyboardIdentifier="DOMPCFViewController" id="ZBK-dp-mKs" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="jK9-Pb-HzK"/>
+                        <viewControllerLayoutGuide type="bottom" id="1aH-D8-BSc"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="CMR-PU-CKv">
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WcT-ad-JiC">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <mutableString key="text">I (the participant) have read the information provided and any questions I have asked have been answered to my satisfaction. I agree to participate in this activity, realising that I may withdraw at any time without reason and without prejudice. (Or where applicable – without prejudice to my future medical treatment).
+
+I understand that the data inputed in the application will be sent to a server anonymously and will be used for analysis with regards to the research project.
+
+I understand that all identifiable (attributable) information that I provide is treated as strictly confidential and will not be released by the investigator in any form that may identify me. The only exception to this principle of confidentiality is if documents are required by law.
+
+I have been advised as to what data is being collected, the purpose for collecting the data, and what will be done with the data upon completion of the research.
+
+I agree that research data gathered for the study may be published provided my name or other identifying information is not used.
+
+(Please note that, as the PCF is not a contract between parties, it is not necessary that the researcher counter-sign the form. Nor is it necessary to have a witness to the participant's signature. There may be some exceptions to this generalisation in cases where researchers feel that there would be practical, rather than purely legal, benefit in being able to more clearly verify a participant's consent.) 
+
+-
+
+Approval to conduct this research has been provided by the University of Western Australia, in accordance with its ethics review and approval procedures. Any person considering participation in this research project, or agreeing to participate, may raise any questions or issues with the researchers at any time.
+
+In addition, any person not satisfied with the response of researchers may raise ethics issues or concerns, and may make any complaints about this research project by contacting the Human Research Ethics Office at the University of Western Australia on (08) 6488 3703 or by emailing to hreo-research@uwa.edu.au
+
+All research participants are entitles to retain a copy of any Participant Information For and/or Participant Consent Form relating to this research project.</mutableString>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <dataDetectorType key="dataDetectorTypes" phoneNumber="YES" link="YES" address="YES"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="WcT-ad-JiC" firstAttribute="leading" secondItem="CMR-PU-CKv" secondAttribute="leading" id="WwM-8V-cnL"/>
+                            <constraint firstAttribute="trailing" secondItem="WcT-ad-JiC" secondAttribute="trailing" id="bst-Wf-Oxa"/>
+                            <constraint firstAttribute="bottom" secondItem="WcT-ad-JiC" secondAttribute="bottom" id="hig-Yo-0st"/>
+                            <constraint firstItem="WcT-ad-JiC" firstAttribute="top" secondItem="CMR-PU-CKv" secondAttribute="top" id="zvQ-l8-ray"/>
+                        </constraints>
+                    </view>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
+                    <nil key="simulatedBottomBarMetrics"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lb4-X5-uYB" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="26" y="-1955"/>
+        </scene>
         <!--Welcome View Controller - Welcome-->
         <scene sceneID="p4R-TO-UcL">
             <objects>
@@ -911,16 +1037,16 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</stri
                         <viewControllerLayoutGuide type="bottom" id="HOI-fM-vqA"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="eOu-9o-Cim">
-                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="460"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ggy-UY-kk2">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="460"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <string key="text">Hi,
 
-Thank you for helping me with my thesis project: DOMATI (Dynamic Object Modelling for Advanced Touch Interactions). The aim of this thesis is to produce a user calibrated algorithm that calculates the strength of a touch on a capacitive display device using its movements in 3D space as well as the touch’s properties. If you like to read more about it tap on the “More Info” button on the bottom. This algorithm will be implemented in iOS devices and you are currently looking at the application in its infancy form. 
+Thank you for helping me with my thesis project: DOMATI (Dynamic Object Modelling for Advanced Touch Interactions). The aim of this thesis is to produce a user calibrated algorithm that calculates the strength of a touch on a capacitive display device using its movements in 3D space as well as the touch’s properties. If you like to read more about it tap on the “Project Summary” button on the bottom. This algorithm will be implemented in iOS devices and you are currently looking at the application in its infancy form. 
 
 Version 0.1
  
@@ -950,21 +1076,34 @@ Jad</string>
                         </constraints>
                     </view>
                     <toolbarItems>
-                        <barButtonItem style="plain" systemItem="flexibleSpace" id="PLy-Ym-c8x"/>
-                        <barButtonItem title="More Info" id="wX0-S0-h3I">
+                        <barButtonItem title="PIF" id="YVT-TK-mop">
                             <connections>
-                                <action selector="moreInfo:" destination="h7K-2W-xve" id="mB9-7M-iJg"/>
+                                <action selector="pifAction:" destination="h7K-2W-xve" id="kyG-o9-3AL"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="PLy-Ym-c8x"/>
+                        <barButtonItem title="Project Summary" id="wX0-S0-h3I">
+                            <connections>
+                                <action selector="moreInfoAction:" destination="h7K-2W-xve" id="wF5-jG-hn2"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="Ifi-Or-Wut"/>
+                        <barButtonItem title="PCF" id="Crm-dB-UUf">
+                            <connections>
+                                <action selector="pcfAction:" destination="h7K-2W-xve" id="weX-mt-W7A"/>
+                            </connections>
+                        </barButtonItem>
                     </toolbarItems>
                     <navigationItem key="navigationItem" title="Welcome" id="8xI-Yc-6cc">
                         <barButtonItem key="rightBarButtonItem" title="Next" style="done" id="qQq-oF-Niz">
                             <connections>
-                                <segue destination="LJn-aZ-Nka" kind="push" identifier="User Info Segue" id="wdW-2E-Z2T"/>
+                                <action selector="nextAction:" destination="h7K-2W-xve" id="H7c-gQ-BVE"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <segue destination="LJn-aZ-Nka" kind="push" identifier="User Info Segue" id="Mvh-yL-2cp"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2aW-BV-Xfa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

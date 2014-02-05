@@ -67,7 +67,7 @@
 
 - (NSInteger)yearFromRow:(NSInteger)row
 {
-    return (row == 0) ? -1 : self.currentYear - (row - 1);
+    return (row == 0) ? 0 : self.currentYear - (row - 1);
 }
 
 #pragma mark - Helper Class Methods

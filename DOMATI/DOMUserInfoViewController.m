@@ -18,7 +18,7 @@
 
 #import "DOMUser.h"
 
-@interface DOMUserInfoViewController () <DOMYearsPickerHandlerDelegate, DOMExperiencePickerHandlerDelegate, DOMProfessionPickerHandlerDelegate, DOMTextFieldCellDelegate, DOMGenderSegmentCellDelegate>
+@interface DOMUserInfoViewController () <UIAlertViewDelegate, DOMYearsPickerHandlerDelegate, DOMExperiencePickerHandlerDelegate, DOMProfessionPickerHandlerDelegate, DOMTextFieldCellDelegate, DOMGenderSegmentCellDelegate>
 
 @property (nonatomic, strong) UILabel *pickerLabel;
 @property (nonatomic, strong) NSIndexPath *visiblePickerIndexPath;
@@ -33,6 +33,8 @@ static NSString *SegmentCellIdentifier = @"Segment Cell";
 static NSString *DetailCellIdentifier = @"Detail Cell";
 static NSString *TextFieldCellIdentifier = @"Text Field Cell";
 static NSString *PickerCellIdentifier = @"Picker Cell";
+
+static NSInteger kUndisclosedAlertTag = 10;
 
 @implementation DOMUserInfoViewController
 
@@ -61,12 +63,66 @@ static NSString *PickerCellIdentifier = @"Picker Cell";
 
 #pragma mark - Actions
 
-- (void)done:(id)sender
+- (IBAction)nextAction:(id)sender
 {
-    [self dismissViewControllerAnimated:YES completion:nil];
+    NSArray *undisclosedFields = [self undisclosedFields];
+    NSUInteger undisclosedFieldsCount = [undisclosedFields count];
+    if (undisclosedFields > 0) {
+        NSMutableString *list = [[NSMutableString alloc] init];
+        for (NSUInteger i = 0; i < undisclosedFieldsCount; i++) {
+            if (i < undisclosedFieldsCount - 1) {
+                [list appendFormat:@"%@, ", undisclosedFields[i]];
+            } else {
+                [list appendFormat:@"%@", undisclosedFields[i]];
+            }
+        }
+        
+        NSString *message = [[NSString alloc] initWithFormat:@"The following fields are undisclosed: \"%@\". It would great if they could be set. What would you like to do?", list];
+        
+        UIAlertView *undisclosedAV = [[UIAlertView alloc] initWithTitle:@"Undisclosed Fields" message:message delegate:self cancelButtonTitle:@"Ignore" otherButtonTitles:@"Set Fields", nil];
+        undisclosedAV.tag = kUndisclosedAlertTag;
+        [undisclosedAV show];
+    } else {
+        [self performSegueWithIdentifier:@"Calibration Segue" sender:sender];
+    }
+}
+
+#pragma mark - Alert View
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (alertView.tag == kUndisclosedAlertTag && buttonIndex == 0) {
+        [self performSegueWithIdentifier:@"Calibration Segue" sender:nil];
+    }
 }
 
 #pragma mark - Logic
+
+- (NSArray *)undisclosedFields
+{
+    NSMutableArray *undisclosedFields = [[NSMutableArray alloc] init];
+    
+    if (self.user.gender == DOMGenderUndisclosed) {
+        [undisclosedFields addObject:@"Gender"];
+    }
+    if (self.user.birthYear == 0) {
+        [undisclosedFields addObject:@"Birth Year"];
+    }
+    if (self.user.height == 0.0) {
+        [undisclosedFields addObject:@"Height"];
+    }
+    if (self.user.weight == 0.0) {
+        [undisclosedFields addObject:@"Weight"];
+    }
+    if (!self.user.profession || [self.user.profession isEqualToString:[DOMPickerHandler undisclosedValue]]) {
+        [undisclosedFields addObject:@"Profession"];
+    }
+    if (self.user.techExp == DOMTechnologyExperienceUndisclosed) {
+        [undisclosedFields addObject:@"Tech Experience"];
+    }
+    
+    return undisclosedFields;
+}
 
 - (BOOL)resignCurrentResponder
 {
@@ -83,16 +139,6 @@ static NSString *PickerCellIdentifier = @"Picker Cell";
     }
     
     return success;
-}
-
-- (void)hideDoneButtonAnimated:(BOOL)animated
-{
-    [self.navigationItem setRightBarButtonItem:nil animated:animated];
-}
-
-- (void)showDoneButtonWithTitle:(NSString *)title animated:(BOOL)animated
-{
-    [self.navigationItem setRightBarButtonItem:[[UIBarButtonItem alloc] initWithTitle:title style:UIBarButtonItemStyleDone target:self action:@selector(done:)] animated:animated];
 }
 
 - (void)populatePicker:(UIPickerView *)picker
@@ -446,9 +492,7 @@ static NSString *PickerCellIdentifier = @"Picker Cell";
     [self setDetailText:[DOMYearsPickerHandler titleForYear:year]
             undisclosed:undisclosed];
     
-    if (!undisclosed) {
-        self.user.birthYear = year;
-    }
+    self.user.birthYear = year;
 }
 
 - (void)pickerView:(UIPickerView *)pickerView didChangeExperience:(DOMTechnologyExperience)techExp
@@ -458,9 +502,7 @@ static NSString *PickerCellIdentifier = @"Picker Cell";
     [self setDetailText:[DOMExperiencePickerHandler titleForTechExp:techExp]
             undisclosed:undisclosed];
     
-    if (!undisclosed) {
-        self.user.techExp = techExp;
-    }
+    self.user.techExp = techExp;
 }
 
 - (void)pickerView:(UIPickerView *)pickerView didChangeProfession:(NSString *)profession
@@ -470,9 +512,7 @@ static NSString *PickerCellIdentifier = @"Picker Cell";
     [self setDetailText:profession
             undisclosed:undisclosed];
     
-    if (!undisclosed) {
-        self.user.profession = profession;
-    }
+    self.user.profession = profession;
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField withCellType:(DOMTextFieldCellType)type

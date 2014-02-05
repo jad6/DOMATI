@@ -60,9 +60,9 @@
 
 #pragma mark - Actions
 
-- (IBAction)done:(id)sender
+- (IBAction)doneAction:(id)sender
 {
-    [self performSegueWithIdentifier:@"Done Calibration Segue" sender:sender];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark - Feedback
