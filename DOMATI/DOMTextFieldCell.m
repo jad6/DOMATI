@@ -44,6 +44,11 @@
 
 #pragma mark - Text Field Delegate 
 
+- (BOOL)canBecomeFirstResponder
+{
+    return YES;
+}
+
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
     textField.textColor = DOMATI_COLOR;

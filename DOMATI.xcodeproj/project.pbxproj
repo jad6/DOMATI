@@ -76,7 +76,6 @@
 		05AB7A351883B39900FDCBE6 /* NSError+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 05AB7A341883B39900FDCBE6 /* NSError+Extension.m */; };
 		05C4C660182F118A00E45F9D /* Project Proposal.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 05C4C65F182F118A00E45F9D /* Project Proposal.pdf */; };
 		05C702F1189C8D8A00E0AC35 /* DOMYearsPickerHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 05C702F0189C8D8A00E0AC35 /* DOMYearsPickerHandler.m */; };
-		05C702F4189C8DBD00E0AC35 /* DOMExperiencePickerHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 05C702F3189C8DBD00E0AC35 /* DOMExperiencePickerHandler.m */; };
 		05C702F7189C8DF500E0AC35 /* DOMPickerHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 05C702F6189C8DF500E0AC35 /* DOMPickerHandler.m */; };
 		05C702FA189C9BC200E0AC35 /* DOMProfessionPickerHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 05C702F9189C9BC200E0AC35 /* DOMProfessionPickerHandler.m */; };
 		05C702FC189C9BE700E0AC35 /* Professions.plist in Resources */ = {isa = PBXBuildFile; fileRef = 05C702FB189C9BE700E0AC35 /* Professions.plist */; };
@@ -203,8 +202,6 @@
 		05C4C65F182F118A00E45F9D /* Project Proposal.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "Project Proposal.pdf"; sourceTree = "<group>"; };
 		05C702EF189C8D8A00E0AC35 /* DOMYearsPickerHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DOMYearsPickerHandler.h; sourceTree = "<group>"; };
 		05C702F0189C8D8A00E0AC35 /* DOMYearsPickerHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DOMYearsPickerHandler.m; sourceTree = "<group>"; };
-		05C702F2189C8DBC00E0AC35 /* DOMExperiencePickerHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DOMExperiencePickerHandler.h; sourceTree = "<group>"; };
-		05C702F3189C8DBD00E0AC35 /* DOMExperiencePickerHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DOMExperiencePickerHandler.m; sourceTree = "<group>"; };
 		05C702F5189C8DF500E0AC35 /* DOMPickerHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DOMPickerHandler.h; sourceTree = "<group>"; };
 		05C702F6189C8DF500E0AC35 /* DOMPickerHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DOMPickerHandler.m; sourceTree = "<group>"; };
 		05C702F8189C9BC200E0AC35 /* DOMProfessionPickerHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DOMProfessionPickerHandler.h; sourceTree = "<group>"; };
@@ -414,8 +411,6 @@
 				05C702F6189C8DF500E0AC35 /* DOMPickerHandler.m */,
 				05C702EF189C8D8A00E0AC35 /* DOMYearsPickerHandler.h */,
 				05C702F0189C8D8A00E0AC35 /* DOMYearsPickerHandler.m */,
-				05C702F2189C8DBC00E0AC35 /* DOMExperiencePickerHandler.h */,
-				05C702F3189C8DBD00E0AC35 /* DOMExperiencePickerHandler.m */,
 				05C702F8189C9BC200E0AC35 /* DOMProfessionPickerHandler.h */,
 				05C702F9189C9BC200E0AC35 /* DOMProfessionPickerHandler.m */,
 			);
@@ -874,7 +869,6 @@
 				05087D791824E65600219AA7 /* DOMDataFile.m in Sources */,
 				0598D8CE1824F040007A526F /* UITouch+Extension.m in Sources */,
 				05F0780C181CC4D2006EA8B0 /* DOMThemeManager.m in Sources */,
-				05C702F4189C8DBD00E0AC35 /* DOMExperiencePickerHandler.m in Sources */,
 				05A5FD6D183A2F8F000F57C4 /* DOMCircleTouchView.m in Sources */,
 				05CDCD1F17BA0B7F00BA12E3 /* DOMGroupSelectionViewController.m in Sources */,
 				054C30A817B7366800ABC9CF /* DOMCalibrationMonthsViewController.m in Sources */,
@@ -1014,14 +1008,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = DOMATI/DOMATI.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Jad Osseiran (SCC6WVZ543)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Jad Osseiran (SCC6WVZ543)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "DOMATI/DOMATI-Prefix.pch";
 				INFOPLIST_FILE = "DOMATI/DOMATI-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "E8C89BC2-6AB8-42C8-96D3-E6997400A29C";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
@@ -1034,14 +1028,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = DOMATI/DOMATI.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Jad Osseiran (SCC6WVZ543)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Jad Osseiran (SCC6WVZ543)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "DOMATI/DOMATI-Prefix.pch";
 				INFOPLIST_FILE = "DOMATI/DOMATI-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "E8C89BC2-6AB8-42C8-96D3-E6997400A29C";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};

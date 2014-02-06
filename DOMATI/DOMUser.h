@@ -14,20 +14,11 @@ typedef NS_ENUM(NSInteger, DOMGender) {
     DOMGenderFemale
 };
 
-typedef NS_ENUM(NSInteger, DOMTechnologyExperience) {
-    DOMTechnologyExperienceUndisclosed,
-    DOMTechnologyExperienceNovice,
-    DOMTechnologyExperienceIntermediate,
-    DOMTechnologyExperienceExperienced,
-    DOMTechnologyExperienceAdvanced
-};
-
 @interface DOMUser : NSObject
 
 @property (nonatomic, strong) NSString *profession;
 
 @property (nonatomic) DOMGender gender;
-@property (nonatomic) DOMTechnologyExperience techExp;
 
 @property (nonatomic) NSInteger identifier;
 @property (nonatomic) NSUInteger birthYear;

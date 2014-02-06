@@ -9,7 +9,6 @@
 #import "DOMUserInfoViewController.h"
 
 #import "DOMYearsPickerHandler.h"
-#import "DOMExperiencePickerHandler.h"
 #import "DOMProfessionPickerHandler.h"
 
 #import "DOMGenderSegmentCell.h"
@@ -18,10 +17,9 @@
 
 #import "DOMUser.h"
 
-@interface DOMUserInfoViewController () <UIAlertViewDelegate, DOMYearsPickerHandlerDelegate, DOMExperiencePickerHandlerDelegate, DOMProfessionPickerHandlerDelegate, DOMTextFieldCellDelegate, DOMGenderSegmentCellDelegate>
+@interface DOMUserInfoViewController () <UIAlertViewDelegate, DOMYearsPickerHandlerDelegate, DOMProfessionPickerHandlerDelegate, DOMTextFieldCellDelegate, DOMGenderSegmentCellDelegate>
 
-@property (nonatomic, strong) UILabel *pickerLabel;
-@property (nonatomic, strong) NSIndexPath *visiblePickerIndexPath;
+@property (nonatomic, strong) NSIndexPath *pickerIndexPath, *activeCellIndexPath;
 @property (nonatomic, strong) DOMPickerHandler *currentPickerHandler;
 @property (nonatomic, strong) id currentFirstResponder;
 
@@ -117,9 +115,6 @@ static NSInteger kUndisclosedAlertTag = 10;
     if (!self.user.profession || [self.user.profession isEqualToString:[DOMPickerHandler undisclosedValue]]) {
         [undisclosedFields addObject:@"Profession"];
     }
-    if (self.user.techExp == DOMTechnologyExperienceUndisclosed) {
-        [undisclosedFields addObject:@"Tech Experience"];
-    }
     
     return undisclosedFields;
 }
@@ -135,6 +130,7 @@ static NSInteger kUndisclosedAlertTag = 10;
             [self.currentFirstResponder setEnabled:NO];
         }
         
+        self.activeCellIndexPath = nil;
         self.currentFirstResponder = nil;
     }
     
@@ -146,7 +142,7 @@ static NSInteger kUndisclosedAlertTag = 10;
                   cell:(UITableViewCell *)cell
 {
     DOMPickerHandler *currentHandler = nil;
-    if (indexPath.section == 0 && indexPath.row == 1) {
+    if (indexPath.section == 0 && indexPath.row == 2) {
         NSInteger year = ([cell.detailTextLabel.text isEqualToString:[DOMPickerHandler undisclosedValue]]) ? 1990 : [DOMYearsPickerHandler yearForTitile:cell.detailTextLabel.text];
         
         DOMYearsPickerHandler *yearsHandler = [[DOMYearsPickerHandler alloc] init];
@@ -156,31 +152,14 @@ static NSInteger kUndisclosedAlertTag = 10;
         
         currentHandler = yearsHandler;
     } else if (indexPath.section == 2) {
-        switch (indexPath.row) {
-            case 0: {
-                NSString *initialProf = ([cell.detailTextLabel.text isEqualToString:[DOMPickerHandler undisclosedValue]]) ? nil : cell.detailTextLabel.text;
-                
-                DOMProfessionPickerHandler *professionHandler = [[DOMProfessionPickerHandler alloc] init];
-                [professionHandler populatedPicker:picker
-                             withInitialProfession:initialProf
-                                          delegate:self];
-                
-                currentHandler = professionHandler;
-                break;
-            }
-                
-            case 1: {
-                DOMTechnologyExperience techExp = [DOMExperiencePickerHandler techExpForTitle:cell.detailTextLabel.text];
-                
-                DOMExperiencePickerHandler *expHandler = [[DOMExperiencePickerHandler alloc] init];
-                [expHandler populatedPicker:picker
-                                withTechExp:techExp
-                                   delegate:self];
-                
-                currentHandler = expHandler;
-                break;
-            }
-        }
+        NSString *initialProf = ([cell.detailTextLabel.text isEqualToString:[DOMPickerHandler undisclosedValue]]) ? nil : cell.detailTextLabel.text;
+        
+        DOMProfessionPickerHandler *professionHandler = [[DOMProfessionPickerHandler alloc] init];
+        [professionHandler populatedPicker:picker
+                     withInitialProfession:initialProf
+                                  delegate:self];
+        
+        currentHandler = professionHandler;
     }
     
     self.currentPickerHandler = currentHandler;
@@ -188,7 +167,8 @@ static NSInteger kUndisclosedAlertTag = 10;
 
 - (void)setDetailText:(NSString *)text undisclosed:(BOOL)undisclosed
 {
-    self.pickerLabel.text = (undisclosed) ? [DOMPickerHandler undisclosedValue] : text;
+    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:self.activeCellIndexPath];
+    cell.detailTextLabel.text = (undisclosed) ? [DOMPickerHandler undisclosedValue] : text;
 }
 
 /**
@@ -201,7 +181,6 @@ static NSInteger kUndisclosedAlertTag = 10;
  *  HEIGHT
  *  ------
  *  PROFESSION
- *  TECHEXP
  *
  *  @param cell      cell description
  *  @param indexPath indexPath description
@@ -209,7 +188,7 @@ static NSInteger kUndisclosedAlertTag = 10;
 - (void)setupCell:(UITableViewCell *)cell
      forIndexPath:(NSIndexPath *)indexPath
 {
-    if ([indexPath isEqual:self.visiblePickerIndexPath]) {
+    if ([indexPath isEqual:self.pickerIndexPath]) {
         return;
     }
     
@@ -227,8 +206,6 @@ static NSInteger kUndisclosedAlertTag = 10;
                     
                     genderCell.segmentedControl.selectedSegmentIndex = user.gender;
                     genderCell.delegate = self;
-                    
-                    cell = genderCell;
                     break;
                 }
                     
@@ -266,28 +243,14 @@ static NSInteger kUndisclosedAlertTag = 10;
                 }
             
             textFieldCell.delegate = self;
-            cell = textFieldCell;
             break;
         }
             
         case 2: {
-            switch (indexPath.row) {
-                case 0:
-                    text = @"Profession";
-                    
-                    if (user.profession) {
-                        detailText = user.profession;
-                    }
-                    break;
-                    
-                case 1:
-                case 2:
-                    text = @"Tech Experience";
-                    
-                    if (user.techExp != DOMTechnologyExperienceUndisclosed) {
-                        detailText = [DOMExperiencePickerHandler titleForTechExp:user.techExp];
-                    }
-                    break;
+            text = @"Profession";
+            
+            if (user.profession) {
+                detailText = user.profession;
             }
             break;
         }
@@ -301,7 +264,7 @@ static NSInteger kUndisclosedAlertTag = 10;
 {
     NSString *CellIdentifier = nil;
     
-    if ([indexPath isEqual:self.visiblePickerIndexPath]) {
+    if ([indexPath isEqual:self.pickerIndexPath]) {
         CellIdentifier = PickerCellIdentifier;
     } else if (indexPath.section == 0 && indexPath.row == 0) {
         CellIdentifier = SegmentCellIdentifier;
@@ -316,35 +279,127 @@ static NSInteger kUndisclosedAlertTag = 10;
 
 #pragma mark - Table view logic
 
-- (void)insertPickerViewUnderCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
+/**
+ *  Determines if the given indexPath has a cell below it with a picker.
+ *
+ *  @param indexPath The indexPath to check if its cell has a UIDatePicker below it.
+ *
+ *  @return
+ */
+- (BOOL)hasPickerForIndexPath:(NSIndexPath *)indexPath
 {
-    [self resignCurrentResponder];
+    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:(indexPath.row + 1) inSection:indexPath.section]];
     
-    self.pickerLabel.textColor = DOMATI_COLOR;
-    
-    self.visiblePickerIndexPath = [NSIndexPath indexPathForRow:indexPath.row + 1 inSection:indexPath.section];
-    
-    [self.tableView insertRowsAtIndexPaths:@[self.visiblePickerIndexPath] withRowAnimation:UITableViewRowAnimationTop];
-    
-    DOMPickerCell *pickerCell = (DOMPickerCell *)[self.tableView cellForRowAtIndexPath:self.visiblePickerIndexPath];
-    
-    [self populatePicker:pickerCell.picker atIndexPath:indexPath cell:cell];
-    
-    [self.tableView scrollToRowAtIndexPath:indexPath
-                          atScrollPosition:UITableViewScrollPositionMiddle
-                                  animated:YES];
+    return [cell isKindOfClass:[DOMPickerCell class]];
 }
 
-- (void)deleteVisiblePickerCell
+/**
+ *  Determines if the table view has a picker in any of its cells.
+ *
+ *  @return
+ */
+- (BOOL)hasInlineDatePickerInSection:(NSInteger)section
 {
-    self.pickerLabel.textColor = DETAIL_TEXT_COLOR;
+    return (self.pickerIndexPath != nil && self.pickerIndexPath.section == section);
+}
+
+/**
+ *  Determines if the given indexPath points to a cell that contains the picker.
+ *
+ *  @param indexPath The indexPath to check if it represents a cell with the picker.
+ *
+ *  @return
+ */
+- (BOOL)indexPathHasPicker:(NSIndexPath *)indexPath
+{
+    return ([self hasInlineDatePickerInSection:indexPath.section]
+            && self.pickerIndexPath.row == indexPath.row);
+}
+
+/**
+ *  Remove any picker cell if it exists
+ */
+- (void)removePicker
+{
+    if (self.pickerIndexPath) {
+        self.activeCellIndexPath = nil;
+        
+        NSIndexPath *datePickerIndexPathCopy = [self.pickerIndexPath copy];
+        self.pickerIndexPath = nil;
+
+        [self.tableView deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:datePickerIndexPathCopy.row inSection:datePickerIndexPathCopy.section]]
+                              withRowAnimation:UITableViewRowAnimationFade];
+    }
+}
+
+/**
+ *  Adds or removes a picker cell below the given indexPath.
+ *
+ *  @param indexPath The indexPath to reveal the picker.
+ */
+- (void)toggleDatePickerForSelectedIndexPath:(NSIndexPath *)indexPath
+{
+    [self.tableView beginUpdates];
     
-    NSIndexPath *indexPathToDelete = [self.visiblePickerIndexPath copy];
-    self.visiblePickerIndexPath = nil;
+    NSArray *indexPaths = @[[NSIndexPath indexPathForRow:(indexPath.row + 1) inSection:indexPath.section]];
     
-    [self.tableView deleteRowsAtIndexPaths:@[indexPathToDelete] withRowAnimation:UITableViewRowAnimationTop];
+    // Check if 'indexPath' has an attached picker below it
+    if ([self hasPickerForIndexPath:indexPath]) {
+        // Found a picker below it, so remove it
+        [self.tableView deleteRowsAtIndexPaths:indexPaths
+                              withRowAnimation:UITableViewRowAnimationFade];
+    } else {
+        self.activeCellIndexPath = indexPath;
+        
+        // Didn't find a picker below it, so we should insert it
+        [self.tableView insertRowsAtIndexPaths:indexPaths
+                              withRowAnimation:UITableViewRowAnimationFade];
+    }
     
-    self.currentPickerHandler = nil;
+    [self.tableView endUpdates];
+}
+
+/**
+ *  Reveals the date picker inline for the given indexPath, called by
+ *  "didSelectRowAtIndexPath".
+ *
+ *  @param indexPath The indexPath to reveal the picker.
+ */
+- (void)displayInlineDatePickerForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    // Display the picker inline with the table content
+    [self.tableView beginUpdates];
+    
+    // Indicates if the picker is below "indexPath", help determine
+    // which row to reveal.
+    BOOL before = NO;
+    if ([self hasInlineDatePickerInSection:indexPath.section]) {
+        before = self.pickerIndexPath.row < indexPath.row;
+    }
+    
+    BOOL sameCellClicked = (self.pickerIndexPath.row - 1 == indexPath.row);
+    
+    [self removePicker];
+    
+    if (!sameCellClicked) {
+        // Hide the old picker and display the new one
+        NSInteger rowToReveal = (before ? indexPath.row - 1 : indexPath.row);
+        NSIndexPath *indexPathToReveal = [NSIndexPath indexPathForRow:rowToReveal inSection:indexPath.section];
+        
+        [self toggleDatePickerForSelectedIndexPath:indexPathToReveal];
+        self.pickerIndexPath = [NSIndexPath indexPathForRow:indexPathToReveal.row + 1 inSection:indexPath.section];
+    }
+    
+    // Always deselect the row containing the start or end date
+    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    [self.tableView endUpdates];
+    
+    // Update picker.
+    if (self.pickerIndexPath) {
+        DOMPickerCell *pickerCell = (DOMPickerCell *)[self.tableView cellForRowAtIndexPath:self.pickerIndexPath];
+        [self populatePicker:pickerCell.picker atIndexPath:self.pickerIndexPath cell:[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:(self.pickerIndexPath.row - 1) inSection:self.pickerIndexPath.section]]];
+    }
 }
 
 #pragma mark - Table view data source
@@ -356,12 +411,9 @@ static NSInteger kUndisclosedAlertTag = 10;
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    BOOL pickerInSection = (self.visiblePickerIndexPath &&
-                            self.visiblePickerIndexPath.section == section);
-    
     switch (section) {
         case 0:
-            return (pickerInSection) ? 3 : 2;
+            return ([self hasInlineDatePickerInSection:section]) ? 3 : 2;
             break;
 
         case 1:
@@ -369,7 +421,7 @@ static NSInteger kUndisclosedAlertTag = 10;
             break;
             
         case 2:
-            return (pickerInSection) ? 3 : 2;
+            return ([self hasInlineDatePickerInSection:section]) ? 2 : 1;
             break;
             
         default:
@@ -390,7 +442,7 @@ static NSInteger kUndisclosedAlertTag = 10;
             break;
             
         case 2:
-            return @"Other";
+            return @"Other Info";
             break;
             
         default:
@@ -422,7 +474,7 @@ static NSInteger kUndisclosedAlertTag = 10;
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if ([self.visiblePickerIndexPath isEqual:indexPath]) {
+    if ([self.pickerIndexPath isEqual:indexPath]) {
         return 216.0;
     } else if (indexPath.section == 0 && indexPath.row == 0) {
         return 88.0;
@@ -447,25 +499,25 @@ static NSInteger kUndisclosedAlertTag = 10;
 {
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     if ([cell.reuseIdentifier isEqualToString:DetailCellIdentifier]) {
-        if (self.visiblePickerIndexPath) {
-            [self deleteVisiblePickerCell];
-        } else {
-            self.pickerLabel = cell.detailTextLabel;
-            [self insertPickerViewUnderCell:cell atIndexPath:indexPath];
-        }
+        [self resignCurrentResponder];
+        
+        [self displayInlineDatePickerForRowAtIndexPath:indexPath];
+        
+        [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
     } else if ([cell.reuseIdentifier isEqualToString:TextFieldCellIdentifier]) {
-        if (self.visiblePickerIndexPath) {
-            [self deleteVisiblePickerCell];
+        if (self.pickerIndexPath) {
+            [self removePicker];
         }
         
         DOMTextFieldCell *textFieldCell = (DOMTextFieldCell *)cell;
+        
         textFieldCell.textField.enabled = YES;
         [textFieldCell.textField becomeFirstResponder];
         self.currentFirstResponder = textFieldCell.textField;
         
         [tableView scrollToNearestSelectedRowAtScrollPosition:UITableViewScrollPositionMiddle animated:YES];
     }
-    
+
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
@@ -474,6 +526,8 @@ static NSInteger kUndisclosedAlertTag = 10;
     if (![cell.reuseIdentifier isEqualToString:DetailCellIdentifier]) {
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
+    
+    cell.detailTextLabel.textColor = ([indexPath isEqual:self.activeCellIndexPath]) ? DOMATI_COLOR : DETAIL_TEXT_COLOR;
 }
 
 #pragma mark - Scroll View
@@ -493,16 +547,6 @@ static NSInteger kUndisclosedAlertTag = 10;
             undisclosed:undisclosed];
     
     self.user.birthYear = year;
-}
-
-- (void)pickerView:(UIPickerView *)pickerView didChangeExperience:(DOMTechnologyExperience)techExp
-{
-    BOOL undisclosed = (techExp == DOMTechnologyExperienceUndisclosed);
-
-    [self setDetailText:[DOMExperiencePickerHandler titleForTechExp:techExp]
-            undisclosed:undisclosed];
-    
-    self.user.techExp = techExp;
 }
 
 - (void)pickerView:(UIPickerView *)pickerView didChangeProfession:(NSString *)profession

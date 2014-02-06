@@ -17,7 +17,6 @@
 static NSString *kIdentifierKey = @"DOMUserIdentifierKey";
 static NSString *kProfessionKey = @"DOMUserProfessionKey";
 static NSString *kGenderKey = @"DOMUserGenderKey";
-static NSString *kTechExpKey = @"DOMUserTechnologyExperienceKey";
 static NSString *kBirthYearKey = @"DOMUserBirthYearKey";
 static NSString *kWeightKey = @"DOMUserWeightKey";
 static NSString *kHeightKey = @"DOMUserHeightKey";
@@ -27,7 +26,6 @@ static NSString *kHeightKey = @"DOMUserHeightKey";
 @synthesize identifier = _identifier;
 @synthesize profession = _profession;
 @synthesize gender = _gender;
-@synthesize techExp = _techExp;
 @synthesize birthYear = _birthYear;
 @synthesize weight = _weight;
 @synthesize height = _height;
@@ -73,7 +71,6 @@ static NSString *kHeightKey = @"DOMUserHeightKey";
     dictionary[@"gender"] = @(self.gender);
     dictionary[@"weight"] = @(self.weight);
     dictionary[@"height"] = @(self.height);
-    dictionary[@"techExp"] = @(self.techExp);
     dictionary[@"profession"] = self.profession;
     
     return dictionary;
@@ -134,24 +131,6 @@ static NSString *kHeightKey = @"DOMUserHeightKey";
     }
     
     return _gender;
-}
-
-- (void)setTechExp:(DOMTechnologyExperience)techExp
-{
-    if (_techExp != techExp) {
-        _techExp = techExp;
-    }
-    
-    [self keyStoreSetValue:@(techExp) forKey:kTechExpKey];
-}
-
-- (DOMTechnologyExperience)techExp
-{
-    if (!_techExp) {
-        _techExp = [[self.keyStore objectForKey:kTechExpKey] integerValue];
-    }
-    
-    return _techExp;
 }
 
 - (void)setBirthYear:(NSUInteger)age
