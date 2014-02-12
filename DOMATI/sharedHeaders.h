@@ -18,10 +18,12 @@
 #define TEXT_COLOR [UIColor whiteColor]
 #define DETAIL_TEXT_COLOR [UIColor lightGrayColor]
 
-#define DEFAULTS_CALI_EXPR_DURATION_DATA @"DOMCalibrationExipryDurationData"
-#define DEFAULTS_CALI_EXPR_INDEX @"DOMCalibrationExipryIndex"
-#define DEFAULTS_CALI_EXPR_TEXT @"DOMCalibrationExipryText"
+#define KEYSTORE_CALI_EXPR_DURATION_DATA @"DOMCalibrationExipryDurationData"
+#define KEYSTORE_CALI_EXPR_INDEX @"DOMCalibrationExipryIndex"
+#define KEYSTORE_CALI_EXPR_TEXT @"DOMCalibrationExipryText"
 
+#define DEFAULTS_SKIP_TO_CALI @"DOMSkipToCalibration"
+#define DEFAULTS_TOUCH_SETS_RECORDED @"DOMNumTouchSetsRecorded"
 #define DEFAULTS_NEGATIVE_IDENTIFIER @"DOMNegativeIdentifierKey"
 
 #endif

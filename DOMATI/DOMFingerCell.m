@@ -21,10 +21,10 @@
 
 - (void)setTitleLabel:(UILabel *)titleLabel
 {
-    if (_titleLabel != titleLabel) {
-        _titleLabel = titleLabel;
+    if (self->_titleLabel != titleLabel) {
+        self->_titleLabel = titleLabel;
         
-        _titleLabel.textColor = DOMATI_COLOR;
+        self->_titleLabel.textColor = DOMATI_COLOR;
     }
 }
 

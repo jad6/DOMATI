@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>circleViewAlpha</key>
+		<real>0.3</real>
+		<key>topText</key>
+		<string>Make sure you are holding your device so that its movements can be recorded.</string>
+		<key>bottomText</key>
+		<string>Shake To Continue</string>
+	</dict>
+	<dict>
+		<key>circleViewAlpha</key>
+		<real>1</real>
+		<key>topText</key>
+		<string>Tap the circle like you would normally interact with your device.</string>
+		<key>bottomText</key>
+		<string>Tap Moderately</string>
+	</dict>
+	<dict>
+		<key>circleViewAlpha</key>
+		<integer>1</integer>
+		<key>topText</key>
+		<string>Tap the circle softly, as if you were scared to break the glass. </string>
+		<key>bottomText</key>
+		<string>Tap Softly</string>
+	</dict>
+	<dict>
+		<key>circleViewAlpha</key>
+		<integer>1</integer>
+		<key>topText</key>
+		<string>Tap the circle hard, as if you were frustrated with your device (be sensible). </string>
+		<key>bottomText</key>
+		<string>Tap Hard</string>
+	</dict>
+	<dict>
+		<key>circleViewAlpha</key>
+		<real>0.3</real>
+		<key>topText</key>
+		<string>Thank You!</string>
+		<key>bottomText</key>
+		<string>Yadiyadiya</string>
+	</dict>
+</array>
+</plist>

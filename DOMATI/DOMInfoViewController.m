@@ -49,7 +49,7 @@
 
 - (void)refreshCalibrationExpiryText
 {
-    NSString *text = [[NSUserDefaults standardUserDefaults] valueForKey:DEFAULTS_CALI_EXPR_TEXT];
+    NSString *text = [[NSUbiquitousKeyValueStore defaultStore] objectForKey:KEYSTORE_CALI_EXPR_TEXT];
     
     if (!text) {
         text = @"Never";

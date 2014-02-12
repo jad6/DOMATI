@@ -27,8 +27,8 @@
     
     NSIndexPath *selectedIndexPath = nil;
     
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSNumber *selectedIndex = [defaults valueForKey:DEFAULTS_CALI_EXPR_INDEX];
+    NSUbiquitousKeyValueStore *keyStore = [NSUbiquitousKeyValueStore defaultStore];
+    NSNumber *selectedIndex = [keyStore objectForKey:KEYSTORE_CALI_EXPR_INDEX];
     if (selectedIndex) {
         selectedIndexPath = [NSIndexPath indexPathForRow:[selectedIndex integerValue] inSection:0];
         [self tableView:self.tableView didSelectRowAtIndexPath:selectedIndexPath];
@@ -36,8 +36,8 @@
         selectedIndexPath = [NSIndexPath indexPathForRow:0 inSection:0];
         [self tableView:self.tableView didSelectRowAtIndexPath:selectedIndexPath];
         
-        [defaults setValue:@(0) forKey:DEFAULTS_CALI_EXPR_INDEX];
-        [defaults synchronize];
+        [keyStore setObject:@(0) forKey:KEYSTORE_CALI_EXPR_INDEX];
+        [keyStore synchronize];
     }
     
     self.checkIndexPath = selectedIndexPath;
@@ -94,11 +94,11 @@
     
     NSData *durationData = [NSKeyedArchiver archivedDataWithRootObject:[self expiryDurationFromIndexPath:indexPath]];
     
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setValue:@(indexPath.row) forKey:DEFAULTS_CALI_EXPR_INDEX];
-    [defaults setValue:durationData forKey:DEFAULTS_CALI_EXPR_DURATION_DATA];
-    [defaults setValue:cell.textLabel.text forKey:DEFAULTS_CALI_EXPR_TEXT];
-    [defaults synchronize];
+    NSUbiquitousKeyValueStore *keyStore = [NSUbiquitousKeyValueStore defaultStore];
+    [keyStore setObject:@(indexPath.row) forKey:KEYSTORE_CALI_EXPR_INDEX];
+    [keyStore setObject:durationData forKey:KEYSTORE_CALI_EXPR_DURATION_DATA];
+    [keyStore setObject:cell.textLabel.text forKey:KEYSTORE_CALI_EXPR_TEXT];
+    [keyStore synchronize];
     
     self.checkIndexPath = indexPath;
 }

@@ -10,6 +10,8 @@
 
 #import "DOMNavigationController.h"
 
+#import "DOMLocalNotificationHelper.h"
+
 @interface DOMWelcomeViewController () <UIAlertViewDelegate>
 
 @end
@@ -28,13 +30,35 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    if ([DOMLocalNotificationHelper didOpenFromLocalNotification]) {
+        id userInfoVC = [self.storyboard instantiateViewControllerWithIdentifier:@"DOMUserInfoViewController"];
+        id calibrationVC = [self.storyboard instantiateViewControllerWithIdentifier:@"DOMCalibrationViewController"];
+        
+        NSMutableArray *viewControllers = [self.navigationController.viewControllers mutableCopy];
+        [viewControllers addObjectsFromArray:@[userInfoVC, calibrationVC]];
+        [self.navigationController setViewControllers:viewControllers animated:NO];
+        
+        self.navigationController.toolbarHidden = YES;
+        
+        [DOMLocalNotificationHelper reset];
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
     
-    self.navigationController.toolbarHidden = NO;
+    [self.navigationController setToolbarHidden:NO
+                                       animated:animated];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    
+    [self.navigationController setToolbarHidden:YES
+                                       animated:animated];
 }
 
 - (void)didReceiveMemoryWarning
@@ -73,7 +97,7 @@
         [self pcfAction:nil];
     }
     
-    if (buttonIndex == 0) {
+    if (buttonIndex == 0) {        
         [self performSegueWithIdentifier:@"User Info Segue" sender:self];
     }
 }

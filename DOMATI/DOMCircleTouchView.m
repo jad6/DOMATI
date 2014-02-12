@@ -26,11 +26,13 @@ circleTouchStrength:(DOMCircleTouchStrength)circleTouchStrength
 
 - (void)setCircleTouchStrength:(DOMCircleTouchStrength)circleTouchStrength
 {
-    if (_circleTouchStrength != circleTouchStrength) {
-        _circleTouchStrength = circleTouchStrength;
-        
-        [self setNeedsDisplay];
+    if (self->_circleTouchStrength != circleTouchStrength) {
+        self->_circleTouchStrength = circleTouchStrength;
     }
+    
+    [UIView animateWithDuration:0.3 animations:^{
+        [self setNeedsDisplay];
+    }];
 }
 
 #pragma mark - Private
@@ -66,10 +68,11 @@ circleTouchStrength:(DOMCircleTouchStrength)circleTouchStrength
 
 - (void)drawRect:(CGRect)rect
 {
-    NSAssert(rect.size.width == rect.size.height, @"The given CGRect %@ is not a squre. You must provide a squre for a valid DOMCircleTouchView", NSStringFromCGRect(rect));
+    NSAssert(rect.size.width == rect.size.height, @"The given CGRect %@ is not a square. You must provide a squre for a valid DOMCircleTouchView", NSStringFromCGRect(rect));
     
     CGContextRef ctx = UIGraphicsGetCurrentContext();
     CGContextClearRect(ctx, rect);
+    
     [self drawOuterCircle:rect inContext:ctx];
     [self drawInnerCircle:rect inContext:ctx];
 }

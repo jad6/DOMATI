@@ -11,12 +11,21 @@
 #import "DOMCoreDataManager.h"
 #import "DOMThemeManager.h"
 
+#import "DOMUser.h"
+
+#import "DOMLocalNotificationHelper.h"
+
 @implementation DOMAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
     self.window.tintColor = DOMATI_COLOR;
+    
+    [DOMUser refreshCurrentUser];
+    
+    UILocalNotification *localNotif = [launchOptions objectForKey:UIApplicationLaunchOptionsLocalNotificationKey];
+    [DOMLocalNotificationHelper handleLaunchLocalNotification:localNotif];
     
     [DOMThemeManager customiseAppAppearance];
     [[DOMCoreDataManager sharedManager] setupCoreData];

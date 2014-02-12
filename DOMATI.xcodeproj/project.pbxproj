@@ -37,6 +37,8 @@
 		050ACB1A189A4F41006F74DD /* Network.plist in Resources */ = {isa = PBXBuildFile; fileRef = 050ACB19189A4F41006F74DD /* Network.plist */; };
 		051A8E291830C7EA007F9DCD /* DOMUserInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 051A8E281830C7EA007F9DCD /* DOMUserInfoViewController.m */; };
 		051A8E341830CB52007F9DCD /* DOMPickerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 051A8E331830CB52007F9DCD /* DOMPickerCell.m */; };
+		0530641A18ABBD9A00ECB21D /* NSDate+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 0530641918ABBD9A00ECB21D /* NSDate+Helper.m */; };
+		0530641D18ABC02100ECB21D /* DOMLocalNotificationHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 0530641C18ABC02100ECB21D /* DOMLocalNotificationHelper.m */; };
 		05430128181D23ED0077435C /* DOMThemeResources.m in Sources */ = {isa = PBXBuildFile; fileRef = 05430127181D23ED0077435C /* DOMThemeResources.m */; };
 		0543012B181D55660077435C /* DOMTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0543012A181D55660077435C /* DOMTableViewCell.m */; };
 		05430131181D5B3A0077435C /* DOMNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05430130181D5B3A0077435C /* DOMNavigationController.m */; };
@@ -73,6 +75,7 @@
 		059F368E18249D0900927A2A /* DOMErrors.m in Sources */ = {isa = PBXBuildFile; fileRef = 059F368D18249D0900927A2A /* DOMErrors.m */; };
 		05A5FD6A183A2DBF000F57C4 /* DOMTouchData.m in Sources */ = {isa = PBXBuildFile; fileRef = 05A5FD69183A2DBF000F57C4 /* DOMTouchData.m */; };
 		05A5FD6D183A2F8F000F57C4 /* DOMCircleTouchView.m in Sources */ = {isa = PBXBuildFile; fileRef = 05A5FD6C183A2F8F000F57C4 /* DOMCircleTouchView.m */; };
+		05A939F018AB1AD80047F4CD /* CalibrationStates.plist in Resources */ = {isa = PBXBuildFile; fileRef = 05A939EF18AB1AD80047F4CD /* CalibrationStates.plist */; };
 		05AB7A351883B39900FDCBE6 /* NSError+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 05AB7A341883B39900FDCBE6 /* NSError+Extension.m */; };
 		05C4C660182F118A00E45F9D /* Project Proposal.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 05C4C65F182F118A00E45F9D /* Project Proposal.pdf */; };
 		05C702F1189C8D8A00E0AC35 /* DOMYearsPickerHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 05C702F0189C8D8A00E0AC35 /* DOMYearsPickerHandler.m */; };
@@ -146,6 +149,10 @@
 		051A8E281830C7EA007F9DCD /* DOMUserInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DOMUserInfoViewController.m; sourceTree = "<group>"; };
 		051A8E321830CB52007F9DCD /* DOMPickerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DOMPickerCell.h; sourceTree = "<group>"; };
 		051A8E331830CB52007F9DCD /* DOMPickerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DOMPickerCell.m; sourceTree = "<group>"; };
+		0530641818ABBD9A00ECB21D /* NSDate+Helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Helper.h"; sourceTree = "<group>"; };
+		0530641918ABBD9A00ECB21D /* NSDate+Helper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Helper.m"; sourceTree = "<group>"; };
+		0530641B18ABC02100ECB21D /* DOMLocalNotificationHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DOMLocalNotificationHelper.h; sourceTree = "<group>"; };
+		0530641C18ABC02100ECB21D /* DOMLocalNotificationHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DOMLocalNotificationHelper.m; sourceTree = "<group>"; };
 		05430126181D23ED0077435C /* DOMThemeResources.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DOMThemeResources.h; sourceTree = "<group>"; };
 		05430127181D23ED0077435C /* DOMThemeResources.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DOMThemeResources.m; sourceTree = "<group>"; };
 		05430129181D55660077435C /* DOMTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DOMTableViewCell.h; sourceTree = "<group>"; };
@@ -197,6 +204,7 @@
 		05A5FD69183A2DBF000F57C4 /* DOMTouchData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DOMTouchData.m; sourceTree = "<group>"; };
 		05A5FD6B183A2F8F000F57C4 /* DOMCircleTouchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DOMCircleTouchView.h; sourceTree = "<group>"; };
 		05A5FD6C183A2F8F000F57C4 /* DOMCircleTouchView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DOMCircleTouchView.m; sourceTree = "<group>"; };
+		05A939EF18AB1AD80047F4CD /* CalibrationStates.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = CalibrationStates.plist; sourceTree = "<group>"; };
 		05AB7A331883B39900FDCBE6 /* NSError+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSError+Extension.h"; sourceTree = "<group>"; };
 		05AB7A341883B39900FDCBE6 /* NSError+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSError+Extension.m"; sourceTree = "<group>"; };
 		05C4C65F182F118A00E45F9D /* Project Proposal.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "Project Proposal.pdf"; sourceTree = "<group>"; };
@@ -383,6 +391,8 @@
 		0525D8D717B8C89F00E91CB6 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				0530641818ABBD9A00ECB21D /* NSDate+Helper.h */,
+				0530641918ABBD9A00ECB21D /* NSDate+Helper.m */,
 				058FFC2017DA0AB0008ECB1B /* NSManagedObject+Appulse.h */,
 				058FFC2117DA0AB0008ECB1B /* NSManagedObject+Appulse.m */,
 				05D273DD181E67110005E31E /* UITextView+Sharing.h */,
@@ -471,6 +481,7 @@
 				05C702FB189C9BE700E0AC35 /* Professions.plist */,
 				05C702FD189CA54E00E0AC35 /* TechExpMapping.plist */,
 				05CDCD2117BA0D3C00BA12E3 /* Groups.plist */,
+				05A939EF18AB1AD80047F4CD /* CalibrationStates.plist */,
 				05C4C65F182F118A00E45F9D /* Project Proposal.pdf */,
 			);
 			name = Resources;
@@ -586,6 +597,8 @@
 				0525D8D717B8C89F00E91CB6 /* Categories */,
 				059F368C18249D0900927A2A /* DOMErrors.h */,
 				059F368D18249D0900927A2A /* DOMErrors.m */,
+				0530641B18ABC02100ECB21D /* DOMLocalNotificationHelper.h */,
+				0530641C18ABC02100ECB21D /* DOMLocalNotificationHelper.m */,
 			);
 			name = Others;
 			sourceTree = "<group>";
@@ -778,6 +791,7 @@
 				050ACB1A189A4F41006F74DD /* Network.plist in Resources */,
 				05C702FC189C9BE700E0AC35 /* Professions.plist in Resources */,
 				05CDCD2217BA0D3C00BA12E3 /* Groups.plist in Resources */,
+				05A939F018AB1AD80047F4CD /* CalibrationStates.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -839,6 +853,7 @@
 				05CDCD2917BA107800BA12E3 /* DOMFingerCell.m in Sources */,
 				05098F5317B62F7D009D4FF5 /* DOMInfoViewController.m in Sources */,
 				054C30A317B7363000ABC9CF /* DOMCalibrationDataViewController.m in Sources */,
+				0530641A18ABBD9A00ECB21D /* NSDate+Helper.m in Sources */,
 				05D273DA181E65930005E31E /* DOMNavigationBar.m in Sources */,
 				05098F4B17B62CF8009D4FF5 /* DOMObjectModelViewController.m in Sources */,
 				05430128181D23ED0077435C /* DOMThemeResources.m in Sources */,
@@ -871,6 +886,7 @@
 				05F0780C181CC4D2006EA8B0 /* DOMThemeManager.m in Sources */,
 				05A5FD6D183A2F8F000F57C4 /* DOMCircleTouchView.m in Sources */,
 				05CDCD1F17BA0B7F00BA12E3 /* DOMGroupSelectionViewController.m in Sources */,
+				0530641D18ABC02100ECB21D /* DOMLocalNotificationHelper.m in Sources */,
 				054C30A817B7366800ABC9CF /* DOMCalibrationMonthsViewController.m in Sources */,
 				05D273DF181E67110005E31E /* UITextView+Sharing.m in Sources */,
 				054BA47717B778CB005532CE /* DOMCalibrationExpiryViewController.m in Sources */,

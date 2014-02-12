@@ -48,9 +48,7 @@ static NSInteger kUndisclosedAlertTag = 10;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    self.navigationController.toolbarHidden = YES;
-    
+        
     self.user = [DOMUser currentUser];
 }
 
@@ -65,7 +63,7 @@ static NSInteger kUndisclosedAlertTag = 10;
 {
     NSArray *undisclosedFields = [self undisclosedFields];
     NSUInteger undisclosedFieldsCount = [undisclosedFields count];
-    if (undisclosedFields > 0) {
+    if (undisclosedFieldsCount > 0) {
         NSMutableString *list = [[NSMutableString alloc] init];
         for (NSUInteger i = 0; i < undisclosedFieldsCount; i++) {
             if (i < undisclosedFieldsCount - 1) {

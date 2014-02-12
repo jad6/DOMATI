@@ -25,6 +25,9 @@ typedef NS_ENUM(NSInteger, DOMGender) {
 @property (nonatomic) CGFloat weight, height;
 
 + (instancetype)currentUser;
+
++ (void)refreshCurrentUser;
+
 - (NSDictionary *)postDictionary;
 
 @end
