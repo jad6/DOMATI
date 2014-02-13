@@ -6,8 +6,8 @@
 //  Copyright (c) 2013 Jad. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "DOMUserInfoPickerTableViewController.h"
 
-@interface DOMUserInfoViewController : UITableViewController
+@interface DOMUserInfoViewController : DOMUserInfoPickerTableViewController
 
 @end

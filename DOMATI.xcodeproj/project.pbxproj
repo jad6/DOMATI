@@ -77,6 +77,8 @@
 		05A5FD6D183A2F8F000F57C4 /* DOMCircleTouchView.m in Sources */ = {isa = PBXBuildFile; fileRef = 05A5FD6C183A2F8F000F57C4 /* DOMCircleTouchView.m */; };
 		05A939F018AB1AD80047F4CD /* CalibrationStates.plist in Resources */ = {isa = PBXBuildFile; fileRef = 05A939EF18AB1AD80047F4CD /* CalibrationStates.plist */; };
 		05AB7A351883B39900FDCBE6 /* NSError+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 05AB7A341883B39900FDCBE6 /* NSError+Extension.m */; };
+		05B1FBDD18AC53600049095F /* DOMPickerTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05B1FBDC18AC53600049095F /* DOMPickerTableViewController.m */; };
+		05B1FBE118AC58BF0049095F /* DOMUserInfoPickerTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05B1FBE018AC58BF0049095F /* DOMUserInfoPickerTableViewController.m */; };
 		05C4C660182F118A00E45F9D /* Project Proposal.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 05C4C65F182F118A00E45F9D /* Project Proposal.pdf */; };
 		05C702F1189C8D8A00E0AC35 /* DOMYearsPickerHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 05C702F0189C8D8A00E0AC35 /* DOMYearsPickerHandler.m */; };
 		05C702F7189C8DF500E0AC35 /* DOMPickerHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 05C702F6189C8DF500E0AC35 /* DOMPickerHandler.m */; };
@@ -207,6 +209,10 @@
 		05A939EF18AB1AD80047F4CD /* CalibrationStates.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = CalibrationStates.plist; sourceTree = "<group>"; };
 		05AB7A331883B39900FDCBE6 /* NSError+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSError+Extension.h"; sourceTree = "<group>"; };
 		05AB7A341883B39900FDCBE6 /* NSError+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSError+Extension.m"; sourceTree = "<group>"; };
+		05B1FBDB18AC53600049095F /* DOMPickerTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DOMPickerTableViewController.h; sourceTree = "<group>"; };
+		05B1FBDC18AC53600049095F /* DOMPickerTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DOMPickerTableViewController.m; sourceTree = "<group>"; };
+		05B1FBDF18AC58BF0049095F /* DOMUserInfoPickerTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DOMUserInfoPickerTableViewController.h; sourceTree = "<group>"; };
+		05B1FBE018AC58BF0049095F /* DOMUserInfoPickerTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DOMUserInfoPickerTableViewController.m; sourceTree = "<group>"; };
 		05C4C65F182F118A00E45F9D /* Project Proposal.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "Project Proposal.pdf"; sourceTree = "<group>"; };
 		05C702EF189C8D8A00E0AC35 /* DOMYearsPickerHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DOMYearsPickerHandler.h; sourceTree = "<group>"; };
 		05C702F0189C8D8A00E0AC35 /* DOMYearsPickerHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DOMYearsPickerHandler.m; sourceTree = "<group>"; };
@@ -588,6 +594,28 @@
 			name = "Circle Touch";
 			sourceTree = "<group>";
 		};
+		05B1FBDA18AC53420049095F /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				059F368C18249D0900927A2A /* DOMErrors.h */,
+				059F368D18249D0900927A2A /* DOMErrors.m */,
+				0530641B18ABC02100ECB21D /* DOMLocalNotificationHelper.h */,
+				0530641C18ABC02100ECB21D /* DOMLocalNotificationHelper.m */,
+			);
+			name = Helpers;
+			sourceTree = "<group>";
+		};
+		05B1FBDE18AC53630049095F /* Subclasses */ = {
+			isa = PBXGroup;
+			children = (
+				05B1FBDB18AC53600049095F /* DOMPickerTableViewController.h */,
+				05B1FBDC18AC53600049095F /* DOMPickerTableViewController.m */,
+				05B1FBDF18AC58BF0049095F /* DOMUserInfoPickerTableViewController.h */,
+				05B1FBE018AC58BF0049095F /* DOMUserInfoPickerTableViewController.m */,
+			);
+			name = Subclasses;
+			sourceTree = "<group>";
+		};
 		05CDCD2417BA101E00BA12E3 /* Others */ = {
 			isa = PBXGroup;
 			children = (
@@ -595,10 +623,8 @@
 				05D273DB181E659C0005E31E /* Theme */,
 				05577B5117B78B61007802E6 /* Quick Look */,
 				0525D8D717B8C89F00E91CB6 /* Categories */,
-				059F368C18249D0900927A2A /* DOMErrors.h */,
-				059F368D18249D0900927A2A /* DOMErrors.m */,
-				0530641B18ABC02100ECB21D /* DOMLocalNotificationHelper.h */,
-				0530641C18ABC02100ECB21D /* DOMLocalNotificationHelper.m */,
+				05B1FBDA18AC53420049095F /* Helpers */,
+				05B1FBDE18AC53630049095F /* Subclasses */,
 			);
 			name = Others;
 			sourceTree = "<group>";
@@ -874,6 +900,7 @@
 				058FFC0517D9FAE1008ECB1B /* DOMATI.xcdatamodeld in Sources */,
 				0567AB0E189BE6E300BB74AF /* DOMTextFieldCell.m in Sources */,
 				051A8E291830C7EA007F9DCD /* DOMUserInfoViewController.m in Sources */,
+				05B1FBE118AC58BF0049095F /* DOMUserInfoPickerTableViewController.m in Sources */,
 				05087D701824DE8300219AA7 /* DOMTouchData+Extension.m in Sources */,
 				056D2BF71896444100C5910A /* DOMWelcomeViewController.m in Sources */,
 				05098F2817B62859009D4FF5 /* DOMAppDelegate.m in Sources */,
@@ -884,6 +911,7 @@
 				05087D791824E65600219AA7 /* DOMDataFile.m in Sources */,
 				0598D8CE1824F040007A526F /* UITouch+Extension.m in Sources */,
 				05F0780C181CC4D2006EA8B0 /* DOMThemeManager.m in Sources */,
+				05B1FBDD18AC53600049095F /* DOMPickerTableViewController.m in Sources */,
 				05A5FD6D183A2F8F000F57C4 /* DOMCircleTouchView.m in Sources */,
 				05CDCD1F17BA0B7F00BA12E3 /* DOMGroupSelectionViewController.m in Sources */,
 				0530641D18ABC02100ECB21D /* DOMLocalNotificationHelper.m in Sources */,

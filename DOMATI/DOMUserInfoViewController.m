@@ -8,22 +8,11 @@
 
 #import "DOMUserInfoViewController.h"
 
-#import "DOMYearsPickerHandler.h"
-#import "DOMProfessionPickerHandler.h"
-
-#import "DOMGenderSegmentCell.h"
-#import "DOMPickerCell.h"
-#import "DOMTextFieldCell.h"
-
 #import "DOMUser.h"
 
-@interface DOMUserInfoViewController () <UIAlertViewDelegate, DOMYearsPickerHandlerDelegate, DOMProfessionPickerHandlerDelegate, DOMTextFieldCellDelegate, DOMGenderSegmentCellDelegate>
+@interface DOMUserInfoViewController () <UIAlertViewDelegate>
 
-@property (nonatomic, strong) NSIndexPath *pickerIndexPath, *activeCellIndexPath;
-@property (nonatomic, strong) DOMPickerHandler *currentPickerHandler;
 @property (nonatomic, strong) id currentFirstResponder;
-
-@property (nonatomic, strong) DOMUser *user;
 
 @end
 
@@ -135,40 +124,6 @@ static NSInteger kUndisclosedAlertTag = 10;
     return success;
 }
 
-- (void)populatePicker:(UIPickerView *)picker
-           atIndexPath:(NSIndexPath *)indexPath
-                  cell:(UITableViewCell *)cell
-{
-    DOMPickerHandler *currentHandler = nil;
-    if (indexPath.section == 0 && indexPath.row == 2) {
-        NSInteger year = ([cell.detailTextLabel.text isEqualToString:[DOMPickerHandler undisclosedValue]]) ? 1990 : [DOMYearsPickerHandler yearForTitile:cell.detailTextLabel.text];
-        
-        DOMYearsPickerHandler *yearsHandler = [[DOMYearsPickerHandler alloc] init];
-        [yearsHandler populatedPicker:picker
-                      withInitialYear:year
-                             delegate:self];
-        
-        currentHandler = yearsHandler;
-    } else if (indexPath.section == 2) {
-        NSString *initialProf = ([cell.detailTextLabel.text isEqualToString:[DOMPickerHandler undisclosedValue]]) ? nil : cell.detailTextLabel.text;
-        
-        DOMProfessionPickerHandler *professionHandler = [[DOMProfessionPickerHandler alloc] init];
-        [professionHandler populatedPicker:picker
-                     withInitialProfession:initialProf
-                                  delegate:self];
-        
-        currentHandler = professionHandler;
-    }
-    
-    self.currentPickerHandler = currentHandler;
-}
-
-- (void)setDetailText:(NSString *)text undisclosed:(BOOL)undisclosed
-{
-    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:self.activeCellIndexPath];
-    cell.detailTextLabel.text = (undisclosed) ? [DOMPickerHandler undisclosedValue] : text;
-}
-
 /**
  * This makes the table look like so:
  *
@@ -273,131 +228,6 @@ static NSInteger kUndisclosedAlertTag = 10;
     }
 
     return CellIdentifier;
-}
-
-#pragma mark - Table view logic
-
-/**
- *  Determines if the given indexPath has a cell below it with a picker.
- *
- *  @param indexPath The indexPath to check if its cell has a UIDatePicker below it.
- *
- *  @return
- */
-- (BOOL)hasPickerForIndexPath:(NSIndexPath *)indexPath
-{
-    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:(indexPath.row + 1) inSection:indexPath.section]];
-    
-    return [cell isKindOfClass:[DOMPickerCell class]];
-}
-
-/**
- *  Determines if the table view has a picker in any of its cells.
- *
- *  @return
- */
-- (BOOL)hasInlineDatePickerInSection:(NSInteger)section
-{
-    return (self.pickerIndexPath != nil && self.pickerIndexPath.section == section);
-}
-
-/**
- *  Determines if the given indexPath points to a cell that contains the picker.
- *
- *  @param indexPath The indexPath to check if it represents a cell with the picker.
- *
- *  @return
- */
-- (BOOL)indexPathHasPicker:(NSIndexPath *)indexPath
-{
-    return ([self hasInlineDatePickerInSection:indexPath.section]
-            && self.pickerIndexPath.row == indexPath.row);
-}
-
-/**
- *  Remove any picker cell if it exists
- */
-- (void)removePicker
-{
-    if (self.pickerIndexPath) {
-        self.activeCellIndexPath = nil;
-        
-        NSIndexPath *datePickerIndexPathCopy = [self.pickerIndexPath copy];
-        self.pickerIndexPath = nil;
-
-        [self.tableView deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:datePickerIndexPathCopy.row inSection:datePickerIndexPathCopy.section]]
-                              withRowAnimation:UITableViewRowAnimationFade];
-    }
-}
-
-/**
- *  Adds or removes a picker cell below the given indexPath.
- *
- *  @param indexPath The indexPath to reveal the picker.
- */
-- (void)toggleDatePickerForSelectedIndexPath:(NSIndexPath *)indexPath
-{
-    [self.tableView beginUpdates];
-    
-    NSArray *indexPaths = @[[NSIndexPath indexPathForRow:(indexPath.row + 1) inSection:indexPath.section]];
-    
-    // Check if 'indexPath' has an attached picker below it
-    if ([self hasPickerForIndexPath:indexPath]) {
-        // Found a picker below it, so remove it
-        [self.tableView deleteRowsAtIndexPaths:indexPaths
-                              withRowAnimation:UITableViewRowAnimationFade];
-    } else {
-        self.activeCellIndexPath = indexPath;
-        
-        // Didn't find a picker below it, so we should insert it
-        [self.tableView insertRowsAtIndexPaths:indexPaths
-                              withRowAnimation:UITableViewRowAnimationFade];
-    }
-    
-    [self.tableView endUpdates];
-}
-
-/**
- *  Reveals the date picker inline for the given indexPath, called by
- *  "didSelectRowAtIndexPath".
- *
- *  @param indexPath The indexPath to reveal the picker.
- */
-- (void)displayInlineDatePickerForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Display the picker inline with the table content
-    [self.tableView beginUpdates];
-    
-    // Indicates if the picker is below "indexPath", help determine
-    // which row to reveal.
-    BOOL before = NO;
-    if ([self hasInlineDatePickerInSection:indexPath.section]) {
-        before = self.pickerIndexPath.row < indexPath.row;
-    }
-    
-    BOOL sameCellClicked = (self.pickerIndexPath.row - 1 == indexPath.row);
-    
-    [self removePicker];
-    
-    if (!sameCellClicked) {
-        // Hide the old picker and display the new one
-        NSInteger rowToReveal = (before ? indexPath.row - 1 : indexPath.row);
-        NSIndexPath *indexPathToReveal = [NSIndexPath indexPathForRow:rowToReveal inSection:indexPath.section];
-        
-        [self toggleDatePickerForSelectedIndexPath:indexPathToReveal];
-        self.pickerIndexPath = [NSIndexPath indexPathForRow:indexPathToReveal.row + 1 inSection:indexPath.section];
-    }
-    
-    // Always deselect the row containing the start or end date
-    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
-    [self.tableView endUpdates];
-    
-    // Update picker.
-    if (self.pickerIndexPath) {
-        DOMPickerCell *pickerCell = (DOMPickerCell *)[self.tableView cellForRowAtIndexPath:self.pickerIndexPath];
-        [self populatePicker:pickerCell.picker atIndexPath:self.pickerIndexPath cell:[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:(self.pickerIndexPath.row - 1) inSection:self.pickerIndexPath.section]]];
-    }
 }
 
 #pragma mark - Table view data source
@@ -533,51 +363,6 @@ static NSInteger kUndisclosedAlertTag = 10;
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
 {    
     [self resignCurrentResponder];
-}
-
-#pragma mark - Information Delegate
-
-- (void)pickerView:(UIPickerView *)pickerView didChangeYear:(NSInteger)year;
-{
-    BOOL undisclosed = (year <= 0);
-    
-    [self setDetailText:[DOMYearsPickerHandler titleForYear:year]
-            undisclosed:undisclosed];
-    
-    self.user.birthYear = year;
-}
-
-- (void)pickerView:(UIPickerView *)pickerView didChangeProfession:(NSString *)profession
-{
-    BOOL undisclosed = (profession == nil);
-    
-    [self setDetailText:profession
-            undisclosed:undisclosed];
-    
-    self.user.profession = profession;
-}
-
-- (void)textFieldDidEndEditing:(UITextField *)textField withCellType:(DOMTextFieldCellType)type
-{
-    CGFloat value = (CGFLOAT_IS_DOUBLE) ? [textField.text doubleValue] : [textField.text floatValue];
-    
-    switch (type) {
-        case DOMTextFieldCellTypeHeight:
-            self.user.height = value;
-            break;
-            
-        case DOMTextFieldCellTypeWeight:
-            self.user.weight = value;
-            break;
-            
-        default:
-            break;
-    }
-}
-
-- (void)segmentedControl:(UISegmentedControl *)segmentedControl didChangeGender:(DOMGender)gender
-{
-    self.user.gender = gender;
 }
 
 @end
