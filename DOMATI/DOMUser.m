@@ -69,6 +69,7 @@ static NSString *kHeightKey = @"DOMUserHeightKey";
 {
     DOMUser *user = [self currentUser];
     
+    user.identifier = user.identifier;
     user.birthYear = user.birthYear;
     user.gender = user.gender;
     user.weight = user.weight;
@@ -82,8 +83,7 @@ static NSString *kHeightKey = @"DOMUserHeightKey";
 {
     NSMutableDictionary *dictionary = [[NSMutableDictionary alloc] init];
     
-    dictionary[@"device"] = [[UIDevice currentDevice] model];
-    dictionary[@"birthYear"] = @(self.birthYear);
+    dictionary[@"birth_year"] = @(self.birthYear);
     dictionary[@"gender"] = @(self.gender);
     dictionary[@"weight"] = @(self.weight);
     dictionary[@"height"] = @(self.height);

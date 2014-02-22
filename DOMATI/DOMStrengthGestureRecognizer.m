@@ -13,7 +13,7 @@
 #import "DOMMotionManager.h"
 #import "DOMCoreDataManager.h"
 
-#import "DOMDataFile.h"
+#import "DOMRawData.h"
 #import "DOMTouchData+Extension.h"
 #import "UITouch+Extension.h"
 
@@ -89,10 +89,6 @@
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
 {
     [super touchesMoved:touches withEvent:event];
-    
-    if (self.state == UIGestureRecognizerStateFailed) {
-        return;
-    }
 }
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
@@ -101,24 +97,18 @@
     
     self.numActiveTouches -= [touches count];
     
-    __block NSArray *savedMotions = nil;
+    NSArray *touchesTouchData = [self touchesTouchDataFromTouches:touches];
+    
     DOMMotionManager *motionManager = self.motionManager;
     if (self.numActiveTouches == 0) {
-        [motionManager stopDeviceMotion:^(NSArray *motions) {
-            savedMotions = motions;
+        [motionManager stopDeviceMotionWithMotionProcessCompletion:^(NSArray *motions) {
+            [self saveDeviceMotions:motions
+                 onTouchesTouchData:touchesTouchData];
         }];
     } else {
-        savedMotions = [motionManager currentDeviceMotions];
-    }
-    
-    for (UITouch *touch in touches) {
-        NSString *pointerKey = [touch pointerString];
-        NSTimeInterval duration = touch.timestamp - [self.touchesDurations[pointerKey] floatValue];
-        
-        [[DOMCoreDataManager sharedManager] saveTouchData:^(DOMTouchData *touchData) {
-            touchData.duration = @(duration);
-            [self setMotions:savedMotions onTouchData:touchData];
-        }];
+        NSArray *motions = [motionManager currentDeviceMotions];
+        [self saveDeviceMotions:motions
+             onTouchesTouchData:touchesTouchData];
     }
     
     if (self.state == UIGestureRecognizerStatePossible) {
@@ -133,7 +123,7 @@
     self.state = UIGestureRecognizerStateFailed;
     
     if (self.numActiveTouches == 0) {
-        [self.motionManager stopDeviceMotion:nil];
+        [self.motionManager stopDeviceMotion];
     }
 }
 
@@ -141,32 +131,37 @@
 {
     [super reset];
     
-    [self.motionManager stopDeviceMotion:nil];
+    [self.motionManager stopDeviceMotion];
 }
 
 #pragma mark - Motion
 
-- (void)setMotions:(NSArray *)motions
-       onTouchData:(DOMTouchData *)touchData
+- (NSArray *)touchesTouchDataFromTouches:(NSSet *)touches
 {
-    NSError *error = nil;
-    [self saveMotions:motions
-          onTouchData:touchData
-                error:&error];
+    NSMutableArray *touchesTouchData = [[NSMutableArray alloc] init];
     
-    if (error) {
-        [error handle];
+    for (UITouch *touch in touches) {
+        NSString *pointerKey = [touch pointerString];
+        NSTimeInterval duration = touch.timestamp - [self.touchesDurations[pointerKey] floatValue];
+        
+        [self.touchesDurations removeObjectForKey:pointerKey];
+        
+        DOMTouchData *touchData = [[DOMCoreDataManager sharedManager] createTouchData:^(DOMTouchData *touchData) {
+            touchData.duration = @(duration);
+        }];
+        
+        [touchesTouchData addObject:touchData];
     }
+    
+    return touchesTouchData;
 }
 
-- (void)saveMotions:(NSArray *)motions
-        onTouchData:(DOMTouchData *)touchData
-              error:(NSError *__autoreleasing *)error
+- (void)saveDeviceMotions:(NSArray *)motions
+       onTouchesTouchData:(NSArray *)touchesTouchData
 {
-    DOMDataFile *dataFile = [touchData motionDataFile];
-    
-    if (![NSKeyedArchiver archiveRootObject:motions toFile:dataFile.path]) {
-        *error = [DOMErrors couldNotWriteFileError];
+    for (DOMTouchData *touchData in touchesTouchData) {
+        DOMRawData *rawData = [touchData motionRawData];
+        rawData.data = motions;
     }
 }
 

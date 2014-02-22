@@ -10,6 +10,7 @@
 
 #import "DOMCoreDataManager.h"
 #import "DOMThemeManager.h"
+#import "DOMRequestOperationManager.h"
 
 #import "DOMUser.h"
 
@@ -22,13 +23,24 @@
     // Override point for customization after application launch.
     self.window.tintColor = DOMATI_COLOR;
     
+    // This is done so that upon launch the User data is pulled from iCloud.
     [DOMUser refreshCurrentUser];
     
+    // Handle the local notifications.
     UILocalNotification *localNotif = [launchOptions objectForKey:UIApplicationLaunchOptionsLocalNotificationKey];
     [DOMLocalNotificationHelper handleLaunchLocalNotification:localNotif];
+    // If the badge was showing remove it.
+    [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
     
+    // Set the appearance of the app.
     [DOMThemeManager customiseAppAppearance];
+    // Set up Core Data.
     [[DOMCoreDataManager sharedManager] setupCoreData];
+    
+    // Only attempt uploads at launch once the user has been sycned.
+//    if ([DOMUser currentUser].identifier > 0) {
+//        [[DOMRequestOperationManager sharedManager] uploadDataWhenPossible];
+//    }
     
     return YES;
 }

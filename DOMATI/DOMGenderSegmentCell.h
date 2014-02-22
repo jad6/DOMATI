@@ -12,6 +12,12 @@
 
 @protocol DOMGenderSegmentCellDelegate <NSObject>
 
+/**
+ *  The segment control did select a new gender.
+ *
+ *  @param segmentedControl The gender segmented control
+ *  @param gender           The newly selected gender.
+ */
 - (void)segmentedControl:(UISegmentedControl *)segmentedControl
          didChangeGender:(DOMGender)gender;
 

@@ -20,8 +20,16 @@ circleTouchStrength:(DOMCircleTouchStrength)circleTouchStrength
     self = [super initWithFrame:frame];
     if (self) {
         self.circleTouchStrength = circleTouchStrength;
+        [self awakeFromNib];
     }
     return self;
+}
+
+- (void)awakeFromNib
+{
+    [super awakeFromNib];
+    
+    self.multipleTouchEnabled = NO;
 }
 
 - (void)setCircleTouchStrength:(DOMCircleTouchStrength)circleTouchStrength

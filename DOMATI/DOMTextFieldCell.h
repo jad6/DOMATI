@@ -16,6 +16,13 @@ typedef NS_ENUM(NSInteger, DOMTextFieldCellType) {
 
 @protocol DOMTextFieldCellDelegate <NSObject>
 
+@optional
+/**
+ *  The textfield of a particular type has started editing.
+ *
+ *  @param textField The editing textfield.
+ *  @param type      The type of the textField.
+ */
 - (void)textFieldDidEndEditing:(UITextField *)textField withCellType:(DOMTextFieldCellType)type;
 
 @end

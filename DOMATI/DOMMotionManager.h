@@ -15,14 +15,10 @@ typedef void (^DOMMotionProcessCompletionBlock)(NSArray *motions);
 
 + (instancetype)sharedManager;
 
-// NOTE: This is a weird case where I am unsure if the motions
-// at the point this method will be called will be the complete
-// set of motions associated to a touch. Also this returns a copy
-// of the internal mutable array to avoid the array changing once
-// it is retrieved.
 - (NSArray *)currentDeviceMotions;
 
 - (void)startDeviceMotion:(NSError * __autoreleasing *)error;
-- (void)stopDeviceMotion:(DOMMotionProcessCompletionBlock)motionProcessCompletionBlock;
+- (void)stopDeviceMotion;
+- (void)stopDeviceMotionWithMotionProcessCompletion:(DOMMotionProcessCompletionBlock)motionProcessCompletionBlock;
 
 @end

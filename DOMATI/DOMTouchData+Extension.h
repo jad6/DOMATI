@@ -8,19 +8,22 @@
 
 #import "DOMTouchData.h"
 
-typedef NS_ENUM(NSInteger, DOMDataFileKind) {
-    DOMDataFileKindNotSet = -1,
-    DOMDataFileKindMotion,
-    DOMDataFileKindTouch
+#import "NSManagedObject+Appulse.h"
+
+typedef NS_ENUM(NSInteger, DOMRawDataKind) {
+    DOMRawDataKindNotSet = -1,
+    DOMRawDataKindMotion,
+    DOMRawDataKindTouch
 };
 
 @interface DOMTouchData (Extension)
 
-+ (NSNumber *)localIdentifier;
-
-- (DOMDataFile *)motionDataFile;
-- (DOMDataFile *)touchDataFile;
+- (DOMRawData *)motionRawData;
+- (DOMRawData *)touchRawData;
 
 - (NSDictionary *)postDictionary;
+
++ (NSArray *)unsyncedTouchData;
+- (NSArray *)unsyncedRawData;
 
 @end

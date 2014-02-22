@@ -11,6 +11,12 @@
 @protocol DOMProfessionPickerHandlerDelegate <DOMPickerHandlerDelegate>
 
 @optional
+/**
+ *  The picker view has changed the selected profession.
+ *
+ *  @param pickerView The profession picker view.
+ *  @param profession The new selected profession.
+ */
 - (void)pickerView:(UIPickerView *)pickerView didChangeProfession:(NSString *)profession;
 
 @end

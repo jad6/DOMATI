@@ -96,4 +96,27 @@
     return fs;
 }
 
+#pragma mark - Identifier
+
+/**
+ *  This gives back a negative identifer value which indicates that the
+ *  touch still needs to be synced.
+ *
+ *  @return the negative identifier value.
+ */
++ (NSNumber *)localIdentifier
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    if (![defaults valueForKey:DEFAULTS_NEGATIVE_IDENTIFIER]) {
+        [defaults setValue:@(-1) forKey:DEFAULTS_NEGATIVE_IDENTIFIER];
+    }
+    
+    NSInteger decrementNumber = [[defaults valueForKey:DEFAULTS_NEGATIVE_IDENTIFIER] integerValue];
+    decrementNumber--;
+    [defaults setObject:@(decrementNumber) forKey:DEFAULTS_NEGATIVE_IDENTIFIER];
+    [defaults synchronize];
+    
+    return @(decrementNumber);
+}
+
 @end

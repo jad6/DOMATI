@@ -14,6 +14,9 @@
 
 + (void)schedualLocalNotification
 {
+    // Ensure that there is only ever one local notification.
+    [DOMLocalNotificationHelper reset];
+    
     NSDate *threeDaysFromNow = [[NSDate date] dateByAddingNumberOfDays:3];
     threeDaysFromNow = [threeDaysFromNow dayWithHour:11 minute:0 second:0];
         
@@ -49,6 +52,8 @@
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults setObject:@(NO) forKey:DEFAULTS_SKIP_TO_CALI];
     [defaults synchronize];
+    
+    [[UIApplication sharedApplication] cancelAllLocalNotifications];
 }
 
 @end

@@ -31,4 +31,6 @@
 
 + (NSUInteger)countInContext:(NSManagedObjectContext *)context;
 
++ (NSNumber *)localIdentifier;
+
 @end

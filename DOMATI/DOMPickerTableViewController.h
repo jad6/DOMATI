@@ -12,7 +12,15 @@
 
 @property (nonatomic, strong) NSIndexPath *pickerIndexPath, *activeCellIndexPath;
 
+/**
+ *  Method to override with the picker cell class.
+ *
+ *  @return the picker cell class.
+ */
 - (Class)pickerCellClass;
+/**
+ *  Method to override with the algorithm to reload current picker.
+ */
 - (void)reloadPicker;
 
 - (BOOL)hasInlineDatePickerInSection:(NSInteger)section;

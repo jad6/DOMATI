@@ -39,14 +39,23 @@
 
 #pragma mark - Logic
 
-- (void)saveTouchData:(void (^)(DOMTouchData *touchData))touchDataBlock
+- (DOMTouchData *)createTouchData:(void (^)(DOMTouchData *touchData))touchDataBlock
 {
-    [DOMTouchData newEntity:NSStringFromClass([DOMTouchData class])
-                  inContext:self.mainContext
-                idAttribute:@"identifier"
-                      value:[DOMTouchData localIdentifier]
-                   onInsert:touchDataBlock];
+    DOMTouchData *touchData = nil;
+    touchData = [DOMTouchData newEntity:NSStringFromClass([DOMTouchData class])
+                              inContext:self.mainContext
+                            idAttribute:@"identifier"
+                                  value:[DOMTouchData localIdentifier]
+                               onInsert:^(DOMTouchData *object) {
+                                   object.device = [UIDevice currentDevice].model;
+                                   
+                                   if (touchDataBlock) {
+                                       touchDataBlock(object);
+                                   }
+                               }];
     [self saveContext];
+    
+    return touchData;
 }
 
 #pragma mark - Core Data Core

@@ -11,7 +11,6 @@
 @interface UITouch (Extension)
 
 - (NSString *)pointerString;
-
 - (CGFloat)radius;
 
 @end

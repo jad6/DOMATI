@@ -10,12 +10,6 @@
 
 #import "DOMUser.h"
 
-@interface DOMUserInfoViewController () <UIAlertViewDelegate>
-
-@property (nonatomic, strong) id currentFirstResponder;
-
-@end
-
 static NSString *SegmentCellIdentifier = @"Segment Cell";
 static NSString *DetailCellIdentifier = @"Detail Cell";
 static NSString *TextFieldCellIdentifier = @"Text Field Cell";
@@ -23,31 +17,36 @@ static NSString *PickerCellIdentifier = @"Picker Cell";
 
 static NSInteger kUndisclosedAlertTag = 10;
 
-@implementation DOMUserInfoViewController
+@interface DOMUserInfoViewController () <UIAlertViewDelegate>
 
-- (id)initWithStyle:(UITableViewStyle)style
-{
-    self = [super initWithStyle:style];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
+// Keep a reference to the first responder to easily resign it.
+@property (nonatomic, strong) id currentFirstResponder;
+// The footers & headers text for the table.
+@property (nonatomic, strong) NSArray *footersText, *headersText;
+
+@end
+
+@implementation DOMUserInfoViewController
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-        
+    
     self.user = [DOMUser currentUser];
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
+    
+    NSDictionary *tableInfo = [[NSDictionary alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"UserInfoTable" ofType:@"plist"]];
+    self.headersText = tableInfo[@"Headers"];
+    self.footersText = tableInfo[@"Footers"];
 }
 
 #pragma mark - Actions
 
+/**
+ *  Checks that each field has been filled and alerts the user otherwise.
+ *  Still allows to continue if not all fields are filled.
+ *
+ *  @param sender the sender of the action.
+ */
 - (IBAction)nextAction:(id)sender
 {
     NSArray *undisclosedFields = [self undisclosedFields];
@@ -76,6 +75,7 @@ static NSInteger kUndisclosedAlertTag = 10;
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
+    // Bring up the calibration screen upon the user's request.
     if (alertView.tag == kUndisclosedAlertTag && buttonIndex == 0) {
         [self performSegueWithIdentifier:@"Calibration Segue" sender:nil];
     }
@@ -83,6 +83,11 @@ static NSInteger kUndisclosedAlertTag = 10;
 
 #pragma mark - Logic
 
+/**
+ *  Gets the undisclosed fields.
+ *
+ *  @return array of the undisclosed fields.
+ */
 - (NSArray *)undisclosedFields
 {
     NSMutableArray *undisclosedFields = [[NSMutableArray alloc] init];
@@ -106,17 +111,28 @@ static NSInteger kUndisclosedAlertTag = 10;
     return undisclosedFields;
 }
 
+/**
+ *  Resigns the first responder from the current first responder if any.
+ *
+ *  @return the result of the resignation.
+ */
 - (BOOL)resignCurrentResponder
 {
+    if (!self.currentFirstResponder) {
+        return NO;
+    }
+    
     BOOL success = NO;
     
     success = [self.currentFirstResponder resignFirstResponder];
     
     if (success) {
+        // If the currentFirstResponder can be disabled, do so.
         if ([self.currentFirstResponder respondsToSelector:@selector(setEnabled:)]) {
             [self.currentFirstResponder setEnabled:NO];
         }
         
+        // Reset the variables which have to do with the currentFirstResponder
         self.activeCellIndexPath = nil;
         self.currentFirstResponder = nil;
     }
@@ -125,22 +141,18 @@ static NSInteger kUndisclosedAlertTag = 10;
 }
 
 /**
- * This makes the table look like so:
+ *  This sets the table in the following format: Gender, Birth Year | 
+ *  Height, Weight | Profession. 
  *
- *  GENDER
- *  AGE
- *  ------
- *  WEIGHT
- *  HEIGHT
- *  ------
- *  PROFESSION
+ *  Unless there is exisiting user data the rows will be set as "Undisclosed".
  *
- *  @param cell      cell description
- *  @param indexPath indexPath description
+ *  @param cell      the cell to setup.
+ *  @param indexPath the indexPath of the cell.
  */
 - (void)setupCell:(UITableViewCell *)cell
      forIndexPath:(NSIndexPath *)indexPath
 {
+    // If the indexPath is the picker cell do nothing.
     if ([indexPath isEqual:self.pickerIndexPath]) {
         return;
     }
@@ -213,6 +225,13 @@ static NSInteger kUndisclosedAlertTag = 10;
     cell.detailTextLabel.text = (detailText) ? detailText : @"Undisclosed";
 }
 
+/**
+ *  Returns the corresponding cell identifier for the given indexPath.
+ *
+ *  @param indexPath indexPath for the cell who's identifier we need.
+ *
+ *  @return the corresponding cell identifier for the given indexPath
+ */
 - (NSString *)cellIdentiferForIndexPath:(NSIndexPath *)indexPath
 {
     NSString *CellIdentifier = nil;
@@ -260,44 +279,12 @@ static NSInteger kUndisclosedAlertTag = 10;
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    switch (section) {
-        case 0:
-            return @"Personal Info";
-            break;
-            
-        case 1:
-            return @"Physical Info";
-            break;
-            
-        case 2:
-            return @"Other Info";
-            break;
-            
-        default:
-            return nil;
-            break;
-    }
+    return self.headersText[section];
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section
 {
-    switch (section) {
-        case 0:
-            return @"A correlation with age, gender and the preception of a touch's strength will be extrememly useful in identifying more precise calibration groups. This data is stored anonymously.";
-            break;
-            
-        case 1:
-            return @"The physical attibutes of a person can also affect their preception of a touch's strength. Again, this data is stored anonymously.";
-            break;
-            
-        case 2:
-            return @"This section allows for extra data to be collected and might assist in creating more tailored calibration groups in future versions of the app. Once again, this data is stored anonymously.";
-            break;
-            
-        default:
-            return nil;
-            break;
-    }
+    return self.footersText[section];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -327,18 +314,25 @@ static NSInteger kUndisclosedAlertTag = 10;
 {
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     if ([cell.reuseIdentifier isEqualToString:DetailCellIdentifier]) {
+        // A picker cell is selected, resign whoever was first responder.
         [self resignCurrentResponder];
         
         [self displayInlineDatePickerForRowAtIndexPath:indexPath];
-        
         [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+        
+        // If we have a picker that is showing scroll to it.
+        if (self.pickerIndexPath) {
+            [tableView scrollToRowAtIndexPath:self.pickerIndexPath
+                             atScrollPosition:UITableViewScrollPositionMiddle
+                                     animated:YES];
+        }
     } else if ([cell.reuseIdentifier isEqualToString:TextFieldCellIdentifier]) {
+        // Remove the picker if there is one.
         if (self.pickerIndexPath) {
             [self removePicker];
         }
         
         DOMTextFieldCell *textFieldCell = (DOMTextFieldCell *)cell;
-        
         textFieldCell.textField.enabled = YES;
         [textFieldCell.textField becomeFirstResponder];
         self.currentFirstResponder = textFieldCell.textField;
@@ -355,13 +349,14 @@ static NSInteger kUndisclosedAlertTag = 10;
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     
+    // Set the selected row's detail label to the app tint color.
     cell.detailTextLabel.textColor = ([indexPath isEqual:self.activeCellIndexPath]) ? DOMATI_COLOR : DETAIL_TEXT_COLOR;
 }
 
 #pragma mark - Scroll View
 
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
-{    
+{
     [self resignCurrentResponder];
 }
 

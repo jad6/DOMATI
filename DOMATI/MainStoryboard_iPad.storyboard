@@ -887,11 +887,11 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</stri
                                         </label>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="qez-2s-VB8" firstAttribute="leading" secondItem="4qe-xJ-OWk" secondAttribute="leading" constant="15" id="QAX-Vc-XHL"/>
-                                        <constraint firstItem="lXj-oh-Vh4" firstAttribute="centerX" secondItem="4qe-xJ-OWk" secondAttribute="centerX" id="fFX-p0-kOH"/>
-                                        <constraint firstItem="lXj-oh-Vh4" firstAttribute="top" secondItem="qez-2s-VB8" secondAttribute="bottom" constant="13" id="j2Z-ao-ZIB"/>
-                                        <constraint firstItem="qez-2s-VB8" firstAttribute="top" secondItem="4qe-xJ-OWk" secondAttribute="top" constant="11" id="kUr-zB-Ppd"/>
-                                        <constraint firstAttribute="trailing" secondItem="lXj-oh-Vh4" secondAttribute="trailing" constant="20" symbolic="YES" id="zQE-7y-XgC"/>
+                                        <constraint firstItem="lXj-oh-Vh4" firstAttribute="top" secondItem="qez-2s-VB8" secondAttribute="bottom" constant="13" id="KuI-NK-5ur"/>
+                                        <constraint firstItem="lXj-oh-Vh4" firstAttribute="leading" secondItem="4qe-xJ-OWk" secondAttribute="leading" constant="20" symbolic="YES" id="Oto-rB-5ie"/>
+                                        <constraint firstAttribute="trailing" secondItem="lXj-oh-Vh4" secondAttribute="trailing" constant="20" symbolic="YES" id="PVm-R1-eXE"/>
+                                        <constraint firstItem="qez-2s-VB8" firstAttribute="top" secondItem="4qe-xJ-OWk" secondAttribute="top" constant="11" id="Q7j-ps-Lnl"/>
+                                        <constraint firstItem="qez-2s-VB8" firstAttribute="leading" secondItem="4qe-xJ-OWk" secondAttribute="leading" constant="15" id="T2G-BU-1ML"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>

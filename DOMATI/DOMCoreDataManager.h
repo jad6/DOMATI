@@ -12,10 +12,13 @@
 
 @interface DOMCoreDataManager : NSObject
 
+@property (strong, nonatomic, readonly) NSManagedObjectContext *mainContext;
+
 + (instancetype)sharedManager;
 
 - (void)setupCoreData;
+- (void)saveContext;
 
-- (void)saveTouchData:(void (^)(DOMTouchData *touchData))touchDataBlock;
+- (DOMTouchData *)createTouchData:(void (^)(DOMTouchData *touchData))touchDataBlock;
 
 @end
