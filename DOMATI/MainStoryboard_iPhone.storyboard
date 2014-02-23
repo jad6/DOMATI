@@ -761,7 +761,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</stri
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Undisclosed" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mC3-NZ-Z9Y">
+                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Undisclosed" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mC3-NZ-Z9Y">
                                             <rect key="frame" x="205" y="11" width="100" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <color key="textColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="calibratedRGB"/>
@@ -832,6 +832,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</stri
                                         </label>
                                     </subviews>
                                     <constraints>
+                                        <constraint firstAttribute="bottom" secondItem="GkH-5T-QIe" secondAttribute="bottom" constant="13" id="MPn-Of-aok"/>
                                         <constraint firstItem="GkH-5T-QIe" firstAttribute="top" secondItem="SlS-HB-6Pn" secondAttribute="bottom" constant="13" id="Pcu-gL-PER"/>
                                         <constraint firstItem="SlS-HB-6Pn" firstAttribute="top" secondItem="Rft-ne-4sN" secondAttribute="top" constant="11" id="Xt4-fZ-yca"/>
                                         <constraint firstItem="SlS-HB-6Pn" firstAttribute="leading" secondItem="Rft-ne-4sN" secondAttribute="leading" constant="15" id="bIN-P2-ObQ"/>
@@ -841,7 +842,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</stri
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="segmentedControl" destination="GkH-5T-QIe" id="8kh-xa-agb"/>
-                                    <outlet property="textLabel" destination="SlS-HB-6Pn" id="PTV-ha-usR"/>
+                                    <outlet property="titleLabel" destination="SlS-HB-6Pn" id="VUn-3s-YJ7"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>

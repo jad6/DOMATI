@@ -27,6 +27,8 @@
 
 @property (nonatomic, weak) id<DOMGenderSegmentCellDelegate> delegate;
 
+@property (nonatomic, weak) IBOutlet UILabel *titleLabel;
+
 @property (nonatomic) DOMGender selectedGender;
 
 @end

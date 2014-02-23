@@ -78,23 +78,26 @@ static NSTimeInterval kUpdateInterval = 1/500.0;
     self.deviceMotionUpdateInterval = kUpdateInterval;
 
     // Observe the operation queue with KVO to be alerted when it is empty.
-    NSOperationQueue *queue = [NSOperationQueue currentQueue];
-    [queue addObserver:self
-            forKeyPath:NSStringFromSelector(@selector(operationCount))
-               options:0
-               context:NULL];
+    NSOperationQueue *deviceMotionQueue = [[NSOperationQueue alloc] init];
+    
+    [deviceMotionQueue addObserver:self
+                        forKeyPath:NSStringFromSelector(@selector(operationCount))
+                           options:0
+                           context:NULL];
 
     // Start the device motion update.
-    [self startDeviceMotionUpdatesToQueue:queue withHandler:^(CMDeviceMotion *motion, NSError *error) {
-        if (!error) {
-            // On every new successful record save the motion data.
-            [self.motions addObject:motion];
-        } else {
-            // Something has gone wrong, log the error and stop the sensors.
-            [error handle];
-//            [self stopDeviceMotion];
-        }
-    }];
+    [self startDeviceMotionUpdatesToQueue:deviceMotionQueue
+                              withHandler:^(CMDeviceMotion *motion, NSError *error) {
+                                  
+                                  if (!error) {
+                                      // On every new successful record save the motion data.
+                                      [self.motions addObject:motion];
+                                  } else {
+                                      // Something has gone wrong, log the error and stop the sensors.
+                                      [error handle];
+                                      //            [self stopDeviceMotion];
+                                  }
+                              }];
 }
 
 /**

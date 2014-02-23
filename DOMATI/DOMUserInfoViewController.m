@@ -165,10 +165,10 @@ static NSInteger kUndisclosedAlertTag = 10;
         case 0: {
             switch (indexPath.row) {
                 case 0: {
-                    text = @"Gender";
-                    
+                    text = nil;
                     DOMGenderSegmentCell *genderCell = (DOMGenderSegmentCell *)cell;
                     
+                    genderCell.titleLabel.text = @"Gender";
                     genderCell.segmentedControl.selectedSegmentIndex = user.gender;
                     genderCell.delegate = self;
                     break;

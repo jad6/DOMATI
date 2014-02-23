@@ -10,13 +10,11 @@
 
 @implementation DOMGenderSegmentCell
 
-- (id)initWithFrame:(CGRect)frame
+- (void)awakeFromNib
 {
-    self = [super initWithFrame:frame];
-    if (self) {
-        // Initialization code
-    }
-    return self;
+    [super awakeFromNib];
+    
+    self.titleLabel.textColor = TEXT_COLOR;
 }
 
 - (IBAction)setGender:(UISegmentedControl *)segmentedControl
