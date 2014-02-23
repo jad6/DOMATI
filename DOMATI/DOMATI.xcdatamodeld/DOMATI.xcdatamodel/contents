@@ -8,9 +8,7 @@
     </entity>
     <entity name="DOMTouchData" representedClassName="DOMTouchData" syncable="YES">
         <attribute name="acceleration" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
-        <attribute name="appVersion" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="calibrationStrength" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
-        <attribute name="device" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="duration" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="group" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="identifier" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>

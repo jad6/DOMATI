@@ -83,8 +83,8 @@
     dictionary[@"x"] = self.x;
     dictionary[@"y"] = self.y;
     dictionary[@"cali_strength"] = self.calibrationStrength;
-    dictionary[@"device"] = self.device;
-    
+
+    dictionary[@"device"] = [UIDevice currentDevice].model;
     dictionary[@"app_version"] = [UIApplication version];
     dictionary[@"user_id"] = @([DOMUser currentUser].identifier);
     

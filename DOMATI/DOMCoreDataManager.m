@@ -46,9 +46,7 @@
                               inContext:self.mainContext
                             idAttribute:@"identifier"
                                   value:[DOMTouchData localIdentifier]
-                               onInsert:^(DOMTouchData *object) {
-                                   object.device = [UIDevice currentDevice].model;
-                                   
+                               onInsert:^(DOMTouchData *object) {                                   
                                    if (touchDataBlock) {
                                        touchDataBlock(object);
                                    }

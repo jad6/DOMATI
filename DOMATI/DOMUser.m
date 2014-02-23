@@ -96,8 +96,8 @@ static NSString *kHeightKey = @"DOMUserHeightKey";
 
 - (void)setIdentifier:(NSInteger)identifier
 {
-    if (!_identifier != identifier) {
-        _identifier = identifier;
+    if (!self->_identifier != identifier) {
+        self->_identifier = identifier;
     }
     
     [self keyStoreSetValue:@(identifier) forKey:kIdentifierKey];
@@ -105,18 +105,18 @@ static NSString *kHeightKey = @"DOMUserHeightKey";
 
 - (NSInteger)identifier
 {
-    if (!_identifier) {
+    if (!self->_identifier) {
         NSNumber *identifier = [self.keyStore objectForKey:kIdentifierKey];
-        _identifier = (identifier) ? [identifier integerValue] : -1;
+        self->_identifier = [identifier integerValue];
     }
     
-    return _identifier;
+    return self->_identifier;
 }
 
 - (void)setProfession:(NSString *)profession
 {
-    if (_profession != profession) {
-        _profession = profession;
+    if (self->_profession != profession) {
+        self->_profession = profession;
         
         [self keyStoreSetValue:profession forKey:kProfessionKey];
     }
@@ -124,17 +124,17 @@ static NSString *kHeightKey = @"DOMUserHeightKey";
 
 - (NSString *)profession
 {
-    if (!_profession) {
-        _profession = [self.keyStore objectForKey:kProfessionKey];
+    if (!self->_profession) {
+        self->_profession = [self.keyStore objectForKey:kProfessionKey];
     }
     
-    return _profession;
+    return self->_profession;
 }
 
 - (void)setGender:(DOMGender)gender
 {
-    if (_gender != gender) {
-        _gender = gender;
+    if (self->_gender != gender) {
+        self->_gender = gender;
     }
     
     [self keyStoreSetValue:@(gender) forKey:kGenderKey];
@@ -142,17 +142,17 @@ static NSString *kHeightKey = @"DOMUserHeightKey";
 
 - (DOMGender)gender
 {
-    if (!_gender) {
-        _gender = [[self.keyStore objectForKey:kGenderKey] integerValue];
+    if (!self->_gender) {
+        self->_gender = [[self.keyStore objectForKey:kGenderKey] integerValue];
     }
     
-    return _gender;
+    return self->_gender;
 }
 
 - (void)setBirthYear:(NSUInteger)age
 {
-    if (_birthYear != age) {
-        _birthYear = age;
+    if (self->_birthYear != age) {
+        self->_birthYear = age;
     }
     
     [self keyStoreSetValue:@(age) forKey:kBirthYearKey];
@@ -160,17 +160,17 @@ static NSString *kHeightKey = @"DOMUserHeightKey";
 
 - (NSUInteger)birthYear
 {
-    if (!_birthYear) {
-        _birthYear = [[self.keyStore objectForKey:kBirthYearKey] unsignedIntegerValue];
+    if (!self->_birthYear) {
+        self->_birthYear = [[self.keyStore objectForKey:kBirthYearKey] unsignedIntegerValue];
     }
     
-    return _birthYear;
+    return self->_birthYear;
 }
 
 - (void)setWeight:(CGFloat)weight
 {
-    if (_weight != weight) {
-        _weight = weight;
+    if (self->_weight != weight) {
+        self->_weight = weight;
     }
     
     [self keyStoreSetValue:@(weight) forKey:kWeightKey];
@@ -178,18 +178,18 @@ static NSString *kHeightKey = @"DOMUserHeightKey";
 
 - (CGFloat)weight
 {
-    if (!_weight) {
+    if (!self->_weight) {
         NSNumber *weight = [self.keyStore objectForKey:kWeightKey];
-        _weight = (CGFLOAT_IS_DOUBLE) ? [weight doubleValue] : [weight floatValue];
+        self->_weight = (CGFLOAT_IS_DOUBLE) ? [weight doubleValue] : [weight floatValue];
     }
     
-    return _weight;
+    return self->_weight;
 }
 
 - (void)setHeight:(CGFloat)height
 {
-    if (_height != height) {
-        _height = height;
+    if (self->_height != height) {
+        self->_height = height;
     }
     
     [self keyStoreSetValue:@(height) forKey:kHeightKey];
@@ -197,12 +197,12 @@ static NSString *kHeightKey = @"DOMUserHeightKey";
 
 - (CGFloat)height
 {
-    if (!_height) {
+    if (!self->_height) {
         NSNumber *height = [self.keyStore objectForKey:kHeightKey];
-        _height = (CGFLOAT_IS_DOUBLE) ? [height doubleValue] : [height floatValue];
+        self->_height = (CGFLOAT_IS_DOUBLE) ? [height doubleValue] : [height floatValue];
     }
     
-    return _height;
+    return self->_height;
 }
 
 @end

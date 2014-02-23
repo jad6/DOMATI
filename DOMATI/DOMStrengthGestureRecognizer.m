@@ -15,6 +15,7 @@
 
 #import "DOMRawData.h"
 #import "DOMTouchData+Extension.h"
+#import "NSObject+Extensions.h"
 #import "UITouch+Extension.h"
 
 #import "DOMErrors.h"
@@ -100,20 +101,24 @@
     NSArray *touchesTouchData = [self touchesTouchDataFromTouches:touches];
     
     DOMMotionManager *motionManager = self.motionManager;
-    if (self.numActiveTouches == 0) {
-        [motionManager stopDeviceMotionWithMotionProcessCompletion:^(NSArray *motions) {
-            [self saveDeviceMotions:motions
-                 onTouchesTouchData:touchesTouchData];
-        }];
-    } else {
+//    if (self.numActiveTouches == 0) {
+//        [motionManager stopDeviceMotionWithMotionProcessCompletion:^(NSArray *motions) {
+//            [self saveDeviceMotions:motions
+//                 onTouchesTouchData:touchesTouchData];
+//            
+//            if (self.state == UIGestureRecognizerStatePossible) {
+//                self.state = UIGestureRecognizerStateRecognized;
+//            }
+//        }];
+//    } else {
         NSArray *motions = [motionManager currentDeviceMotions];
         [self saveDeviceMotions:motions
              onTouchesTouchData:touchesTouchData];
-    }
-    
-    if (self.state == UIGestureRecognizerStatePossible) {
-        self.state = UIGestureRecognizerStateRecognized;
-    }
+        
+        if (self.state == UIGestureRecognizerStatePossible) {
+            self.state = UIGestureRecognizerStateRecognized;
+        }
+//    }
 }
 
 - (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event
@@ -162,6 +167,12 @@
     for (DOMTouchData *touchData in touchesTouchData) {
         DOMRawData *rawData = [touchData motionRawData];
         rawData.data = motions;
+        
+        if ([motions count] > 0) {
+            NSLog(@"MOTION %@", touchData.duration);
+        } else {
+            NSLog(@"%@", touchData.duration);
+        }
     }
 }
 

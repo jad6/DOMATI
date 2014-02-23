@@ -158,17 +158,17 @@
 {    
     // Check if the user has already been uploaded
     DOMUser *user = [DOMUser currentUser];
-//    if (user.identifier > 0) {
-//        NSString *path = [[NSString alloc] initWithFormat:@"users/%i.json" , user.identifier];
-//        
-//        [self PUT:path parameters:[user postDictionary] success:^(AFHTTPRequestOperation *operation, id responseObject) {
-//            [self uploadUnsyncedTouchDataWithCompletion:completionBlock];
-//        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-//            if (completionBlock) {
-//                completionBlock(error);
-//            }
-//        }];
-//    } else {
+    if (user.identifier > 0) {
+        NSString *path = [[NSString alloc] initWithFormat:@"users/%i.json" , user.identifier];
+        
+        [self PUT:path parameters:[user postDictionary] success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            [self uploadUnsyncedTouchDataWithCompletion:completionBlock];
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            if (completionBlock) {
+                completionBlock(error);
+            }
+        }];
+    } else {
         // No user has been created on the backend so POST the user's info.
         [self POST:[self URLStringFromPath:@"users.json"] parameters:[user postDictionary] success:^(AFHTTPRequestOperation *operation, id responseObject) {
             user.identifier = [responseObject[@"id"] integerValue];
@@ -179,7 +179,7 @@
                 completionBlock(error);
             }
         }];
-//    }
+    }
 }
 
 @end

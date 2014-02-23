@@ -12,5 +12,6 @@
 
 + (NSError *)noDeviceMotionError;
 + (NSError *)couldNotWriteFileError;
++ (NSError *)invalidJSONError;
 
 @end

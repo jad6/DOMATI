@@ -25,7 +25,7 @@
     
     // This is done so that upon launch the User data is pulled from iCloud.
     [DOMUser refreshCurrentUser];
-    
+        
     // Handle the local notifications.
     UILocalNotification *localNotif = [launchOptions objectForKey:UIApplicationLaunchOptionsLocalNotificationKey];
     [DOMLocalNotificationHelper handleLaunchLocalNotification:localNotif];

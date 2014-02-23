@@ -21,7 +21,7 @@
 @end
 
 // 60 Hz update interval to match the 60 fps of the display.
-static NSTimeInterval kUpdateInterval = 0.06;
+static NSTimeInterval kUpdateInterval = 1/500.0;
 
 @implementation DOMMotionManager
 

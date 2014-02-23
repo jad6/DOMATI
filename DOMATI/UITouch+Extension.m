@@ -10,11 +10,6 @@
 
 @implementation UITouch (Extension)
 
-- (NSString *)pointerString
-{
-    return [[NSString alloc] initWithFormat:@"%p", self];
-}
-
 - (CGFloat)radius
 {
     return [[self valueForKey:@"pathMajorRadius"] floatValue];
