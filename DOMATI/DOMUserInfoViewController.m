@@ -292,7 +292,7 @@ static NSInteger kUndisclosedAlertTag = 10;
     if ([self.pickerIndexPath isEqual:indexPath]) {
         return 216.0;
     } else if (indexPath.section == 0 && indexPath.row == 0) {
-        return 88.0;
+        return (IPAD) ? 44.0 : 88.0;
     } else {
         return 44.0;
     }
