@@ -2,12 +2,13 @@
 //  DOMTouchData.m
 //  DOMATI
 //
-//  Created by Jad Osseiran on 23/02/2014.
+//  Created by Jad Osseiran on 25/02/2014.
 //  Copyright (c) 2014 Jad. All rights reserved.
 //
 
 #import "DOMTouchData.h"
-#import "DOMRawData.h"
+#import "DOMRawMotionData.h"
+#import "DOMRawTouchData.h"
 
 
 @implementation DOMTouchData
@@ -23,6 +24,7 @@
 @dynamic strength;
 @dynamic x;
 @dynamic y;
-@dynamic rawData;
+@dynamic rawMotionData;
+@dynamic rawTouchData;
 
 @end

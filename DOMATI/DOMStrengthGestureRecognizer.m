@@ -13,8 +13,10 @@
 #import "DOMMotionManager.h"
 #import "DOMCoreDataManager.h"
 
-#import "DOMRawData.h"
 #import "DOMTouchData+Extension.h"
+#import "DOMRawMotionData+Extensions.h"
+#import "DOMRawTouchData+Extensions.h"
+
 #import "NSObject+Extensions.h"
 #import "UITouch+Extension.h"
 
@@ -114,7 +116,15 @@
         NSArray *motions = [motionManager currentDeviceMotions];
         [self saveDeviceMotions:motions
              onTouchesTouchData:touchesTouchData];
-        
+    
+    for (DOMTouchData *touchData in touchesTouchData) {
+        if ([motions count] > 0) {
+            NSLog(@"MOTIONS %@", touchData.duration);
+        } else {
+            NSLog(@"%@", touchData.duration);
+        }
+    }
+    
         if (self.state == UIGestureRecognizerStatePossible) {
             self.state = UIGestureRecognizerStateRecognized;
         }
@@ -164,16 +174,21 @@
 - (void)saveDeviceMotions:(NSArray *)motions
        onTouchesTouchData:(NSArray *)touchesTouchData
 {
-    for (DOMTouchData *touchData in touchesTouchData) {
-        DOMRawData *rawData = [touchData motionRawData];
-        rawData.data = motions;
-        
-        if ([motions count] > 0) {
-            NSLog(@"MOTION %@", touchData.duration);
-        } else {
-            NSLog(@"%@", touchData.duration);
-        }
-    }
+    // Create a new ManagedObjectContext for multi threading core data operations.
+    NSManagedObjectContext *threadContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
+    threadContext.parentContext = [DOMCoreDataManager sharedManager].mainContext;
+
+    dispatch_queue_t savingQueue = dispatch_queue_create("saving_queue", NULL);
+    dispatch_async(savingQueue, ^{
+        [threadContext performBlock:^{
+            for (DOMTouchData *touchData in touchesTouchData) {
+                for (CMDeviceMotion *deviceMotion in motions) {
+                    DOMRawMotionData *rawData = [DOMRawMotionData rawMotionDataInContext:[DOMCoreDataManager sharedManager].mainContext fromDeviceMotion:deviceMotion];
+                    [touchData addRawMotionDataObject:rawData];
+                }
+            }
+        }];
+    });
 }
 
 @end

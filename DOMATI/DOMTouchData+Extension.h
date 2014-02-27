@@ -10,20 +10,13 @@
 
 #import "NSManagedObject+Appulse.h"
 
-typedef NS_ENUM(NSInteger, DOMRawDataKind) {
-    DOMRawDataKindNotSet = -1,
-    DOMRawDataKindMotion,
-    DOMRawDataKindTouch
-};
-
-@interface DOMTouchData (Extension)
-
-- (DOMRawData *)motionRawData;
-- (DOMRawData *)touchRawData;
-
-- (NSDictionary *)postDictionary;
+@interface DOMTouchData (Extension) 
 
 + (NSArray *)unsyncedTouchData;
-- (NSArray *)unsyncedRawData;
+
+- (NSArray *)unsyncedRawMotionData;
+- (NSArray *)unsyncedRawTouchData;
+
+- (NSDictionary *)postDictionary;
 
 @end

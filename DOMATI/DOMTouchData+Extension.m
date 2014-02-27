@@ -13,46 +13,24 @@
 #import "NSManagedObject+Appulse.h"
 #import "UIApplication+Extensions.h"
 
-#import "DOMRawData+Extension.h"
+#import "DOMRawMotionData.h"
+#import "DOMRawTouchData.h"
 #import "DOMUser.h"
 
 @implementation DOMTouchData (Extension)
 
-- (DOMRawData *)rawDataWithKind:(DOMRawDataKind)kind
+#pragma mark - Logic
+
+- (NSArray *)unsyncedDataForClass:(Class)class
 {
-    __block DOMRawData *rawData = nil;
-    [self.rawData enumerateObjectsUsingBlock:^(DOMRawData *object, BOOL *stop) {
-        if ([object.kind integerValue] == kind) {
-            rawData = object;
-            *stop = YES;
-        }
-    }];
+    NSAssert([class isSubclassOfClass:[NSManagedObject class]], @"%@ is not a subclass of NSManagedObject", class);
     
-    if (!rawData) {
-        rawData = [DOMRawData newEntity:@"DOMRawData"
-                              inContext:[self managedObjectContext]
-                            idAttribute:@"identifier"
-                                  value:[DOMRawData localIdentifier]
-                               onInsert:^(DOMRawData *object) {
-                                   object.kind = @(kind);
-                                   object.touchData = self;
-                               }];
-    }
-    
-    return rawData;
+    return [class fetchRequest:^(NSFetchRequest *fs) {
+        [fs setPredicate:[NSPredicate predicateWithFormat:@"identifier < 0 AND touchData == %@", self]];
+    } inContext:[self managedObjectContext]];
 }
 
 #pragma mark - Public
-
-- (DOMRawData *)motionRawData
-{
-    return [self rawDataWithKind:DOMRawDataKindMotion];
-}
-
-- (DOMRawData *)touchRawData
-{
-    return [self rawDataWithKind:DOMRawDataKindTouch];
-}
 
 + (NSArray *)unsyncedTouchData
 {
@@ -61,11 +39,14 @@
     } inContext:[DOMCoreDataManager sharedManager].mainContext];
 }
 
-- (NSArray *)unsyncedRawData
+- (NSArray *)unsyncedRawMotionData
 {
-    return [DOMRawData fetchRequest:^(NSFetchRequest *fs) {
-        [fs setPredicate:[NSPredicate predicateWithFormat:@"identifier < 0 AND touchData == %@", self]];
-    } inContext:[self managedObjectContext]];
+    return [self unsyncedDataForClass:[DOMRawMotionData class]];
+}
+
+- (NSArray *)unsyncedRawTouchData
+{
+    return [self unsyncedDataForClass:[DOMRawTouchData class]];
 }
 
 #pragma mark - Network

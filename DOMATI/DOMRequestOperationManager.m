@@ -12,7 +12,8 @@
 
 #import "DOMUser.h"
 #import "DOMTouchData+Extension.h"
-#import "DOMRawData+Extension.h"
+#import "DOMRawTouchData+Extensions.h"
+#import "DOMRawMotionData+Extensions.h"
 
 #import "UIApplication+Extensions.h"
 
@@ -90,22 +91,18 @@
     }
 }
 
-#pragma mark - Posting
+#pragma mark - Logic
 
-- (NSString *)URLStringFromPath:(NSString *)path
+- (void)uploadUnsyncedRawData:(NSArray *)unsyncedRawData
+                 forTouchData:(DOMTouchData *)touchData
+                       toPath:(NSString *)path
+                   completion:(void (^)(NSError *error))completionBlock
 {
-    return [[NSString alloc] initWithFormat:@"%@%@", [self.baseURL absoluteString], path];
-}
-
-- (void)uploadUnsyncedRawDataForTouchData:(DOMTouchData *)touchData
-                               completion:(void (^)(NSError *error))completionBlock;
-{
-    NSString *path = [[NSString alloc] initWithFormat:@"raw_data.json"];
     __block NSError *rawDataUploadError = nil;
     
     dispatch_group_t rawDataGroup = dispatch_group_create();
-
-    for (DOMRawData *rawData in [touchData unsyncedRawData]) {
+    
+    for (id <DOMRawData> rawData in unsyncedRawData) {
         dispatch_group_enter(rawDataGroup);
         [self POST:[self URLStringFromPath:path] parameters:[rawData postDictionary] success:^(AFHTTPRequestOperation *operation, id responseObject) {
             
@@ -124,7 +121,34 @@
     });
 }
 
-- (void)uploadUnsyncedTouchDataWithCompletion:(void (^)(NSError *error))completionBlock;
+#pragma mark - Posting
+
+- (NSString *)URLStringFromPath:(NSString *)path
+{
+    return [[NSString alloc] initWithFormat:@"%@%@", [self.baseURL absoluteString], path];
+}
+
+- (void)uploadUnsyncedRawTouchDataForTouchData:(DOMTouchData *)touchData
+                                    completion:(void (^)(NSError *error))completionBlock
+{
+    NSString *path = [[NSString alloc] initWithFormat:@"raw_data.json"];
+    [self uploadUnsyncedRawData:[touchData unsyncedRawTouchData]
+                   forTouchData:touchData
+                         toPath:path
+                     completion:completionBlock];
+}
+
+- (void)uploadUnsyncedRawMotionDataForTouchData:(DOMTouchData *)touchData
+                                     completion:(void (^)(NSError *error))completionBlock
+{
+    NSString *path = [[NSString alloc] initWithFormat:@"raw_data.json"];
+    [self uploadUnsyncedRawData:[touchData unsyncedRawMotionData]
+                   forTouchData:touchData
+                         toPath:path
+                     completion:completionBlock];
+}
+
+- (void)uploadUnsyncedTouchDataWithCompletion:(void (^)(NSError *error))completionBlock
 {
     NSString *path = [[NSString alloc] initWithFormat:@"touch_data.json"];
     __block NSError *touchDataUploadError = nil;
@@ -133,14 +157,19 @@
     
     for (DOMTouchData *touchData in [DOMTouchData unsyncedTouchData]) {
         dispatch_group_enter(touchDataGroup);
+        dispatch_group_enter(touchDataGroup);
         [self POST:[self URLStringFromPath:path] parameters:[touchData postDictionary] success:^(AFHTTPRequestOperation *operation, id responseObject) {
             
             touchData.identifier = responseObject[@"id"];
             
-            [self uploadUnsyncedRawDataForTouchData:touchData
+            [self uploadUnsyncedRawMotionDataForTouchData:touchData
                                          completion:^(NSError *error) {
                                              dispatch_group_leave(touchDataGroup);
                                          }];
+            [self uploadUnsyncedRawTouchDataForTouchData:touchData
+                                               completion:^(NSError *error) {
+                                                   dispatch_group_leave(touchDataGroup);
+                                               }];
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
             touchDataUploadError = error;
             dispatch_group_leave(touchDataGroup);
@@ -154,7 +183,7 @@
     });
 }
 
-- (void)uploadLocalDataWithCompletion:(void (^)(NSError *error))completionBlock;
+- (void)uploadLocalDataWithCompletion:(void (^)(NSError *error))completionBlock
 {    
     // Check if the user has already been uploaded
     DOMUser *user = [DOMUser currentUser];

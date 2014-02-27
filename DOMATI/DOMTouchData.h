@@ -2,14 +2,14 @@
 //  DOMTouchData.h
 //  DOMATI
 //
-//  Created by Jad Osseiran on 23/02/2014.
+//  Created by Jad Osseiran on 25/02/2014.
 //  Copyright (c) 2014 Jad. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class DOMRawData;
+@class DOMRawMotionData, DOMRawTouchData;
 
 @interface DOMTouchData : NSManagedObject
 
@@ -24,14 +24,15 @@
 @property (nonatomic, retain) NSNumber * strength;
 @property (nonatomic, retain) NSNumber * x;
 @property (nonatomic, retain) NSNumber * y;
-@property (nonatomic, retain) NSSet *rawData;
+@property (nonatomic, retain) NSSet *rawMotionData;
+@property (nonatomic, retain) DOMRawTouchData *rawTouchData;
 @end
 
 @interface DOMTouchData (CoreDataGeneratedAccessors)
 
-- (void)addRawDataObject:(DOMRawData *)value;
-- (void)removeRawDataObject:(DOMRawData *)value;
-- (void)addRawData:(NSSet *)values;
-- (void)removeRawData:(NSSet *)values;
+- (void)addRawMotionDataObject:(DOMRawMotionData *)value;
+- (void)removeRawMotionDataObject:(DOMRawMotionData *)value;
+- (void)addRawMotionData:(NSSet *)values;
+- (void)removeRawMotionData:(NSSet *)values;
 
 @end

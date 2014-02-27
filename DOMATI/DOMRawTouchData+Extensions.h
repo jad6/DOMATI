@@ -1,16 +1,16 @@
 //
-//  DOMRawData.h
+//  DOMRawTouchData+Extensions.h
 //  DOMATI
 //
 //  Created by Jad Osseiran on 25/02/2014.
 //  Copyright (c) 2014 Jad. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import "DOMRawTouchData.h"
 
-@protocol DOMRawData <NSObject>
+#import "DOMRawData.h"
 
-@property (nonatomic, strong) NSNumber *identifier;
+@interface DOMRawTouchData (Extensions) <DOMRawData>
 
 - (NSDictionary *)postDictionary;
 
