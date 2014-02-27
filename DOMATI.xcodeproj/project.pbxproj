@@ -97,7 +97,7 @@
 		05D273DA181E65930005E31E /* DOMNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 05D273D9181E65930005E31E /* DOMNavigationBar.m */; };
 		05D273DF181E67110005E31E /* UITextView+Sharing.m in Sources */ = {isa = PBXBuildFile; fileRef = 05D273DE181E67110005E31E /* UITextView+Sharing.m */; };
 		05D273E2181E67B70005E31E /* DOMProjectSummaryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05D273E1181E67B70005E31E /* DOMProjectSummaryViewController.m */; };
-		05DD75E418BC8B2600A261CD /* DOMItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 05DD75E318BC8B2600A261CD /* DOMItem.m */; };
+		05DD75E418BC8B2600A261CD /* DOMMotionItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 05DD75E318BC8B2600A261CD /* DOMMotionItem.m */; };
 		05DD75F318BCB87B00A261CD /* DOMRawMotionData.m in Sources */ = {isa = PBXBuildFile; fileRef = 05DD75F218BCB87B00A261CD /* DOMRawMotionData.m */; };
 		05DD75F618BCB87B00A261CD /* DOMTouchData.m in Sources */ = {isa = PBXBuildFile; fileRef = 05DD75F518BCB87B00A261CD /* DOMTouchData.m */; };
 		05DD75F918BCBAB800A261CD /* DOMRawMotionData+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 05DD75F818BCBAB800A261CD /* DOMRawMotionData+Extensions.m */; };
@@ -246,8 +246,8 @@
 		05D273DE181E67110005E31E /* UITextView+Sharing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextView+Sharing.m"; sourceTree = "<group>"; };
 		05D273E0181E67B70005E31E /* DOMProjectSummaryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DOMProjectSummaryViewController.h; sourceTree = "<group>"; };
 		05D273E1181E67B70005E31E /* DOMProjectSummaryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DOMProjectSummaryViewController.m; sourceTree = "<group>"; };
-		05DD75E218BC8B2600A261CD /* DOMItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DOMItem.h; sourceTree = "<group>"; };
-		05DD75E318BC8B2600A261CD /* DOMItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DOMItem.m; sourceTree = "<group>"; };
+		05DD75E218BC8B2600A261CD /* DOMMotionItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DOMMotionItem.h; sourceTree = "<group>"; };
+		05DD75E318BC8B2600A261CD /* DOMMotionItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DOMMotionItem.m; sourceTree = "<group>"; };
 		05DD75F118BCB87B00A261CD /* DOMRawMotionData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DOMRawMotionData.h; sourceTree = "<group>"; };
 		05DD75F218BCB87B00A261CD /* DOMRawMotionData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DOMRawMotionData.m; sourceTree = "<group>"; };
 		05DD75F418BCB87B00A261CD /* DOMTouchData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DOMTouchData.h; sourceTree = "<group>"; };
@@ -514,8 +514,8 @@
 			children = (
 				054EAD2118BA2F9E00AD9D31 /* LLItem.h */,
 				054EAD2018BA2F9E00AD9D31 /* LLItem.m */,
-				05DD75E218BC8B2600A261CD /* DOMItem.h */,
-				05DD75E318BC8B2600A261CD /* DOMItem.m */,
+				05DD75E218BC8B2600A261CD /* DOMMotionItem.h */,
+				05DD75E318BC8B2600A261CD /* DOMMotionItem.m */,
 			);
 			name = "Data Structures";
 			sourceTree = "<group>";
@@ -972,7 +972,7 @@
 				051A8E341830CB52007F9DCD /* DOMPickerCell.m in Sources */,
 				059F368E18249D0900927A2A /* DOMErrors.m in Sources */,
 				056D2C011897D44500C5910A /* DOMUser.m in Sources */,
-				05DD75E418BC8B2600A261CD /* DOMItem.m in Sources */,
+				05DD75E418BC8B2600A261CD /* DOMMotionItem.m in Sources */,
 				0598D8CE1824F040007A526F /* UITouch+Extension.m in Sources */,
 				05F0780C181CC4D2006EA8B0 /* DOMThemeManager.m in Sources */,
 				05B1FBDD18AC53600049095F /* DOMPickerTableViewController.m in Sources */,

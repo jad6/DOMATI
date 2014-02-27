@@ -8,15 +8,16 @@
 
 #import <CoreMotion/CMDeviceMotion.h>
 
-#import "DOMItem.h"
+#import "DOMMotionItem.h"
 
-@implementation DOMItem
+@implementation DOMMotionItem
 
 - (id)initWithDeviceMotion:(CMDeviceMotion *)deviceMotion
 {
     self = [super init];
     if (self) {
         self->_deviceMotion = deviceMotion;
+        self->_timestamp = deviceMotion.timestamp;
     }
     return self;
 }

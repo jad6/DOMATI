@@ -12,6 +12,9 @@
 
 @interface DOMTouchData (Extension) 
 
++ (instancetype)touchData:(void (^)(DOMTouchData *touchData))touchDataBlock
+                inContext:(NSManagedObjectContext *)context;
+
 + (NSArray *)unsyncedTouchData;
 
 - (NSArray *)unsyncedRawMotionData;

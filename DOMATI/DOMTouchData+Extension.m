@@ -32,6 +32,20 @@
 
 #pragma mark - Public
 
++ (instancetype)touchData:(void (^)(DOMTouchData *touchData))touchDataBlock
+                inContext:(NSManagedObjectContext *)context
+{
+     return [DOMTouchData newEntity:NSStringFromClass([DOMTouchData class])
+                              inContext:context
+                            idAttribute:@"identifier"
+                                  value:[DOMTouchData localIdentifier]
+                               onInsert:^(DOMTouchData *object) {
+                                   if (touchDataBlock) {
+                                       touchDataBlock(object);
+                                   }
+                               }];
+}
+
 + (NSArray *)unsyncedTouchData
 {
     return [self fetchRequest:^(NSFetchRequest *fs) {

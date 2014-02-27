@@ -10,9 +10,11 @@
 
 @class CMDeviceMotion;
 
-@interface DOMItem : LLItem
+@interface DOMMotionItem : LLItem
 
 @property (nonatomic, strong, readonly) CMDeviceMotion *deviceMotion;
+
+@property (nonatomic) NSTimeInterval timestamp;
 
 - (id)initWithDeviceMotion:(CMDeviceMotion *)deviceMotion;
 

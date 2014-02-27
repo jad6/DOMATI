@@ -37,25 +37,6 @@
     return singletonObject;
 }
 
-#pragma mark - Logic
-
-- (DOMTouchData *)createTouchData:(void (^)(DOMTouchData *touchData))touchDataBlock
-{
-    DOMTouchData *touchData = nil;
-    touchData = [DOMTouchData newEntity:NSStringFromClass([DOMTouchData class])
-                              inContext:self.mainContext
-                            idAttribute:@"identifier"
-                                  value:[DOMTouchData localIdentifier]
-                               onInsert:^(DOMTouchData *object) {                                   
-                                   if (touchDataBlock) {
-                                       touchDataBlock(object);
-                                   }
-                               }];
-    [self saveContext];
-    
-    return touchData;
-}
-
 #pragma mark - Core Data Core
 
 - (void)setupCoreData

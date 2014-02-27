@@ -19,6 +19,4 @@
 - (void)setupCoreData;
 - (void)saveContext;
 
-- (DOMTouchData *)createTouchData:(void (^)(DOMTouchData *touchData))touchDataBlock;
-
 @end
