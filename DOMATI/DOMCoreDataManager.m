@@ -83,14 +83,14 @@
     [self.mainContext performBlock:block];
 }
 
-- (void)saveContext
+- (void)saveMainContext
 {
     [self saveContext:self.mainContext];
 }
 
 - (void)applicationShouldSaveContext:(NSNotification *)notification
 {
-    [self saveContext];
+    [self saveMainContext];
 }
 
 @end

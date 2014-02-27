@@ -2,7 +2,7 @@
 //  DOMTouchData.m
 //  DOMATI
 //
-//  Created by Jad Osseiran on 25/02/2014.
+//  Created by Jad Osseiran on 27/02/2014.
 //  Copyright (c) 2014 Jad. All rights reserved.
 //
 
@@ -13,17 +13,15 @@
 
 @implementation DOMTouchData
 
-@dynamic acceleration;
+@dynamic accelerationAvg;
 @dynamic calibrationStrength;
 @dynamic duration;
 @dynamic group;
 @dynamic identifier;
-@dynamic numTouches;
-@dynamic radius;
-@dynamic rotation;
-@dynamic strength;
-@dynamic x;
-@dynamic y;
+@dynamic maxRadius;
+@dynamic rotationAvg;
+@dynamic xDetla;
+@dynamic yDelta;
 @dynamic rawMotionData;
 @dynamic rawTouchData;
 

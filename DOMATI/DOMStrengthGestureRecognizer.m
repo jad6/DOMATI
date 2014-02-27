@@ -11,11 +11,6 @@
 #import "DOMStrengthGestureRecognizer.h"
 
 #import "DOMMotionManager.h"
-#import "DOMCoreDataManager.h"
-
-#import "DOMTouchData+Extension.h"
-#import "DOMRawMotionData+Extensions.h"
-#import "DOMRawTouchData+Extensions.h"
 
 #import "NSObject+Extensions.h"
 #import "UITouch+Extension.h"
@@ -24,12 +19,14 @@
 
 #define PRESS_DELTA 0.5
 
-@interface DOMStrengthGestureRecognizer ()
+@interface DOMStrengthGestureRecognizer () {
+    dispatch_queue_t dataProcessingQueue;
+}
 
 @property (nonatomic, strong) DOMMotionManager *motionManager;
 @property (nonatomic, strong) DOMMotionItem *motionItem;
 
-@property (nonatomic, strong) NSMutableDictionary *touchesDurations;
+@property (nonatomic, strong) NSMutableDictionary *touchesInfo, *motionsInfo;
 @property (nonatomic, strong) NSTimer *longPressTimer;
 
 @property (nonatomic) CGFloat strength;
@@ -42,6 +39,12 @@
 {
     self = [super initWithTarget:target action:action];
     if (self) {
+        self->dataProcessingQueue = dispatch_queue_create("data_processing_queue", DISPATCH_QUEUE_SERIAL);
+        dispatch_sync(self->dataProcessingQueue, ^{
+            self.touchesInfo = [[NSMutableDictionary alloc] init];
+            self.motionsInfo = [[NSMutableDictionary alloc] init];
+        });
+        
         DOMMotionManager *motionManager = [DOMMotionManager sharedManager];
         if (![motionManager isDeviceMotionActive]) {
             NSError *error = nil;
@@ -70,6 +73,66 @@
     [self.motionManager stopDeviceMotion];
 }
 
+#pragma mark - Logic
+
+- (NSDictionary *)motionsInfoForTouch:(UITouch *)touch
+{
+    NSString *pointerKey = [touch pointerString];
+    
+    __block NSDictionary *motionsInfo = nil;
+    dispatch_barrier_sync(self->dataProcessingQueue, ^{
+        motionsInfo = [self.motionsInfo[pointerKey] copy];
+        [self.motionsInfo removeObjectForKey:pointerKey];
+    });
+    
+    return motionsInfo;
+}
+
+- (NSArray *)allPhasesInfoForTouch:(UITouch *)touch
+{
+    NSString *pointerKey = [touch pointerString];
+
+    __block NSArray *touchAllPhasesInfo = nil;
+    dispatch_barrier_sync(self->dataProcessingQueue, ^{
+        touchAllPhasesInfo = [self.touchesInfo[pointerKey] copy];
+        [self.touchesInfo removeObjectForKey:pointerKey];
+    });
+    
+    return touchAllPhasesInfo;
+}
+
+- (CGPoint)locationOfTouch:(UITouch *)touch onScreenForView:(UIView *)view
+{
+    CGPoint location = [touch locationInView:self.view];
+    CGPoint viewOrigin = view.frame.origin;
+    
+    return CGPointMake(viewOrigin.x + location.x, viewOrigin.y + location.y);
+}
+
+- (void)storeTouchesInfo:(NSSet *)touches
+{
+    dispatch_sync(self->dataProcessingQueue, ^{
+        for (UITouch *touch in touches) {
+            NSString *pointerKey = [touch pointerString];
+            CGPoint touchLocation = [self locationOfTouch:touch onScreenForView:self.view];
+            
+            NSDictionary *touchInfo = @{@"timestamp" : @(touch.timestamp),
+                                        @"x" : @(touchLocation.x),
+                                        @"y" : @(touchLocation.y),
+                                        @"phase" : @(touch.phase),
+                                        @"radius" : @([touch radius])};
+            
+            NSMutableArray *touchAllPhasesInfo = self.touchesInfo[pointerKey];
+            if (!touchAllPhasesInfo) {
+                touchAllPhasesInfo = [[NSMutableArray alloc] init];
+            }
+            [touchAllPhasesInfo addObject:touchInfo];
+            
+            self.touchesInfo[pointerKey] = touchAllPhasesInfo;
+        }
+    });
+}
+
 #pragma mark - Touches
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
@@ -78,40 +141,60 @@
     
     self.motionItem = [[DOMMotionManager sharedManager] lastMotionItem];
     
-    for (UITouch *touch in touches) {
-        NSString *pointerKey = [touch pointerString];
-        self.touchesDurations[pointerKey] = @(touch.timestamp);
-    }
+    [self storeTouchesInfo:touches];
 }
 
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
 {
     [super touchesMoved:touches withEvent:event];
+    
+    [self storeTouchesInfo:touches];
 }
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
     [super touchesEnded:touches withEvent:event];
     
-    for (UITouch *touch in touches) {
-        NSString *pointerKey = [touch pointerString];
-        NSTimeInterval duration = touch.timestamp - [self.touchesDurations[pointerKey] floatValue];
+    [self storeTouchesInfo:touches];
     
-        [self.touchesDurations removeObjectForKey:pointerKey];
+    dispatch_sync(self->dataProcessingQueue, ^{
         
-        // Create a new ManagedObjectContext for multi threading core data operations.
-        NSManagedObjectContext *threadContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
-        threadContext.parentContext = [DOMCoreDataManager sharedManager].mainContext;
-        
-        [threadContext performBlock:^{
-            [DOMTouchData touchData:^(DOMTouchData *touchData) {
+        for (UITouch *touch in touches) {
+            DOMMotionItem *motionItem = [[DOMMotionManager sharedManager] lastMotionItem];
+            
+            DOMMotionItem *headMotionItem = self.motionItem;
+            DOMMotionItem *currentMotionItem = headMotionItem;
+            DOMMotionItem *tailMotionItem = motionItem;
+            
+            double totalAcceleration = 0.0;
+            double totalRotation = 0.0;
+            NSUInteger motionsCount = 0;
+            
+            NSMutableArray *motions = [[NSMutableArray alloc] init];
+            while (currentMotionItem != tailMotionItem) {
+                CMDeviceMotion *motion = currentMotionItem.deviceMotion;
+                [motions addObject:motion];
                 
-                touchData.duration = @(duration);
+                CMAcceleration acc = motion.userAcceleration;
+                totalAcceleration += sqrt(acc.x * acc.x + acc.y * acc.y + acc.z * acc.z);
                 
-                [self setDeviceMotionsOnTouchData:touchData inContext:threadContext];
-            } inContext:threadContext];
-        }];
-    }
+                CMRotationRate rot = motion.rotationRate;
+                totalRotation += sqrt(rot.x * rot.x + rot.y * rot.y + rot.z * rot.z);
+                
+                currentMotionItem = [currentMotionItem nextObject];
+                
+                motionsCount++;
+            }
+            
+            
+            CGFloat avgAcceleration = (totalAcceleration / (motionsCount * 1.0));
+            CGFloat avgRotation = (totalRotation / (motionsCount * 1.0));
+            
+            self.motionsInfo[[touch pointerString]] = @{@"motions" : motions,
+                                                        @"accelerationAvg" : @(avgAcceleration),
+                                                        @"rotationAvg" : @(avgRotation)};
+        }
+    });
 
     if (self.state == UIGestureRecognizerStatePossible) {
         self.state = UIGestureRecognizerStateRecognized;
@@ -128,43 +211,6 @@
 - (void)reset
 {
     [super reset];
-}
-
-#pragma mark - Motion
-
-- (void)setDeviceMotionsOnTouchData:(DOMTouchData *)touchData
-                          inContext:(NSManagedObjectContext *)context
-{
-    DOMMotionItem *motionItem = [[DOMMotionManager sharedManager] lastMotionItem];
-    
-    DOMMotionItem *headMotionItem = self.motionItem;
-    DOMMotionItem *currentMotionItem = headMotionItem;
-    DOMMotionItem *tailMotionItem = motionItem;
-    
-    double totalAcceleration = 0.0;
-    double totalRotation = 0.0;
-    NSUInteger motionsCount = 0;
-    
-    while (currentMotionItem != tailMotionItem) {
-        CMDeviceMotion *motion = currentMotionItem.deviceMotion;
-        DOMRawMotionData *rawData = [DOMRawMotionData rawMotionDataInContext:context fromDeviceMotion:motion];
-        [touchData addRawMotionDataObject:rawData];
-        
-        CMAcceleration acc = motion.userAcceleration;
-        totalAcceleration += sqrt(acc.x * acc.x + acc.y * acc.y + acc.z * acc.z);
-        
-        CMRotationRate rot = motion.rotationRate;
-        totalRotation += sqrt(rot.x * rot.x + rot.y * rot.y + rot.z * rot.z);
-        
-        currentMotionItem = [currentMotionItem nextObject];
-        
-        motionsCount++;
-    }
-    
-    touchData.rotation = @((totalRotation / motionsCount));
-    touchData.acceleration = @((totalAcceleration / motionsCount));
-    
-    NSLog(@"rotation: %@, acceleration: %@", touchData.rotation, touchData.acceleration);
 }
 
 @end

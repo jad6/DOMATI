@@ -10,11 +10,11 @@
 
 #import "DOMErrors.h"
 
-@interface DOMMotionManager ()
+@interface DOMMotionManager () {
+    dispatch_queue_t listQueue;
+}
 
 @property (nonatomic, strong) DOMMotionItem *headMotionItem, *tailMotionItem;
-
-@property (nonatomic, strong) dispatch_queue_t listQueue;
 
 @end
 
@@ -35,7 +35,7 @@ static NSTimeInterval kUpdateInterval = 1/100.0;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         singletonObject = [[self alloc] init];
-        singletonObject.listQueue = dispatch_queue_create("list_queue", DISPATCH_QUEUE_SERIAL);
+        singletonObject->listQueue = dispatch_queue_create("list_queue", DISPATCH_QUEUE_SERIAL);
     });
     
     return singletonObject;
@@ -70,16 +70,7 @@ static NSTimeInterval kUpdateInterval = 1/100.0;
     [self startDeviceMotionUpdatesToQueue:deviceMotionQueue
                               withHandler:^(CMDeviceMotion *motion, NSError *error) {
                                   if (!error) {
-                                      dispatch_sync(self.listQueue, ^{
-                                          DOMMotionItem *motionItem = [[DOMMotionItem alloc] initWithDeviceMotion:motion];
-                                          
-                                          if (!self.headMotionItem) {
-                                              self.headMotionItem = motionItem;
-                                              self.tailMotionItem = motionItem;
-                                          } else {
-                                              self.tailMotionItem = [self.tailMotionItem insertObjectAfter:motionItem];
-                                          }
-                                      });
+                                      [self enqueueDeviceMotion:motion];
                                   } else {
                                       // Something has gone wrong, log the error and stop the sensors.
                                       [error handle];
@@ -99,10 +90,26 @@ static NSTimeInterval kUpdateInterval = 1/100.0;
     }
 }
 
+#pragma mark - Linked List
+
+- (void)enqueueDeviceMotion:(CMDeviceMotion *)deviceMotion
+{
+    dispatch_sync(self->listQueue, ^{
+        DOMMotionItem *motionItem = [[DOMMotionItem alloc] initWithDeviceMotion:deviceMotion];
+        
+        if (!self.headMotionItem) {
+            self.headMotionItem = motionItem;
+            self.tailMotionItem = motionItem;
+        } else {
+            self.tailMotionItem = [self.tailMotionItem insertObjectAfter:motionItem];
+        }
+    });
+}
+
 - (DOMMotionItem *)lastMotionItem
 {
     __block DOMMotionItem *motionItem = nil;
-    dispatch_barrier_sync(self.listQueue, ^{
+    dispatch_barrier_sync(self->listQueue, ^{
         motionItem = self.tailMotionItem;
     });
     return motionItem;

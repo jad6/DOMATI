@@ -2,7 +2,7 @@
 //  DOMTouchData.h
 //  DOMATI
 //
-//  Created by Jad Osseiran on 25/02/2014.
+//  Created by Jad Osseiran on 27/02/2014.
 //  Copyright (c) 2014 Jad. All rights reserved.
 //
 
@@ -13,19 +13,17 @@
 
 @interface DOMTouchData : NSManagedObject
 
-@property (nonatomic, retain) NSNumber * acceleration;
+@property (nonatomic, retain) NSNumber * accelerationAvg;
 @property (nonatomic, retain) NSNumber * calibrationStrength;
 @property (nonatomic, retain) NSNumber * duration;
 @property (nonatomic, retain) NSNumber * group;
 @property (nonatomic, retain) NSNumber * identifier;
-@property (nonatomic, retain) NSNumber * numTouches;
-@property (nonatomic, retain) NSNumber * radius;
-@property (nonatomic, retain) NSNumber * rotation;
-@property (nonatomic, retain) NSNumber * strength;
-@property (nonatomic, retain) NSNumber * x;
-@property (nonatomic, retain) NSNumber * y;
+@property (nonatomic, retain) NSNumber * maxRadius;
+@property (nonatomic, retain) NSNumber * rotationAvg;
+@property (nonatomic, retain) NSNumber * xDetla;
+@property (nonatomic, retain) NSNumber * yDelta;
 @property (nonatomic, retain) NSSet *rawMotionData;
-@property (nonatomic, retain) DOMRawTouchData *rawTouchData;
+@property (nonatomic, retain) NSSet *rawTouchData;
 @end
 
 @interface DOMTouchData (CoreDataGeneratedAccessors)
@@ -34,5 +32,10 @@
 - (void)removeRawMotionDataObject:(DOMRawMotionData *)value;
 - (void)addRawMotionData:(NSSet *)values;
 - (void)removeRawMotionData:(NSSet *)values;
+
+- (void)addRawTouchDataObject:(DOMRawTouchData *)value;
+- (void)removeRawTouchDataObject:(DOMRawTouchData *)value;
+- (void)addRawTouchData:(NSSet *)values;
+- (void)removeRawTouchData:(NSSet *)values;
 
 @end

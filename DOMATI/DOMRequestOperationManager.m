@@ -74,7 +74,7 @@
                     if (error) {
                         [error handle];
                     } else {
-                        [[DOMCoreDataManager sharedManager] saveContext];
+                        [[DOMCoreDataManager sharedManager] saveMainContext];
                     }
                     
                     [weakReachbilityManager stopMonitoring];
@@ -131,7 +131,7 @@
 - (void)uploadUnsyncedRawTouchDataForTouchData:(DOMTouchData *)touchData
                                     completion:(void (^)(NSError *error))completionBlock
 {
-    NSString *path = [[NSString alloc] initWithFormat:@"raw_data.json"];
+    NSString *path = [[NSString alloc] initWithFormat:@"raw_touch_data.json"];
     [self uploadUnsyncedRawData:[touchData unsyncedRawTouchData]
                    forTouchData:touchData
                          toPath:path
@@ -141,7 +141,7 @@
 - (void)uploadUnsyncedRawMotionDataForTouchData:(DOMTouchData *)touchData
                                      completion:(void (^)(NSError *error))completionBlock
 {
-    NSString *path = [[NSString alloc] initWithFormat:@"raw_data.json"];
+    NSString *path = [[NSString alloc] initWithFormat:@"raw_motion_data.json"];
     [self uploadUnsyncedRawData:[touchData unsyncedRawMotionData]
                    forTouchData:touchData
                          toPath:path
@@ -187,17 +187,17 @@
 {    
     // Check if the user has already been uploaded
     DOMUser *user = [DOMUser currentUser];
-//    if (user.identifier > 0) {
-//        NSString *path = [[NSString alloc] initWithFormat:@"users/%i.json" , user.identifier];
-//        
-//        [self PUT:path parameters:[user postDictionary] success:^(AFHTTPRequestOperation *operation, id responseObject) {
-//            [self uploadUnsyncedTouchDataWithCompletion:completionBlock];
-//        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-//            if (completionBlock) {
-//                completionBlock(error);
-//            }
-//        }];
-//    } else {
+    if (user.identifier > 0) {
+        NSString *path = [[NSString alloc] initWithFormat:@"users/%i.json" , user.identifier];
+        
+        [self PUT:path parameters:[user postDictionary] success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            [self uploadUnsyncedTouchDataWithCompletion:completionBlock];
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            if (completionBlock) {
+                completionBlock(error);
+            }
+        }];
+    } else {
         // No user has been created on the backend so POST the user's info.
         [self POST:[self URLStringFromPath:@"users.json"] parameters:[user postDictionary] success:^(AFHTTPRequestOperation *operation, id responseObject) {
             user.identifier = [responseObject[@"id"] integerValue];
@@ -208,7 +208,7 @@
                 completionBlock(error);
             }
         }];
-//    }
+    }
 }
 
 @end

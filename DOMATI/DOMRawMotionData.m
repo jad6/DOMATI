@@ -2,7 +2,7 @@
 //  DOMRawMotionData.m
 //  DOMATI
 //
-//  Created by Jad Osseiran on 25/02/2014.
+//  Created by Jad Osseiran on 27/02/2014.
 //  Copyright (c) 2014 Jad. All rights reserved.
 //
 
@@ -13,19 +13,20 @@
 @implementation DOMRawMotionData
 
 @dynamic identifier;
-@dynamic userAccelX;
-@dynamic userAccelY;
-@dynamic userAccelZ;
-@dynamic rotationRateX;
-@dynamic rotationRateY;
-@dynamic rotationRateZ;
-@dynamic roll;
+@dynamic pitch;
+@dynamic quaternionW;
 @dynamic quaternionX;
 @dynamic quaternionY;
 @dynamic quaternionZ;
-@dynamic quaternionW;
-@dynamic pitch;
+@dynamic roll;
+@dynamic rotationRateX;
+@dynamic rotationRateY;
+@dynamic rotationRateZ;
+@dynamic userAccelX;
+@dynamic userAccelY;
+@dynamic userAccelZ;
 @dynamic yaw;
+@dynamic timestamp;
 @dynamic touchData;
 
 @end

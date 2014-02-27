@@ -7,16 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <CoreMotion/CMDeviceMotion.h>
 
 @interface DOMStrengthGestureRecognizer : UIGestureRecognizer
 
 @property (nonatomic, readonly) CGFloat strength;
 
-#ifdef DEBUG
-@property (nonatomic, readonly) CGFloat averageAcceleration;
-@property (nonatomic, readonly) CGFloat averageRotation;
-@property (nonatomic, readonly) CGFloat touchRadius;
-@property (nonatomic, readonly) NSTimeInterval duration;
-#endif
+- (NSArray *)allPhasesInfoForTouch:(UITouch *)touch;
+- (NSDictionary *)motionsInfoForTouch:(UITouch *)touch;
 
 @end

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="3401" systemVersion="13B3116" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="3401" systemVersion="13C64" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="DOMRawMotionData" representedClassName="DOMRawMotionData" syncable="YES">
         <attribute name="identifier" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="pitch" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
@@ -11,6 +11,7 @@
         <attribute name="rotationRateX" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="rotationRateY" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="rotationRateZ" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="timestamp" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="userAccelX" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="userAccelY" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="userAccelZ" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
@@ -19,26 +20,29 @@
     </entity>
     <entity name="DOMRawTouchData" representedClassName="DOMRawTouchData" syncable="YES">
         <attribute name="identifier" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="phase" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="radius" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="timestamp" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="x" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="y" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <relationship name="touchData" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DOMTouchData" inverseName="rawTouchData" inverseEntity="DOMTouchData" syncable="YES"/>
     </entity>
     <entity name="DOMTouchData" representedClassName="DOMTouchData" syncable="YES">
-        <attribute name="acceleration" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="accelerationAvg" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="calibrationStrength" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="duration" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="group" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="identifier" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
-        <attribute name="numTouches" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
-        <attribute name="radius" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
-        <attribute name="rotation" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
-        <attribute name="strength" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
-        <attribute name="x" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
-        <attribute name="y" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="maxRadius" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="rotationAvg" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="xDetla" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="yDelta" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <relationship name="rawMotionData" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="DOMRawMotionData" inverseName="touchData" inverseEntity="DOMRawMotionData" syncable="YES"/>
-        <relationship name="rawTouchData" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DOMRawTouchData" inverseName="touchData" inverseEntity="DOMRawTouchData" syncable="YES"/>
+        <relationship name="rawTouchData" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="DOMRawTouchData" inverseName="touchData" inverseEntity="DOMRawTouchData" syncable="YES"/>
     </entity>
     <elements>
         <element name="DOMRawMotionData" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="DOMTouchData" positionX="0" positionY="0" width="0" height="0"/>
         <element name="DOMRawTouchData" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="DOMTouchData" positionX="0" positionY="0" width="0" height="0"/>
     </elements>
 </model>

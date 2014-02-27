@@ -8,7 +8,7 @@
 
 #import "DOMCalibrationViewController.h"
 
-#import "DOMStrengthGestureRecognizer.h"
+#import "DOMDataRecordingStrengthGestureRecognizer.h"
 
 #import "DOMCircleTouchView.h"
 
@@ -49,8 +49,18 @@ typedef NS_ENUM(NSInteger, DOMCalibrationState) {
     self.view.backgroundColor = [UIColor blackColor];
     
     // Add the strength gesture recognizer to the circle view.
-    DOMStrengthGestureRecognizer *strengthGR = [[DOMStrengthGestureRecognizer alloc] initWithTarget:self action:@selector(tapDetected:)];
+    DOMDataRecordingStrengthGestureRecognizer *strengthGR = [[DOMDataRecordingStrengthGestureRecognizer alloc] initWithTarget:self action:@selector(tapDetected:)];
     [self.circleTouchView addGestureRecognizer:strengthGR];
+    
+    __weak __typeof(strengthGR)weakStrengthGR = strengthGR;
+    [strengthGR setCoreDataSaveCompletionBlock:^{
+        if (self.state >= DOMCalibrationStateFinal &&
+            !weakStrengthGR.saving) {
+            // Attempt to upload the new (and possibly old data).
+            [[DOMRequestOperationManager sharedManager] uploadDataWhenPossible];
+        }
+    }];
+    
     
     self.statesInformation = [[NSArray alloc] initWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"CalibrationStates" withExtension:@"plist"]];
     
@@ -189,9 +199,6 @@ typedef NS_ENUM(NSInteger, DOMCalibrationState) {
         // Save the new calibration number value.
         [defaults setObject:@(numTouchSets) forKey:DEFAULTS_TOUCH_SETS_RECORDED];
         [defaults synchronize];
-        
-        // Attempt to upload the new (and possibly old data).
-        [[DOMRequestOperationManager sharedManager] uploadDataWhenPossible];
     }
 }
 

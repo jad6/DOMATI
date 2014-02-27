@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		05050EA818BF4F03000724F0 /* DOMRawTouchData.m in Sources */ = {isa = PBXBuildFile; fileRef = 05050EA718BF4F03000724F0 /* DOMRawTouchData.m */; };
+		05050EAE18BF4F04000724F0 /* DOMRawMotionData.m in Sources */ = {isa = PBXBuildFile; fileRef = 05050EAD18BF4F04000724F0 /* DOMRawMotionData.m */; };
+		05050EB118BF507E000724F0 /* DOMTouchData.m in Sources */ = {isa = PBXBuildFile; fileRef = 05050EB018BF507E000724F0 /* DOMTouchData.m */; };
+		05050EB418BF628E000724F0 /* DOMDataRecordingStrengthGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 05050EB318BF628E000724F0 /* DOMDataRecordingStrengthGestureRecognizer.m */; };
 		05084EA7181FECD500FFFB93 /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 05084EA6181FECD500FFFB93 /* MainStoryboard_iPad.storyboard */; };
 		05087D701824DE8300219AA7 /* DOMTouchData+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 05087D6F1824DE8300219AA7 /* DOMTouchData+Extension.m */; };
 		05098F1817B62859009D4FF5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05098F1717B62859009D4FF5 /* Foundation.framework */; };
@@ -98,11 +102,8 @@
 		05D273DF181E67110005E31E /* UITextView+Sharing.m in Sources */ = {isa = PBXBuildFile; fileRef = 05D273DE181E67110005E31E /* UITextView+Sharing.m */; };
 		05D273E2181E67B70005E31E /* DOMProjectSummaryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05D273E1181E67B70005E31E /* DOMProjectSummaryViewController.m */; };
 		05DD75E418BC8B2600A261CD /* DOMMotionItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 05DD75E318BC8B2600A261CD /* DOMMotionItem.m */; };
-		05DD75F318BCB87B00A261CD /* DOMRawMotionData.m in Sources */ = {isa = PBXBuildFile; fileRef = 05DD75F218BCB87B00A261CD /* DOMRawMotionData.m */; };
-		05DD75F618BCB87B00A261CD /* DOMTouchData.m in Sources */ = {isa = PBXBuildFile; fileRef = 05DD75F518BCB87B00A261CD /* DOMTouchData.m */; };
 		05DD75F918BCBAB800A261CD /* DOMRawMotionData+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 05DD75F818BCBAB800A261CD /* DOMRawMotionData+Extensions.m */; };
 		05DD75FC18BCBC1500A261CD /* DOMRawTouchData+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 05DD75FB18BCBC1500A261CD /* DOMRawTouchData+Extensions.m */; };
-		05DD760118BCBD8C00A261CD /* DOMRawTouchData.m in Sources */ = {isa = PBXBuildFile; fileRef = 05DD760018BCBD8C00A261CD /* DOMRawTouchData.m */; };
 		05F0780C181CC4D2006EA8B0 /* DOMThemeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 05F0780B181CC4D2006EA8B0 /* DOMThemeManager.m */; };
 		A5BF660DD26743C69D6E328A /* libPods-DOMATI.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AD90268F6126446CA72059D3 /* libPods-DOMATI.a */; };
 /* End PBXBuildFile section */
@@ -118,6 +119,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		05050EA618BF4F03000724F0 /* DOMRawTouchData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DOMRawTouchData.h; sourceTree = "<group>"; };
+		05050EA718BF4F03000724F0 /* DOMRawTouchData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DOMRawTouchData.m; sourceTree = "<group>"; };
+		05050EAC18BF4F04000724F0 /* DOMRawMotionData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DOMRawMotionData.h; sourceTree = "<group>"; };
+		05050EAD18BF4F04000724F0 /* DOMRawMotionData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DOMRawMotionData.m; sourceTree = "<group>"; };
+		05050EAF18BF507E000724F0 /* DOMTouchData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DOMTouchData.h; sourceTree = "<group>"; };
+		05050EB018BF507E000724F0 /* DOMTouchData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DOMTouchData.m; sourceTree = "<group>"; };
+		05050EB218BF628E000724F0 /* DOMDataRecordingStrengthGestureRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DOMDataRecordingStrengthGestureRecognizer.h; sourceTree = "<group>"; };
+		05050EB318BF628E000724F0 /* DOMDataRecordingStrengthGestureRecognizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DOMDataRecordingStrengthGestureRecognizer.m; sourceTree = "<group>"; };
 		05084EA6181FECD500FFFB93 /* MainStoryboard_iPad.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
 		05084EA8181FF27B00FFFB93 /* sharedHeaders.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sharedHeaders.h; sourceTree = "<group>"; };
 		05087D6E1824DE8300219AA7 /* DOMTouchData+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "DOMTouchData+Extension.h"; sourceTree = "<group>"; };
@@ -248,16 +257,10 @@
 		05D273E1181E67B70005E31E /* DOMProjectSummaryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DOMProjectSummaryViewController.m; sourceTree = "<group>"; };
 		05DD75E218BC8B2600A261CD /* DOMMotionItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DOMMotionItem.h; sourceTree = "<group>"; };
 		05DD75E318BC8B2600A261CD /* DOMMotionItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DOMMotionItem.m; sourceTree = "<group>"; };
-		05DD75F118BCB87B00A261CD /* DOMRawMotionData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DOMRawMotionData.h; sourceTree = "<group>"; };
-		05DD75F218BCB87B00A261CD /* DOMRawMotionData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DOMRawMotionData.m; sourceTree = "<group>"; };
-		05DD75F418BCB87B00A261CD /* DOMTouchData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DOMTouchData.h; sourceTree = "<group>"; };
-		05DD75F518BCB87B00A261CD /* DOMTouchData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DOMTouchData.m; sourceTree = "<group>"; };
 		05DD75F718BCBAB800A261CD /* DOMRawMotionData+Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "DOMRawMotionData+Extensions.h"; sourceTree = "<group>"; };
 		05DD75F818BCBAB800A261CD /* DOMRawMotionData+Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "DOMRawMotionData+Extensions.m"; sourceTree = "<group>"; };
 		05DD75FA18BCBC1500A261CD /* DOMRawTouchData+Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "DOMRawTouchData+Extensions.h"; sourceTree = "<group>"; };
 		05DD75FB18BCBC1500A261CD /* DOMRawTouchData+Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "DOMRawTouchData+Extensions.m"; sourceTree = "<group>"; };
-		05DD75FF18BCBD8C00A261CD /* DOMRawTouchData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DOMRawTouchData.h; sourceTree = "<group>"; };
-		05DD760018BCBD8C00A261CD /* DOMRawTouchData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DOMRawTouchData.m; sourceTree = "<group>"; };
 		05DD760218BCBE7300A261CD /* DOMRawData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DOMRawData.h; sourceTree = "<group>"; };
 		05F0780A181CC4D2006EA8B0 /* DOMThemeManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DOMThemeManager.h; sourceTree = "<group>"; };
 		05F0780B181CC4D2006EA8B0 /* DOMThemeManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DOMThemeManager.m; sourceTree = "<group>"; };
@@ -399,8 +402,6 @@
 				050A8F3E189CCBE30073E487 /* DOMCalibrationViewController.h */,
 				050A8F3F189CCBE30073E487 /* DOMCalibrationViewController.m */,
 				052DEBCE1835DE20009DEEF4 /* Presenter */,
-				052DEBCF1835DE2F009DEEF4 /* Picker Handlers */,
-				051A8E311830CB14007F9DCD /* Cells */,
 			);
 			name = Calibration;
 			sourceTree = "<group>";
@@ -590,6 +591,8 @@
 			children = (
 				05563B7E182492CA00952A9E /* DOMStrengthGestureRecognizer.h */,
 				05563B7F182492CA00952A9E /* DOMStrengthGestureRecognizer.m */,
+				05050EB218BF628E000724F0 /* DOMDataRecordingStrengthGestureRecognizer.h */,
+				05050EB318BF628E000724F0 /* DOMDataRecordingStrengthGestureRecognizer.m */,
 				059F368B182494D200927A2A /* Motion */,
 			);
 			name = "Event Handling";
@@ -598,12 +601,12 @@
 		058FFC3417DA1424008ECB1B /* Managed Objects */ = {
 			isa = PBXGroup;
 			children = (
-				05DD75FF18BCBD8C00A261CD /* DOMRawTouchData.h */,
-				05DD760018BCBD8C00A261CD /* DOMRawTouchData.m */,
-				05DD75F418BCB87B00A261CD /* DOMTouchData.h */,
-				05DD75F518BCB87B00A261CD /* DOMTouchData.m */,
-				05DD75F118BCB87B00A261CD /* DOMRawMotionData.h */,
-				05DD75F218BCB87B00A261CD /* DOMRawMotionData.m */,
+				05050EAF18BF507E000724F0 /* DOMTouchData.h */,
+				05050EB018BF507E000724F0 /* DOMTouchData.m */,
+				05050EAC18BF4F04000724F0 /* DOMRawMotionData.h */,
+				05050EAD18BF4F04000724F0 /* DOMRawMotionData.m */,
+				05050EA618BF4F03000724F0 /* DOMRawTouchData.h */,
+				05050EA718BF4F03000724F0 /* DOMRawTouchData.m */,
 				059F36B61824DCC300927A2A /* Categories */,
 			);
 			name = "Managed Objects";
@@ -667,6 +670,8 @@
 				05B1FBE018AC58BF0049095F /* DOMUserInfoPickerTableViewController.m */,
 				051A8E271830C7EA007F9DCD /* DOMUserInfoViewController.h */,
 				051A8E281830C7EA007F9DCD /* DOMUserInfoViewController.m */,
+				052DEBCF1835DE2F009DEEF4 /* Picker Handlers */,
+				051A8E311830CB14007F9DCD /* Cells */,
 			);
 			name = "User Info";
 			sourceTree = "<group>";
@@ -934,8 +939,7 @@
 				0543012B181D55660077435C /* DOMTableViewCell.m in Sources */,
 				05CDCD2917BA107800BA12E3 /* DOMFingerCell.m in Sources */,
 				05098F5317B62F7D009D4FF5 /* DOMInfoViewController.m in Sources */,
-				05DD760118BCBD8C00A261CD /* DOMRawTouchData.m in Sources */,
-				05DD75F318BCB87B00A261CD /* DOMRawMotionData.m in Sources */,
+				05050EA818BF4F03000724F0 /* DOMRawTouchData.m in Sources */,
 				054C30A317B7363000ABC9CF /* DOMCalibrationDataViewController.m in Sources */,
 				0530641A18ABBD9A00ECB21D /* NSDate+Helper.m in Sources */,
 				05D273DA181E65930005E31E /* DOMNavigationBar.m in Sources */,
@@ -951,7 +955,6 @@
 				05430131181D5B3A0077435C /* DOMNavigationController.m in Sources */,
 				05DD75FC18BCBC1500A261CD /* DOMRawTouchData+Extensions.m in Sources */,
 				059F3689182494B700927A2A /* DOMMotionManager.m in Sources */,
-				05DD75F618BCB87B00A261CD /* DOMTouchData.m in Sources */,
 				0555262A1838BA0500659796 /* DOMSegmentCell.m in Sources */,
 				05CD6CF418B9EAB5003E3512 /* CMDeviceMotion+Extensions.m in Sources */,
 				05CD6CF118B9EA25003E3512 /* NSObject+Extensions.m in Sources */,
@@ -975,8 +978,11 @@
 				05DD75E418BC8B2600A261CD /* DOMMotionItem.m in Sources */,
 				0598D8CE1824F040007A526F /* UITouch+Extension.m in Sources */,
 				05F0780C181CC4D2006EA8B0 /* DOMThemeManager.m in Sources */,
+				05050EB418BF628E000724F0 /* DOMDataRecordingStrengthGestureRecognizer.m in Sources */,
 				05B1FBDD18AC53600049095F /* DOMPickerTableViewController.m in Sources */,
 				05A5FD6D183A2F8F000F57C4 /* DOMCircleTouchView.m in Sources */,
+				05050EAE18BF4F04000724F0 /* DOMRawMotionData.m in Sources */,
+				05050EB118BF507E000724F0 /* DOMTouchData.m in Sources */,
 				05CDCD1F17BA0B7F00BA12E3 /* DOMGroupSelectionViewController.m in Sources */,
 				0530641D18ABC02100ECB21D /* DOMLocalNotificationHelper.m in Sources */,
 				054C30A817B7366800ABC9CF /* DOMCalibrationMonthsViewController.m in Sources */,

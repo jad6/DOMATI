@@ -69,15 +69,14 @@
 {
     NSMutableDictionary *dictionary = [[NSMutableDictionary alloc] init];
 
-    dictionary[@"acceleration"] = self.acceleration;
+    dictionary[@"acceleration_avg"] = self.accelerationAvg;
     dictionary[@"duration"] = self.duration;
-    dictionary[@"num_touches"] = self.numTouches;
-    dictionary[@"radius"] = self.radius;
-    dictionary[@"rotation"] = self.rotation;
-    dictionary[@"strength"] = self.strength;
-    dictionary[@"x"] = self.x;
-    dictionary[@"y"] = self.y;
+    dictionary[@"max_radius"] = self.maxRadius;
+    dictionary[@"rotation_avg"] = self.rotationAvg;
+    dictionary[@"x_delta"] = self.xDetla;
+    dictionary[@"y_delta"] = self.yDelta;
     dictionary[@"cali_strength"] = self.calibrationStrength;
+    dictionary[@"group"] = self.group;
 
     dictionary[@"device"] = [UIDevice currentDevice].model;
     dictionary[@"app_version"] = [UIApplication version];

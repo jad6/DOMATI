@@ -38,9 +38,9 @@
     [[DOMCoreDataManager sharedManager] setupCoreData];
     
     // Only attempt uploads at launch once the user has been sycned.
-//    if ([DOMUser currentUser].identifier > 0) {
-//        [[DOMRequestOperationManager sharedManager] uploadDataWhenPossible];
-//    }
+    if ([DOMUser currentUser].identifier > 0) {
+        [[DOMRequestOperationManager sharedManager] uploadDataWhenPossible];
+    }
     
     return YES;
 }

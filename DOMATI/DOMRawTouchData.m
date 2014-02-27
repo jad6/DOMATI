@@ -2,7 +2,7 @@
 //  DOMRawTouchData.m
 //  DOMATI
 //
-//  Created by Jad Osseiran on 25/02/2014.
+//  Created by Jad Osseiran on 27/02/2014.
 //  Copyright (c) 2014 Jad. All rights reserved.
 //
 
@@ -13,6 +13,11 @@
 @implementation DOMRawTouchData
 
 @dynamic identifier;
+@dynamic timestamp;
+@dynamic phase;
+@dynamic x;
+@dynamic y;
+@dynamic radius;
 @dynamic touchData;
 
 @end
