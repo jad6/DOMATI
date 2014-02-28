@@ -16,7 +16,7 @@ typedef NS_ENUM(NSInteger, DOMGender) {
 
 @interface DOMUser : NSObject
 
-@property (nonatomic, strong) NSString *profession;
+@property (nonatomic, strong) NSString *occupation;
 
 @property (nonatomic) DOMGender gender;
 

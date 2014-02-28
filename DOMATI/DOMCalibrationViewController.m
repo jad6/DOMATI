@@ -18,20 +18,13 @@
 #define MIN_TOUCH_SETS_WANTED 3
 #define ANIMATION_DURATION 0.3
 
-// The state in which the view controller is currently in.
-typedef NS_ENUM(NSInteger, DOMCalibrationState) {
-    DOMCalibrationStateInitial,
-    DOMCalibrationStateModerateTouch,
-    DOMCalibrationStateSoftTouch,
-    DOMCalibrationStateHardTouch,
-    DOMCalibrationStateFinal
-};
-
 @interface DOMCalibrationViewController () 
 
 // The views which have been setup in the storyboard.
 @property (nonatomic, weak) IBOutlet DOMCircleTouchView *circleTouchView;
 @property (nonatomic, weak) IBOutlet UILabel *topLabel, *bottomLabel;
+
+@property (nonatomic, strong) DOMDataRecordingStrengthGestureRecognizer *strengthGR;
 
 // An array to store information about wach states.
 @property (nonatomic, strong) NSArray *statesInformation;
@@ -51,16 +44,18 @@ typedef NS_ENUM(NSInteger, DOMCalibrationState) {
     // Add the strength gesture recognizer to the circle view.
     DOMDataRecordingStrengthGestureRecognizer *strengthGR = [[DOMDataRecordingStrengthGestureRecognizer alloc] initWithTarget:self action:@selector(tapDetected:)];
     [self.circleTouchView addGestureRecognizer:strengthGR];
+    self.strengthGR = strengthGR;
     
-    __weak __typeof(strengthGR)weakStrengthGR = strengthGR;
+    __weak __typeof(self)weakSelf = self;
     [strengthGR setCoreDataSaveCompletionBlock:^{
-        if (self.state >= DOMCalibrationStateFinal &&
-            !weakStrengthGR.saving) {
+        __strong __typeof(weakSelf)strongSelf = weakSelf;
+        
+        if (strongSelf.state >= DOMCalibrationStateFinal &&
+            !strongSelf.strengthGR.saving) {
             // Attempt to upload the new (and possibly old data).
             [[DOMRequestOperationManager sharedManager] uploadDataWhenPossible];
         }
     }];
-    
     
     self.statesInformation = [[NSArray alloc] initWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"CalibrationStates" withExtension:@"plist"]];
     
@@ -85,12 +80,35 @@ typedef NS_ENUM(NSInteger, DOMCalibrationState) {
     
     [self setViewForState:state
                  animated:(state != DOMCalibrationStateInitial)];
+    
+    // Handle the final state.
+    if (state == DOMCalibrationStateFinal) {
+        // Increment the saved number of calibration the user has made
+        // on the device.
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        NSInteger numTouchSets = [[defaults objectForKey:DEFAULTS_TOUCH_SETS_RECORDED] integerValue];
+        numTouchSets++;
+        
+        // If the user has not done enough calibrations setup a local notification.
+        if (numTouchSets < MIN_TOUCH_SETS_WANTED) {
+            [DOMLocalNotificationHelper schedualLocalNotification];
+        }
+        
+        // Save the new calibration number value.
+        [defaults setObject:@(numTouchSets) forKey:DEFAULTS_TOUCH_SETS_RECORDED];
+        [defaults synchronize];
+    }
 }
 
 - (BOOL)canBecomeFirstResponder
 {
     // To allow shaking events.
     return YES;
+}
+
+- (void)didReceiveMemoryWarning
+{
+    [self.strengthGR resetMotionCache];
 }
 
 #pragma mark - Actions
@@ -102,6 +120,9 @@ typedef NS_ENUM(NSInteger, DOMCalibrationState) {
  */
 - (void)tapDetected:(DOMStrengthGestureRecognizer *)strengthGR
 {
+    NSNotification *stateNotif = [[NSNotification alloc] initWithName:kCalibrationStateChangeNotificationName object:self userInfo:@{@"state" : @(self.state)}];
+    [[NSNotificationCenter defaultCenter] postNotification:stateNotif];
+    
     // Only move states when in the appropriate current state.
     if (self.state > DOMCalibrationStateInitial &&
         self.state < DOMCalibrationStateFinal) {
@@ -182,24 +203,6 @@ typedef NS_ENUM(NSInteger, DOMCalibrationState) {
     
     // If the apha on the circle touch view is not 100%, disable it.
     self.circleTouchView.userInteractionEnabled = (circleTouchAlpha == 1.0);
-    
-    // Handle the final state.
-    if (state == DOMCalibrationStateFinal) {
-        // Increment the saved number of calibration the user has made
-        // on the device.
-        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-        NSInteger numTouchSets = [[defaults objectForKey:DEFAULTS_TOUCH_SETS_RECORDED] integerValue];
-        numTouchSets++;
-        
-        // If the user has not done enough calibrations setup a local notification.
-        if (numTouchSets < MIN_TOUCH_SETS_WANTED) {
-            [DOMLocalNotificationHelper schedualLocalNotification];
-        }
-        
-        // Save the new calibration number value.
-        [defaults setObject:@(numTouchSets) forKey:DEFAULTS_TOUCH_SETS_RECORDED];
-        [defaults synchronize];
-    }
 }
 
 #pragma mark - Shaking

@@ -20,4 +20,6 @@
 
 - (DOMMotionItem *)lastMotionItem;
 
+- (void)resetLinkedList;
+
 @end

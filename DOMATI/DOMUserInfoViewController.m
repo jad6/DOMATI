@@ -104,8 +104,8 @@ static NSInteger kUndisclosedAlertTag = 10;
     if (self.user.weight == 0.0) {
         [undisclosedFields addObject:@"Weight"];
     }
-    if (!self.user.profession || [self.user.profession isEqualToString:[DOMPickerHandler undisclosedValue]]) {
-        [undisclosedFields addObject:@"Profession"];
+    if (!self.user.occupation || [self.user.occupation isEqualToString:[DOMPickerHandler undisclosedValue]]) {
+        [undisclosedFields addObject:@"Occupation"];
     }
     
     return undisclosedFields;
@@ -142,7 +142,7 @@ static NSInteger kUndisclosedAlertTag = 10;
 
 /**
  *  This sets the table in the following format: Gender, Birth Year | 
- *  Height, Weight | Profession. 
+ *  Height, Weight | Occupation.
  *
  *  Unless there is exisiting user data the rows will be set as "Undisclosed".
  *
@@ -212,10 +212,10 @@ static NSInteger kUndisclosedAlertTag = 10;
         }
             
         case 2: {
-            text = @"Profession";
+            text = @"Occupation";
             
-            if (user.profession) {
-                detailText = user.profession;
+            if (user.occupation) {
+                detailText = user.occupation;
             }
             break;
         }

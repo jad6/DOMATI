@@ -16,4 +16,6 @@
 - (NSArray *)allPhasesInfoForTouch:(UITouch *)touch;
 - (NSDictionary *)motionsInfoForTouch:(UITouch *)touch;
 
+- (void)resetMotionCache;
+
 @end

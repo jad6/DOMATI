@@ -12,6 +12,7 @@
 
 #import "NSManagedObject+Appulse.h"
 #import "UIApplication+Extensions.h"
+#import "UIDevice+Extension.h"
 
 #import "DOMRawMotionData.h"
 #import "DOMRawTouchData.h"
@@ -68,7 +69,7 @@
 - (NSDictionary *)postDictionary
 {
     NSMutableDictionary *dictionary = [[NSMutableDictionary alloc] init];
-
+    
     dictionary[@"acceleration_avg"] = self.accelerationAvg;
     dictionary[@"duration"] = self.duration;
     dictionary[@"max_radius"] = self.maxRadius;
@@ -78,7 +79,8 @@
     dictionary[@"cali_strength"] = self.calibrationStrength;
     dictionary[@"group"] = self.group;
 
-    dictionary[@"device"] = [UIDevice currentDevice].model;
+    dictionary[@"device"] = [[UIDevice currentDevice] model];
+    dictionary[@"device_model"] = [[UIDevice currentDevice] modelDetailed];
     dictionary[@"app_version"] = [UIApplication version];
     dictionary[@"user_id"] = @([DOMUser currentUser].identifier);
     

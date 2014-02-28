@@ -77,15 +77,15 @@
         
         currentHandler = yearsHandler;
     } else if (indexPath.section == 2) {
-        // Set the profession from the possible existing detail value.
-        NSString *initialProf = ([headerCell.detailTextLabel.text isEqualToString:[DOMPickerHandler undisclosedValue]]) ? nil : headerCell.detailTextLabel.text;
+        // Set the occupation from the possible existing detail value.
+        NSString *initialOccupation = ([headerCell.detailTextLabel.text isEqualToString:[DOMPickerHandler undisclosedValue]]) ? nil : headerCell.detailTextLabel.text;
         
-        DOMProfessionPickerHandler *professionHandler = [[DOMProfessionPickerHandler alloc] init];
-        [professionHandler populatedPicker:picker
-                     withInitialProfession:initialProf
+        DOMOccupationPickerHandler *occupationHandler = [[DOMOccupationPickerHandler alloc] init];
+        [occupationHandler populatedPicker:picker
+                     withInitialOccupation:initialOccupation
                                   delegate:self];
         
-        currentHandler = professionHandler;
+        currentHandler = occupationHandler;
     }
     
     self.currentPickerHandler = currentHandler;
@@ -103,14 +103,14 @@
     self.user.birthYear = year;
 }
 
-- (void)pickerView:(UIPickerView *)pickerView didChangeProfession:(NSString *)profession
+- (void)pickerView:(UIPickerView *)pickerView didChangeOccupation:(NSString *)occupation
 {
-    BOOL undisclosed = (profession == nil);
+    BOOL undisclosed = (occupation == nil);
     
-    [self setDetailText:profession
+    [self setDetailText:occupation
             undisclosed:undisclosed];
     
-    self.user.profession = profession;
+    self.user.occupation = occupation;
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField withCellType:(DOMTextFieldCellType)type

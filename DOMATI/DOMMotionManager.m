@@ -41,6 +41,11 @@ static NSTimeInterval kUpdateInterval = 1/100.0;
     return singletonObject;
 }
 
+- (void)resetLinkedList
+{
+    self.headMotionItem = self.tailMotionItem;
+}
+
 /**
  *  Starts the device sensors (both accelerometer and gyroscope).
  *
@@ -87,6 +92,8 @@ static NSTimeInterval kUpdateInterval = 1/100.0;
     // Only stop the sensors if they were already active.
     if ([self isDeviceMotionActive]) {
         [self stopDeviceMotionUpdates];
+        
+        [self resetLinkedList];
     }
 }
 

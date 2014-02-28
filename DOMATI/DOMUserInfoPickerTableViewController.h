@@ -9,14 +9,14 @@
 #import "DOMPickerTableViewController.h"
 
 #import "DOMYearsPickerHandler.h"
-#import "DOMProfessionPickerHandler.h"
+#import "DOMOccupationPickerHandler.h"
 
 #import "DOMGenderSegmentCell.h"
 #import "DOMTextFieldCell.h"
 
 #import "DOMUser.h"
 
-@interface DOMUserInfoPickerTableViewController : DOMPickerTableViewController <DOMYearsPickerHandlerDelegate, DOMProfessionPickerHandlerDelegate, DOMTextFieldCellDelegate, DOMGenderSegmentCellDelegate>
+@interface DOMUserInfoPickerTableViewController : DOMPickerTableViewController <DOMYearsPickerHandlerDelegate, DOMOccupationPickerHandlerDelegate, DOMTextFieldCellDelegate, DOMGenderSegmentCellDelegate>
 
 // The current handler that is being used by the visible picker.
 @property (nonatomic, strong, readonly) DOMPickerHandler *currentPickerHandler;

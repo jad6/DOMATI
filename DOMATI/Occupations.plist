@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<string>Professional</string>
+	<string>Clerical &amp; Admin</string>
+	<string>Technicians &amp; Trade</string>
+	<string>Manager</string>
+	<string>Community &amp; Personal Service</string>
+	<string>Labourer</string>
+	<string>Sales Worker</string>
+	<string>Machinery Operators &amp; Driver</string>
+	<string>Student</string>
+	<string>Other</string>
+</array>
+</plist>

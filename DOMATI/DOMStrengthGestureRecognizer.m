@@ -75,6 +75,11 @@
 
 #pragma mark - Logic
 
+- (void)resetMotionCache
+{
+    [self.motionManager resetLinkedList];
+}
+
 - (NSDictionary *)motionsInfoForTouch:(UITouch *)touch
 {
     NSString *pointerKey = [touch pointerString];

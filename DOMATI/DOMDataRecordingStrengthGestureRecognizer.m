@@ -10,6 +10,8 @@
 
 #import "DOMDataRecordingStrengthGestureRecognizer.h"
 
+#import "DOMCalibrationViewController.h"
+
 #import "DOMCoreDataManager.h"
 #import "DOMTouchData+Extension.h"
 #import "DOMRawMotionData+Extensions.h"
@@ -21,12 +23,36 @@
 
 @property (nonatomic, copy) DOMCoreDataSave saveDataCompletionBlock;
 
+@property (nonatomic) DOMCalibrationState currentState;
 @property (nonatomic) BOOL saving;
 @property (nonatomic) NSInteger numberOfCoreDataSaves;
 
 @end
 
 @implementation DOMDataRecordingStrengthGestureRecognizer 
+
+- (id)initWithTarget:(id)target action:(SEL)action
+{
+    self = [super initWithTarget:target action:action];
+    if (self) {
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changedState:) name:kCalibrationStateChangeNotificationName object:nil];
+    }
+    return self;
+}
+
+- (id)init
+{
+    self = [super initWithTarget:nil action:nil];
+    if (self) {
+        
+    }
+    return self;
+}
+
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
 
 - (void)setNumberOfCoreDataSaves:(NSInteger)numberOfCoreDataSaves
 {
@@ -114,6 +140,7 @@
         [touchData addRawTouchDataObject:rawData];
     }
     
+    touchData.calibrationStrength = @(self.currentState);
     touchData.xDetla = @(ABS(endX - startX));
     touchData.yDelta = @(ABS(endY - startY));
     touchData.maxRadius = @(maxRadius);
@@ -136,6 +163,13 @@
 - (void)setCoreDataSaveCompletionBlock:(DOMCoreDataSave)block
 {
     self.saveDataCompletionBlock = block;
+}
+
+#pragma mark - Notification
+
+- (void)changedState:(NSNotification *)notification
+{
+    self.currentState = [[notification userInfo][@"state"] integerValue];
 }
 
 @end

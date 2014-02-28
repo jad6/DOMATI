@@ -8,6 +8,17 @@
 
 #import <UIKit/UIKit.h>
 
+// The state in which the view controller is currently in.
+typedef NS_ENUM(NSInteger, DOMCalibrationState) {
+    DOMCalibrationStateInitial,
+    DOMCalibrationStateModerateTouch,
+    DOMCalibrationStateSoftTouch,
+    DOMCalibrationStateHardTouch,
+    DOMCalibrationStateFinal
+};
+
+static NSString *kCalibrationStateChangeNotificationName = @"DOMCalibrationSateChangeNotification";
+
 @interface DOMCalibrationViewController : UIViewController
 
 @end

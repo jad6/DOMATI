@@ -15,7 +15,7 @@
 @end
 
 static NSString *kIdentifierKey = @"DOMUserIdentifierKey";
-static NSString *kProfessionKey = @"DOMUserProfessionKey";
+static NSString *kOccupationKey = @"DOMUserOccupationKey";
 static NSString *kGenderKey = @"DOMUserGenderKey";
 static NSString *kBirthYearKey = @"DOMUserBirthYearKey";
 static NSString *kWeightKey = @"DOMUserWeightKey";
@@ -24,7 +24,7 @@ static NSString *kHeightKey = @"DOMUserHeightKey";
 @implementation DOMUser
 
 @synthesize identifier = _identifier;
-@synthesize profession = _profession;
+@synthesize occupation = _occupation;
 @synthesize gender = _gender;
 @synthesize birthYear = _birthYear;
 @synthesize weight = _weight;
@@ -74,7 +74,7 @@ static NSString *kHeightKey = @"DOMUserHeightKey";
     user.gender = user.gender;
     user.weight = user.weight;
     user.height = user.height;
-    user.profession = user.profession;
+    user.occupation = user.occupation;
 }
 
 #pragma mark - Network
@@ -87,7 +87,7 @@ static NSString *kHeightKey = @"DOMUserHeightKey";
     dictionary[@"gender"] = @(self.gender);
     dictionary[@"weight"] = @(self.weight);
     dictionary[@"height"] = @(self.height);
-    dictionary[@"profession"] = self.profession;
+    dictionary[@"occupation"] = self.occupation;
     
     return dictionary;
 }
@@ -113,22 +113,22 @@ static NSString *kHeightKey = @"DOMUserHeightKey";
     return self->_identifier;
 }
 
-- (void)setProfession:(NSString *)profession
+- (void)setOccupation:(NSString *)occupation
 {
-    if (self->_profession != profession) {
-        self->_profession = profession;
+    if (self->_occupation != occupation) {
+        self->_occupation = occupation;
         
-        [self keyStoreSetValue:profession forKey:kProfessionKey];
+        [self keyStoreSetValue:occupation forKey:kOccupationKey];
     }
 }
 
-- (NSString *)profession
+- (NSString *)occupation
 {
-    if (!self->_profession) {
-        self->_profession = [self.keyStore objectForKey:kProfessionKey];
+    if (!self->_occupation) {
+        self->_occupation = [self.keyStore objectForKey:kOccupationKey];
     }
     
-    return self->_profession;
+    return self->_occupation;
 }
 
 - (void)setGender:(DOMGender)gender

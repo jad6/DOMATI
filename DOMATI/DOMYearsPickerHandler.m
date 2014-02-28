@@ -31,12 +31,12 @@
 
 - (NSInteger)currentYear
 {
-    if (!_currentYear) {
+    if (!self->_currentYear) {
         NSDateComponents *comps = [[NSCalendar currentCalendar] components:NSYearCalendarUnit fromDate:[NSDate date]];
-        _currentYear = [comps year];
+        self->_currentYear = [comps year];
     }
     
-    return _currentYear;
+    return self->_currentYear;
 }
 
 #pragma mark - Logic

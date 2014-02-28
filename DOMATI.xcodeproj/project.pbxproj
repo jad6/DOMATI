@@ -82,15 +82,15 @@
 		05B1FBDD18AC53600049095F /* DOMPickerTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05B1FBDC18AC53600049095F /* DOMPickerTableViewController.m */; };
 		05B1FBE118AC58BF0049095F /* DOMUserInfoPickerTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05B1FBE018AC58BF0049095F /* DOMUserInfoPickerTableViewController.m */; };
 		05B1FBE418AC9BE10049095F /* UIApplication+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 05B1FBE318AC9BE10049095F /* UIApplication+Extensions.m */; };
+		05B9B20118BF8C25006D24B8 /* UIDevice+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 05B9B20018BF8C25006D24B8 /* UIDevice+Extension.m */; };
 		05BD579918B48824003FE71B /* UserInfoTable.plist in Resources */ = {isa = PBXBuildFile; fileRef = 05BD579818B48824003FE71B /* UserInfoTable.plist */; };
 		05C4C660182F118A00E45F9D /* Project Proposal.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 05C4C65F182F118A00E45F9D /* Project Proposal.pdf */; };
 		05C702F1189C8D8A00E0AC35 /* DOMYearsPickerHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 05C702F0189C8D8A00E0AC35 /* DOMYearsPickerHandler.m */; };
 		05C702F7189C8DF500E0AC35 /* DOMPickerHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 05C702F6189C8DF500E0AC35 /* DOMPickerHandler.m */; };
-		05C702FA189C9BC200E0AC35 /* DOMProfessionPickerHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 05C702F9189C9BC200E0AC35 /* DOMProfessionPickerHandler.m */; };
-		05C702FC189C9BE700E0AC35 /* Professions.plist in Resources */ = {isa = PBXBuildFile; fileRef = 05C702FB189C9BE700E0AC35 /* Professions.plist */; };
+		05C702FA189C9BC200E0AC35 /* DOMOccupationPickerHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 05C702F9189C9BC200E0AC35 /* DOMOccupationPickerHandler.m */; };
+		05C702FC189C9BE700E0AC35 /* Occupations.plist in Resources */ = {isa = PBXBuildFile; fileRef = 05C702FB189C9BE700E0AC35 /* Occupations.plist */; };
 		05C702FE189CA54E00E0AC35 /* TechExpMapping.plist in Resources */ = {isa = PBXBuildFile; fileRef = 05C702FD189CA54E00E0AC35 /* TechExpMapping.plist */; };
 		05CD6CF118B9EA25003E3512 /* NSObject+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 05CD6CF018B9EA25003E3512 /* NSObject+Extensions.m */; };
-		05CD6CF418B9EAB5003E3512 /* CMDeviceMotion+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 05CD6CF218B9EAB5003E3512 /* CMDeviceMotion+Extensions.m */; };
 		05CDCD1F17BA0B7F00BA12E3 /* DOMGroupSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05CDCD1E17BA0B7F00BA12E3 /* DOMGroupSelectionViewController.m */; };
 		05CDCD2017BA0B7F00BA12E3 /* DOMGroupSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05CDCD1E17BA0B7F00BA12E3 /* DOMGroupSelectionViewController.m */; };
 		05CDCD2217BA0D3C00BA12E3 /* Groups.plist in Resources */ = {isa = PBXBuildFile; fileRef = 05CDCD2117BA0D3C00BA12E3 /* Groups.plist */; };
@@ -228,20 +228,20 @@
 		05B1FBE018AC58BF0049095F /* DOMUserInfoPickerTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DOMUserInfoPickerTableViewController.m; sourceTree = "<group>"; };
 		05B1FBE218AC9BE10049095F /* UIApplication+Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIApplication+Extensions.h"; sourceTree = "<group>"; };
 		05B1FBE318AC9BE10049095F /* UIApplication+Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIApplication+Extensions.m"; sourceTree = "<group>"; };
+		05B9B1FF18BF8C25006D24B8 /* UIDevice+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIDevice+Extension.h"; sourceTree = "<group>"; };
+		05B9B20018BF8C25006D24B8 /* UIDevice+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+Extension.m"; sourceTree = "<group>"; };
 		05BD579818B48824003FE71B /* UserInfoTable.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = UserInfoTable.plist; sourceTree = "<group>"; };
 		05C4C65F182F118A00E45F9D /* Project Proposal.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "Project Proposal.pdf"; sourceTree = "<group>"; };
 		05C702EF189C8D8A00E0AC35 /* DOMYearsPickerHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DOMYearsPickerHandler.h; sourceTree = "<group>"; };
 		05C702F0189C8D8A00E0AC35 /* DOMYearsPickerHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DOMYearsPickerHandler.m; sourceTree = "<group>"; };
 		05C702F5189C8DF500E0AC35 /* DOMPickerHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DOMPickerHandler.h; sourceTree = "<group>"; };
 		05C702F6189C8DF500E0AC35 /* DOMPickerHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DOMPickerHandler.m; sourceTree = "<group>"; };
-		05C702F8189C9BC200E0AC35 /* DOMProfessionPickerHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DOMProfessionPickerHandler.h; sourceTree = "<group>"; };
-		05C702F9189C9BC200E0AC35 /* DOMProfessionPickerHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DOMProfessionPickerHandler.m; sourceTree = "<group>"; };
-		05C702FB189C9BE700E0AC35 /* Professions.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Professions.plist; sourceTree = "<group>"; };
+		05C702F8189C9BC200E0AC35 /* DOMOccupationPickerHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DOMOccupationPickerHandler.h; sourceTree = "<group>"; };
+		05C702F9189C9BC200E0AC35 /* DOMOccupationPickerHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DOMOccupationPickerHandler.m; sourceTree = "<group>"; };
+		05C702FB189C9BE700E0AC35 /* Occupations.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Occupations.plist; sourceTree = "<group>"; };
 		05C702FD189CA54E00E0AC35 /* TechExpMapping.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = TechExpMapping.plist; sourceTree = "<group>"; };
 		05CD6CEF18B9EA25003E3512 /* NSObject+Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Extensions.h"; sourceTree = "<group>"; };
 		05CD6CF018B9EA25003E3512 /* NSObject+Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Extensions.m"; sourceTree = "<group>"; };
-		05CD6CF218B9EAB5003E3512 /* CMDeviceMotion+Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CMDeviceMotion+Extensions.m"; sourceTree = "<group>"; };
-		05CD6CF318B9EAB5003E3512 /* CMDeviceMotion+Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CMDeviceMotion+Extensions.h"; sourceTree = "<group>"; };
 		05CDCD1D17BA0B7F00BA12E3 /* DOMGroupSelectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DOMGroupSelectionViewController.h; sourceTree = "<group>"; };
 		05CDCD1E17BA0B7F00BA12E3 /* DOMGroupSelectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DOMGroupSelectionViewController.m; sourceTree = "<group>"; };
 		05CDCD2117BA0D3C00BA12E3 /* Groups.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Groups.plist; sourceTree = "<group>"; };
@@ -434,8 +434,8 @@
 				0598D8CD1824F040007A526F /* UITouch+Extension.m */,
 				05AB7A331883B39900FDCBE6 /* NSError+Extension.h */,
 				05AB7A341883B39900FDCBE6 /* NSError+Extension.m */,
-				05CD6CF218B9EAB5003E3512 /* CMDeviceMotion+Extensions.m */,
-				05CD6CF318B9EAB5003E3512 /* CMDeviceMotion+Extensions.h */,
+				05B9B1FF18BF8C25006D24B8 /* UIDevice+Extension.h */,
+				05B9B20018BF8C25006D24B8 /* UIDevice+Extension.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -456,8 +456,8 @@
 				05C702F6189C8DF500E0AC35 /* DOMPickerHandler.m */,
 				05C702EF189C8D8A00E0AC35 /* DOMYearsPickerHandler.h */,
 				05C702F0189C8D8A00E0AC35 /* DOMYearsPickerHandler.m */,
-				05C702F8189C9BC200E0AC35 /* DOMProfessionPickerHandler.h */,
-				05C702F9189C9BC200E0AC35 /* DOMProfessionPickerHandler.m */,
+				05C702F8189C9BC200E0AC35 /* DOMOccupationPickerHandler.h */,
+				05C702F9189C9BC200E0AC35 /* DOMOccupationPickerHandler.m */,
 			);
 			name = "Picker Handlers";
 			sourceTree = "<group>";
@@ -525,7 +525,7 @@
 			isa = PBXGroup;
 			children = (
 				050ACB19189A4F41006F74DD /* Network.plist */,
-				05C702FB189C9BE700E0AC35 /* Professions.plist */,
+				05C702FB189C9BE700E0AC35 /* Occupations.plist */,
 				05C702FD189CA54E00E0AC35 /* TechExpMapping.plist */,
 				05CDCD2117BA0D3C00BA12E3 /* Groups.plist */,
 				05A939EF18AB1AD80047F4CD /* CalibrationStates.plist */,
@@ -876,7 +876,7 @@
 				05C4C660182F118A00E45F9D /* Project Proposal.pdf in Resources */,
 				05098F2A17B62859009D4FF5 /* Images.xcassets in Resources */,
 				050ACB1A189A4F41006F74DD /* Network.plist in Resources */,
-				05C702FC189C9BE700E0AC35 /* Professions.plist in Resources */,
+				05C702FC189C9BE700E0AC35 /* Occupations.plist in Resources */,
 				05BD579918B48824003FE71B /* UserInfoTable.plist in Resources */,
 				05CDCD2217BA0D3C00BA12E3 /* Groups.plist in Resources */,
 				05A939F018AB1AD80047F4CD /* CalibrationStates.plist in Resources */,
@@ -947,7 +947,7 @@
 				054EAD2218BA2F9E00AD9D31 /* LLItem.m in Sources */,
 				05430128181D23ED0077435C /* DOMThemeResources.m in Sources */,
 				05B1FBE418AC9BE10049095F /* UIApplication+Extensions.m in Sources */,
-				05C702FA189C9BC200E0AC35 /* DOMProfessionPickerHandler.m in Sources */,
+				05C702FA189C9BC200E0AC35 /* DOMOccupationPickerHandler.m in Sources */,
 				0555262D1838BA9900659796 /* DOMGenderSegmentCell.m in Sources */,
 				05457F96183104A2005CDEC4 /* DOMCalibrationPresenter.m in Sources */,
 				05D273D7181E657C0005E31E /* DOMTableView.m in Sources */,
@@ -956,7 +956,6 @@
 				05DD75FC18BCBC1500A261CD /* DOMRawTouchData+Extensions.m in Sources */,
 				059F3689182494B700927A2A /* DOMMotionManager.m in Sources */,
 				0555262A1838BA0500659796 /* DOMSegmentCell.m in Sources */,
-				05CD6CF418B9EAB5003E3512 /* CMDeviceMotion+Extensions.m in Sources */,
 				05CD6CF118B9EA25003E3512 /* NSObject+Extensions.m in Sources */,
 				05AB7A351883B39900FDCBE6 /* NSError+Extension.m in Sources */,
 				054C30AC17B7368200ABC9CF /* DOMCalibrationMothDetailViewController.m in Sources */,
@@ -977,6 +976,7 @@
 				056D2C011897D44500C5910A /* DOMUser.m in Sources */,
 				05DD75E418BC8B2600A261CD /* DOMMotionItem.m in Sources */,
 				0598D8CE1824F040007A526F /* UITouch+Extension.m in Sources */,
+				05B9B20118BF8C25006D24B8 /* UIDevice+Extension.m in Sources */,
 				05F0780C181CC4D2006EA8B0 /* DOMThemeManager.m in Sources */,
 				05050EB418BF628E000724F0 /* DOMDataRecordingStrengthGestureRecognizer.m in Sources */,
 				05B1FBDD18AC53600049095F /* DOMPickerTableViewController.m in Sources */,
