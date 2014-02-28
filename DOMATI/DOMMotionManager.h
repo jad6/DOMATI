@@ -18,8 +18,8 @@
 - (void)startDeviceMotion:(NSError * __autoreleasing *)error;
 - (void)stopDeviceMotion;
 
-- (DOMMotionItem *)lastMotionItem;
+- (DOMMotionItem *)lastMotionItemWithTouchPhase:(UITouchPhase)phase;
 
-- (void)resetLinkedList;
+- (void)resetLinkedListIfPossible;
 
 @end

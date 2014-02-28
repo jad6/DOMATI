@@ -24,9 +24,8 @@
 }
 
 @property (nonatomic, strong) DOMMotionManager *motionManager;
-@property (nonatomic, strong) DOMMotionItem *motionItem;
 
-@property (nonatomic, strong) NSMutableDictionary *touchesInfo, *motionsInfo;
+@property (nonatomic, strong) NSMutableDictionary *touchesInfo, *motionsInfo, *motionItems;
 @property (nonatomic, strong) NSTimer *longPressTimer;
 
 @property (nonatomic) CGFloat strength;
@@ -43,6 +42,7 @@
         dispatch_sync(self->dataProcessingQueue, ^{
             self.touchesInfo = [[NSMutableDictionary alloc] init];
             self.motionsInfo = [[NSMutableDictionary alloc] init];
+            self.motionItems = [[NSMutableDictionary alloc] init];
         });
         
         DOMMotionManager *motionManager = [DOMMotionManager sharedManager];
@@ -77,7 +77,7 @@
 
 - (void)resetMotionCache
 {
-    [self.motionManager resetLinkedList];
+    [self.motionManager resetLinkedListIfPossible];
 }
 
 - (NSDictionary *)motionsInfoForTouch:(UITouch *)touch
@@ -119,6 +119,11 @@
     dispatch_sync(self->dataProcessingQueue, ^{
         for (UITouch *touch in touches) {
             NSString *pointerKey = [touch pointerString];
+            
+            if (touch.phase == UITouchPhaseBegan) {
+                self.motionItems[pointerKey] = [[DOMMotionManager sharedManager] lastMotionItemWithTouchPhase:UITouchPhaseBegan];
+            }
+            
             CGPoint touchLocation = [self locationOfTouch:touch onScreenForView:self.view];
             
             NSDictionary *touchInfo = @{@"timestamp" : @(touch.timestamp),
@@ -144,8 +149,6 @@
 {
     [super touchesBegan:touches withEvent:event];
     
-    self.motionItem = [[DOMMotionManager sharedManager] lastMotionItem];
-    
     [self storeTouchesInfo:touches];
 }
 
@@ -165,11 +168,15 @@
     dispatch_sync(self->dataProcessingQueue, ^{
         
         for (UITouch *touch in touches) {
-            DOMMotionItem *motionItem = [[DOMMotionManager sharedManager] lastMotionItem];
+            NSString *pointerKey = [touch pointerString];
             
-            DOMMotionItem *headMotionItem = self.motionItem;
+            DOMMotionItem *motionItem = [[DOMMotionManager sharedManager] lastMotionItemWithTouchPhase:UITouchPhaseEnded];
+            
+            DOMMotionItem *headMotionItem = self.motionItems[pointerKey];
             DOMMotionItem *currentMotionItem = headMotionItem;
             DOMMotionItem *tailMotionItem = motionItem;
+            
+            [self.motionItems removeObjectForKey:pointerKey];
             
             double totalAcceleration = 0.0;
             double totalRotation = 0.0;
@@ -195,11 +202,15 @@
             CGFloat avgAcceleration = (totalAcceleration / (motionsCount * 1.0));
             CGFloat avgRotation = (totalRotation / (motionsCount * 1.0));
             
+            NSLog(@"%f", avgAcceleration);
+            
             self.motionsInfo[[touch pointerString]] = @{@"motions" : motions,
                                                         @"accelerationAvg" : @(avgAcceleration),
                                                         @"rotationAvg" : @(avgRotation)};
         }
     });
+    
+    [self.motionManager resetLinkedListIfPossible];
 
     if (self.state == UIGestureRecognizerStatePossible) {
         self.state = UIGestureRecognizerStateRecognized;

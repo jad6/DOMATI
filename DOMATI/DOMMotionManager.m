@@ -16,6 +16,8 @@
 
 @property (nonatomic, strong) DOMMotionItem *headMotionItem, *tailMotionItem;
 
+@property (nonatomic) NSInteger numActiveTouches;
+
 @end
 
 // 100 Hz update interval.
@@ -36,14 +38,27 @@ static NSTimeInterval kUpdateInterval = 1/100.0;
     dispatch_once(&onceToken, ^{
         singletonObject = [[self alloc] init];
         singletonObject->listQueue = dispatch_queue_create("list_queue", DISPATCH_QUEUE_SERIAL);
+        
+        NSNotificationCenter *notifCenter = [NSNotificationCenter defaultCenter];
+        [notifCenter addObserver:self selector:@selector(stopDeviceMotion) name:UIApplicationDidEnterBackgroundNotification object:nil];
+        [notifCenter addObserver:self selector:@selector(startDeviceMotion:) name:UIApplicationDidBecomeActiveNotification object:nil];
     });
     
     return singletonObject;
 }
 
-- (void)resetLinkedList
+- (void)dealloc
 {
-    self.headMotionItem = self.tailMotionItem;
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+- (void)resetLinkedListIfPossible
+{
+    dispatch_sync(self->listQueue, ^{
+        if (self.numActiveTouches == 0) {
+            self.headMotionItem = self.tailMotionItem;
+        }
+    });
 }
 
 /**
@@ -93,7 +108,7 @@ static NSTimeInterval kUpdateInterval = 1/100.0;
     if ([self isDeviceMotionActive]) {
         [self stopDeviceMotionUpdates];
         
-        [self resetLinkedList];
+        [self resetLinkedListIfPossible];
     }
 }
 
@@ -113,10 +128,16 @@ static NSTimeInterval kUpdateInterval = 1/100.0;
     });
 }
 
-- (DOMMotionItem *)lastMotionItem
+- (DOMMotionItem *)lastMotionItemWithTouchPhase:(UITouchPhase)phase;
 {
     __block DOMMotionItem *motionItem = nil;
     dispatch_barrier_sync(self->listQueue, ^{
+        if (phase == UITouchPhaseEnded) {
+            self.numActiveTouches--;
+        } else if (phase == UITouchPhaseBegan) {
+            self.numActiveTouches++;
+        }
+        
         motionItem = self.tailMotionItem;
     });
     return motionItem;
