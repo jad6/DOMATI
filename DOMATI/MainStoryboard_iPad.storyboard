@@ -1163,22 +1163,18 @@ All research participants are entitles to retain a copy of any Participant Infor
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <mutableString key="text">Hi,
 
-Thank you for helping me with my thesis project: DOMATI (Dynamic Object Modelling for Advanced Touch Interactions). The aim of this thesis is to produce a user calibrated algorithm that calculates the strength of a touch on a capacitive display device using its movements in 3D space as well as the touch’s properties. If you like to read more about it tap on the “Project Summary” button on the bottom. This algorithm will be implemented in iOS devices and you are currently looking at the application in its infancy form. 
-
-Version 0.1
+Thank you for helping me with my thesis project: DOMATI (Dynamic Object Modelling for Advanced Touch Interactions). If you like to read more about it tap on the “Project Summary” button on the bottom.
  
 This version asks the user to input three touches:
 	1. a soft touch;
 	2. a normal touch;
 	3. a hard touch.
 
-The app then stores these and will upload them to a server when connected to WiFi. The more input from the user the better. The data will be stored anonymously and will be used for future versions to create well defined groups for calibrations.  
+The app then stores these and will upload them to a server when connected to WiFi. The more input from the user the better. The data will be stored anonymously and will be used for future versions to create well defined groups for touch calibrations.  
 
-This version will remind the user exactly three times if there are not enough input data.
+This version will remind the user exactly three times to input touch data.
 
--
-
-Thank you very much,
+Thanks for your help,
 Jad</mutableString>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>

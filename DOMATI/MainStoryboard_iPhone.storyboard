@@ -1099,7 +1099,7 @@ All research participants are entitles to retain a copy of any Participant Infor
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <mutableString key="text">Hi,
 
-Thank you for helping me with my thesis project: DOMATI (Dynamic Object Modelling for Advanced Touch Interactions). The aim of this project is to produce a user calibrated algorithm that calculates the strength of a touch on a capacitive display device using its movements in 3D space as well as the touch’s properties. If you like to read more about it tap on the “Project Summary” button on the bottom.
+Thank you for helping me with my thesis project: DOMATI (Dynamic Object Modelling for Advanced Touch Interactions). If you like to read more about it tap on the “Project Summary” button on the bottom.
  
 This version asks the user to input three touches:
 	1. a soft touch;

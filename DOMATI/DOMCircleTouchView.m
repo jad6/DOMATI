@@ -83,7 +83,7 @@ circleTouchStrength:(DOMCircleTouchStrength)circleTouchStrength
             break;
             
         case DOMCircleTouchStrengthModerate:
-            title = @"Med";
+            title = @"Normal";
             break;
             
         case DOMCircleTouchStrengthHard:
