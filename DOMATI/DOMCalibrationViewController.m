@@ -186,6 +186,28 @@
     }
 }
 
+- (void)setTitleOnCircleView:(DOMCircleTouchView *)circleView
+                    forState:(DOMCalibrationState)state
+{
+    switch (state) {
+        case DOMCalibrationStateModerateTouch:
+            circleView.circleTouchStrength = DOMCircleTouchStrengthModerate;
+            break;
+            
+        case DOMCalibrationStateSoftTouch:
+            circleView.circleTouchStrength = DOMCircleTouchStrengthSoft;
+            break;
+            
+        case DOMCalibrationStateHardTouch:
+            circleView.circleTouchStrength = DOMCircleTouchStrengthHard;
+            break;
+            
+        default:
+            circleView.circleTouchStrength = DOMCircleTouchStrengthNone;
+            break;
+    }
+}
+
 /**
  *  Changes the view according to the state.
  *
@@ -216,6 +238,9 @@
     [self setText:bottomText
           onLabel:self.bottomLabel
          animated:animated];
+    
+    [self setTitleOnCircleView:self.circleTouchView
+                      forState:self.state];
     
     // If the apha on the circle touch view is not 100%, disable it.
     self.circleTouchView.userInteractionEnabled = (circleTouchAlpha == 1.0);
