@@ -25,7 +25,7 @@
 
 @property (nonatomic, strong) UIView *hudView;
 
-@property (nonatomic) BOOL monitoringInternetAccess;
+@property (nonatomic) BOOL monitoringInternetAccess, uploading;
 
 @end
 
@@ -75,7 +75,8 @@
         [reachbilityManager setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {\
             __strong __typeof(weakReachbilityManager)strongsReachbilityManager = weakReachbilityManager;
             
-            if (status == AFNetworkReachabilityStatusReachableViaWiFi) {
+            if (status == AFNetworkReachabilityStatusReachableViaWiFi ||
+                status == AFNetworkReachabilityStatusReachableViaWWAN) {
                 
                 [UIApplication showLoading:YES];
                 
@@ -86,6 +87,7 @@
                     hud.labelText = @"Uploading Data...";
                 }
                 
+                self.uploading = YES;
                 [self uploadLocalDataWithCompletion:^(NSError *error) {
                     if (error) {
                         [error handle];
@@ -101,6 +103,7 @@
                         completionBlock(error == nil);
                     }
                     
+                    self.uploading = NO;
                     [hud hide:YES];
                 }];
             } else {

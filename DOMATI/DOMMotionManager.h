@@ -25,8 +25,9 @@
  *  Start the motion sensors of the device.
  *
  *  @param error The error which may occur when starting the sensors.
+ *  @return True if the motion sensors were usccessfully turned on.
  */
-- (void)startDeviceMotion:(NSError * __autoreleasing *)error;
+- (BOOL)startDeviceMotion:(NSError * __autoreleasing *)error;
 /**
  *  Stop updating the device's motion.
  */

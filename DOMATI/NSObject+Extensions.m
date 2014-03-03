@@ -32,46 +32,4 @@
     return JSONString;
 }
 
-#pragma mark - Logic 
-
-- (NSMutableString *)serializeObject:(id)object
-                      withJSONString:(NSMutableString *)JSONString
-                               error:(NSError * __autoreleasing *)error
-{
-    if (*error || ![NSJSONSerialization isValidJSONObject:object]) {
-        if (!*error) {
-            *error = [DOMErrors invalidJSONError];
-        }
-        return nil;
-    }
-    
-    if (!JSONString) {
-        JSONString = [[NSMutableString alloc] init];
-    }
-    
-    if ([self isKindOfClass:[NSDictionary class]]) {
-        [(NSDictionary *)self enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
-            [JSONString appendString:[self serializeObject:object
-                                            withJSONString:JSONString
-                                                     error:error]];
-        }];
-    } else if ([self isKindOfClass:[NSArray class]]) {
-        for (id obj in (NSArray *)self) {
-            [JSONString appendString:[self serializeObject:object
-                                            withJSONString:JSONString
-                                                     error:error]];
-        }
-    }
-    
-    NSData *JSONData = [NSJSONSerialization dataWithJSONObject:self
-                                                       options:NSJSONWritingPrettyPrinted
-                                                         error:error];
-    if (!*error) {
-        [JSONString appendString:[[NSString alloc] initWithData:JSONData
-                                                       encoding:NSUTF8StringEncoding]];
-    }
-    
-    return JSONString;
-}
-
 @end

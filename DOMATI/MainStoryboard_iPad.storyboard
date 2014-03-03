@@ -1170,7 +1170,7 @@ This version asks the user to input three touches:
 	2. a normal touch;
 	3. a hard touch.
 
-The app then stores these and will upload them to a server when connected to WiFi. The more input from the user the better. The data will be stored anonymously and will be used for future versions to create well defined groups for touch calibrations.  
+The app then stores these and will upload them to a server when connected to the Internet. The more input from the user the better. The data will be stored anonymously and will be used for future versions to create well defined groups for touch calibrations.  
 
 This version will remind the user exactly three times to input touch data.
 

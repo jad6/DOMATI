@@ -60,7 +60,7 @@
                 if (success) {
                     self.topLabel.text = stateInfo[@"topText"];
                 } else {
-                    self.topLabel.text = @"Thank you, your touch & device motion data will be uploaded when you are next connected to WiFi and re-launch the app.";
+                    self.topLabel.text = @"Thank you, your touch & device motion data will be uploaded when you are next connected to the Internet and re-launch the app.";
                 }
                 
                 self.bottomLabel.text = stateInfo[@"bottomText"];

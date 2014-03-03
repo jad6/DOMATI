@@ -51,19 +51,21 @@ static NSTimeInterval kUpdateInterval = 1/100.0;
     return didReset;
 }
 
-- (void)startDeviceMotion:(NSError * __autoreleasing *)error
+- (BOOL)startDeviceMotion:(NSError * __autoreleasing *)error
 {
     // Do nothing if the motion sensors are already turned on.
     if ([self isDeviceMotionActive]) {
-        return;
+        return NO;
     }
     
     // Do not attempt to turn on the sensors if the device does not have
     // them enabled or available.
     if (![self isDeviceMotionAvailable]) {
         // Populate the error to alert the user.
-        *error = [DOMErrors noDeviceMotionError];
-        return;
+        if (error) {
+            *error = [DOMErrors noDeviceMotionError];
+        }
+        return NO;
     }
     
     // Set up the variables to be used.
@@ -82,6 +84,8 @@ static NSTimeInterval kUpdateInterval = 1/100.0;
                                       [self stopDeviceMotion];
                                   }
                               }];
+    
+    return YES;
 }
 
 - (void)stopDeviceMotion

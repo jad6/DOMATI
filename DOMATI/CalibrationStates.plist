@@ -36,7 +36,7 @@
 	</dict>
 	<dict>
 		<key>circleViewAlpha</key>
-		<real>0.3</real>
+		<real>0.1</real>
 		<key>topText</key>
 		<string>Thank you, your touch data has been uploaded.</string>
 		<key>bottomText</key>
