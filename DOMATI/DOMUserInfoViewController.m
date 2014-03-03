@@ -61,9 +61,9 @@ static NSInteger kUndisclosedAlertTag = 10;
             }
         }
         
-        NSString *message = [[NSString alloc] initWithFormat:@"The following fields are undisclosed: \"%@\". It would great if they could be set. What would you like to do?", list];
+        NSString *message = [[NSString alloc] initWithFormat:@"The following fields are undisclosed: \"%@\". Please scroll down to fill them.", list];
         
-        UIAlertView *undisclosedAV = [[UIAlertView alloc] initWithTitle:@"Undisclosed Fields" message:message delegate:self cancelButtonTitle:@"Ignore" otherButtonTitles:@"Set Fields", nil];
+        UIAlertView *undisclosedAV = [[UIAlertView alloc] initWithTitle:@"Undisclosed Fields" message:message delegate:self cancelButtonTitle:@"Fill Fields" otherButtonTitles:@"Ignore", nil];
         undisclosedAV.tag = kUndisclosedAlertTag;
         [undisclosedAV show];
     } else {
@@ -76,7 +76,7 @@ static NSInteger kUndisclosedAlertTag = 10;
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     // Bring up the calibration screen upon the user's request.
-    if (alertView.tag == kUndisclosedAlertTag && buttonIndex == 0) {
+    if (alertView.tag == kUndisclosedAlertTag && buttonIndex == 1) {
         [self performSegueWithIdentifier:@"Calibration Segue" sender:nil];
     }
 }

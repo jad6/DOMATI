@@ -4,9 +4,9 @@
 <dict>
 	<key>Headers</key>
 	<array>
-		<string>Personal Info</string>
-		<string>Physical Info</string>
-		<string>Other Info</string>
+		<string>Personal Info (1 of 3)</string>
+		<string>Physical Info (2 of 3)</string>
+		<string>Other Info (3 of 3)</string>
 	</array>
 	<key>Footers</key>
 	<array>
