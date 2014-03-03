@@ -10,9 +10,9 @@
 	</array>
 	<key>Footers</key>
 	<array>
-		<string>A correlation with age, gender and the preception of a touch&apos;s strength will be extrememly useful in identifying more precise calibration groups. This data is stored anonymously.</string>
-		<string>The physical attibutes of a person can also affect their preception of a touch&apos;s strength. Again, this data is stored anonymously.</string>
-		<string>This section allows for extra data to be collected and might assist in creating more tailored calibration groups in future versions of the app. Once again, this data is stored anonymously.</string>
+		<string>This data is recorded as the perception of strength may vary with gender and age. This data is stored anonymously.</string>
+		<string>Your heigh &amp; weight is recorded as these attributes can also affect your strengths perception. This data is stored anonymously.</string>
+		<string>This section assists in creating more tailored calibration groups. This data is stored anonymously.</string>
 	</array>
 </dict>
 </plist>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13B3116" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="wIl-mb-5Fd">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13C64" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="wIl-mb-5Fd">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
     </dependencies>
@@ -1019,7 +1019,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</stri
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D5A-d9-LG3">
-                                <rect key="frame" x="0.0" y="0.0" width="540" height="556"/>
+                                <rect key="frame" x="0.0" y="44" width="540" height="511"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <string key="text">In this research project,  Dynamic Object Modelling for Advanced Touch Interactions (DOMATI), you will be asked to provide your:
@@ -1055,13 +1055,23 @@ All research participants are entitles to retain a copy of any Participant Infor
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                 <dataDetectorType key="dataDetectorTypes" phoneNumber="YES" link="YES" address="YES"/>
                             </textView>
+                            <imageView userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="uwa_letter_head" translatesAutoresizingMaskIntoConstraints="NO" id="xNP-N9-5KO">
+                                <rect key="frame" x="0.0" y="0.0" width="540" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="dgN-CX-aXU"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="D5A-d9-LG3" secondAttribute="bottom" id="lWg-s7-c4j"/>
-                            <constraint firstItem="D5A-d9-LG3" firstAttribute="leading" secondItem="Rmh-CP-MoP" secondAttribute="leading" id="si9-RJ-6J5"/>
-                            <constraint firstAttribute="trailing" secondItem="D5A-d9-LG3" secondAttribute="trailing" id="tEf-s0-Np1"/>
-                            <constraint firstItem="D5A-d9-LG3" firstAttribute="top" secondItem="Rmh-CP-MoP" secondAttribute="top" id="uXx-BK-1m1"/>
+                            <constraint firstItem="D5A-d9-LG3" firstAttribute="leading" secondItem="xNP-N9-5KO" secondAttribute="leading" id="1ic-63-DMy"/>
+                            <constraint firstAttribute="trailing" secondItem="xNP-N9-5KO" secondAttribute="trailing" id="BNi-7B-Nto"/>
+                            <constraint firstItem="xNP-N9-5KO" firstAttribute="leading" secondItem="Rmh-CP-MoP" secondAttribute="leading" id="GVW-1Y-I2P"/>
+                            <constraint firstItem="D5A-d9-LG3" firstAttribute="top" secondItem="xNP-N9-5KO" secondAttribute="bottom" id="NlH-BV-F3t"/>
+                            <constraint firstItem="xNP-N9-5KO" firstAttribute="top" secondItem="Rmh-CP-MoP" secondAttribute="top" id="dpy-ia-Hiz"/>
+                            <constraint firstItem="xNP-N9-5KO" firstAttribute="trailing" secondItem="D5A-d9-LG3" secondAttribute="trailing" id="kQc-QI-2oo"/>
+                            <constraint firstItem="Mp9-eC-tlt" firstAttribute="top" secondItem="D5A-d9-LG3" secondAttribute="bottom" constant="1" id="xWd-Cg-3LF"/>
                         </constraints>
                     </view>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
@@ -1085,7 +1095,7 @@ All research participants are entitles to retain a copy of any Participant Infor
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rds-PS-gti">
-                                <rect key="frame" x="0.0" y="0.0" width="540" height="556"/>
+                                <rect key="frame" x="0.0" y="44" width="540" height="512"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <string key="text">I (the participant) have read the information provided and any questions I have asked have been answered to my satisfaction. I agree to participate in this activity, realising that I may withdraw at any time without reason and without prejudice. (Or where applicable – without prejudice to my future medical treatment).
@@ -1111,13 +1121,20 @@ All research participants are entitles to retain a copy of any Participant Infor
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                 <dataDetectorType key="dataDetectorTypes" phoneNumber="YES" link="YES" address="YES"/>
                             </textView>
+                            <imageView userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="uwa_letter_head" translatesAutoresizingMaskIntoConstraints="NO" id="6Ik-ZI-QqW">
+                                <rect key="frame" x="0.0" y="0.0" width="540" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="rds-PS-gti" secondAttribute="trailing" id="oof-Qu-aHB"/>
-                            <constraint firstItem="rds-PS-gti" firstAttribute="top" secondItem="AG4-Np-7MB" secondAttribute="top" id="p4p-Py-vKs"/>
-                            <constraint firstAttribute="bottom" secondItem="rds-PS-gti" secondAttribute="bottom" id="plW-Lg-Ufu"/>
-                            <constraint firstItem="rds-PS-gti" firstAttribute="leading" secondItem="AG4-Np-7MB" secondAttribute="leading" id="vcI-47-MgQ"/>
+                            <constraint firstAttribute="trailing" secondItem="6Ik-ZI-QqW" secondAttribute="trailing" id="BRq-9I-XvT"/>
+                            <constraint firstItem="rds-PS-gti" firstAttribute="leading" secondItem="AG4-Np-7MB" secondAttribute="leading" id="Qon-97-pLO"/>
+                            <constraint firstItem="7TR-EO-cpH" firstAttribute="top" secondItem="rds-PS-gti" secondAttribute="bottom" id="Szv-8n-J9Y"/>
+                            <constraint firstItem="rds-PS-gti" firstAttribute="top" secondItem="6Ik-ZI-QqW" secondAttribute="bottom" id="TA6-aK-X35"/>
+                            <constraint firstItem="rds-PS-gti" firstAttribute="trailing" secondItem="6Ik-ZI-QqW" secondAttribute="trailing" id="YW0-ut-slR"/>
+                            <constraint firstItem="6Ik-ZI-QqW" firstAttribute="leading" secondItem="rds-PS-gti" secondAttribute="leading" id="kiV-uW-oGJ"/>
+                            <constraint firstItem="6Ik-ZI-QqW" firstAttribute="top" secondItem="AG4-Np-7MB" secondAttribute="top" id="ojy-9p-BZz"/>
                         </constraints>
                     </view>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
@@ -1144,7 +1161,7 @@ All research participants are entitles to retain a copy of any Participant Infor
                                 <rect key="frame" x="0.0" y="0.0" width="540" height="512"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <string key="text">Hi,
+                                <mutableString key="text">Hi,
 
 Thank you for helping me with my thesis project: DOMATI (Dynamic Object Modelling for Advanced Touch Interactions). The aim of this thesis is to produce a user calibrated algorithm that calculates the strength of a touch on a capacitive display device using its movements in 3D space as well as the touch’s properties. If you like to read more about it tap on the “Project Summary” button on the bottom. This algorithm will be implemented in iOS devices and you are currently looking at the application in its infancy form. 
 
@@ -1162,7 +1179,7 @@ This version will remind the user exactly three times if there are not enough in
 -
 
 Thank you very much,
-Jad</string>
+Jad</mutableString>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
@@ -1210,6 +1227,9 @@ Jad</string>
             <point key="canvasLocation" x="-1561" y="-1286"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="uwa_letter_head" width="320" height="44"/>
+    </resources>
     <color key="tintColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="lightContent"/>

@@ -6,6 +6,8 @@
 //  Copyright (c) 2014 Jad Osseiran. All rights reserved.
 //
 
+#import <MBProgressHUD/MBProgressHUD.h>
+
 #import "DOMRequestOperationManager.h"
 
 #import "DOMCoreDataManager.h"
@@ -20,6 +22,8 @@
 @interface DOMRequestOperationManager ()
 
 @property (nonatomic, strong) NSDictionary *netwrokDict;
+
+@property (nonatomic, strong) UIView *hudView;
 
 @property (nonatomic) BOOL monitoringInternetAccess;
 
@@ -59,16 +63,28 @@
 
 #pragma mark - Reachability
 
-- (void)uploadDataWhenPossible
+- (void)uploadDataWhenPossibleWithCompletion:(void (^)(BOOL success))completionBlock
+                               showHudInView:(UIView *)view
 {
+    self.hudView = view;
+    
     if (!self.monitoringInternetAccess) {
         AFNetworkReachabilityManager *reachbilityManager = [AFNetworkReachabilityManager sharedManager];
         
         __weak __typeof(AFNetworkReachabilityManager *)weakReachbilityManager = reachbilityManager;
-        [reachbilityManager setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
+        [reachbilityManager setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {\
+            __strong __typeof(weakReachbilityManager)strongsReachbilityManager = weakReachbilityManager;
+            
             if (status == AFNetworkReachabilityStatusReachableViaWiFi) {
                 
                 [UIApplication showLoading:YES];
+                
+                MBProgressHUD *hud = nil;
+                if (self.hudView) {
+                    hud = [MBProgressHUD showHUDAddedTo:self.hudView animated:YES];
+                    hud.color = [DOMATI_COLOR colorWithAlphaComponent:0.5];
+                    hud.labelText = @"Uploading Data...";
+                }
                 
                 [self uploadLocalDataWithCompletion:^(NSError *error) {
                     if (error) {
@@ -77,11 +93,22 @@
                         [[DOMCoreDataManager sharedManager] saveMainContext];
                     }
                     
-                    [weakReachbilityManager stopMonitoring];
+                    [strongsReachbilityManager stopMonitoring];
                     [UIApplication showLoading:NO];
                     self.monitoringInternetAccess = NO;
+                    
+                    if (completionBlock) {
+                        completionBlock(error == nil);
+                    }
+                    
+                    [hud hide:YES];
                 }];
+            } else {
+                self.monitoringInternetAccess = NO;
                 
+                if (completionBlock) {
+                    completionBlock(NO);
+                }
             }
         }];
         
@@ -89,6 +116,16 @@
         
         self.monitoringInternetAccess = YES;
     }
+}
+
+- (void)uploadDataWhenPossibleWithCompletion:(void (^)(BOOL success))completionBlock
+{
+    [self uploadDataWhenPossibleWithCompletion:completionBlock showHudInView:nil];
+}
+
+- (void)uploadDataWhenPossible
+{
+    [self uploadDataWhenPossibleWithCompletion:nil];
 }
 
 #pragma mark - Logic

@@ -89,7 +89,6 @@
 		05C702F7189C8DF500E0AC35 /* DOMPickerHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 05C702F6189C8DF500E0AC35 /* DOMPickerHandler.m */; };
 		05C702FA189C9BC200E0AC35 /* DOMOccupationPickerHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 05C702F9189C9BC200E0AC35 /* DOMOccupationPickerHandler.m */; };
 		05C702FC189C9BE700E0AC35 /* Occupations.plist in Resources */ = {isa = PBXBuildFile; fileRef = 05C702FB189C9BE700E0AC35 /* Occupations.plist */; };
-		05C702FE189CA54E00E0AC35 /* TechExpMapping.plist in Resources */ = {isa = PBXBuildFile; fileRef = 05C702FD189CA54E00E0AC35 /* TechExpMapping.plist */; };
 		05CD6CF118B9EA25003E3512 /* NSObject+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 05CD6CF018B9EA25003E3512 /* NSObject+Extensions.m */; };
 		05CDCD1F17BA0B7F00BA12E3 /* DOMGroupSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05CDCD1E17BA0B7F00BA12E3 /* DOMGroupSelectionViewController.m */; };
 		05CDCD2017BA0B7F00BA12E3 /* DOMGroupSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05CDCD1E17BA0B7F00BA12E3 /* DOMGroupSelectionViewController.m */; };
@@ -239,7 +238,6 @@
 		05C702F8189C9BC200E0AC35 /* DOMOccupationPickerHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DOMOccupationPickerHandler.h; sourceTree = "<group>"; };
 		05C702F9189C9BC200E0AC35 /* DOMOccupationPickerHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DOMOccupationPickerHandler.m; sourceTree = "<group>"; };
 		05C702FB189C9BE700E0AC35 /* Occupations.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Occupations.plist; sourceTree = "<group>"; };
-		05C702FD189CA54E00E0AC35 /* TechExpMapping.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = TechExpMapping.plist; sourceTree = "<group>"; };
 		05CD6CEF18B9EA25003E3512 /* NSObject+Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Extensions.h"; sourceTree = "<group>"; };
 		05CD6CF018B9EA25003E3512 /* NSObject+Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Extensions.m"; sourceTree = "<group>"; };
 		05CDCD1D17BA0B7F00BA12E3 /* DOMGroupSelectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DOMGroupSelectionViewController.h; sourceTree = "<group>"; };
@@ -526,7 +524,6 @@
 			children = (
 				050ACB19189A4F41006F74DD /* Network.plist */,
 				05C702FB189C9BE700E0AC35 /* Occupations.plist */,
-				05C702FD189CA54E00E0AC35 /* TechExpMapping.plist */,
 				05CDCD2117BA0D3C00BA12E3 /* Groups.plist */,
 				05A939EF18AB1AD80047F4CD /* CalibrationStates.plist */,
 				05BD579818B48824003FE71B /* UserInfoTable.plist */,
@@ -870,7 +867,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				05098F4717B62BC8009D4FF5 /* MainStoryboard_iPhone.storyboard in Resources */,
-				05C702FE189CA54E00E0AC35 /* TechExpMapping.plist in Resources */,
 				05098F2217B62859009D4FF5 /* InfoPlist.strings in Resources */,
 				05084EA7181FECD500FFFB93 /* MainStoryboard_iPad.storyboard in Resources */,
 				05C4C660182F118A00E45F9D /* Project Proposal.pdf in Resources */,

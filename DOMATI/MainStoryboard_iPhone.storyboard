@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13B3116" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="MBC-NX-COi">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="MBC-NX-COi">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
     </dependencies>
@@ -962,7 +962,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</stri
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GRc-lj-THG">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                                <rect key="frame" x="0.0" y="44" width="320" height="460"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <string key="text">In this research project,  Dynamic Object Modelling for Advanced Touch Interactions (DOMATI), you will be asked to provide your:
@@ -998,13 +998,19 @@ All research participants are entitles to retain a copy of any Participant Infor
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                 <dataDetectorType key="dataDetectorTypes" phoneNumber="YES" link="YES" address="YES"/>
                             </textView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="uwa_letter_head" translatesAutoresizingMaskIntoConstraints="NO" id="G3t-1o-Mjj">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="GRc-lj-THG" firstAttribute="leading" secondItem="jFp-5u-gxh" secondAttribute="leading" id="auh-uD-p20"/>
-                            <constraint firstItem="GRc-lj-THG" firstAttribute="top" secondItem="jFp-5u-gxh" secondAttribute="top" id="mDo-gg-cFX"/>
-                            <constraint firstAttribute="bottom" secondItem="GRc-lj-THG" secondAttribute="bottom" id="pvm-Hw-Ctv"/>
-                            <constraint firstAttribute="trailing" secondItem="GRc-lj-THG" secondAttribute="trailing" id="z9D-9K-QxU"/>
+                            <constraint firstItem="G3t-1o-Mjj" firstAttribute="trailing" secondItem="GRc-lj-THG" secondAttribute="trailing" id="5oV-Ki-YaR"/>
+                            <constraint firstItem="G3t-1o-Mjj" firstAttribute="leading" secondItem="GRc-lj-THG" secondAttribute="leading" id="LTY-fr-zZg"/>
+                            <constraint firstItem="G3t-1o-Mjj" firstAttribute="top" secondItem="jFp-5u-gxh" secondAttribute="top" id="YeN-IX-Jaq"/>
+                            <constraint firstItem="GRc-lj-THG" firstAttribute="leading" secondItem="jFp-5u-gxh" secondAttribute="leading" id="ZwE-wo-PfW"/>
+                            <constraint firstItem="GRc-lj-THG" firstAttribute="top" secondItem="G3t-1o-Mjj" secondAttribute="bottom" id="hUC-lE-8XO"/>
+                            <constraint firstAttribute="bottom" secondItem="GRc-lj-THG" secondAttribute="bottom" id="kUG-yt-vjv"/>
                         </constraints>
                     </view>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
@@ -1027,7 +1033,7 @@ All research participants are entitles to retain a copy of any Participant Infor
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WcT-ad-JiC">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                                <rect key="frame" x="0.0" y="44" width="320" height="460"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <string key="text">I (the participant) have read the information provided and any questions I have asked have been answered to my satisfaction. I agree to participate in this activity, realising that I may withdraw at any time without reason and without prejudice. (Or where applicable – without prejudice to my future medical treatment).
@@ -1053,13 +1059,19 @@ All research participants are entitles to retain a copy of any Participant Infor
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                 <dataDetectorType key="dataDetectorTypes" phoneNumber="YES" link="YES" address="YES"/>
                             </textView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="uwa_letter_head" translatesAutoresizingMaskIntoConstraints="NO" id="awN-fS-Fta">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="WcT-ad-JiC" firstAttribute="leading" secondItem="CMR-PU-CKv" secondAttribute="leading" id="WwM-8V-cnL"/>
-                            <constraint firstAttribute="trailing" secondItem="WcT-ad-JiC" secondAttribute="trailing" id="bst-Wf-Oxa"/>
-                            <constraint firstAttribute="bottom" secondItem="WcT-ad-JiC" secondAttribute="bottom" id="hig-Yo-0st"/>
-                            <constraint firstItem="WcT-ad-JiC" firstAttribute="top" secondItem="CMR-PU-CKv" secondAttribute="top" id="zvQ-l8-ray"/>
+                            <constraint firstItem="WcT-ad-JiC" firstAttribute="top" secondItem="awN-fS-Fta" secondAttribute="bottom" id="B4D-Mh-B34"/>
+                            <constraint firstAttribute="bottom" secondItem="WcT-ad-JiC" secondAttribute="bottom" id="L90-SJ-Pyr"/>
+                            <constraint firstItem="WcT-ad-JiC" firstAttribute="trailing" secondItem="awN-fS-Fta" secondAttribute="trailing" id="MIE-SF-k8z"/>
+                            <constraint firstItem="WcT-ad-JiC" firstAttribute="leading" secondItem="awN-fS-Fta" secondAttribute="leading" id="Wic-mE-fZA"/>
+                            <constraint firstItem="awN-fS-Fta" firstAttribute="leading" secondItem="CMR-PU-CKv" secondAttribute="leading" id="sPg-is-CfX"/>
+                            <constraint firstItem="awN-fS-Fta" firstAttribute="top" secondItem="CMR-PU-CKv" secondAttribute="top" id="xYQ-Qm-vZu"/>
                         </constraints>
                     </view>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
@@ -1085,25 +1097,21 @@ All research participants are entitles to retain a copy of any Participant Infor
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="460"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <string key="text">Hi,
+                                <mutableString key="text">Hi,
 
-Thank you for helping me with my thesis project: DOMATI (Dynamic Object Modelling for Advanced Touch Interactions). The aim of this thesis is to produce a user calibrated algorithm that calculates the strength of a touch on a capacitive display device using its movements in 3D space as well as the touch’s properties. If you like to read more about it tap on the “Project Summary” button on the bottom. This algorithm will be implemented in iOS devices and you are currently looking at the application in its infancy form. 
-
-Version 0.1
+Thank you for helping me with my thesis project: DOMATI (Dynamic Object Modelling for Advanced Touch Interactions). The aim of this project is to produce a user calibrated algorithm that calculates the strength of a touch on a capacitive display device using its movements in 3D space as well as the touch’s properties. If you like to read more about it tap on the “Project Summary” button on the bottom.
  
 This version asks the user to input three touches:
 	1. a soft touch;
 	2. a normal touch;
 	3. a hard touch.
 
-The app then stores these and will upload them to a server when connected to WiFi. The more input from the user the better. The data will be stored anonymously and will be used for future versions to create well defined groups for calibrations.  
+The app then stores these and will upload them to a server when connected to WiFi. The more input from the user the better. The data will be stored anonymously and will be used for future versions to create well defined groups for touch calibrations.  
 
-This version will remind the user exactly three times if there are not enough input data.
+This version will remind the user exactly three times to input touch data.
 
--
-
-Thank you very much,
-Jad</string>
+Thanks for your help,
+Jad</mutableString>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
@@ -1151,6 +1159,9 @@ Jad</string>
             <point key="canvasLocation" x="-209" y="-1246"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="uwa_letter_head" width="320" height="44"/>
+    </resources>
     <color key="tintColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

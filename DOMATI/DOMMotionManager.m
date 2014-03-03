@@ -25,11 +25,6 @@ static NSTimeInterval kUpdateInterval = 1/100.0;
 
 @implementation DOMMotionManager
 
-/**
- *  This makes sure we only ever access one istance of the manager.
- *
- *  @return the singleton manager object.
- */
 + (instancetype)sharedManager
 {
     static __DISPATCH_ONCE__ DOMMotionManager *singletonObject = nil;
@@ -38,34 +33,24 @@ static NSTimeInterval kUpdateInterval = 1/100.0;
     dispatch_once(&onceToken, ^{
         singletonObject = [[self alloc] init];
         singletonObject->listQueue = dispatch_queue_create("list_queue", DISPATCH_QUEUE_SERIAL);
-        
-        NSNotificationCenter *notifCenter = [NSNotificationCenter defaultCenter];
-        [notifCenter addObserver:self selector:@selector(stopDeviceMotion) name:UIApplicationDidEnterBackgroundNotification object:nil];
-        [notifCenter addObserver:self selector:@selector(startDeviceMotion:) name:UIApplicationDidBecomeActiveNotification object:nil];
     });
     
     return singletonObject;
 }
 
-- (void)dealloc
+- (BOOL)resetLinkedListIfPossible
 {
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
-}
-
-- (void)resetLinkedListIfPossible
-{
+    __block BOOL didReset = NO;
     dispatch_sync(self->listQueue, ^{
         if (self.numActiveTouches == 0) {
             self.headMotionItem = self.tailMotionItem;
+            didReset = YES;
         }
     });
+    
+    return didReset;
 }
 
-/**
- *  Starts the device sensors (both accelerometer and gyroscope).
- *
- *  @param error The error object which will be nil if the operation is successful
- */
 - (void)startDeviceMotion:(NSError * __autoreleasing *)error
 {
     // Do nothing if the motion sensors are already turned on.
@@ -99,9 +84,6 @@ static NSTimeInterval kUpdateInterval = 1/100.0;
                               }];
 }
 
-/**
- *  Stops the device sensors (both accelerometer and gyroscope).
- */
 - (void)stopDeviceMotion
 {
     // Only stop the sensors if they were already active.
@@ -142,5 +124,11 @@ static NSTimeInterval kUpdateInterval = 1/100.0;
     });
     return motionItem;
 }
+
+- (DOMMotionItem *)lastMotionItem
+{
+    return [self lastMotionItemWithTouchPhase:UITouchPhaseCancelled];
+}
+
 
 @end

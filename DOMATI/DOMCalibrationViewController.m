@@ -52,8 +52,19 @@
         
         if (strongSelf.state >= DOMCalibrationStateFinal &&
             !strongSelf.strengthGR.saving) {
+        
             // Attempt to upload the new (and possibly old data).
-            [[DOMRequestOperationManager sharedManager] uploadDataWhenPossible];
+            [[DOMRequestOperationManager sharedManager] uploadDataWhenPossibleWithCompletion:^(BOOL success) {
+                NSDictionary *stateInfo = self.statesInformation[DOMCalibrationStateFinal];
+                
+                if (success) {
+                    self.topLabel.text = stateInfo[@"topText"];
+                } else {
+                    self.topLabel.text = @"Thank you, your touch & device motion data will be uploaded when you are next connected to WiFi and re-launch the app.";
+                }
+                
+                self.bottomLabel.text = stateInfo[@"bottomText"];
+            } showHudInView:strongSelf.view];
         }
     }];
     
@@ -189,6 +200,11 @@
     CGFloat circleTouchAlpha = [stateInfo[@"circleViewAlpha"] floatValue];
     NSString *topText = stateInfo[@"topText"];
     NSString *bottomText = stateInfo[@"bottomText"];
+    
+    if (state == DOMCalibrationStateFinal) {
+        topText = @"Thank you, touch & device motion data is being uploaded.";
+        bottomText = nil;
+    }
     
     [self setAlpha:circleTouchAlpha
             onView:self.circleTouchView

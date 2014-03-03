@@ -8,7 +8,7 @@
 		<key>topText</key>
 		<string>Make sure you are holding your device so that its movements can be recorded.</string>
 		<key>bottomText</key>
-		<string>Shake To Continue</string>
+		<string>Shake to continue.</string>
 	</dict>
 	<dict>
 		<key>circleViewAlpha</key>
@@ -16,7 +16,7 @@
 		<key>topText</key>
 		<string>Tap the circle like you would normally interact with your device.</string>
 		<key>bottomText</key>
-		<string>Tap Moderately</string>
+		<string></string>
 	</dict>
 	<dict>
 		<key>circleViewAlpha</key>
@@ -24,7 +24,7 @@
 		<key>topText</key>
 		<string>Tap the circle softly, as if you were scared to break the glass. </string>
 		<key>bottomText</key>
-		<string>Tap Softly</string>
+		<string></string>
 	</dict>
 	<dict>
 		<key>circleViewAlpha</key>
@@ -32,15 +32,15 @@
 		<key>topText</key>
 		<string>Tap the circle hard, as if you were frustrated with your device (be sensible). </string>
 		<key>bottomText</key>
-		<string>Tap Hard</string>
+		<string></string>
 	</dict>
 	<dict>
 		<key>circleViewAlpha</key>
 		<real>0.3</real>
 		<key>topText</key>
-		<string>Thank You!</string>
+		<string>Thank you, your touch data has been uploaded.</string>
 		<key>bottomText</key>
-		<string>Yadiyadiya</string>
+		<string>You can now close the app.</string>
 	</dict>
 </array>
 </plist>
