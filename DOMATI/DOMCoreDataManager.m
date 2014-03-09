@@ -41,6 +41,8 @@
 
 - (void)setupCoreData
 {
+    // Listen to notifications when the app will lose focus and save
+    // the data in that case.
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationShouldSaveContext:) name:UIApplicationDidEnterBackgroundNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationShouldSaveContext:) name:UIApplicationWillTerminateNotification object:nil];
     
@@ -65,15 +67,16 @@
 - (void)saveContext:(NSManagedObjectContext *)context
 {
     NSError *childError = nil;
-    [context save:&childError];
-    if (childError) {
+    if (![context save:&childError]) {
         [childError handle];
     }
     
+#warning dispath queue?
     UIBackgroundTaskIdentifier task = [[UIApplication sharedApplication] beginBackgroundTaskWithExpirationHandler:nil];
     [self.mainContext performBlock:^{
         NSError *parentError = nil;
-        if ([self.mainContext hasChanges] && ![self.mainContext save:&parentError]) {
+        if ([self.mainContext hasChanges] &&
+            ![self.mainContext save:&parentError]) {
             [parentError handle];
         }
         [[UIApplication sharedApplication] endBackgroundTask:task];

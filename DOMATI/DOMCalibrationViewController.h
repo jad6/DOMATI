@@ -10,6 +10,7 @@
 
 // The state in which the view controller is currently in.
 typedef NS_ENUM(NSInteger, DOMCalibrationState) {
+    DOMCalibrationStateNone = -1,
     DOMCalibrationStateInitial,
     DOMCalibrationStateModerateTouch,
     DOMCalibrationStateSoftTouch,

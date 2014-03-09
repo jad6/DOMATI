@@ -22,16 +22,23 @@
 + (instancetype)sharedManager;
 
 /**
- *  Start the motion sensors of the device.
+ *  Adds to the number of listeners on the manager. If there are
+ *  no listeners prior to this call the manager will start the 
+ *  device motion. 
  *
- *  @param error The error which may occur when starting the sensors.
- *  @return True if the motion sensors were usccessfully turned on.
+ *  You should ALWAYS balance this call by calling stopListening
+ *  the calling object is no longer interested in device motions.
+ *  Failure to do so will result in the manager always recording 
+ *  motion data.
  */
-- (BOOL)startDeviceMotion:(NSError * __autoreleasing *)error;
+- (void)startListening;
 /**
- *  Stop updating the device's motion.
+ *  Decrements the number of listeners that the manager keeps track 
+ *  of. If after calling this methid the manager listener count is 
+ *  zero then device motions will cease to be recorded until another 
+ *  object calls startListening.
  */
-- (void)stopDeviceMotion;
+- (void)stopListening;
 
 /**
  *  Method which gets the tail of the linked list holding the device motion
