@@ -79,7 +79,7 @@
 #warning Should I take this threadContext creation outside of the enumaration?
         // Create a new ManagedObjectContext for multi threading core data operations.
         NSManagedObjectContext *threadContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
-        threadContext.parentContext = [DOMCoreDataManager sharedManager].mainContext;
+        threadContext.parentContext = [DOMCoreDataManager sharedManager].managedContext;
         
         // Increment the number of saves as we are about to do one.
         self.numberOfCoreDataSaves++;
