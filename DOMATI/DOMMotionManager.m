@@ -15,18 +15,17 @@
     dispatch_queue_t listQueue;
 }
 
-// The pointers for the head and tail of the linked list.
+/// The pointers for the head and tail of the linked list.
 @property (nonatomic, strong) DOMMotionItem *headMotionItem, *tailMotionItem;
 
-// The number of activies which the motion manager is giving data
-// data to.
+/// The number of activies which the motion manager is giving data to.
 @property (nonatomic) NSInteger numActivities;
-// The number of objects which are listening to the motion manager.
+/// The number of objects which are listening to the motion manager.
 @property (nonatomic) NSInteger numListeners;
 
 @end
 
-// 100 Hz update interval.
+/// 100 Hz update interval.
 static NSTimeInterval kUpdateInterval = 1/100.0;
 
 @implementation DOMMotionManager

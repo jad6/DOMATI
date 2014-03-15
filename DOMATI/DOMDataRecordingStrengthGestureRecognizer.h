@@ -13,7 +13,7 @@ typedef void (^DOMCoreDataSave)(void);
 
 @interface DOMDataRecordingStrengthGestureRecognizer : DOMStrengthGestureRecognizer
 
-// Flag determining if there is a current save operation happening.
+/// Flag determining if there is a current save operation happening.
 @property (nonatomic, readonly) BOOL saving;
 
 /**

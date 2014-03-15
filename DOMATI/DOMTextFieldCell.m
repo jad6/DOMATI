@@ -14,15 +14,7 @@
 
 @implementation DOMTextFieldCell
 
-- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
-{
-    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
-    if (self) {
-        // Initialization code
-        [self awakeFromNib];
-    }
-    return self;
-}
+@synthesize textLabel = _textLabel;
 
 - (void)awakeFromNib
 {
@@ -33,13 +25,6 @@
     self.textField.keyboardType = UIKeyboardTypeDecimalPad;
     self.textField.textAlignment = NSTextAlignmentRight;
     self.textField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:self.textField.placeholder attributes:@{NSForegroundColorAttributeName: DETAIL_TEXT_COLOR}];
-}
-
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated
-{
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
 }
 
 #pragma mark - Text Field Delegate 
@@ -70,10 +55,12 @@
         return YES;
     }
     
+    // The text is empty, return NO.
     if ([textField.text length] > 8) {
         return NO;
     }
     
+    // Make sure you get the right local for the decimal separator.
     NSLocale *locale = [NSLocale currentLocale];
     NSString *decimalSeparator = [locale objectForKey:NSLocaleDecimalSeparator];
     
@@ -82,14 +69,18 @@
         return NO;
     }
     
+    // Create the valid character set in this case numbers and the
+    // decimal separator.
     NSMutableCharacterSet *validCharacterSet = [[NSMutableCharacterSet alloc] init];
     [validCharacterSet formUnionWithCharacterSet:[NSCharacterSet decimalDigitCharacterSet]];
     [validCharacterSet addCharactersInString:decimalSeparator];
     
+    // If there are no legal characters found return NO.
     if ([string rangeOfCharacterFromSet:validCharacterSet].location == NSNotFound) {
         return NO;
     }
     
+    // Make sure we always keep the numbers to two decimal places.
     NSString *newText = [textField.text stringByReplacingCharactersInRange:range withString:string];
     NSArray *comps = [newText componentsSeparatedByString:decimalSeparator];
     if ([comps count] == 2) {

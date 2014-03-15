@@ -17,6 +17,10 @@ profile
 DerivedData
 .idea/
 
+# Cocoapods
+
+Pods
+
 # DOMATI
 
 DOMATI/Network.plist

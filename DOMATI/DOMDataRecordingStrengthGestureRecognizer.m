@@ -22,10 +22,9 @@
 @property (nonatomic, copy) DOMCoreDataSave saveDataCompletionBlock;
 
 @property (nonatomic) BOOL saving;
-// Variable to keep track of the number of Core Data saves.
-// When this value reaches 0, saving is set to NO. YES otherwise.
+/// Variable to keep track of the number of Core Data saves. When this value reaches 0, saving is set to NO. YES otherwise.
 @property (nonatomic) NSInteger numberOfCoreDataSaves;
-// The current touch strength being recorded if there is one.
+/// The current touch strength being recorded if there is one.
 @property (nonatomic) DOMCalibrationState currentState;
 
 @end

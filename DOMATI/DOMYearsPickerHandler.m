@@ -60,11 +60,25 @@
     [self selectYear:year animated:YES];
 }
 
+/**
+ *  Gets the row index for the given year.
+ *
+ *  @param year The year of the row index.
+ *
+ *  @return The row index for the given year.
+ */
 - (NSInteger)rowForYear:(NSInteger)year
 {
     return (self.currentYear - year) + 1;
 }
 
+/**
+ *  Gets the year for the given row index.
+ *
+ *  @param row The row index.
+ *
+ *  @return The year for the given row index.
+ */
 - (NSInteger)yearFromRow:(NSInteger)row
 {
     return (row == 0) ? 0 : self.currentYear - (row - 1);
@@ -79,13 +93,14 @@
 
 + (NSString *)titleForYear:(NSInteger)year
 {
-    return [[NSString alloc] initWithFormat:@"%i", year];
+    return [[NSString alloc] initWithFormat:@"%li", (long)year];
 }
 
 #pragma mark - Picker data source
 
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
 {
+    // Last 100 years including the current one.
     return 101;
 }
 

@@ -22,7 +22,7 @@ static NSString *kMotionInfoAvgRotationKey = @"rotationAvg";
 
 @interface DOMStrengthGestureRecognizer : UIGestureRecognizer
 
-// The strength of the touch(es).
+/// The strength of the touch(es).
 @property (nonatomic, readonly) CGFloat strength;
 
 /**

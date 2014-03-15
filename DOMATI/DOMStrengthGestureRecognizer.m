@@ -18,13 +18,13 @@
 #import "DOMErrors.h"
 
 @interface DOMStrengthGestureRecognizer () {
-    // The queue running on a different thread to process the data.
+    /// The queue running on a different thread to process the data.
     dispatch_queue_t dataProcessingQueue;
 }
 
 @property (nonatomic, strong) DOMMotionManager *motionManager;
 
-// Dictionaries to hold the various informations for each touch.
+/// Dictionaries to hold the various informations for each touch.
 @property (nonatomic, strong) NSMutableDictionary *touchesInfo, *motionsInfo, *motionItems;
 
 @property (nonatomic) CGFloat strength;

@@ -26,6 +26,7 @@
     
     self.delegate = delegate;
     
+    // Select the occupation if it is given.
     if (occupation) {
         [self selectOccupation:occupation animated:NO];
     }
@@ -43,7 +44,8 @@
 
 #pragma mark - Logic
 
-- (void)selectOccupation:(NSString *)occupation animated:(BOOL)animated
+- (void)selectOccupation:(NSString *)occupation
+                animated:(BOOL)animated
 {
     self.selectedOccupation = occupation;
     NSInteger row = [self rowForOccupation:self.selectedOccupation];
@@ -62,11 +64,25 @@
     [self selectOccupation:occupation animated:YES];
 }
 
+/**
+ *  Gets the row index for the given occupation.
+ *
+ *  @param occupation The occupation of the row index.
+ *
+ *  @return The row index for the given occupation.
+ */
 - (NSInteger)rowForOccupation:(NSString *)occupation
 {
     return [self.occupations indexOfObject:occupation] + 1;
 }
 
+/**
+ *  Gets the occupation for the given row index.
+ *
+ *  @param row The row index.
+ *
+ *  @return The occupation for the given row index.
+ */
 - (NSString *)occupationFromRow:(NSInteger)row
 {
     return (row == 0) ? nil : [self.occupations objectAtIndex:(row - 1)];
