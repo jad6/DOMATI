@@ -73,7 +73,7 @@
         
         // Create a new ManagedObjectContext for multi threading core data operations.
         NSManagedObjectContext *threadContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
-        threadContext.parentContext = [DOMCoreDataManager sharedManager].mainContext;
+        threadContext.parentContext = [DOMCoreDataManager sharedManager].managedContext;
         
         self.numberOfCoreDataSaves++;
         [threadContext performBlock:^{

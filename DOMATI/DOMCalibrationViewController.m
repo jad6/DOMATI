@@ -12,6 +12,9 @@
 
 #import "DOMCircleTouchView.h"
 
+#import "DOMCoreDataManager.h"
+#import "DOMUser.h"
+
 #import "DOMRequestOperationManager.h"
 #import "DOMLocalNotificationHelper.h"
 
@@ -64,6 +67,9 @@
                 }
                 
                 self.bottomLabel.text = stateInfo[@"bottomText"];
+                
+                [DOMUser currentUser].identifier = -1;
+                [[DOMCoreDataManager sharedManager] flushDatabase];
             } showHudInView:strongSelf.view];
         }
     }];

@@ -37,6 +37,7 @@
     // Set up Core Data.
     [[DOMCoreDataManager sharedManager] setupCoreData];
     
+    [DOMUser currentUser].identifier = -1;
     // Only attempt uploads at launch once the user has been sycned.
     if ([DOMUser currentUser].identifier > 0) {
         [[DOMRequestOperationManager sharedManager] uploadDataWhenPossible];

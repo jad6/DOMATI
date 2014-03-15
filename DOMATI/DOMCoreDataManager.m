@@ -19,7 +19,7 @@
 
 @property (strong, nonatomic) NSManagedObjectModel *managedObjectModel;
 @property (strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
-@property (strong, nonatomic) NSManagedObjectContext *mainContext;
+@property (strong, nonatomic) NSManagedObjectContext *managedContext;
 
 @end
 
@@ -38,6 +38,21 @@
 }
 
 #pragma mark - Core Data Core
+
+- (void)flushDatabase
+{
+    [self.managedContext lock];
+    NSArray *stores = [self.persistentStoreCoordinator persistentStores];
+    for (NSPersistentStore *store in stores) {
+        [self.persistentStoreCoordinator removePersistentStore:store error:nil];
+        [[NSFileManager defaultManager] removeItemAtPath:store.URL.path error:nil];
+    }
+    [self.managedContext unlock];
+    
+    self.managedObjectModel = nil;
+    self.managedContext = nil;
+    self.persistentStoreCoordinator = nil;
+}
 
 - (void)setupCoreData
 {
@@ -58,8 +73,8 @@
         [error handle];
     }
     
-    self.mainContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSMainQueueConcurrencyType];
-    [self.mainContext setPersistentStoreCoordinator:self.persistentStoreCoordinator];
+    self.managedContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSMainQueueConcurrencyType];
+    [self.managedContext setPersistentStoreCoordinator:self.persistentStoreCoordinator];
 }
 
 - (void)saveContext:(NSManagedObjectContext *)context
@@ -71,9 +86,9 @@
     }
     
     UIBackgroundTaskIdentifier task = [[UIApplication sharedApplication] beginBackgroundTaskWithExpirationHandler:nil];
-    [self.mainContext performBlock:^{
+    [self.managedContext performBlock:^{
         NSError *parentError = nil;
-        if ([self.mainContext hasChanges] && ![self.mainContext save:&parentError]) {
+        if ([self.managedContext hasChanges] && ![self.managedContext save:&parentError]) {
             [parentError handle];
         }
         [[UIApplication sharedApplication] endBackgroundTask:task];
@@ -82,7 +97,7 @@
 
 - (void)saveMainContext
 {
-    [self saveContext:self.mainContext];
+    [self saveContext:self.managedContext];
 }
 
 - (void)applicationShouldSaveContext:(NSNotification *)notification

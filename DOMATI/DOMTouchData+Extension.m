@@ -51,7 +51,7 @@
 {
     return [self fetchRequest:^(NSFetchRequest *fs) {
         [fs setPredicate:[NSPredicate predicateWithFormat:@"identifier < 0"]];
-    } inContext:[DOMCoreDataManager sharedManager].mainContext];
+    } inContext:[DOMCoreDataManager sharedManager].managedContext];
 }
 
 - (NSArray *)unsyncedRawMotionData
