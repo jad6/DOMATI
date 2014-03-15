@@ -966,7 +966,33 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</stri
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <mutableString key="text">HREO Ethics Reference code: RA/4/1/6642 
-In this research project, Dynamic Object Modelling for Advanced Touch Interactions (DOMATI), you will be asked to provide your: - Gender;- Date of Birth; - Height;- Weight;- Occupation; You may select “Undisclosed” for any of the above information if you do not wish to disclose such information.Further, the following information about your device will also be collected: - Gyroscope readings;- Accelerometer readings; - Touches durations;- Touches locations;- Touches radii;- Device model name; NO OTHER DATA OR PERSONAL INFORMATION WILL BE TAKEN FROM YOUR DEVICE. ALL DATA IS SECURELY STORED ON AN PASSWORD PROTECTED SERVER. The collected data will be synced only when the device is connected to the Internet. The data will then be stored on a secure server and used anonymously to assist in optimising a strength recognition user calibrated algorithm. - Researcher:Jad OsseiranSchool of Computer Science &amp; Software Engineering University of Western Australia+61 413 849 770 Supervisor:Professor Amitava DattaSchool of Computer Science &amp; Software Engineering University of Western Australia(08) 6488 3449 - Approval to conduct this research has been provided by the University of Western Australia, in accordance with its ethics review and approval procedures. Any person considering participation in this research project, or agreeing to participate, may raise any questions or issues with the researchers at any time.</mutableString>
+In this research project, Dynamic Object Modelling for Advanced Touch Interactions (DOMATI), you will be asked to provide your: 
+- Gender;
+- Date of Birth; 
+- Height;
+- Weight;
+- Occupation; 
+You may select “Undisclosed” for any of the above information if you do not wish to disclose such information.
+Further, the following information about your device will also be collected: 
+- Gyroscope readings;
+- Accelerometer readings; 
+- Touches durations;
+- Touches locations;
+- Touches radii;
+- Device model name; 
+NO OTHER DATA OR PERSONAL INFORMATION WILL BE TAKEN FROM YOUR DEVICE. ALL DATA IS SECURELY STORED ON AN PASSWORD PROTECTED SERVER. 
+The collected data will be synced only when the device is connected to the Internet. The data will then be stored on a secure server and used anonymously to assist in optimising a strength recognition user calibrated algorithm. 
+- 
+Researcher:
+Jad Osseiran
+School of Computer Science &amp; Software Engineering University of Western Australia
++61 413 849 770 
+Supervisor:
+Professor Amitava Datta
+School of Computer Science &amp; Software Engineering University of Western Australia
+(08) 6488 3449 
+- 
+Approval to conduct this research has been provided by the University of Western Australia, in accordance with its ethics review and approval procedures. Any person considering participation in this research project, or agreeing to participate, may raise any questions or issues with the researchers at any time.</mutableString>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                 <dataDetectorType key="dataDetectorTypes" phoneNumber="YES" link="YES" address="YES"/>
@@ -1009,20 +1035,27 @@ In this research project, Dynamic Object Modelling for Advanced Touch Interactio
                                 <rect key="frame" x="0.0" y="44" width="320" height="460"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <mutableString key="text">HREO Ethics Reference code: RA/4/1/6642
+                                <string key="text">HREO Ethics Reference code: RA/4/1/6642
 
 I (the participant) have read the information provided and any questions I have asked have been answered to my satisfaction. I agree to participate in this activity, realising that I may withdraw at any time without reason and without prejudice. (Or where applicable – without prejudice to my future medical treatment).
-I understand that the data inputed in the application will be sent to a server anonymously and will be used for analysis with regards to the research project.
-I understand that all identifiable (attributable) information that I provide is treated as strictly confidential and will not be released by the investigator in any form that may identify me. The only exception to this principle of confidentiality is if documents are required by law.
-I have been advised as to what data is being collected, the purpose for collecting the data, and what will be done with the data upon completion of the research.
-I agree that research data gathered for the study may be published provided my name or other identifying information is not used.
-(Please note that, as the PCF is not a contract between parties, it is not necessary that the researcher counter-sign the form. Nor is it necessary to have a witness to the participant's signature. There may be some exceptions to this generalisation in cases where researchers feel that there would be practical, rather than purely legal, benefit in being able to more clearly verify a participant's consent.)
+
+I understand that the data inputed in the application will be sent to a server anonymously and will be used for analysis with regards to the research project.
+
+I understand that all identifiable (attributable) information that I provide is treated as strictly confidential and will not be released by the investigator in any form that may identify me. The only exception to this principle of confidentiality is if documents are required by law.
+
+I have been advised as to what data is being collected, the purpose for collecting the data, and what will be done with the data upon completion of the research.
+
+I agree that research data gathered for the study may be published provided my name or other identifying information is not used.
+
+(Please note that, as the PCF is not a contract between parties, it is not necessary that the researcher counter-sign the form. Nor is it necessary to have a witness to the participant's signature. There may be some exceptions to this generalisation in cases where researchers feel that there would be practical, rather than purely legal, benefit in being able to more clearly verify a participant's consent.)
 
 -
 
 Approval to conduct this research has been provided by the University of Western Australia, in accordance with its ethics review and approval procedures. Any person considering participation in this research project, or agreeing to participate, may raise any questions or issues with the researchers at any time.
-In addition, any person not satisfied with the response of researchers may raise ethics issues or concerns, and may make any complaints about this research project by contacting the Human Research Ethics Office at the University of Western Australia on (08) 6488 3703 or by emailing to hreo-research@uwa.edu.au
-All research participants are entitles to retain a copy of any Participant Information For and/or Participant Consent Form relating to this research project.</mutableString>
+
+In addition, any person not satisfied with the response of researchers may raise ethics issues or concerns, and may make any complaints about this research project by contacting the Human Research Ethics Office at the University of Western Australia on (08) 6488 3703 or by emailing to hreo-research@uwa.edu.au
+
+All research participants are entitles to retain a copy of any Participant Information For and/or Participant Consent Form relating to this research project.</string>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                 <dataDetectorType key="dataDetectorTypes" phoneNumber="YES" link="YES" address="YES"/>
