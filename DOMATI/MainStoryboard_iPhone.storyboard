@@ -965,7 +965,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</stri
                                 <rect key="frame" x="0.0" y="44" width="320" height="460"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <mutableString key="text">HREO Ethics Reference code: RA/4/1/6642 
+                                <string key="text">HREO Ethics Reference code: RA/4/1/6642 
 In this research project, Dynamic Object Modelling for Advanced Touch Interactions (DOMATI), you will be asked to provide your: 
 - Gender;
 - Date of Birth; 
@@ -992,7 +992,7 @@ Professor Amitava Datta
 School of Computer Science &amp; Software Engineering University of Western Australia
 (08) 6488 3449 
 - 
-Approval to conduct this research has been provided by the University of Western Australia, in accordance with its ethics review and approval procedures. Any person considering participation in this research project, or agreeing to participate, may raise any questions or issues with the researchers at any time.</mutableString>
+Approval to conduct this research has been provided by the University of Western Australia, in accordance with its ethics review and approval procedures. Any person considering participation in this research project, or agreeing to participate, may raise any questions or issues with the researchers at any time.</string>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                 <dataDetectorType key="dataDetectorTypes" phoneNumber="YES" link="YES" address="YES"/>

@@ -210,12 +210,14 @@
                 CMDeviceMotion *motion = currentMotionItem.deviceMotion;
                 [motions addObject:motion];
                 
-                // Good old pythagorus to get the average acceleration.
+                // Good old pythagorus to get an abstract measure of
+                // the combined acceleration on the device.
                 CMAcceleration acc = motion.userAcceleration;
                 totalAcceleration += sqrt(acc.x * acc.x + acc.y * acc.y + acc.z * acc.z);
                 
-#warning Shit! was I meant to use pythagorus for rotaion?!
-                // And again for the rotation.
+                // Using pythagorus on rotation values gives a
+                // scalar value which can be used to determine the
+                // level of rotation of a touch.
                 CMRotationRate rot = motion.rotationRate;
                 totalRotation += sqrt(rot.x * rot.x + rot.y * rot.y + rot.z * rot.z);
                 

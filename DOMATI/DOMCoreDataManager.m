@@ -86,7 +86,7 @@
         [childError handle];
     }
     
-#warning dispath queue?
+    // Make sure the saving finishes 
     UIBackgroundTaskIdentifier task = [[UIApplication sharedApplication] beginBackgroundTaskWithExpirationHandler:nil];
     [self.managedContext performBlock:^{
         NSError *parentError = nil;

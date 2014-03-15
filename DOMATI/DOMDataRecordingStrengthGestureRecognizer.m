@@ -71,15 +71,14 @@
     // completion block once all object have been saved.
     dispatch_group_t savingGroup = dispatch_group_create();
     
+    // Create a new ManagedObjectContext for multi threading core data operations.
+    NSManagedObjectContext *threadContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
+    threadContext.parentContext = [DOMCoreDataManager sharedManager].managedContext;
+    
     for (UITouch *touch in touches) {
         // Get the information from the super class.
         NSArray *touchAllPhasesInfo = [self allPhasesInfoForTouch:touch];
         NSDictionary *motionsInfo = [self motionsInfoForTouch:touch];
-        
-#warning Should I take this threadContext creation outside of the enumaration?
-        // Create a new ManagedObjectContext for multi threading core data operations.
-        NSManagedObjectContext *threadContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
-        threadContext.parentContext = [DOMCoreDataManager sharedManager].managedContext;
         
         // Increment the number of saves as we are about to do one.
         self.numberOfCoreDataSaves++;

@@ -228,7 +228,7 @@
     // Check if the user has already been uploaded
     DOMUser *user = [DOMUser currentUser];
     if (user.identifier > 0) {
-        NSString *path = [[NSString alloc] initWithFormat:@"users/%i.json" , user.identifier];
+        NSString *path = [[NSString alloc] initWithFormat:@"users/%li.json" , (long)user.identifier];
         
         [self PUT:path parameters:[user postDictionary] success:^(AFHTTPRequestOperation *operation, id responseObject) {
             [self uploadUnsyncedTouchDataWithCompletion:completionBlock];
