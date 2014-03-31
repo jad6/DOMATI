@@ -130,8 +130,8 @@
  *  @param context            The context in which to save the data.
  */
 - (void)setTouchAllPhasesInfo:(NSArray *)touchAllPhasesInfo
-    onTouchData:(DOMTouchData *)touchData
-    inContext:(NSManagedObjectContext *)context
+                  onTouchData:(DOMTouchData *)touchData
+                    inContext:(NSManagedObjectContext *)context
 {
     // Need the start and end times to calculate duration
     NSTimeInterval startTimestamp = 0.0;
@@ -198,8 +198,8 @@
  *  @param context     The context in which to save the data.
  */
 - (void)setDeviceMotionsInfo:(NSDictionary *)motionsInfo
-    onTouchData:(DOMTouchData *)touchData
-    inContext:(NSManagedObjectContext *)context
+                 onTouchData:(DOMTouchData *)touchData
+                   inContext:(NSManagedObjectContext *)context
 {
     // Enumerate through each motion and save them as
     // DOMRawMotionData object.

@@ -97,8 +97,8 @@
 #pragma mark - Day Start & Ends
 
 - (NSDate *)dayWithHour:(NSUInteger)hour
-    minute:(NSUInteger)minute
-    second:(NSUInteger)second
+                 minute:(NSUInteger)minute
+                 second:(NSUInteger)second
 {
     unsigned unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit |  NSDayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit;
     NSDateComponents *comps = [[NSCalendar currentCalendar] components:unitFlags fromDate:self];

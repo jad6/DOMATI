@@ -65,7 +65,7 @@
 #pragma mark - Reachability
 
 - (void)uploadDataWhenPossibleWithCompletion:(void (^)(BOOL success))completionBlock
-    showHudInView:(UIView *)view
+                               showHudInView:(UIView *)view
 {
     self.hudView = view;
 
@@ -145,9 +145,9 @@
 #pragma mark - Logic
 
 - (void)uploadUnsyncedRawData:(NSArray *)unsyncedRawData
-    forTouchData:(DOMTouchData *)touchData
-    toPath:(NSString *)path
-    completion:(void (^)(NSError *error))completionBlock
+                 forTouchData:(DOMTouchData *)touchData
+                       toPath:(NSString *)path
+                   completion:(void (^)(NSError *error))completionBlock
 {
     __block NSError *rawDataUploadError = nil;
 
@@ -182,7 +182,7 @@
 }
 
 - (void)uploadUnsyncedRawTouchDataForTouchData:(DOMTouchData *)touchData
-    completion:(void (^)(NSError *error))completionBlock
+                                    completion:(void (^)(NSError *error))completionBlock
 {
     NSString *path = [[NSString alloc] initWithFormat:@"raw_touch_data.json"];
 
@@ -193,7 +193,7 @@
 }
 
 - (void)uploadUnsyncedRawMotionDataForTouchData:(DOMTouchData *)touchData
-    completion:(void (^)(NSError *error))completionBlock
+                                     completion:(void (^)(NSError *error))completionBlock
 {
     NSString *path = [[NSString alloc] initWithFormat:@"raw_motion_data.json"];
 

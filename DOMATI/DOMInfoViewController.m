@@ -83,8 +83,8 @@
 }
 
 - (void)mailComposeController:(MFMailComposeViewController *)controller
-    didFinishWithResult:(MFMailComposeResult)result
-    error:(NSError *)error
+          didFinishWithResult:(MFMailComposeResult)result
+                        error:(NSError *)error
 {
     if (error)
     {

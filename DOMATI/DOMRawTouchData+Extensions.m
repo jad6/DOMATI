@@ -15,7 +15,7 @@
 @implementation DOMRawTouchData (Extensions)
 
 + (instancetype)rawTouchDataInContext:(NSManagedObjectContext *)context
-    fromTouchInfo:(NSDictionary *)touchInfo
+                        fromTouchInfo:(NSDictionary *)touchInfo
 {
     return [self newEntity:@"DOMRawTouchData" inContext:context idAttribute:@"identifier" value:[self localIdentifier] onInsert:^(DOMRawTouchData *object) {
 

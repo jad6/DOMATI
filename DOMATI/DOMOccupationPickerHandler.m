@@ -16,9 +16,9 @@
 
 @implementation DOMOccupationPickerHandler
 
-- (void)populatedPicker:(UIPickerView *)pickerView
+- (void)  populatedPicker:(UIPickerView *)pickerView
     withInitialOccupation:(NSString *)occupation
-    delegate:(id<DOMOccupationPickerHandlerDelegate>)delegate
+                 delegate:(id<DOMOccupationPickerHandlerDelegate>)delegate
 {
     pickerView.delegate = self;
     pickerView.dataSource = self;
@@ -47,7 +47,7 @@
 #pragma mark - Logic
 
 - (void)selectOccupation:(NSString *)occupation
-    animated:(BOOL)animated
+                animated:(BOOL)animated
 {
     self.selectedOccupation = occupation;
     NSInteger row = [self rowForOccupation:self.selectedOccupation];
@@ -101,9 +101,9 @@
 #pragma mark - Picker delegate
 
 - (UIView *)pickerView:(UIPickerView *)pickerView
-    viewForRow:(NSInteger)row
-    forComponent:(NSInteger)component
-    reusingView:(UIView *)view
+            viewForRow:(NSInteger)row
+          forComponent:(NSInteger)component
+           reusingView:(UIView *)view
 {
     UILabel *label = (UILabel *)[super pickerView:pickerView
                                        viewForRow:row

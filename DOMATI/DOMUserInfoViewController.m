@@ -167,7 +167,7 @@ static NSInteger kUndisclosedAlertTag = 10;
  *  @param indexPath the indexPath of the cell.
  */
 - (void)setupCell:(UITableViewCell *)cell
-    forIndexPath:(NSIndexPath *)indexPath
+     forIndexPath:(NSIndexPath *)indexPath
 {
     // If the indexPath is the picker cell do nothing.
     if ([indexPath isEqual:self.pickerIndexPath])
@@ -181,10 +181,12 @@ static NSInteger kUndisclosedAlertTag = 10;
     NSString *detailText = nil;
     switch (indexPath.section)
     {
-        case 0: {
+        case 0:
+        {
             switch (indexPath.row)
             {
-                case 0: {
+                case 0:
+                {
                     text = nil;
                     DOMGenderSegmentCell *genderCell = (DOMGenderSegmentCell *)cell;
 
@@ -205,7 +207,8 @@ static NSInteger kUndisclosedAlertTag = 10;
             break;
         }
 
-        case 1: {
+        case 1:
+        {
             DOMTextFieldCell *textFieldCell = (DOMTextFieldCell *)cell;
 
             switch (indexPath.row)
@@ -235,7 +238,8 @@ static NSInteger kUndisclosedAlertTag = 10;
             break;
         }
 
-        case 2: {
+        case 2:
+        {
             text = @"Occupation";
 
             if (user.occupation)

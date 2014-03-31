@@ -18,8 +18,8 @@
 - (NSDate *)endOfCurrentYear;
 
 - (NSDate *)dayWithHour:(NSUInteger)hour
-    minute:(NSUInteger)minute
-    second:(NSUInteger)second;
+                 minute:(NSUInteger)minute
+                 second:(NSUInteger)second;
 - (NSDate *)beginningOfDay;
 - (NSDate *)endOfDay;
 

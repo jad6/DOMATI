@@ -160,8 +160,8 @@
  *  @param animated Wether the change is animated.
  */
 - (void)setText:(NSString *)text
-    onLabel:(UILabel *)label
-    animated:(BOOL)animated
+        onLabel:(UILabel *)label
+       animated:(BOOL)animated
 {
     if (animated)
     {
@@ -184,8 +184,8 @@
  *  @param animated Wether the change is animated.
  */
 - (void)setAlpha:(CGFloat)alpha
-    onView:(UIView *)view
-    animated:(BOOL)animated
+          onView:(UIView *)view
+        animated:(BOOL)animated
 {
     if (animated)
     {
@@ -200,7 +200,7 @@
 }
 
 - (void)setTitleOnCircleView:(DOMCircleTouchView *)circleView
-    forState:(DOMCalibrationState)state
+                    forState:(DOMCalibrationState)state
 {
     switch (state)
     {

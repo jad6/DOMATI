@@ -11,10 +11,10 @@
 @implementation NSManagedObject (Appulse)
 
 + (id)newEntity:(NSString *)entity
-    inContext:(NSManagedObjectContext *)context
+      inContext:(NSManagedObjectContext *)context
     idAttribute:(NSString *)attribute
-    value:(id)value
-    onInsert:(void (^)(id object))insertBlock
+          value:(id)value
+       onInsert:(void (^)(id object))insertBlock
 {
     id returnedObject = nil;
 
@@ -54,8 +54,8 @@
 }
 
 + (NSArray *)findAllByAttribute:(NSString *)attribute
-    value:(id)value
-    inContext:(NSManagedObjectContext *)context
+                          value:(id)value
+                      inContext:(NSManagedObjectContext *)context
 {
     return [self fetchRequest:^(NSFetchRequest *fs) {
                 fs.predicate = [NSPredicate predicateWithFormat:@"%K = %@", attribute, value];
@@ -63,8 +63,8 @@
 }
 
 + (id)findFirstByAttribute:(NSString *)attribute
-    value:(id)value
-    inContext:(NSManagedObjectContext *)context
+                     value:(id)value
+                 inContext:(NSManagedObjectContext *)context
 {
     id object = [[self fetchRequest:^(NSFetchRequest *fs) {
                       fs.predicate = [NSPredicate predicateWithFormat:@"%K = %@", attribute, value];
@@ -75,7 +75,7 @@
 }
 
 + (NSArray *)fetchRequest:(void (^)(NSFetchRequest *fs))fetchRequestBlock
-    inContext:(NSManagedObjectContext *)context
+                inContext:(NSManagedObjectContext *)context
 {
     NSFetchRequest *fs = [self fetchRequestInContext:context];
 

@@ -34,7 +34,7 @@
 #pragma mark - Public
 
 + (instancetype)touchData:(void (^)(DOMTouchData *touchData))touchDataBlock
-    inContext:(NSManagedObjectContext *)context
+                inContext:(NSManagedObjectContext *)context
 {
     return [DOMTouchData newEntity:NSStringFromClass([DOMTouchData class])
                          inContext:context

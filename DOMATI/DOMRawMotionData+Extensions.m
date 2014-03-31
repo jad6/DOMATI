@@ -17,7 +17,7 @@
 @implementation DOMRawMotionData (Extensions)
 
 + (instancetype)rawMotionDataInContext:(NSManagedObjectContext *)context
-    fromDeviceMotion:(CMDeviceMotion *)deviceMotion
+                      fromDeviceMotion:(CMDeviceMotion *)deviceMotion
 {
     return [self newEntity:@"DOMRawMotionData" inContext:context idAttribute:@"identifier" value:[self localIdentifier] onInsert:^(DOMRawMotionData *object) {
                 object.userAccelX = @(deviceMotion.userAcceleration.x);

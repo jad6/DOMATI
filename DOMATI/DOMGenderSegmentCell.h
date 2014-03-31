@@ -19,7 +19,7 @@
  *  @param gender           The newly selected gender.
  */
 - (void)segmentedControl:(UISegmentedControl *)segmentedControl
-    didChangeGender:(DOMGender)gender;
+         didChangeGender:(DOMGender)gender;
 
 @end
 

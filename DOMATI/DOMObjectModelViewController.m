@@ -24,9 +24,9 @@ SceneVertex;
 // Define vertex data for a triangle to use in example
 static const SceneVertex vertices[] =
 {
-    { { -0.5f, -0.5f,  0.0  } }, // lower left corner
-    { { 0.5f,  -0.5f,  0.0  } }, // lower right corner
-    { { -0.5f, 0.5f,   0.0  } } // upper left corner
+    { { -0.5f, -0.5f,  0.0      } }, // lower left corner
+    { { 0.5f,  -0.5f,  0.0      } }, // lower right corner
+    { { -0.5f, 0.5f,   0.0      } } // upper left corner
 };
 
 @interface DOMObjectModelViewController () <UIGestureRecognizerDelegate>

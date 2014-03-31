@@ -11,7 +11,7 @@
 @implementation DOMPickerHandler
 
 - (void)populatedPicker:(UIPickerView *)pickerView
-    delegate:(id<DOMPickerHandlerDelegate>)delegate
+               delegate:(id<DOMPickerHandlerDelegate>)delegate
 {
     pickerView.delegate = self;
     pickerView.dataSource = self;
@@ -53,9 +53,9 @@
 #pragma mark - Picker delegate
 
 - (UIView *)pickerView:(UIPickerView *)pickerView
-    viewForRow:(NSInteger)row
-    forComponent:(NSInteger)component
-    reusingView:(UIView *)view
+            viewForRow:(NSInteger)row
+          forComponent:(NSInteger)component
+           reusingView:(UIView *)view
 {
     // Return a label to represent each row.
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0.0f, 0.0f, pickerView.frame.size.width, 44.0f)];

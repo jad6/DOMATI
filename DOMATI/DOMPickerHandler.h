@@ -37,7 +37,7 @@
  *  @param delegate   The delegate for the picker handler.
  */
 - (void)populatedPicker:(UIPickerView *)pickerView
-    delegate:(id<DOMPickerHandlerDelegate>)delegate;
+               delegate:(id<DOMPickerHandlerDelegate>)delegate;
 
 /**
  *  This method returns the default value that should displaed when

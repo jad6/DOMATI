@@ -21,7 +21,7 @@ typedef NS_ENUM (NSInteger, DOMCircleTouchStrength) {
 
 @property (nonatomic) DOMCircleTouchStrength circleTouchStrength;
 
-- (id)initWithFrame:(CGRect)frame
+- (id)    initWithFrame:(CGRect)frame
     circleTouchStrength:(DOMCircleTouchStrength)circleTouchStrength;
 
 @end

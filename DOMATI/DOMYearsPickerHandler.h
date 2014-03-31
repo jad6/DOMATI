@@ -35,8 +35,8 @@
  *  @param delegate   The delegate for the handler.
  */
 - (void)populatedPicker:(UIPickerView *)pickerView
-    withInitialYear:(NSInteger)year
-    delegate:(id<DOMYearsPickerHandlerDelegate>)delegate;
+        withInitialYear:(NSInteger)year
+               delegate:(id<DOMYearsPickerHandlerDelegate>)delegate;
 
 /**
  *  Select the given year. By default this method animates the

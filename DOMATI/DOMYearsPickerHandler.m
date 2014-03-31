@@ -17,8 +17,8 @@
 @implementation DOMYearsPickerHandler
 
 - (void)populatedPicker:(UIPickerView *)pickerView
-    withInitialYear:(NSInteger)year
-    delegate:(id<DOMYearsPickerHandlerDelegate>)delegate
+        withInitialYear:(NSInteger)year
+               delegate:(id<DOMYearsPickerHandlerDelegate>)delegate
 {
     pickerView.delegate = self;
     pickerView.dataSource = self;
@@ -109,9 +109,9 @@
 #pragma mark - Picker delegate
 
 - (UIView *)pickerView:(UIPickerView *)pickerView
-    viewForRow:(NSInteger)row
-    forComponent:(NSInteger)component
-    reusingView:(UIView *)view
+            viewForRow:(NSInteger)row
+          forComponent:(NSInteger)component
+           reusingView:(UIView *)view
 {
     UILabel *label = (UILabel *)[super pickerView:pickerView
                                        viewForRow:row

@@ -63,8 +63,8 @@
  *  @param headerCell The cell above the picker.
  */
 - (void)populatePicker:(UIPickerView *)picker
-    atIndexPath:(NSIndexPath *)indexPath
-    headerCell:(UITableViewCell *)headerCell
+           atIndexPath:(NSIndexPath *)indexPath
+            headerCell:(UITableViewCell *)headerCell
 {
     DOMPickerHandler *currentHandler = nil;
 

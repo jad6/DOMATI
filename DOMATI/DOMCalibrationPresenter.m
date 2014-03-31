@@ -13,8 +13,8 @@
 @implementation DOMCalibrationPresenter
 
 + (void)showCalibrationFromController:(UIViewController *)controller
-    withTransitionStyle:(UIModalTransitionStyle)style
-    completion:(void (^)())completionBlock
+                  withTransitionStyle:(UIModalTransitionStyle)style
+                           completion:(void (^)())completionBlock
 {
     UINavigationController *calibrationNC = [controller.storyboard instantiateViewControllerWithIdentifier:@"DOMCalibrationNavController"];
 
@@ -25,7 +25,7 @@
 }
 
 + (void)showCalibrationFromController:(UIViewController *)controller
-    completion:(void (^)())completionBlock
+                           completion:(void (^)())completionBlock
 {
     [self showCalibrationFromController:controller
                     withTransitionStyle:UIModalTransitionStyleCoverVertical
