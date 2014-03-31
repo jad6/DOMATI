@@ -25,7 +25,7 @@
 
 @property (weak, nonatomic) id<DOMOccupationPickerHandlerDelegate> delegate;
 
-@property (nonatomic) NSString * selectedOccupation;
+@property (nonatomic) NSString *selectedOccupation;
 
 /**
  *  Populates the picker with the occupations stored locally.

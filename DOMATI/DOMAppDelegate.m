@@ -27,7 +27,7 @@
     [DOMUser refreshCurrentUser];
 
     // Handle the local notifications.
-    UILocalNotification * localNotif = [launchOptions objectForKey:UIApplicationLaunchOptionsLocalNotificationKey];
+    UILocalNotification *localNotif = [launchOptions objectForKey:UIApplicationLaunchOptionsLocalNotificationKey];
     [DOMLocalNotificationHelper handleLaunchLocalNotification:localNotif];
     // If the badge was showing remove it.
     [UIApplication sharedApplication].applicationIconBadgeNumber = 0;

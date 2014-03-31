@@ -14,7 +14,7 @@
 
 @interface DOMGroupSelectionViewController ()
 
-@property (strong, nonatomic) NSArray * fingerSizesData;
+@property (strong, nonatomic) NSArray *fingerSizesData;
 
 @end
 
@@ -64,9 +64,9 @@
 
 - (DOMFingerCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    DOMFingerCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"Finger Cell" forIndexPath:indexPath];
+    DOMFingerCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"Finger Cell" forIndexPath:indexPath];
 
-    NSDictionary * fingerData = self.fingerSizesData[indexPath.row];
+    NSDictionary *fingerData = self.fingerSizesData[indexPath.row];
 
     cell.titleLabel.text = fingerData[@"title"];
     cell.imageView.backgroundColor = DOMATI_COLOR;

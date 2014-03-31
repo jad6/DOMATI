@@ -26,7 +26,7 @@
         id userInfoVC = [self.storyboard instantiateViewControllerWithIdentifier:@"DOMUserInfoViewController"];
         id calibrationVC = [self.storyboard instantiateViewControllerWithIdentifier:@"DOMCalibrationViewController"];
 
-        NSMutableArray * viewControllers = [self.navigationController.viewControllers mutableCopy];
+        NSMutableArray *viewControllers = [self.navigationController.viewControllers mutableCopy];
         [viewControllers addObjectsFromArray:@[userInfoVC, calibrationVC]];
         [self.navigationController setViewControllers:viewControllers animated:NO];
 
@@ -64,10 +64,10 @@
  */
 - (void)presentViewControllerWithIdentifier:(NSString *)identifier withTitle:(NSString *)title
 {
-    UIViewController * controller = [self.storyboard instantiateViewControllerWithIdentifier:identifier];
+    UIViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:identifier];
 
-    DOMNavigationController * navController = [[DOMNavigationController alloc] initWithRootViewController:controller];
-    UIBarButtonItem * closeBarButton = [[UIBarButtonItem alloc] initWithTitle:@"Close" style:UIBarButtonItemStyleBordered target:self action:@selector(dismissAction:)];
+    DOMNavigationController *navController = [[DOMNavigationController alloc] initWithRootViewController:controller];
+    UIBarButtonItem *closeBarButton = [[UIBarButtonItem alloc] initWithTitle:@"Close" style:UIBarButtonItemStyleBordered target:self action:@selector(dismissAction:)];
 
     [[controller navigationItem] setLeftBarButtonItem:closeBarButton];
 
@@ -117,7 +117,7 @@
  */
 - (IBAction)nextAction:(id)sender
 {
-    UIAlertView * pcfAV = [[UIAlertView alloc] initWithTitle:@"Consent" message:@"By selecting \"I Agree\" you agree to the terms in the Participant Consent Form (PCF) with UWA HREO ethics approval ref RA/4/1/6642 and can proceed with the app." delegate:self cancelButtonTitle:@"I Agree" otherButtonTitles:@"Show PCF", @"Cancel", nil];
+    UIAlertView *pcfAV = [[UIAlertView alloc] initWithTitle:@"Consent" message:@"By selecting \"I Agree\" you agree to the terms in the Participant Consent Form (PCF) with UWA HREO ethics approval ref RA/4/1/6642 and can proceed with the app." delegate:self cancelButtonTitle:@"I Agree" otherButtonTitles:@"Show PCF", @"Cancel", nil];
 
     [pcfAV show];
 }

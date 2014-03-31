@@ -12,7 +12,7 @@
 
 @interface DOMUserInfoPickerTableViewController ()
 
-@property (nonatomic, strong) DOMPickerHandler * currentPickerHandler;
+@property (nonatomic, strong) DOMPickerHandler *currentPickerHandler;
 
 @end
 
@@ -25,11 +25,11 @@
 
 - (void)reloadPicker
 {
-    NSIndexPath * pickerIndexPath = self.pickerIndexPath;
+    NSIndexPath *pickerIndexPath = self.pickerIndexPath;
 
     // Get the cell above the picker.
-    UITableViewCell * headerCell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:(pickerIndexPath.row - 1) inSection:pickerIndexPath.section]];
-    DOMPickerCell * pickerCell = (DOMPickerCell *)[self.tableView cellForRowAtIndexPath:pickerIndexPath];
+    UITableViewCell *headerCell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:(pickerIndexPath.row - 1) inSection:pickerIndexPath.section]];
+    DOMPickerCell *pickerCell = (DOMPickerCell *)[self.tableView cellForRowAtIndexPath:pickerIndexPath];
 
     [self populatePicker:pickerCell.picker
              atIndexPath:pickerIndexPath
@@ -47,7 +47,7 @@
  */
 - (void)setDetailText:(NSString *)text undisclosed:(BOOL)undisclosed
 {
-    UITableViewCell * cell = [self.tableView cellForRowAtIndexPath:self.activeCellIndexPath];
+    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:self.activeCellIndexPath];
 
     cell.detailTextLabel.text = (undisclosed) ? [DOMPickerHandler undisclosedValue] : text;
 }
@@ -66,14 +66,14 @@
     atIndexPath:(NSIndexPath *)indexPath
     headerCell:(UITableViewCell *)headerCell
 {
-    DOMPickerHandler * currentHandler = nil;
+    DOMPickerHandler *currentHandler = nil;
 
     if (indexPath.section == 0 && indexPath.row == 2)
     {
         // Set the year from the possible existing detail value.
         NSInteger year = ([headerCell.detailTextLabel.text isEqualToString:[DOMPickerHandler undisclosedValue]]) ? 1990 : [DOMYearsPickerHandler yearForTitile:headerCell.detailTextLabel.text];
 
-        DOMYearsPickerHandler * yearsHandler = [[DOMYearsPickerHandler alloc] init];
+        DOMYearsPickerHandler *yearsHandler = [[DOMYearsPickerHandler alloc] init];
         [yearsHandler populatedPicker:picker
                       withInitialYear:year
                              delegate:self];
@@ -83,9 +83,9 @@
     else if (indexPath.section == 2)
     {
         // Set the occupation from the possible existing detail value.
-        NSString * initialOccupation = ([headerCell.detailTextLabel.text isEqualToString:[DOMPickerHandler undisclosedValue]]) ? nil : headerCell.detailTextLabel.text;
+        NSString *initialOccupation = ([headerCell.detailTextLabel.text isEqualToString:[DOMPickerHandler undisclosedValue]]) ? nil : headerCell.detailTextLabel.text;
 
-        DOMOccupationPickerHandler * occupationHandler = [[DOMOccupationPickerHandler alloc] init];
+        DOMOccupationPickerHandler *occupationHandler = [[DOMOccupationPickerHandler alloc] init];
         [occupationHandler populatedPicker:picker
                      withInitialOccupation:initialOccupation
                                   delegate:self];

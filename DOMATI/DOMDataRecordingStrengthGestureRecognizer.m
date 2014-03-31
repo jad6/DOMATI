@@ -74,14 +74,14 @@
     dispatch_group_t savingGroup = dispatch_group_create();
 
     // Create a new ManagedObjectContext for multi threading core data operations.
-    NSManagedObjectContext * threadContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
+    NSManagedObjectContext *threadContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
     threadContext.parentContext = [DOMCoreDataManager sharedManager].managedContext;
 
-    for (UITouch * touch in touches)
+    for (UITouch *touch in touches)
     {
         // Get the information from the super class.
-        NSArray * touchAllPhasesInfo = [self allPhasesInfoForTouch:touch];
-        NSDictionary * motionsInfo = [self motionsInfoForTouch:touch];
+        NSArray *touchAllPhasesInfo = [self allPhasesInfoForTouch:touch];
+        NSDictionary *motionsInfo = [self motionsInfoForTouch:touch];
 
         // Increment the number of saves as we are about to do one.
         self.numberOfCoreDataSaves++;
@@ -91,7 +91,7 @@
         [threadContext performBlock:^{
              // Create and set the touch data objects along with
              // its relationships.
-             [DOMTouchData touchData:^(DOMTouchData * touchData) {
+             [DOMTouchData touchData:^(DOMTouchData *touchData) {
                   [self setDeviceMotionsInfo:motionsInfo
                                  onTouchData:touchData
                                    inContext:threadContext];
@@ -147,7 +147,7 @@
     CGFloat maxRadius = (CGFLOAT_IS_DOUBLE) ? DBL_MIN : FLT_MIN;
 
     // Enumerate through each of the touch's phase info.
-    for (NSDictionary * touchInfo in touchAllPhasesInfo)
+    for (NSDictionary *touchInfo in touchAllPhasesInfo)
     {
         // Save the start variables on UITouchPhaseBegan and the end
         // variables on UITouchPhaseEnded.
@@ -176,7 +176,7 @@
 
         // Create a raw touch data object in the context from
         // the touch info.
-        DOMRawTouchData * rawData = [DOMRawTouchData rawTouchDataInContext:context fromTouchInfo:touchInfo];
+        DOMRawTouchData *rawData = [DOMRawTouchData rawTouchDataInContext:context fromTouchInfo:touchInfo];
         // Set the relationship between touchData & rawData.
         [touchData addRawTouchDataObject:rawData];
     }
@@ -203,11 +203,11 @@
 {
     // Enumerate through each motion and save them as
     // DOMRawMotionData object.
-    for (CMDeviceMotion * motion in motionsInfo[kMotionInfoMotionsKey])
+    for (CMDeviceMotion *motion in motionsInfo[kMotionInfoMotionsKey])
     {
         // Create a raw motion data object in the context from
         // the touch info.
-        DOMRawMotionData * rawData = [DOMRawMotionData rawMotionDataInContext:context fromDeviceMotion:motion];
+        DOMRawMotionData *rawData = [DOMRawMotionData rawMotionDataInContext:context fromDeviceMotion:motion];
         // Set the relationship between touchData & rawData.
         [touchData addRawMotionDataObject:rawData];
     }

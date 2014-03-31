@@ -10,16 +10,16 @@
 
 @interface DOMUser ()
 
-@property (nonatomic, strong) NSUbiquitousKeyValueStore * keyStore;
+@property (nonatomic, strong) NSUbiquitousKeyValueStore *keyStore;
 
 @end
 
-static NSString * kIdentifierKey = @"DOMUserIdentifierKey";
-static NSString * kOccupationKey = @"DOMUserOccupationKey";
-static NSString * kGenderKey = @"DOMUserGenderKey";
-static NSString * kBirthYearKey = @"DOMUserBirthYearKey";
-static NSString * kWeightKey = @"DOMUserWeightKey";
-static NSString * kHeightKey = @"DOMUserHeightKey";
+static NSString *kIdentifierKey = @"DOMUserIdentifierKey";
+static NSString *kOccupationKey = @"DOMUserOccupationKey";
+static NSString *kGenderKey = @"DOMUserGenderKey";
+static NSString *kBirthYearKey = @"DOMUserBirthYearKey";
+static NSString *kWeightKey = @"DOMUserWeightKey";
+static NSString *kHeightKey = @"DOMUserHeightKey";
 
 @implementation DOMUser
 
@@ -57,7 +57,7 @@ static NSString * kHeightKey = @"DOMUserHeightKey";
 
 - (void)keyStoreSetValue:(id)value forKey:(NSString *)key
 {
-    NSUbiquitousKeyValueStore * store = self.keyStore;
+    NSUbiquitousKeyValueStore *store = self.keyStore;
 
     [store setObject:value forKey:key];
     [store synchronize];
@@ -70,7 +70,7 @@ static NSString * kHeightKey = @"DOMUserHeightKey";
  */
 + (void)refreshCurrentUser
 {
-    DOMUser * user = [self currentUser];
+    DOMUser *user = [self currentUser];
 
     user.identifier = user.identifier;
     user.birthYear = user.birthYear;
@@ -84,7 +84,7 @@ static NSString * kHeightKey = @"DOMUserHeightKey";
 
 - (NSDictionary *)postDictionary
 {
-    NSMutableDictionary * dictionary = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *dictionary = [[NSMutableDictionary alloc] init];
 
     dictionary[@"birth_year"] = @(self.birthYear);
     dictionary[@"gender"] = @(self.gender);
@@ -111,7 +111,7 @@ static NSString * kHeightKey = @"DOMUserHeightKey";
 {
     if (!self->_identifier)
     {
-        NSNumber * identifier = [self.keyStore objectForKey:kIdentifierKey];
+        NSNumber *identifier = [self.keyStore objectForKey:kIdentifierKey];
         self->_identifier = [identifier integerValue];
     }
 
@@ -192,7 +192,7 @@ static NSString * kHeightKey = @"DOMUserHeightKey";
 {
     if (!self->_weight)
     {
-        NSNumber * weight = [self.keyStore objectForKey:kWeightKey];
+        NSNumber *weight = [self.keyStore objectForKey:kWeightKey];
         self->_weight = (CGFLOAT_IS_DOUBLE) ? [weight doubleValue] : [weight floatValue];
     }
 
@@ -213,7 +213,7 @@ static NSString * kHeightKey = @"DOMUserHeightKey";
 {
     if (!self->_height)
     {
-        NSNumber * height = [self.keyStore objectForKey:kHeightKey];
+        NSNumber *height = [self.keyStore objectForKey:kHeightKey];
         self->_height = (CGFLOAT_IS_DOUBLE) ? [height doubleValue] : [height floatValue];
     }
 

@@ -22,10 +22,10 @@
     dispatch_queue_t dataProcessingQueue;
 }
 
-@property (nonatomic, strong) DOMMotionManager * motionManager;
+@property (nonatomic, strong) DOMMotionManager *motionManager;
 
 /// Dictionaries to hold the various informations for each touch.
-@property (nonatomic, strong) NSMutableDictionary * touchesInfo, * motionsInfo, * motionItems;
+@property (nonatomic, strong) NSMutableDictionary *touchesInfo, *motionsInfo, *motionItems;
 
 @property (nonatomic) CGFloat strength;
 
@@ -47,7 +47,7 @@
                           self.motionItems = [[NSMutableDictionary alloc] init];
                       });
 
-        DOMMotionManager * motionManager = [DOMMotionManager sharedManager];
+        DOMMotionManager *motionManager = [DOMMotionManager sharedManager];
         [motionManager startListening];
 
         self.motionManager = motionManager;
@@ -76,9 +76,9 @@
 
 - (NSDictionary *)motionsInfoForTouch:(UITouch *)touch
 {
-    NSString * pointerKey = [touch pointerString];
+    NSString *pointerKey = [touch pointerString];
 
-    __block NSDictionary * motionsInfo = nil;
+    __block NSDictionary *motionsInfo = nil;
 
     dispatch_barrier_sync(self->dataProcessingQueue, ^{
                               motionsInfo = [self.motionsInfo[pointerKey] copy];
@@ -90,9 +90,9 @@
 
 - (NSArray *)allPhasesInfoForTouch:(UITouch *)touch
 {
-    NSString * pointerKey = [touch pointerString];
+    NSString *pointerKey = [touch pointerString];
 
-    __block NSArray * touchAllPhasesInfo = nil;
+    __block NSArray *touchAllPhasesInfo = nil;
 
     dispatch_barrier_sync(self->dataProcessingQueue, ^{
                               touchAllPhasesInfo = [self.touchesInfo[pointerKey] copy];
@@ -127,9 +127,9 @@
 {
     // Make sure we are processing the data on a different queue.
     dispatch_sync(self->dataProcessingQueue, ^{
-                      for (UITouch * touch in touches)
+                      for (UITouch *touch in touches)
                       {
-                          NSString * pointerKey = [touch pointerString];
+                          NSString *pointerKey = [touch pointerString];
 
                           // Get the tail for the linked list on touches began.
                           if (touch.phase == UITouchPhaseBegan)
@@ -141,14 +141,14 @@
                           CGPoint touchLocation = [self locationOfTouch:touch onScreenForView:self.view];
 
                           // Store all the relevant touch info in a dictionary.
-                          NSDictionary * touchInfo = @{ kTouchInfoTimestampKey : @(touch.timestamp),
-                                                        kTouchInfoXKey : @(touchLocation.x),
-                                                        kTouchInfoYKey : @(touchLocation.y),
-                                                        kTouchInfoPhaseKey : @(touch.phase),
-                                                        kTouchInfoRadiusKey : @([touch radius]) };
+                          NSDictionary *touchInfo = @{ kTouchInfoTimestampKey : @(touch.timestamp),
+                                                       kTouchInfoXKey : @(touchLocation.x),
+                                                       kTouchInfoYKey : @(touchLocation.y),
+                                                       kTouchInfoPhaseKey : @(touch.phase),
+                                                       kTouchInfoRadiusKey : @([touch radius]) };
 
                           // Get the existing touch info for possible other states.
-                          NSMutableArray * touchAllPhasesInfo = self.touchesInfo[pointerKey];
+                          NSMutableArray *touchAllPhasesInfo = self.touchesInfo[pointerKey];
                           // If there are no other touch info states stored create
                           // an array to hold them.
                           if (!touchAllPhasesInfo)
@@ -189,17 +189,17 @@
     // We are about to do somewhat intensive work, let's keep that away form the main queue.
     dispatch_sync(self->dataProcessingQueue, ^{
 
-                      for (UITouch * touch in touches)
+                      for (UITouch *touch in touches)
                       {
-                          NSString * pointerKey = [touch pointerString];
+                          NSString *pointerKey = [touch pointerString];
 
                           // The head of the linked list is the item stored when
                           // the touch was in its UITouchPhaseBegan phase.
-                          DOMMotionItem * headMotionItem = self.motionItems[pointerKey];
+                          DOMMotionItem *headMotionItem = self.motionItems[pointerKey];
                           // Set a new pointer to enumerate with.
-                          DOMMotionItem * currentMotionItem = headMotionItem;
+                          DOMMotionItem *currentMotionItem = headMotionItem;
                           // Get the new tail from the linked list.
-                          DOMMotionItem * tailMotionItem = [[DOMMotionManager sharedManager] lastMotionItemWithTouchPhase:UITouchPhaseEnded];
+                          DOMMotionItem *tailMotionItem = [[DOMMotionManager sharedManager] lastMotionItemWithTouchPhase:UITouchPhaseEnded];
 
                           // We have a stored scope reference to the head of the
                           // linked list, therefore we can remove it from our
@@ -212,10 +212,10 @@
                           double totalRotation = 0.0;
 
                           // Allocate array to store the touch's motions.
-                          NSMutableArray * motions = [[NSMutableArray alloc] init];
+                          NSMutableArray *motions = [[NSMutableArray alloc] init];
                           while (currentMotionItem != tailMotionItem)
                           {
-                              CMDeviceMotion * motion = currentMotionItem.deviceMotion;
+                              CMDeviceMotion *motion = currentMotionItem.deviceMotion;
                               [motions addObject:motion];
 
                           // Good old pythagorus to get an abstract measure of

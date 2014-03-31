@@ -18,7 +18,7 @@ typedef NS_ENUM (NSInteger, DOMCalibrationState) {
     DOMCalibrationStateFinal
 };
 
-static NSString * kCalibrationStateChangeNotificationName = @"DOMCalibrationSateChangeNotification";
+static NSString *kCalibrationStateChangeNotificationName = @"DOMCalibrationSateChangeNotification";
 
 @interface DOMCalibrationViewController : UIViewController
 

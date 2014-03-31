@@ -64,7 +64,7 @@
  */
 - (BOOL)hasPickerForIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell * cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:(indexPath.row + 1) inSection:indexPath.section]];
+    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:(indexPath.row + 1) inSection:indexPath.section]];
 
     return [cell isKindOfClass:[self pickerCellClass]];
 }
@@ -101,10 +101,10 @@
     {
         self.activeCellIndexPath = nil;
 
-        NSIndexPath * datePickerIndexPathCopy = [self.pickerIndexPath copy];
+        NSIndexPath *datePickerIndexPathCopy = [self.pickerIndexPath copy];
         self.pickerIndexPath = nil;
 
-        UITableViewCell * inactiveCell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:(datePickerIndexPathCopy.row - 1) inSection:datePickerIndexPathCopy.section]];
+        UITableViewCell *inactiveCell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:(datePickerIndexPathCopy.row - 1) inSection:datePickerIndexPathCopy.section]];
         inactiveCell.detailTextLabel.textColor = DETAIL_TEXT_COLOR;
 
         [self.tableView deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:datePickerIndexPathCopy.row inSection:datePickerIndexPathCopy.section]]
@@ -121,7 +121,7 @@
 {
     [self.tableView beginUpdates];
 
-    NSArray * indexPaths = @[[NSIndexPath indexPathForRow:(indexPath.row + 1) inSection:indexPath.section]];
+    NSArray *indexPaths = @[[NSIndexPath indexPathForRow:(indexPath.row + 1) inSection:indexPath.section]];
 
     // Check if 'indexPath' has an attached picker below it
     if ([self hasPickerForIndexPath:indexPath])
@@ -169,7 +169,7 @@
     {
         // Hide the old picker and display the new one
         NSInteger rowToReveal = (before ? indexPath.row - 1 : indexPath.row);
-        NSIndexPath * indexPathToReveal = [NSIndexPath indexPathForRow:rowToReveal inSection:indexPath.section];
+        NSIndexPath *indexPathToReveal = [NSIndexPath indexPathForRow:rowToReveal inSection:indexPath.section];
 
         [self toggleDatePickerForSelectedIndexPath:indexPathToReveal];
         self.pickerIndexPath = [NSIndexPath indexPathForRow:indexPathToReveal.row + 1 inSection:indexPath.section];

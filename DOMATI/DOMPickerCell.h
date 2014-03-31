@@ -12,6 +12,6 @@
 
 @interface DOMPickerCell : DOMTableViewCell
 
-@property (weak, nonatomic) IBOutlet UIPickerView * picker;
+@property (weak, nonatomic) IBOutlet UIPickerView *picker;
 
 @end

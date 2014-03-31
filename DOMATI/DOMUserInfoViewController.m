@@ -10,10 +10,10 @@
 
 #import "DOMUser.h"
 
-static NSString * SegmentCellIdentifier = @"Segment Cell";
-static NSString * DetailCellIdentifier = @"Detail Cell";
-static NSString * TextFieldCellIdentifier = @"Text Field Cell";
-static NSString * PickerCellIdentifier = @"Picker Cell";
+static NSString *SegmentCellIdentifier = @"Segment Cell";
+static NSString *DetailCellIdentifier = @"Detail Cell";
+static NSString *TextFieldCellIdentifier = @"Text Field Cell";
+static NSString *PickerCellIdentifier = @"Picker Cell";
 
 static NSInteger kUndisclosedAlertTag = 10;
 
@@ -22,7 +22,7 @@ static NSInteger kUndisclosedAlertTag = 10;
 // Keep a reference to the first responder to easily resign it.
 @property (nonatomic, strong) id currentFirstResponder;
 // The footers & headers text for the table.
-@property (nonatomic, strong) NSArray * footersText, * headersText;
+@property (nonatomic, strong) NSArray *footersText, *headersText;
 
 @end
 
@@ -34,7 +34,7 @@ static NSInteger kUndisclosedAlertTag = 10;
 
     self.user = [DOMUser currentUser];
 
-    NSDictionary * tableInfo = [[NSDictionary alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"UserInfoTable" ofType:@"plist"]];
+    NSDictionary *tableInfo = [[NSDictionary alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"UserInfoTable" ofType:@"plist"]];
     self.headersText = tableInfo[@"Headers"];
     self.footersText = tableInfo[@"Footers"];
 }
@@ -49,12 +49,12 @@ static NSInteger kUndisclosedAlertTag = 10;
  */
 - (IBAction)nextAction:(id)sender
 {
-    NSArray * undisclosedFields = [self undisclosedFields];
+    NSArray *undisclosedFields = [self undisclosedFields];
     NSUInteger undisclosedFieldsCount = [undisclosedFields count];
 
     if (undisclosedFieldsCount > 0)
     {
-        NSMutableString * list = [[NSMutableString alloc] init];
+        NSMutableString *list = [[NSMutableString alloc] init];
         for (NSUInteger i = 0; i < undisclosedFieldsCount; i++)
         {
             if (i < undisclosedFieldsCount - 1)
@@ -67,9 +67,9 @@ static NSInteger kUndisclosedAlertTag = 10;
             }
         }
 
-        NSString * message = [[NSString alloc] initWithFormat:@"The following fields are undisclosed: \"%@\". Please scroll down to fill them.", list];
+        NSString *message = [[NSString alloc] initWithFormat:@"The following fields are undisclosed: \"%@\". Please scroll down to fill them.", list];
 
-        UIAlertView * undisclosedAV = [[UIAlertView alloc] initWithTitle:@"Undisclosed Fields" message:message delegate:self cancelButtonTitle:@"Fill Fields" otherButtonTitles:@"Ignore", nil];
+        UIAlertView *undisclosedAV = [[UIAlertView alloc] initWithTitle:@"Undisclosed Fields" message:message delegate:self cancelButtonTitle:@"Fill Fields" otherButtonTitles:@"Ignore", nil];
         undisclosedAV.tag = kUndisclosedAlertTag;
         [undisclosedAV show];
     }
@@ -99,7 +99,7 @@ static NSInteger kUndisclosedAlertTag = 10;
  */
 - (NSArray *)undisclosedFields
 {
-    NSMutableArray * undisclosedFields = [[NSMutableArray alloc] init];
+    NSMutableArray *undisclosedFields = [[NSMutableArray alloc] init];
 
     if (self.user.gender == DOMGenderUndisclosed)
     {
@@ -175,10 +175,10 @@ static NSInteger kUndisclosedAlertTag = 10;
         return;
     }
 
-    DOMUser * user = self.user;
+    DOMUser *user = self.user;
 
-    NSString * text = nil;
-    NSString * detailText = nil;
+    NSString *text = nil;
+    NSString *detailText = nil;
     switch (indexPath.section)
     {
         case 0: {
@@ -186,7 +186,7 @@ static NSInteger kUndisclosedAlertTag = 10;
             {
                 case 0: {
                     text = nil;
-                    DOMGenderSegmentCell * genderCell = (DOMGenderSegmentCell *)cell;
+                    DOMGenderSegmentCell *genderCell = (DOMGenderSegmentCell *)cell;
 
                     genderCell.titleLabel.text = @"Gender";
                     genderCell.segmentedControl.selectedSegmentIndex = user.gender;
@@ -206,7 +206,7 @@ static NSInteger kUndisclosedAlertTag = 10;
         }
 
         case 1: {
-            DOMTextFieldCell * textFieldCell = (DOMTextFieldCell *)cell;
+            DOMTextFieldCell *textFieldCell = (DOMTextFieldCell *)cell;
 
             switch (indexPath.row)
             {
@@ -259,7 +259,7 @@ static NSInteger kUndisclosedAlertTag = 10;
  */
 - (NSString *)cellIdentiferForIndexPath:(NSIndexPath *)indexPath
 {
-    NSString * CellIdentifier = nil;
+    NSString *CellIdentifier = nil;
 
     if ([indexPath isEqual:self.pickerIndexPath])
     {
@@ -338,11 +338,11 @@ static NSInteger kUndisclosedAlertTag = 10;
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString * CellIdentifier = nil;
+    static NSString *CellIdentifier = nil;
 
     CellIdentifier = [self cellIdentiferForIndexPath:indexPath];
 
-    UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
 
     [self setupCell:cell forIndexPath:indexPath];
 
@@ -351,7 +351,7 @@ static NSInteger kUndisclosedAlertTag = 10;
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell * cell = [tableView cellForRowAtIndexPath:indexPath];
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
 
     if ([cell.reuseIdentifier isEqualToString:DetailCellIdentifier])
     {
@@ -377,7 +377,7 @@ static NSInteger kUndisclosedAlertTag = 10;
             [self removePicker];
         }
 
-        DOMTextFieldCell * textFieldCell = (DOMTextFieldCell *)cell;
+        DOMTextFieldCell *textFieldCell = (DOMTextFieldCell *)cell;
         textFieldCell.textField.enabled = YES;
         [textFieldCell.textField becomeFirstResponder];
         self.currentFirstResponder = textFieldCell.textField;

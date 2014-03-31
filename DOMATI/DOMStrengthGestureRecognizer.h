@@ -10,15 +10,15 @@
 #import <CoreMotion/CMDeviceMotion.h>
 
 // Touch info dictionary keys.
-static NSString * kTouchInfoPhaseKey = @"phase";
-static NSString * kTouchInfoTimestampKey = @"timestamp";
-static NSString * kTouchInfoRadiusKey = @"radius";
-static NSString * kTouchInfoXKey = @"x";
-static NSString * kTouchInfoYKey = @"y";
+static NSString *kTouchInfoPhaseKey = @"phase";
+static NSString *kTouchInfoTimestampKey = @"timestamp";
+static NSString *kTouchInfoRadiusKey = @"radius";
+static NSString *kTouchInfoXKey = @"x";
+static NSString *kTouchInfoYKey = @"y";
 // Motion info dictionary keys.
-static NSString * kMotionInfoMotionsKey = @"motions";
-static NSString * kMotionInfoAvgAccelerationKey = @"accelerationAvg";
-static NSString * kMotionInfoAvgRotationKey = @"rotationAvg";
+static NSString *kMotionInfoMotionsKey = @"motions";
+static NSString *kMotionInfoAvgAccelerationKey = @"accelerationAvg";
+static NSString *kMotionInfoAvgRotationKey = @"rotationAvg";
 
 @interface DOMStrengthGestureRecognizer : UIGestureRecognizer
 

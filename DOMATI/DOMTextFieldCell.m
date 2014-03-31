@@ -64,8 +64,8 @@
     }
 
     // Make sure you get the right local for the decimal separator.
-    NSLocale * locale = [NSLocale currentLocale];
-    NSString * decimalSeparator = [locale objectForKey:NSLocaleDecimalSeparator];
+    NSLocale *locale = [NSLocale currentLocale];
+    NSString *decimalSeparator = [locale objectForKey:NSLocaleDecimalSeparator];
 
     // Do not allow decimalSeparator at the beggining
     if (range.location == 0 && [string isEqualToString:decimalSeparator])
@@ -75,7 +75,7 @@
 
     // Create the valid character set in this case numbers and the
     // decimal separator.
-    NSMutableCharacterSet * validCharacterSet = [[NSMutableCharacterSet alloc] init];
+    NSMutableCharacterSet *validCharacterSet = [[NSMutableCharacterSet alloc] init];
     [validCharacterSet formUnionWithCharacterSet:[NSCharacterSet decimalDigitCharacterSet]];
     [validCharacterSet addCharactersInString:decimalSeparator];
 
@@ -86,8 +86,8 @@
     }
 
     // Make sure we always keep the numbers to two decimal places.
-    NSString * newText = [textField.text stringByReplacingCharactersInRange:range withString:string];
-    NSArray * comps = [newText componentsSeparatedByString:decimalSeparator];
+    NSString *newText = [textField.text stringByReplacingCharactersInRange:range withString:string];
+    NSArray *comps = [newText componentsSeparatedByString:decimalSeparator];
     if ([comps count] == 2)
     {
         return [[comps lastObject] length] <= 2;

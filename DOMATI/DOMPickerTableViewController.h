@@ -10,7 +10,7 @@
 
 @interface DOMPickerTableViewController : UITableViewController
 
-@property (nonatomic, strong) NSIndexPath * pickerIndexPath, * activeCellIndexPath;
+@property (nonatomic, strong) NSIndexPath *pickerIndexPath, *activeCellIndexPath;
 
 /**
  *  Method to override with the picker cell class.

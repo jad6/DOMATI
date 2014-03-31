@@ -10,7 +10,7 @@
 
 @interface DOMOccupationPickerHandler ()
 
-@property (nonatomic, strong) NSArray * occupations;
+@property (nonatomic, strong) NSArray *occupations;
 
 @end
 
@@ -105,10 +105,10 @@
     forComponent:(NSInteger)component
     reusingView:(UIView *)view
 {
-    UILabel * label = (UILabel *)[super pickerView:pickerView
-                                        viewForRow:row
-                                      forComponent:component
-                                       reusingView:view];
+    UILabel *label = (UILabel *)[super pickerView:pickerView
+                                       viewForRow:row
+                                     forComponent:component
+                                      reusingView:view];
 
     if (row > 0)
     {

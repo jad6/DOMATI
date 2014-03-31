@@ -33,7 +33,7 @@
 {
     if (!self->_currentYear)
     {
-        NSDateComponents * comps = [[NSCalendar currentCalendar] components:NSYearCalendarUnit fromDate:[NSDate date]];
+        NSDateComponents *comps = [[NSCalendar currentCalendar] components:NSYearCalendarUnit fromDate:[NSDate date]];
         self->_currentYear = [comps year];
     }
 
@@ -113,10 +113,10 @@
     forComponent:(NSInteger)component
     reusingView:(UIView *)view
 {
-    UILabel * label = (UILabel *)[super pickerView:pickerView
-                                        viewForRow:row
-                                      forComponent:component
-                                       reusingView:view];
+    UILabel *label = (UILabel *)[super pickerView:pickerView
+                                       viewForRow:row
+                                     forComponent:component
+                                      reusingView:view];
 
     if (row > 0)
     {

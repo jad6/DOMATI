@@ -21,13 +21,13 @@
 @interface DOMCalibrationViewController ()
 
 // The views which have been setup in the storyboard.
-@property (nonatomic, weak) IBOutlet DOMCircleTouchView * circleTouchView;
-@property (nonatomic, weak) IBOutlet UILabel * topLabel, * bottomLabel;
+@property (nonatomic, weak) IBOutlet DOMCircleTouchView *circleTouchView;
+@property (nonatomic, weak) IBOutlet UILabel *topLabel, *bottomLabel;
 
-@property (nonatomic, strong) DOMDataRecordingStrengthGestureRecognizer * strengthGR;
+@property (nonatomic, strong) DOMDataRecordingStrengthGestureRecognizer *strengthGR;
 
 // An array to store information about wach states.
-@property (nonatomic, strong) NSArray * statesInformation;
+@property (nonatomic, strong) NSArray *statesInformation;
 
 // The current state in which the controller is.
 @property (nonatomic) DOMCalibrationState state;
@@ -42,7 +42,7 @@
     self.view.backgroundColor = [UIColor blackColor];
 
     // Add the strength gesture recognizer to the circle view.
-    DOMDataRecordingStrengthGestureRecognizer * strengthGR = [[DOMDataRecordingStrengthGestureRecognizer alloc] initWithTarget:self action:@selector(tapDetected:)];
+    DOMDataRecordingStrengthGestureRecognizer *strengthGR = [[DOMDataRecordingStrengthGestureRecognizer alloc] initWithTarget:self action:@selector(tapDetected:)];
     [self.circleTouchView addGestureRecognizer:strengthGR];
     self.strengthGR = strengthGR;
 
@@ -56,7 +56,7 @@
 
              // Attempt to upload the new (and possibly old data).
              [[DOMRequestOperationManager sharedManager] uploadDataWhenPossibleWithCompletion:^(BOOL success) {
-                  NSDictionary * stateInfo = self.statesInformation[DOMCalibrationStateFinal];
+                  NSDictionary *stateInfo = self.statesInformation[DOMCalibrationStateFinal];
 
                   if (success)
                   {
@@ -102,7 +102,7 @@
     {
         // Increment the saved number of calibration the user has made
         // on the device.
-        NSUserDefaults * defaults = [NSUserDefaults standardUserDefaults];
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         NSInteger numTouchSets = [[defaults objectForKey:DEFAULTS_TOUCH_SETS_RECORDED] integerValue];
         numTouchSets++;
 
@@ -138,7 +138,7 @@
  */
 - (void)tapDetected:(DOMStrengthGestureRecognizer *)strengthGR
 {
-    NSNotification * stateNotif = [[NSNotification alloc] initWithName:kCalibrationStateChangeNotificationName object:self userInfo:@{ @"state" : @(self.state) }];
+    NSNotification *stateNotif = [[NSNotification alloc] initWithName:kCalibrationStateChangeNotificationName object:self userInfo:@{ @"state" : @(self.state) }];
 
     [[NSNotificationCenter defaultCenter] postNotification:stateNotif];
 
@@ -165,7 +165,7 @@
 {
     if (animated)
     {
-        CATransition * animation = [CATransition animation];
+        CATransition *animation = [CATransition animation];
         animation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
         animation.type = kCATransitionFade;
         animation.duration = ANIMATION_DURATION;
@@ -231,11 +231,11 @@
 - (void)setViewForState:(DOMCalibrationState)state animated:(BOOL)animated
 {
     // Get the new state info.
-    NSDictionary * stateInfo = self.statesInformation[state];
+    NSDictionary *stateInfo = self.statesInformation[state];
 
     CGFloat circleTouchAlpha = [stateInfo[@"circleViewAlpha"] floatValue];
-    NSString * topText = stateInfo[@"topText"];
-    NSString * bottomText = stateInfo[@"bottomText"];
+    NSString *topText = stateInfo[@"topText"];
+    NSString *bottomText = stateInfo[@"bottomText"];
 
     if (state == DOMCalibrationStateFinal)
     {

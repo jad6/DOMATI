@@ -19,7 +19,7 @@
 + (instancetype)rawMotionDataInContext:(NSManagedObjectContext *)context
     fromDeviceMotion:(CMDeviceMotion *)deviceMotion
 {
-    return [self newEntity:@"DOMRawMotionData" inContext:context idAttribute:@"identifier" value:[self localIdentifier] onInsert:^(DOMRawMotionData * object) {
+    return [self newEntity:@"DOMRawMotionData" inContext:context idAttribute:@"identifier" value:[self localIdentifier] onInsert:^(DOMRawMotionData *object) {
                 object.userAccelX = @(deviceMotion.userAcceleration.x);
                 object.userAccelY = @(deviceMotion.userAcceleration.y);
                 object.userAccelZ = @(deviceMotion.userAcceleration.z);
@@ -41,7 +41,7 @@
 
 - (NSDictionary *)postDictionary
 {
-    NSMutableDictionary * dictionary = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *dictionary = [[NSMutableDictionary alloc] init];
 
     dictionary[@"user_accel_x"] = self.userAccelX;
     dictionary[@"user_accel_y"] = self.userAccelY;

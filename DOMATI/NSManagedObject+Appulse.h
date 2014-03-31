@@ -26,7 +26,7 @@
     value:(id)value
     inContext:(NSManagedObjectContext *)context;
 
-+ (NSArray *)fetchRequest:(void (^)(NSFetchRequest * fs))fetchRequestBlock
++ (NSArray *)fetchRequest:(void (^)(NSFetchRequest *fs))fetchRequestBlock
     inContext:(NSManagedObjectContext *)context;
 
 + (NSUInteger)countInContext:(NSManagedObjectContext *)context;

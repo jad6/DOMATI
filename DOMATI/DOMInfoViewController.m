@@ -14,11 +14,11 @@
 
 @interface DOMInfoViewController () <MFMailComposeViewControllerDelegate, QLPreviewControllerDataSource>
 
-@property (weak, nonatomic) IBOutlet UITableViewCell * feedbackCell;
-@property (weak, nonatomic) IBOutlet UITableViewCell * calibrationExpiryCell;
-@property (weak, nonatomic) IBOutlet UITableViewCell * projectProposalCell;
+@property (weak, nonatomic) IBOutlet UITableViewCell *feedbackCell;
+@property (weak, nonatomic) IBOutlet UITableViewCell *calibrationExpiryCell;
+@property (weak, nonatomic) IBOutlet UITableViewCell *projectProposalCell;
 
-@property (strong, nonatomic) DOMPreviewItem * previewItem;
+@property (strong, nonatomic) DOMPreviewItem *previewItem;
 
 @end
 
@@ -49,7 +49,7 @@
 
 - (void)refreshCalibrationExpiryText
 {
-    NSString * text = [[NSUbiquitousKeyValueStore defaultStore] objectForKey:KEYSTORE_CALI_EXPR_TEXT];
+    NSString *text = [[NSUbiquitousKeyValueStore defaultStore] objectForKey:KEYSTORE_CALI_EXPR_TEXT];
 
     if (!text)
     {
@@ -72,7 +72,7 @@
 {
     if ([MFMailComposeViewController canSendMail])
     {
-        MFMailComposeViewController * composer = [[MFMailComposeViewController alloc] init];
+        MFMailComposeViewController *composer = [[MFMailComposeViewController alloc] init];
         composer.mailComposeDelegate = self;
         [composer setToRecipients:@[@"20507033@student.uwa.edu.au"]];
         [composer setSubject:@"DOMATI Feedback"];
@@ -105,7 +105,7 @@
     self.previewItem.documentTitle = title;
     if ([QLPreviewController canPreviewItem:self.previewItem])
     {
-        QLPreviewController * quickLookC = [[QLPreviewController alloc] init];
+        QLPreviewController *quickLookC = [[QLPreviewController alloc] init];
         quickLookC.dataSource = self;
 
         [self.navigationController pushViewController:quickLookC animated:YES];

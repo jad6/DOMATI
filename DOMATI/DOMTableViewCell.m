@@ -25,7 +25,7 @@
 {
     [super awakeFromNib];
 
-    UIView * backgroundView = [[UIView alloc] initWithFrame:self.frame];
+    UIView *backgroundView = [[UIView alloc] initWithFrame:self.frame];
     backgroundView.backgroundColor = SELECTION_COLOR;
     self.selectedBackgroundView = backgroundView;
 

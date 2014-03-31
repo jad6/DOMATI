@@ -34,7 +34,7 @@
 {
     [[UIToolbar appearance] setBarTintColor:BACKGROUND_COLOR];
     [[DOMNavigationBar appearance] setBarTintColor:BACKGROUND_COLOR];
-    NSDictionary * navAttributes = @{ NSForegroundColorAttributeName : TEXT_COLOR };
+    NSDictionary *navAttributes = @{ NSForegroundColorAttributeName : TEXT_COLOR };
     [[DOMNavigationBar appearance] setTitleTextAttributes:navAttributes];
 
     [[DOMTableView appearance] setBackgroundColor:BACKGROUND_COLOR];

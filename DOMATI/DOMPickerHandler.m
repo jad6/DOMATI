@@ -58,7 +58,7 @@
     reusingView:(UIView *)view
 {
     // Return a label to represent each row.
-    UILabel * label = [[UILabel alloc] initWithFrame:CGRectMake(0.0f, 0.0f, pickerView.frame.size.width, 44.0f)];
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0.0f, 0.0f, pickerView.frame.size.width, 44.0f)];
 
     label.backgroundColor = [UIColor clearColor];
     label.textAlignment = NSTextAlignmentCenter;
@@ -77,7 +77,7 @@
 {
     if ([self.delegate respondsToSelector:@selector(pickerView:didChangeSelection:)])
     {
-        UILabel * label = (UILabel *)[pickerView viewForRow:row forComponent:component];
+        UILabel *label = (UILabel *)[pickerView viewForRow:row forComponent:component];
 
         [self.delegate pickerView:self.pickerView
                didChangeSelection:label.text];

@@ -16,7 +16,7 @@
 }
 
 /// The pointers for the head and tail of the linked list.
-@property (nonatomic, strong) DOMMotionItem * headMotionItem, * tailMotionItem;
+@property (nonatomic, strong) DOMMotionItem *headMotionItem, *tailMotionItem;
 
 /// The number of activies which the motion manager is giving data to.
 @property (nonatomic) NSInteger numActivities;
@@ -32,7 +32,7 @@ static NSTimeInterval kUpdateInterval = 1 / 100.0;
 
 + (instancetype)sharedManager
 {
-    static __DISPATCH_ONCE__ DOMMotionManager * singletonObject = nil;
+    static __DISPATCH_ONCE__ DOMMotionManager *singletonObject = nil;
 
     static dispatch_once_t onceToken;
 
@@ -62,7 +62,7 @@ static NSTimeInterval kUpdateInterval = 1 / 100.0;
             // Turn on the motion sensing if possible.
             if (![self isDeviceMotionActive])
             {
-                NSError * error = nil;
+                NSError *error = nil;
                 [self startDeviceMotion:&error];
                 if (error)
                 {
@@ -112,7 +112,7 @@ static NSTimeInterval kUpdateInterval = 1 / 100.0;
  *  @param error The error which may occur when starting the sensors.
  *  @return True if the motion sensors were usccessfully turned on.
  */
-- (BOOL)startDeviceMotion:(NSError * __autoreleasing *)error
+- (BOOL)startDeviceMotion:(NSError *__autoreleasing *)error
 {
     // Do nothing if the motion sensors are already turned on.
     if ([self isDeviceMotionActive])
@@ -136,10 +136,10 @@ static NSTimeInterval kUpdateInterval = 1 / 100.0;
     self.deviceMotionUpdateInterval = kUpdateInterval;
 
     // Observe the operation queue with KVO to be alerted when it is empty.
-    NSOperationQueue * deviceMotionQueue = [[NSOperationQueue alloc] init];
+    NSOperationQueue *deviceMotionQueue = [[NSOperationQueue alloc] init];
     // Start the device motion update.
     [self startDeviceMotionUpdatesToQueue:deviceMotionQueue
-                              withHandler:^(CMDeviceMotion * motion, NSError * error) {
+                              withHandler:^(CMDeviceMotion *motion, NSError *error) {
          if (!error)
          {
              [self enqueueDeviceMotion:motion];
@@ -183,7 +183,7 @@ static NSTimeInterval kUpdateInterval = 1 / 100.0;
 - (void)enqueueDeviceMotion:(CMDeviceMotion *)deviceMotion
 {
     dispatch_sync(self->listQueue, ^{
-                      DOMMotionItem * motionItem = [[DOMMotionItem alloc] initWithDeviceMotion:deviceMotion];
+                      DOMMotionItem *motionItem = [[DOMMotionItem alloc] initWithDeviceMotion:deviceMotion];
 
                       if (!self.headMotionItem)
                       {
@@ -200,7 +200,7 @@ static NSTimeInterval kUpdateInterval = 1 / 100.0;
 
 - (DOMMotionItem *)lastMotionItemWithTouchPhase:(UITouchPhase)phase;
 {
-    __block DOMMotionItem * motionItem = nil;
+    __block DOMMotionItem *motionItem = nil;
     dispatch_barrier_sync(self->listQueue, ^{
                               // Update the activity tracker.
                               if (phase == UITouchPhaseEnded)

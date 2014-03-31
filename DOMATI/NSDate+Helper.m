@@ -24,9 +24,9 @@
     return [[NSCalendar autoupdatingCurrentCalendar] dateFromComponents:comps];
 }
 
-- (NSDate *)dateByAddingUnitsToComps:(void (^)(NSDateComponents * comps))compsBlock
+- (NSDate *)dateByAddingUnitsToComps:(void (^)(NSDateComponents *comps))compsBlock
 {
-    NSDateComponents * comps = [[NSDateComponents alloc] init];
+    NSDateComponents *comps = [[NSDateComponents alloc] init];
 
     if (compsBlock)
     {
@@ -60,7 +60,7 @@
 - (NSInteger)daysDifferenceToDate:(NSDate *)toDate
 {
     unsigned unitFlags = NSDayCalendarUnit;
-    NSDateComponents * components = [[NSCalendar currentCalendar] components:unitFlags fromDate:self toDate:toDate options:0];
+    NSDateComponents *components = [[NSCalendar currentCalendar] components:unitFlags fromDate:self toDate:toDate options:0];
 
     return [components day] + 1;
 }
@@ -69,7 +69,7 @@
 
 - (NSDate *)startOfCurrentYear
 {
-    NSDateComponents * comps = [self dateComponents];
+    NSDateComponents *comps = [self dateComponents];
 
     comps.month = 1;
     comps.day = 1;
@@ -84,8 +84,8 @@
     NSInteger numMonthsInYear = monthsRange.length;
 
     // Save that last month date.
-    NSDateComponents * comps = [self dateComponents];
-    NSDate * endMonthDate = [self dateByAddingNumberOfMonths:(numMonthsInYear - comps.month)];
+    NSDateComponents *comps = [self dateComponents];
+    NSDate *endMonthDate = [self dateByAddingNumberOfMonths:(numMonthsInYear - comps.month)];
 
     // Get the number of days till the end of the last month.
     NSRange daysRange = [[NSCalendar currentCalendar] rangeOfUnit:NSDayCalendarUnit inUnit:NSMonthCalendarUnit forDate:endMonthDate];
@@ -101,7 +101,7 @@
     second:(NSUInteger)second
 {
     unsigned unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit |  NSDayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit;
-    NSDateComponents * comps = [[NSCalendar currentCalendar] components:unitFlags fromDate:self];
+    NSDateComponents *comps = [[NSCalendar currentCalendar] components:unitFlags fromDate:self];
 
     comps.hour = hour;
     comps.minute = minute;
@@ -124,28 +124,28 @@
 
 - (NSDate *)dateByAddingNumberOfMonths:(NSInteger)months
 {
-    return [self dateByAddingUnitsToComps:^(NSDateComponents * comps) {
+    return [self dateByAddingUnitsToComps:^(NSDateComponents *comps) {
                 comps.month = months;
             }];
 }
 
 - (NSDate *)dateByAddingNumberOfDays:(NSInteger)days
 {
-    return [self dateByAddingUnitsToComps:^(NSDateComponents * comps) {
+    return [self dateByAddingUnitsToComps:^(NSDateComponents *comps) {
                 comps.day = days;
             }];
 }
 
 - (NSDate *)dateByAddingNumberOfHours:(NSInteger)hours
 {
-    return [self dateByAddingUnitsToComps:^(NSDateComponents * comps) {
+    return [self dateByAddingUnitsToComps:^(NSDateComponents *comps) {
                 comps.hour = hours;
             }];
 }
 
 - (NSDate *)dateByAddingNumberOfMinutes:(NSInteger)minutes
 {
-    return [self dateByAddingUnitsToComps:^(NSDateComponents * comps) {
+    return [self dateByAddingUnitsToComps:^(NSDateComponents *comps) {
                 comps.minute = minutes;
             }];
 }
@@ -154,28 +154,28 @@
 
 - (NSDate *)dateByRemovingNumberOfMonths:(NSInteger)months
 {
-    return [self dateByAddingUnitsToComps:^(NSDateComponents * comps) {
+    return [self dateByAddingUnitsToComps:^(NSDateComponents *comps) {
                 comps.month = -months;
             }];
 }
 
 - (NSDate *)dateByRemovingNumberOfDays:(NSInteger)days
 {
-    return [self dateByAddingUnitsToComps:^(NSDateComponents * comps) {
+    return [self dateByAddingUnitsToComps:^(NSDateComponents *comps) {
                 comps.day = -days;
             }];
 }
 
 - (NSDate *)dateByRemovingNumberOfHours:(NSInteger)hours
 {
-    return [self dateByAddingUnitsToComps:^(NSDateComponents * comps) {
+    return [self dateByAddingUnitsToComps:^(NSDateComponents *comps) {
                 comps.hour = -hours;
             }];
 }
 
 - (NSDate *)dateByRemovingNumberOfMinutes:(NSInteger)minutes
 {
-    return [self dateByAddingUnitsToComps:^(NSDateComponents * comps) {
+    return [self dateByAddingUnitsToComps:^(NSDateComponents *comps) {
                 comps.minute = -minutes;
             }];
 }

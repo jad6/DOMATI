@@ -14,9 +14,9 @@
 
 @interface DOMCoreDataManager ()
 
-@property (strong, nonatomic) NSManagedObjectModel * managedObjectModel;
-@property (strong, nonatomic) NSPersistentStoreCoordinator * persistentStoreCoordinator;
-@property (strong, nonatomic) NSManagedObjectContext * managedContext;
+@property (strong, nonatomic) NSManagedObjectModel *managedObjectModel;
+@property (strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
+@property (strong, nonatomic) NSManagedObjectContext *managedContext;
 
 @end
 
@@ -40,8 +40,8 @@
 - (void)flushDatabase
 {
     [self.managedContext lock];
-    NSArray * stores = [self.persistentStoreCoordinator persistentStores];
-    for (NSPersistentStore * store in stores)
+    NSArray *stores = [self.persistentStoreCoordinator persistentStores];
+    for (NSPersistentStore *store in stores)
     {
         [self.persistentStoreCoordinator removePersistentStore:store error:nil];
         [[NSFileManager defaultManager] removeItemAtPath:store.URL.path error:nil];
@@ -60,12 +60,12 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationShouldSaveContext:) name:UIApplicationDidEnterBackgroundNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationShouldSaveContext:) name:UIApplicationWillTerminateNotification object:nil];
 
-    NSURL * modelURL = [[NSBundle mainBundle] URLForResource:DATABASE_NAME withExtension:@"momd"];
+    NSURL *modelURL = [[NSBundle mainBundle] URLForResource:DATABASE_NAME withExtension:@"momd"];
     self.managedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];
 
-    NSURL * documentDirectoryURL = [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
-    NSURL * storeURL = [documentDirectoryURL URLByAppendingPathComponent:@"coredata_domati.sqlite"];
-    NSError * error = nil;
+    NSURL *documentDirectoryURL = [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
+    NSURL *storeURL = [documentDirectoryURL URLByAppendingPathComponent:@"coredata_domati.sqlite"];
+    NSError *error = nil;
     self.persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:self.managedObjectModel];
     if (![self.persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:@{ NSMigratePersistentStoresAutomaticallyOption : @YES, NSInferMappingModelAutomaticallyOption : @YES } error:&error])
     {
@@ -82,7 +82,7 @@
 
 - (void)saveContext:(NSManagedObjectContext *)context
 {
-    NSError * childError = nil;
+    NSError *childError = nil;
 
     if (![context save:&childError])
     {
@@ -92,7 +92,7 @@
     // Make sure the saving finishes
     UIBackgroundTaskIdentifier task = [[UIApplication sharedApplication] beginBackgroundTaskWithExpirationHandler:nil];
     [self.managedContext performBlock:^{
-         NSError * parentError = nil;
+         NSError *parentError = nil;
          if ([self.managedContext hasChanges] &&
              ![self.managedContext save:&parentError])
          {

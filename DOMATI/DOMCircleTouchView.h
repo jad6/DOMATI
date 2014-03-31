@@ -17,7 +17,7 @@ typedef NS_ENUM (NSInteger, DOMCircleTouchStrength) {
 
 @interface DOMCircleTouchView : UIView
 
-@property (nonatomic, strong) NSString * title;
+@property (nonatomic, strong) NSString *title;
 
 @property (nonatomic) DOMCircleTouchStrength circleTouchStrength;
 

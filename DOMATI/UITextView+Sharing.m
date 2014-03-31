@@ -12,7 +12,7 @@
 
 - (void)shareContentInController:(id)controller
 {
-    UIActivityViewController * activityVC = [[UIActivityViewController alloc] initWithActivityItems:@[self.text] applicationActivities:nil];
+    UIActivityViewController *activityVC = [[UIActivityViewController alloc] initWithActivityItems:@[self.text] applicationActivities:nil];
 
     activityVC.excludedActivityTypes = @[UIActivityTypePostToWeibo, UIActivityTypeAssignToContact, UIActivityTypeAddToReadingList, UIActivityTypeSaveToCameraRoll, UIActivityTypePostToFacebook,  UIActivityTypePostToTwitter, UIActivityTypeMessage, UIActivityTypePostToFlickr, UIActivityTypePostToVimeo, UIActivityTypePostToTencentWeibo];
 

@@ -12,7 +12,7 @@
 
 @interface DOMMotionItem : LLItem
 
-@property (nonatomic, strong, readonly) CMDeviceMotion * deviceMotion;
+@property (nonatomic, strong, readonly) CMDeviceMotion *deviceMotion;
 
 @property (nonatomic) NSTimeInterval timestamp;
 

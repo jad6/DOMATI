@@ -25,7 +25,7 @@
 
 @interface LLItem : NSObject <NSFastEnumeration> {
     @protected
-    LLItem * _ll_next;
+    LLItem *_ll_next;
 }
 
 /* Accessors */
@@ -40,7 +40,7 @@
 
 @interface LLDItem : LLItem {
     @protected
-    __unsafe_unretained LLDItem * _ll_prev;
+    __unsafe_unretained LLDItem *_ll_prev;
 }
 
 /* Accessors */

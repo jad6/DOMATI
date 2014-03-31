@@ -12,7 +12,7 @@ static CGFloat kOuterCirclePadding = 1.0;
 
 @interface DOMCircleTouchView ()
 
-@property (nonatomic, strong) UILabel * titleLabel;
+@property (nonatomic, strong) UILabel *titleLabel;
 
 @property (nonatomic) CGRect innerCircleFrame;
 
@@ -78,7 +78,7 @@ static CGFloat kOuterCirclePadding = 1.0;
 
 - (NSString *)titleFromTouchStrength:(DOMCircleTouchStrength)touchStrength
 {
-    NSString * title = nil;
+    NSString *title = nil;
 
     switch (touchStrength)
     {
@@ -106,7 +106,7 @@ static CGFloat kOuterCirclePadding = 1.0;
 
 - (void)drawTitleLabelWithText:(NSString *)text
 {
-    UILabel * titleLabel = self.titleLabel;
+    UILabel *titleLabel = self.titleLabel;
 
     if (!titleLabel)
     {
@@ -134,8 +134,8 @@ static CGFloat kOuterCirclePadding = 1.0;
                                          rect.size.width - (2 * kOuterCirclePadding),
                                          rect.size.height - (2 * kOuterCirclePadding));
 
-    UIBezierPath * outerPath = [UIBezierPath bezierPathWithRoundedRect:outerCircleFrame
-                                                          cornerRadius:(outerCircleFrame.size.width / 2.0)];
+    UIBezierPath *outerPath = [UIBezierPath bezierPathWithRoundedRect:outerCircleFrame
+                                                         cornerRadius:(outerCircleFrame.size.width / 2.0)];
     [outerPath stroke];
 }
 

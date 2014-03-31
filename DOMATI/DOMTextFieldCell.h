@@ -31,8 +31,8 @@ typedef NS_ENUM (NSInteger, DOMTextFieldCellType) {
 
 @property (nonatomic, weak) id<DOMTextFieldCellDelegate> delegate;
 
-@property (nonatomic, weak) IBOutlet UILabel * textLabel;
-@property (nonatomic, weak) IBOutlet UITextField * textField;
+@property (nonatomic, weak) IBOutlet UILabel *textLabel;
+@property (nonatomic, weak) IBOutlet UITextField *textField;
 
 @property (nonatomic) DOMTextFieldCellType type;
 

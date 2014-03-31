@@ -18,7 +18,7 @@
 {
     id returnedObject = nil;
 
-    NSFetchRequest * fs = [NSFetchRequest fetchRequestWithEntityName:entity];
+    NSFetchRequest *fs = [NSFetchRequest fetchRequestWithEntityName:entity];
 
     fs.predicate = [NSPredicate predicateWithFormat:@"%K = %@", attribute, value];
 
@@ -57,7 +57,7 @@
     value:(id)value
     inContext:(NSManagedObjectContext *)context
 {
-    return [self fetchRequest:^(NSFetchRequest * fs) {
+    return [self fetchRequest:^(NSFetchRequest *fs) {
                 fs.predicate = [NSPredicate predicateWithFormat:@"%K = %@", attribute, value];
             } inContext:context];
 }
@@ -66,7 +66,7 @@
     value:(id)value
     inContext:(NSManagedObjectContext *)context
 {
-    id object = [[self fetchRequest:^(NSFetchRequest * fs) {
+    id object = [[self fetchRequest:^(NSFetchRequest *fs) {
                       fs.predicate = [NSPredicate predicateWithFormat:@"%K = %@", attribute, value];
                       fs.fetchLimit = 1;
                   } inContext:context] lastObject];
@@ -74,10 +74,10 @@
     return object;
 }
 
-+ (NSArray *)fetchRequest:(void (^)(NSFetchRequest * fs))fetchRequestBlock
++ (NSArray *)fetchRequest:(void (^)(NSFetchRequest *fs))fetchRequestBlock
     inContext:(NSManagedObjectContext *)context
 {
-    NSFetchRequest * fs = [self fetchRequestInContext:context];
+    NSFetchRequest *fs = [self fetchRequestInContext:context];
 
     if (fetchRequestBlock)
     {
@@ -101,7 +101,7 @@
 
 + (NSFetchRequest *)fetchRequestInContext:(NSManagedObjectContext *)context
 {
-    NSFetchRequest * fs = [[NSFetchRequest alloc] init];
+    NSFetchRequest *fs = [[NSFetchRequest alloc] init];
 
     fs.entity = [[self class] entityInContext:context];
     return fs;
@@ -117,7 +117,7 @@
  */
 + (NSNumber *)localIdentifier
 {
-    NSUserDefaults * defaults = [NSUserDefaults standardUserDefaults];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 
     if (![defaults valueForKey:DEFAULTS_NEGATIVE_IDENTIFIER])
     {

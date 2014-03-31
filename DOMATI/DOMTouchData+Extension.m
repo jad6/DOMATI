@@ -26,21 +26,21 @@
 {
     NSAssert([class isSubclassOfClass:[NSManagedObject class]], @"%@ is not a subclass of NSManagedObject", class);
 
-    return [class fetchRequest:^(NSFetchRequest * fs) {
+    return [class fetchRequest:^(NSFetchRequest *fs) {
                 [fs setPredicate:[NSPredicate predicateWithFormat:@"identifier < 0 AND touchData == %@", self]];
             } inContext:[self managedObjectContext]];
 }
 
 #pragma mark - Public
 
-+ (instancetype)touchData:(void (^)(DOMTouchData * touchData))touchDataBlock
++ (instancetype)touchData:(void (^)(DOMTouchData *touchData))touchDataBlock
     inContext:(NSManagedObjectContext *)context
 {
     return [DOMTouchData newEntity:NSStringFromClass([DOMTouchData class])
                          inContext:context
                        idAttribute:@"identifier"
                              value:[DOMTouchData localIdentifier]
-                          onInsert:^(DOMTouchData * object) {
+                          onInsert:^(DOMTouchData *object) {
                 if (touchDataBlock)
                 {
                     touchDataBlock(object);
@@ -50,7 +50,7 @@
 
 + (NSArray *)unsyncedTouchData
 {
-    return [self fetchRequest:^(NSFetchRequest * fs) {
+    return [self fetchRequest:^(NSFetchRequest *fs) {
                 [fs setPredicate:[NSPredicate predicateWithFormat:@"identifier < 0"]];
             } inContext:[DOMCoreDataManager sharedManager].managedContext];
 }
@@ -69,7 +69,7 @@
 
 - (NSDictionary *)postDictionary
 {
-    NSMutableDictionary * dictionary = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *dictionary = [[NSMutableDictionary alloc] init];
 
     dictionary[@"acceleration_avg"] = self.accelerationAvg;
     dictionary[@"duration"] = self.duration;

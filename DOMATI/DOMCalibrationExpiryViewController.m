@@ -10,7 +10,7 @@
 
 @interface DOMCalibrationExpiryViewController ()
 
-@property (strong, nonatomic) NSIndexPath * checkIndexPath;
+@property (strong, nonatomic) NSIndexPath *checkIndexPath;
 
 @end
 
@@ -25,10 +25,10 @@
 {
     [super viewWillAppear:animated];
 
-    NSIndexPath * selectedIndexPath = nil;
+    NSIndexPath *selectedIndexPath = nil;
 
-    NSUbiquitousKeyValueStore * keyStore = [NSUbiquitousKeyValueStore defaultStore];
-    NSNumber * selectedIndex = [keyStore objectForKey:KEYSTORE_CALI_EXPR_INDEX];
+    NSUbiquitousKeyValueStore *keyStore = [NSUbiquitousKeyValueStore defaultStore];
+    NSNumber *selectedIndex = [keyStore objectForKey:KEYSTORE_CALI_EXPR_INDEX];
     if (selectedIndex)
     {
         selectedIndexPath = [NSIndexPath indexPathForRow:[selectedIndex integerValue] inSection:0];
@@ -56,7 +56,7 @@
 
 - (NSDateComponents *)expiryDurationFromIndexPath:(NSIndexPath *)indexPath
 {
-    NSDateComponents * duration = [[NSDateComponents alloc] init];
+    NSDateComponents *duration = [[NSDateComponents alloc] init];
 
     switch (indexPath.row)
     {
@@ -90,16 +90,16 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell * cell = [tableView cellForRowAtIndexPath:self.checkIndexPath];
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:self.checkIndexPath];
 
     cell.accessoryType = UITableViewCellAccessoryNone;
 
     cell = [tableView cellForRowAtIndexPath:indexPath];
     cell.accessoryType = UITableViewCellAccessoryCheckmark;
 
-    NSData * durationData = [NSKeyedArchiver archivedDataWithRootObject:[self expiryDurationFromIndexPath:indexPath]];
+    NSData *durationData = [NSKeyedArchiver archivedDataWithRootObject:[self expiryDurationFromIndexPath:indexPath]];
 
-    NSUbiquitousKeyValueStore * keyStore = [NSUbiquitousKeyValueStore defaultStore];
+    NSUbiquitousKeyValueStore *keyStore = [NSUbiquitousKeyValueStore defaultStore];
     [keyStore setObject:@(indexPath.row) forKey:KEYSTORE_CALI_EXPR_INDEX];
     [keyStore setObject:durationData forKey:KEYSTORE_CALI_EXPR_DURATION_DATA];
     [keyStore setObject:cell.textLabel.text forKey:KEYSTORE_CALI_EXPR_TEXT];

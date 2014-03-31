@@ -9,7 +9,7 @@
 #import "DOMStrengthGestureRecognizer.h"
 
 // Define the saving post block format.
-typedef void (^ DOMCoreDataSave)(void);
+typedef void (^DOMCoreDataSave)(void);
 
 @interface DOMDataRecordingStrengthGestureRecognizer : DOMStrengthGestureRecognizer
 

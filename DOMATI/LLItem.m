@@ -32,7 +32,7 @@
 
 - (id)tail
 {
-    LLItem * item = self;
+    LLItem *item = self;
 
     while (item->_ll_next != nil)
     {
@@ -56,7 +56,7 @@
 - (NSUInteger)countByEnumeratingWithState:(NSFastEnumerationState *)state objects:(__unsafe_unretained id [])buffer count:(NSUInteger)len
 {
     NSUInteger c = 0;
-    LLItem * item = (__bridge LLItem *)(void *)state->mutationsPtr;
+    LLItem *item = (__bridge LLItem *)(void *)state->mutationsPtr;
 
     if (state->state == 0)
     {
@@ -100,7 +100,7 @@
 
 - (id)head
 {
-    LLDItem * item = self;
+    LLDItem *item = self;
 
     while (item->_ll_prev != nil)
     {
@@ -141,9 +141,9 @@
 
 - (NSArray *)filteredListUsingPredicate:(NSPredicate *)predicate
 {
-    NSMutableArray * objects = [[NSMutableArray alloc] init];
+    NSMutableArray *objects = [[NSMutableArray alloc] init];
 
-    for (LLItem * item in self)
+    for (LLItem *item in self)
     {
         if ([predicate evaluateWithObject:item])
         {

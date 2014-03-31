@@ -25,9 +25,9 @@
 
 @property (weak, nonatomic) id<DOMPickerHandlerDelegate> delegate;
 
-@property (nonatomic, strong) UIPickerView * pickerView;
+@property (nonatomic, strong) UIPickerView *pickerView;
 /// The labels which are associated with the picker selections.
-@property (nonatomic, strong) UILabel * oldSelectionLabel, * selectionLabel;
+@property (nonatomic, strong) UILabel *oldSelectionLabel, *selectionLabel;
 
 /**
  *  Method to populate the picker view and setting the delegate.

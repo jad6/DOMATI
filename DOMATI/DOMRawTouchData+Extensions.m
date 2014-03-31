@@ -17,7 +17,7 @@
 + (instancetype)rawTouchDataInContext:(NSManagedObjectContext *)context
     fromTouchInfo:(NSDictionary *)touchInfo
 {
-    return [self newEntity:@"DOMRawTouchData" inContext:context idAttribute:@"identifier" value:[self localIdentifier] onInsert:^(DOMRawTouchData * object) {
+    return [self newEntity:@"DOMRawTouchData" inContext:context idAttribute:@"identifier" value:[self localIdentifier] onInsert:^(DOMRawTouchData *object) {
 
                 object.x = touchInfo[@"x"];
                 object.y = touchInfo[@"y"];
@@ -31,7 +31,7 @@
 
 - (NSDictionary *)postDictionary
 {
-    NSMutableDictionary * dictionary = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *dictionary = [[NSMutableDictionary alloc] init];
 
     dictionary[@"x"] = self.x;
     dictionary[@"y"] = self.y;

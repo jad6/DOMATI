@@ -19,8 +19,8 @@
 @interface DOMUserInfoPickerTableViewController : DOMPickerTableViewController <DOMYearsPickerHandlerDelegate, DOMOccupationPickerHandlerDelegate, DOMTextFieldCellDelegate, DOMGenderSegmentCellDelegate>
 
 // The current handler that is being used by the visible picker.
-@property (nonatomic, strong, readonly) DOMPickerHandler * currentPickerHandler;
+@property (nonatomic, strong, readonly) DOMPickerHandler *currentPickerHandler;
 // The current user.
-@property (nonatomic, strong) DOMUser * user;
+@property (nonatomic, strong) DOMUser *user;
 
 @end

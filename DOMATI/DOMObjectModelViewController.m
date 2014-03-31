@@ -24,14 +24,14 @@ SceneVertex;
 // Define vertex data for a triangle to use in example
 static const SceneVertex vertices[] =
 {
-    { { -0.5f, -0.5f, 0.0 } }, // lower left corner
-    { { 0.5f,  -0.5f, 0.0 } }, // lower right corner
-    { { -0.5f, 0.5f,  0.0 } } // upper left corner
+    { { -0.5f, -0.5f,  0.0  } }, // lower left corner
+    { { 0.5f,  -0.5f,  0.0  } }, // lower right corner
+    { { -0.5f, 0.5f,   0.0  } } // upper left corner
 };
 
 @interface DOMObjectModelViewController () <UIGestureRecognizerDelegate>
 
-@property (nonatomic, strong) GLKBaseEffect * baseEffect;
+@property (nonatomic, strong) GLKBaseEffect *baseEffect;
 
 @property (nonatomic) GLuint vertexBufferID;
 
@@ -43,7 +43,7 @@ static const SceneVertex vertices[] =
 {
     [super viewDidLoad];
 
-    DOMStrengthGestureRecognizer * strengthGR = [[DOMStrengthGestureRecognizer alloc] initWithTarget:self action:@selector(saveTouch:)];
+    DOMStrengthGestureRecognizer *strengthGR = [[DOMStrengthGestureRecognizer alloc] initWithTarget:self action:@selector(saveTouch:)];
     strengthGR.delegate = self;
     [self.view addGestureRecognizer:strengthGR];
 
@@ -59,7 +59,7 @@ static const SceneVertex vertices[] =
         [DOMCalibrationPresenter showCalibrationFromController:self
                                                     completion:nil];
 
-        NSUserDefaults * defaults = [NSUserDefaults standardUserDefaults];
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         [defaults setBool:YES forKey:@"DOMAlreadyLaunched"];
         [defaults synchronize];
     }
@@ -99,7 +99,7 @@ static const SceneVertex vertices[] =
 {
     // Verify the type of view created automatically by the
     // Interface Builder storyboard
-    GLKView * glView = (GLKView *)self.view;
+    GLKView *glView = (GLKView *)self.view;
 
     NSAssert([glView isKindOfClass:[GLKView class]],
              @"View controller's view is not a GLKView");
@@ -164,7 +164,7 @@ static const SceneVertex vertices[] =
 - (void)clearObject
 {
     // Make the view's context current
-    GLKView * glView = (GLKView *)self.view;
+    GLKView *glView = (GLKView *)self.view;
 
     [EAGLContext setCurrentContext:glView.context];
 
@@ -184,7 +184,7 @@ static const SceneVertex vertices[] =
 
 - (UIImage *)objectSnapshot
 {
-    GLKView * glView = (GLKView *)self.view;
+    GLKView *glView = (GLKView *)self.view;
 
     return [glView snapshot];
 }
@@ -193,11 +193,11 @@ static const SceneVertex vertices[] =
 
 - (IBAction)reset:(id)sender
 {
-    UIAlertView * resetAV = [[UIAlertView alloc] initWithTitle:@"Reset Model"
-                                                       message:@"Would you like to reset the model to its initial shape?"
-                                                      delegate:self
-                                             cancelButtonTitle:@"No"
-                                             otherButtonTitles:@"Yes", nil];
+    UIAlertView *resetAV = [[UIAlertView alloc] initWithTitle:@"Reset Model"
+                                                      message:@"Would you like to reset the model to its initial shape?"
+                                                     delegate:self
+                                            cancelButtonTitle:@"No"
+                                            otherButtonTitles:@"Yes", nil];
 
     [resetAV show];
 }
