@@ -25,9 +25,9 @@
 
 @property (weak, nonatomic) id<DOMPickerHandlerDelegate> delegate;
 
-@property (nonatomic, strong) UIPickerView *pickerView;
+@property (nonatomic, strong) UIPickerView * pickerView;
 /// The labels which are associated with the picker selections.
-@property (nonatomic, strong) UILabel *oldSelectionLabel, *selectionLabel;
+@property (nonatomic, strong) UILabel * oldSelectionLabel, * selectionLabel;
 
 /**
  *  Method to populate the picker view and setting the delegate.
@@ -37,10 +37,10 @@
  *  @param delegate   The delegate for the picker handler.
  */
 - (void)populatedPicker:(UIPickerView *)pickerView
-               delegate:(id<DOMPickerHandlerDelegate>)delegate;
+    delegate:(id<DOMPickerHandlerDelegate>)delegate;
 
 /**
- *  This method returns the default value that should displaed when 
+ *  This method returns the default value that should displaed when
  *  the field is left undisclosed..
  *
  *  @return The default string for undisclosed fields.

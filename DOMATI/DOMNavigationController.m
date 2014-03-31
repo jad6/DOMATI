@@ -17,7 +17,8 @@
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
+    if (self)
+    {
         // Custom initialization
     }
     return self;
@@ -26,10 +27,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+
     self.navigationBar.barTintColor = BACKGROUND_COLOR;
     self.navigationBar.translucent = NO;
-    NSDictionary *navAttributes = @{NSForegroundColorAttributeName : TEXT_COLOR};
+    NSDictionary * navAttributes = @{ NSForegroundColorAttributeName : TEXT_COLOR };
     [self.navigationBar setTitleTextAttributes:navAttributes];
 }
 

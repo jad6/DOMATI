@@ -19,6 +19,6 @@
 @property (nonatomic, retain) NSNumber * x;
 @property (nonatomic, retain) NSNumber * y;
 @property (nonatomic, retain) NSNumber * radius;
-@property (nonatomic, retain) DOMTouchData *touchData;
+@property (nonatomic, retain) DOMTouchData * touchData;
 
 @end

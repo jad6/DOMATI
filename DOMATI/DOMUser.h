@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-typedef NS_ENUM(NSInteger, DOMGender) {
+typedef NS_ENUM (NSInteger, DOMGender) {
     DOMGenderUndisclosed,
     DOMGenderMale,
     DOMGenderFemale
@@ -16,7 +16,7 @@ typedef NS_ENUM(NSInteger, DOMGender) {
 
 @interface DOMUser : NSObject
 
-@property (nonatomic, strong) NSString *occupation;
+@property (nonatomic, strong) NSString * occupation;
 
 @property (nonatomic) DOMGender gender;
 

@@ -13,7 +13,8 @@
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
-    if (self) {
+    if (self)
+    {
         // Initialization code
     }
     return self;
@@ -21,9 +22,10 @@
 
 - (void)setTitleLabel:(UILabel *)titleLabel
 {
-    if (self->_titleLabel != titleLabel) {
+    if (self->_titleLabel != titleLabel)
+    {
         self->_titleLabel = titleLabel;
-        
+
         self->_titleLabel.textColor = DOMATI_COLOR;
     }
 }

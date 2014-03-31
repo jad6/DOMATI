@@ -25,7 +25,7 @@
 
 @property (weak, nonatomic) id<DOMOccupationPickerHandlerDelegate> delegate;
 
-@property (nonatomic) NSString *selectedOccupation;
+@property (nonatomic) NSString * selectedOccupation;
 
 /**
  *  Populates the picker with the occupations stored locally.
@@ -35,8 +35,8 @@
  *  @param delegate   The delegate for the handler.
  */
 - (void)populatedPicker:(UIPickerView *)pickerView
-  withInitialOccupation:(NSString *)occupation
-               delegate:(id<DOMOccupationPickerHandlerDelegate>)delegate;
+    withInitialOccupation:(NSString *)occupation
+    delegate:(id<DOMOccupationPickerHandlerDelegate>)delegate;
 
 /**
  *  Select the given occupation. By default this method animates the
@@ -52,6 +52,6 @@
  *  @param animated True if you wish to animate the change.
  */
 - (void)selectOccupation:(NSString *)occupation
-                animated:(BOOL)animated;
+    animated:(BOOL)animated;
 
 @end

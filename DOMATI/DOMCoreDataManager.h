@@ -12,7 +12,7 @@
 
 @interface DOMCoreDataManager : NSObject
 
-@property (strong, nonatomic, readonly) NSManagedObjectContext *managedContext;
+@property (strong, nonatomic, readonly) NSManagedObjectContext * managedContext;
 
 + (instancetype)sharedManager;
 

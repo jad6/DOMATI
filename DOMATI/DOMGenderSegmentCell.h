@@ -19,7 +19,7 @@
  *  @param gender           The newly selected gender.
  */
 - (void)segmentedControl:(UISegmentedControl *)segmentedControl
-         didChangeGender:(DOMGender)gender;
+    didChangeGender:(DOMGender)gender;
 
 @end
 
@@ -27,7 +27,7 @@
 
 @property (nonatomic, weak) id<DOMGenderSegmentCellDelegate> delegate;
 
-@property (nonatomic, weak) IBOutlet UILabel *titleLabel;
+@property (nonatomic, weak) IBOutlet UILabel * titleLabel;
 
 @property (nonatomic) DOMGender selectedGender;
 

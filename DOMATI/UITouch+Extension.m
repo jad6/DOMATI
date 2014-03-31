@@ -13,13 +13,16 @@
 - (CGFloat)radius
 {
     CGFloat radius = 0.0;
-    
-    if (CGFLOAT_IS_DOUBLE) {
+
+    if (CGFLOAT_IS_DOUBLE)
+    {
         radius = [[self valueForKey:@"pathMajorRadius"] doubleValue];
-    } else {
+    }
+    else
+    {
         radius = [[self valueForKey:@"pathMajorRadius"] floatValue];
     }
-    
+
     return radius;
 }
 

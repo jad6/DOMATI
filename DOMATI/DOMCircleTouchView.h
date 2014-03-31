@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-typedef NS_ENUM(NSInteger, DOMCircleTouchStrength) {
+typedef NS_ENUM (NSInteger, DOMCircleTouchStrength) {
     DOMCircleTouchStrengthNone          = 0,
     DOMCircleTouchStrengthHard          = 1,
     DOMCircleTouchStrengthModerate      = 2,
@@ -17,11 +17,11 @@ typedef NS_ENUM(NSInteger, DOMCircleTouchStrength) {
 
 @interface DOMCircleTouchView : UIView
 
-@property (nonatomic, strong) NSString *title;
+@property (nonatomic, strong) NSString * title;
 
 @property (nonatomic) DOMCircleTouchStrength circleTouchStrength;
 
 - (id)initWithFrame:(CGRect)frame
-circleTouchStrength:(DOMCircleTouchStrength)circleTouchStrength;
+    circleTouchStrength:(DOMCircleTouchStrength)circleTouchStrength;
 
 @end

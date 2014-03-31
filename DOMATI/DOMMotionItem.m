@@ -15,7 +15,8 @@
 - (id)initWithDeviceMotion:(CMDeviceMotion *)deviceMotion
 {
     self = [super init];
-    if (self) {
+    if (self)
+    {
         self->_deviceMotion = deviceMotion;
         self->_timestamp = deviceMotion.timestamp;
     }

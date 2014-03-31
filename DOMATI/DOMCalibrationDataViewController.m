@@ -12,7 +12,7 @@
 
 @interface DOMCalibrationDataViewController ()
 
-@property (weak, nonatomic) IBOutlet UITextView *textView;
+@property (weak, nonatomic) IBOutlet UITextView * textView;
 
 @end
 
@@ -21,7 +21,8 @@
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
+    if (self)
+    {
         // Custom initialization
     }
     return self;
@@ -30,7 +31,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+
     self.textView.backgroundColor = BACKGROUND_COLOR;
     self.textView.textColor = TEXT_COLOR;
 }

@@ -25,33 +25,34 @@
 - (NSArray *)unsyncedDataForClass:(Class)class
 {
     NSAssert([class isSubclassOfClass:[NSManagedObject class]], @"%@ is not a subclass of NSManagedObject", class);
-    
-    return [class fetchRequest:^(NSFetchRequest *fs) {
-        [fs setPredicate:[NSPredicate predicateWithFormat:@"identifier < 0 AND touchData == %@", self]];
-    } inContext:[self managedObjectContext]];
+
+    return [class fetchRequest:^(NSFetchRequest * fs) {
+                [fs setPredicate:[NSPredicate predicateWithFormat:@"identifier < 0 AND touchData == %@", self]];
+            } inContext:[self managedObjectContext]];
 }
 
 #pragma mark - Public
 
-+ (instancetype)touchData:(void (^)(DOMTouchData *touchData))touchDataBlock
-                inContext:(NSManagedObjectContext *)context
++ (instancetype)touchData:(void (^)(DOMTouchData * touchData))touchDataBlock
+    inContext:(NSManagedObjectContext *)context
 {
-     return [DOMTouchData newEntity:NSStringFromClass([DOMTouchData class])
-                              inContext:context
-                            idAttribute:@"identifier"
-                                  value:[DOMTouchData localIdentifier]
-                               onInsert:^(DOMTouchData *object) {
-                                   if (touchDataBlock) {
-                                       touchDataBlock(object);
-                                   }
-                               }];
+    return [DOMTouchData newEntity:NSStringFromClass([DOMTouchData class])
+                         inContext:context
+                       idAttribute:@"identifier"
+                             value:[DOMTouchData localIdentifier]
+                          onInsert:^(DOMTouchData * object) {
+                if (touchDataBlock)
+                {
+                    touchDataBlock(object);
+                }
+            }];
 }
 
 + (NSArray *)unsyncedTouchData
 {
-    return [self fetchRequest:^(NSFetchRequest *fs) {
-        [fs setPredicate:[NSPredicate predicateWithFormat:@"identifier < 0"]];
-    } inContext:[DOMCoreDataManager sharedManager].managedContext];
+    return [self fetchRequest:^(NSFetchRequest * fs) {
+                [fs setPredicate:[NSPredicate predicateWithFormat:@"identifier < 0"]];
+            } inContext:[DOMCoreDataManager sharedManager].managedContext];
 }
 
 - (NSArray *)unsyncedRawMotionData
@@ -68,8 +69,8 @@
 
 - (NSDictionary *)postDictionary
 {
-    NSMutableDictionary *dictionary = [[NSMutableDictionary alloc] init];
-    
+    NSMutableDictionary * dictionary = [[NSMutableDictionary alloc] init];
+
     dictionary[@"acceleration_avg"] = self.accelerationAvg;
     dictionary[@"duration"] = self.duration;
     dictionary[@"max_radius"] = self.maxRadius;
@@ -83,7 +84,7 @@
     dictionary[@"device_model"] = [[UIDevice currentDevice] modelDetailed];
     dictionary[@"app_version"] = [UIApplication version];
     dictionary[@"user_id"] = @([DOMUser currentUser].identifier);
-    
+
     return dictionary;
 }
 

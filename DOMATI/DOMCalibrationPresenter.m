@@ -13,29 +13,29 @@
 @implementation DOMCalibrationPresenter
 
 + (void)showCalibrationFromController:(UIViewController *)controller
-                withTransitionStyle:(UIModalTransitionStyle)style
-                           completion:(void (^)())completionBlock
+    withTransitionStyle:(UIModalTransitionStyle)style
+    completion:(void (^)())completionBlock
 {
-    UINavigationController *calibrationNC = [controller.storyboard instantiateViewControllerWithIdentifier:@"DOMCalibrationNavController"];
-    
+    UINavigationController * calibrationNC = [controller.storyboard instantiateViewControllerWithIdentifier:@"DOMCalibrationNavController"];
+
     calibrationNC.modalTransitionStyle = style;
     calibrationNC.modalPresentationStyle = UIModalPresentationFormSheet;
-    
+
     [controller presentViewController:calibrationNC animated:YES completion:completionBlock];
 }
 
 + (void)showCalibrationFromController:(UIViewController *)controller
-                           completion:(void (^)())completionBlock
+    completion:(void (^)())completionBlock
 {
     [self showCalibrationFromController:controller
-                  withTransitionStyle:UIModalTransitionStyleCoverVertical
+                    withTransitionStyle:UIModalTransitionStyleCoverVertical
                              completion:completionBlock];
 }
 
 + (void)pushCalibrationFromController:(UIViewController *)controller
 {
-    DOMCalibrationViewController *calibrationVC = [controller.storyboard instantiateViewControllerWithIdentifier:@"DOMCalibrationViewController"];
-    
+    DOMCalibrationViewController * calibrationVC = [controller.storyboard instantiateViewControllerWithIdentifier:@"DOMCalibrationViewController"];
+
     [controller.navigationController pushViewController:calibrationVC animated:YES];
 }
 

@@ -14,11 +14,11 @@
 
 @interface DOMInfoViewController () <MFMailComposeViewControllerDelegate, QLPreviewControllerDataSource>
 
-@property (weak, nonatomic) IBOutlet UITableViewCell *feedbackCell;
-@property (weak, nonatomic) IBOutlet UITableViewCell *calibrationExpiryCell;
-@property (weak, nonatomic) IBOutlet UITableViewCell *projectProposalCell;
+@property (weak, nonatomic) IBOutlet UITableViewCell * feedbackCell;
+@property (weak, nonatomic) IBOutlet UITableViewCell * calibrationExpiryCell;
+@property (weak, nonatomic) IBOutlet UITableViewCell * projectProposalCell;
 
-@property (strong, nonatomic) DOMPreviewItem *previewItem;
+@property (strong, nonatomic) DOMPreviewItem * previewItem;
 
 @end
 
@@ -27,7 +27,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+
     self.title = @"DOMATI";
     self.feedbackCell.textLabel.textColor = DOMATI_COLOR;
 }
@@ -35,7 +35,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    
+
     [self refreshCalibrationExpiryText];
 }
 
@@ -49,12 +49,13 @@
 
 - (void)refreshCalibrationExpiryText
 {
-    NSString *text = [[NSUbiquitousKeyValueStore defaultStore] objectForKey:KEYSTORE_CALI_EXPR_TEXT];
-    
-    if (!text) {
+    NSString * text = [[NSUbiquitousKeyValueStore defaultStore] objectForKey:KEYSTORE_CALI_EXPR_TEXT];
+
+    if (!text)
+    {
         text = @"Never";
     }
-    
+
     self.calibrationExpiryCell.detailTextLabel.text = text;
 }
 
@@ -69,28 +70,30 @@
 
 - (void)sendFeedback:(id)sender
 {
-    if ([MFMailComposeViewController canSendMail]) {
-        MFMailComposeViewController *composer = [[MFMailComposeViewController alloc] init];
+    if ([MFMailComposeViewController canSendMail])
+    {
+        MFMailComposeViewController * composer = [[MFMailComposeViewController alloc] init];
         composer.mailComposeDelegate = self;
         [composer setToRecipients:@[@"20507033@student.uwa.edu.au"]];
         [composer setSubject:@"DOMATI Feedback"];
         [composer setMessageBody:@"Something constructive right here..." isHTML:NO];
-        
+
         [self presentViewController:composer animated:YES completion:nil];
     }
 }
 
 - (void)mailComposeController:(MFMailComposeViewController *)controller
-          didFinishWithResult:(MFMailComposeResult)result
-                        error:(NSError *)error
+    didFinishWithResult:(MFMailComposeResult)result
+    error:(NSError *)error
 {
-    if (error) {
+    if (error)
+    {
         [error handle];
     }
-    
+
     [self dismissViewControllerAnimated:YES completion:^{
-        [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForCell:self.feedbackCell] animated:YES];
-    }];
+         [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForCell:self.feedbackCell] animated:YES];
+     }];
 }
 
 #pragma mark - Quick Look
@@ -100,10 +103,11 @@
     self.previewItem = [[DOMPreviewItem alloc] init];
     self.previewItem.localURL = url;
     self.previewItem.documentTitle = title;
-    if ([QLPreviewController canPreviewItem:self.previewItem]) {
-        QLPreviewController *quickLookC = [[QLPreviewController alloc] init];
+    if ([QLPreviewController canPreviewItem:self.previewItem])
+    {
+        QLPreviewController * quickLookC = [[QLPreviewController alloc] init];
         quickLookC.dataSource = self;
-        
+
         [self.navigationController pushViewController:quickLookC animated:YES];
     }
 }
@@ -123,10 +127,13 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     id cell = [tableView cellForRowAtIndexPath:indexPath];
-    
-    if ([cell isEqual:self.feedbackCell]) {
+
+    if ([cell isEqual:self.feedbackCell])
+    {
         [self sendFeedback:cell];
-    } else if ([cell isEqual:self.projectProposalCell]) {
+    }
+    else if ([cell isEqual:self.projectProposalCell])
+    {
         [self showDocumentWithLocalURL:[[NSBundle mainBundle] URLForResource:@"Project Proposal" withExtension:@"pdf"]
                               andTitle:@"Project Proposal"];
     }

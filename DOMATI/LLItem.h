@@ -24,8 +24,8 @@
 #import <Foundation/Foundation.h>
 
 @interface LLItem : NSObject <NSFastEnumeration> {
-  @protected
-    LLItem *_ll_next;
+    @protected
+    LLItem * _ll_next;
 }
 
 /* Accessors */
@@ -39,8 +39,8 @@
 @end
 
 @interface LLDItem : LLItem {
-  @protected
-    __unsafe_unretained LLDItem *_ll_prev;
+    @protected
+    __unsafe_unretained LLDItem * _ll_prev;
 }
 
 /* Accessors */

@@ -14,7 +14,7 @@
 
 @interface DOMGroupSelectionViewController ()
 
-@property (strong, nonatomic) NSArray *fingerSizesData;
+@property (strong, nonatomic) NSArray * fingerSizesData;
 
 @end
 
@@ -23,7 +23,8 @@
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
+    if (self)
+    {
         // Custom initialization
     }
     return self;
@@ -32,7 +33,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+
     self.collectionView.backgroundColor = BACKGROUND_COLOR;
     self.fingerSizesData = [[NSArray alloc] initWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"Groups" withExtension:@"plist"]];
 }
@@ -63,13 +64,13 @@
 
 - (DOMFingerCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    DOMFingerCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"Finger Cell" forIndexPath:indexPath];
-    
-    NSDictionary *fingerData = self.fingerSizesData[indexPath.row];
-    
+    DOMFingerCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"Finger Cell" forIndexPath:indexPath];
+
+    NSDictionary * fingerData = self.fingerSizesData[indexPath.row];
+
     cell.titleLabel.text = fingerData[@"title"];
     cell.imageView.backgroundColor = DOMATI_COLOR;
-    
+
     return cell;
 }
 

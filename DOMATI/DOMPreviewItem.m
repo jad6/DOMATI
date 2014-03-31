@@ -15,19 +15,21 @@
 
 - (NSString *)previewItemTitle
 {
-    if (!_previewItemTitle) {
+    if (!_previewItemTitle)
+    {
         _previewItemTitle = self.documentTitle;
     }
-    
+
     return _previewItemTitle;
 }
 
 - (NSURL *)previewItemURL
 {
-    if (!_previewItemURL) {
+    if (!_previewItemURL)
+    {
         _previewItemURL = self.localURL;
     }
-    
+
     return _previewItemURL;
 }
 

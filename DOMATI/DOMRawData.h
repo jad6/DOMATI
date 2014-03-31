@@ -10,7 +10,7 @@
 
 @protocol DOMRawData <NSObject>
 
-@property (nonatomic, strong) NSNumber *identifier;
+@property (nonatomic, strong) NSNumber * identifier;
 
 - (NSDictionary *)postDictionary;
 

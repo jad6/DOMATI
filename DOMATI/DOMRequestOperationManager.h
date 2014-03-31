@@ -13,7 +13,7 @@
 + (instancetype)sharedManager;
 
 - (void)uploadDataWhenPossibleWithCompletion:(void (^)(BOOL success))completionBlock
-                               showHudInView:(UIView *)view;
+    showHudInView:(UIView *)view;
 - (void)uploadDataWhenPossibleWithCompletion:(void (^)(BOOL success))completionBlock;
 - (void)uploadDataWhenPossible;
 

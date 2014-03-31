@@ -10,10 +10,10 @@
 
 #import "NSManagedObject+Appulse.h"
 
-@interface DOMTouchData (Extension) 
+@interface DOMTouchData (Extension)
 
-+ (instancetype)touchData:(void (^)(DOMTouchData *touchData))touchDataBlock
-                inContext:(NSManagedObjectContext *)context;
++ (instancetype)touchData:(void (^)(DOMTouchData * touchData))touchDataBlock
+    inContext:(NSManagedObjectContext *)context;
 
 + (NSArray *)unsyncedTouchData;
 

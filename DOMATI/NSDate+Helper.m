@@ -15,6 +15,7 @@
 - (NSDateComponents *)dateComponents
 {
     unsigned unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit |  NSDayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit;
+
     return [[NSCalendar autoupdatingCurrentCalendar] components:unitFlags fromDate:self];
 }
 
@@ -23,10 +24,12 @@
     return [[NSCalendar autoupdatingCurrentCalendar] dateFromComponents:comps];
 }
 
-- (NSDate *)dateByAddingUnitsToComps:(void (^)(NSDateComponents *comps))compsBlock
+- (NSDate *)dateByAddingUnitsToComps:(void (^)(NSDateComponents * comps))compsBlock
 {
-    NSDateComponents *comps = [[NSDateComponents alloc] init];
-    if (compsBlock) {
+    NSDateComponents * comps = [[NSDateComponents alloc] init];
+
+    if (compsBlock)
+    {
         compsBlock(comps);
     }
     return [[NSCalendar autoupdatingCurrentCalendar] dateByAddingComponents:comps toDate:self options:0];
@@ -37,11 +40,15 @@
 - (BOOL)isBetweenDate:(NSDate *)beginDate andDate:(NSDate *)endDate
 {
     if ([self compare:beginDate] == NSOrderedAscending)
-    	return NO;
-    
+    {
+        return NO;
+    }
+
     if ([self compare:endDate] == NSOrderedDescending)
-    	return NO;
-    
+    {
+        return NO;
+    }
+
     return YES;
 }
 
@@ -53,7 +60,8 @@
 - (NSInteger)daysDifferenceToDate:(NSDate *)toDate
 {
     unsigned unitFlags = NSDayCalendarUnit;
-    NSDateComponents *components = [[NSCalendar currentCalendar] components:unitFlags fromDate:self toDate:toDate options:0];
+    NSDateComponents * components = [[NSCalendar currentCalendar] components:unitFlags fromDate:self toDate:toDate options:0];
+
     return [components day] + 1;
 }
 
@@ -61,10 +69,11 @@
 
 - (NSDate *)startOfCurrentYear
 {
-    NSDateComponents *comps = [self dateComponents];
+    NSDateComponents * comps = [self dateComponents];
+
     comps.month = 1;
     comps.day = 1;
-    
+
     return [self dateFromComponents:comps];
 }
 
@@ -73,31 +82,31 @@
     // Get the number of months till the end of the year.
     NSRange monthsRange = [[NSCalendar currentCalendar] rangeOfUnit:NSMonthCalendarUnit inUnit:NSYearCalendarUnit forDate:self];
     NSInteger numMonthsInYear = monthsRange.length;
-    
+
     // Save that last month date.
-    NSDateComponents *comps = [self dateComponents];
-    NSDate *endMonthDate = [self dateByAddingNumberOfMonths:(numMonthsInYear - comps.month)];
-    
+    NSDateComponents * comps = [self dateComponents];
+    NSDate * endMonthDate = [self dateByAddingNumberOfMonths:(numMonthsInYear - comps.month)];
+
     // Get the number of days till the end of the last month.
     NSRange daysRange = [[NSCalendar currentCalendar] rangeOfUnit:NSDayCalendarUnit inUnit:NSMonthCalendarUnit forDate:endMonthDate];
     NSInteger numDaysInMonth = daysRange.length;
-        
+
     return [endMonthDate dateByAddingNumberOfDays:(numDaysInMonth - comps.day)];
 }
 
 #pragma mark - Day Start & Ends
 
 - (NSDate *)dayWithHour:(NSUInteger)hour
-                 minute:(NSUInteger)minute
-                 second:(NSUInteger)second
+    minute:(NSUInteger)minute
+    second:(NSUInteger)second
 {
     unsigned unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit |  NSDayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit;
-    NSDateComponents *comps = [[NSCalendar currentCalendar] components:unitFlags fromDate:self];
-    
+    NSDateComponents * comps = [[NSCalendar currentCalendar] components:unitFlags fromDate:self];
+
     comps.hour = hour;
     comps.minute = minute;
     comps.second = second;
-    
+
     return [[NSCalendar currentCalendar] dateFromComponents:comps];
 }
 
@@ -115,60 +124,60 @@
 
 - (NSDate *)dateByAddingNumberOfMonths:(NSInteger)months
 {
-    return [self dateByAddingUnitsToComps:^(NSDateComponents *comps) {
-        comps.month = months;
-    }];
+    return [self dateByAddingUnitsToComps:^(NSDateComponents * comps) {
+                comps.month = months;
+            }];
 }
 
 - (NSDate *)dateByAddingNumberOfDays:(NSInteger)days
 {
-    return [self dateByAddingUnitsToComps:^(NSDateComponents *comps) {
-        comps.day = days;
-    }];
+    return [self dateByAddingUnitsToComps:^(NSDateComponents * comps) {
+                comps.day = days;
+            }];
 }
 
 - (NSDate *)dateByAddingNumberOfHours:(NSInteger)hours
 {
-    return [self dateByAddingUnitsToComps:^(NSDateComponents *comps) {
-        comps.hour = hours;
-    }];
+    return [self dateByAddingUnitsToComps:^(NSDateComponents * comps) {
+                comps.hour = hours;
+            }];
 }
 
 - (NSDate *)dateByAddingNumberOfMinutes:(NSInteger)minutes
 {
-    return [self dateByAddingUnitsToComps:^(NSDateComponents *comps) {
-        comps.minute = minutes;
-    }];
+    return [self dateByAddingUnitsToComps:^(NSDateComponents * comps) {
+                comps.minute = minutes;
+            }];
 }
 
 #pragma mark - Removing Methods
 
 - (NSDate *)dateByRemovingNumberOfMonths:(NSInteger)months
 {
-    return [self dateByAddingUnitsToComps:^(NSDateComponents *comps) {
-        comps.month = -months;
-    }];
+    return [self dateByAddingUnitsToComps:^(NSDateComponents * comps) {
+                comps.month = -months;
+            }];
 }
 
 - (NSDate *)dateByRemovingNumberOfDays:(NSInteger)days
 {
-    return [self dateByAddingUnitsToComps:^(NSDateComponents *comps) {
-        comps.day = -days;
-    }];
+    return [self dateByAddingUnitsToComps:^(NSDateComponents * comps) {
+                comps.day = -days;
+            }];
 }
 
 - (NSDate *)dateByRemovingNumberOfHours:(NSInteger)hours
 {
-    return [self dateByAddingUnitsToComps:^(NSDateComponents *comps) {
-        comps.hour = -hours;
-    }];
+    return [self dateByAddingUnitsToComps:^(NSDateComponents * comps) {
+                comps.hour = -hours;
+            }];
 }
 
 - (NSDate *)dateByRemovingNumberOfMinutes:(NSInteger)minutes
 {
-    return [self dateByAddingUnitsToComps:^(NSDateComponents *comps) {
-        comps.minute = -minutes;
-    }];
+    return [self dateByAddingUnitsToComps:^(NSDateComponents * comps) {
+                comps.minute = -minutes;
+            }];
 }
 
 @end

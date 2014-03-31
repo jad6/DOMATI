@@ -19,16 +19,18 @@
 
 - (NSString *)serializedForm
 {
-    NSError *error = nil;
-    NSData *JSONData = [NSJSONSerialization dataWithJSONObject:self
-                                                       options:NSJSONWritingPrettyPrinted
-                                                         error:&error];
-    NSString *JSONString = nil;
-    if (!error) {
+    NSError * error = nil;
+    NSData * JSONData = [NSJSONSerialization dataWithJSONObject:self
+                                                        options:NSJSONWritingPrettyPrinted
+                                                          error:&error];
+    NSString * JSONString = nil;
+
+    if (!error)
+    {
         JSONString = [[NSString alloc] initWithData:JSONData
                                            encoding:NSUTF8StringEncoding];
     }
-    
+
     return JSONString;
 }
 

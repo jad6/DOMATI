@@ -10,15 +10,15 @@
 #import <CoreMotion/CMDeviceMotion.h>
 
 // Touch info dictionary keys.
-static NSString *kTouchInfoPhaseKey = @"phase";
-static NSString *kTouchInfoTimestampKey = @"timestamp";
-static NSString *kTouchInfoRadiusKey = @"radius";
-static NSString *kTouchInfoXKey = @"x";
-static NSString *kTouchInfoYKey = @"y";
+static NSString * kTouchInfoPhaseKey = @"phase";
+static NSString * kTouchInfoTimestampKey = @"timestamp";
+static NSString * kTouchInfoRadiusKey = @"radius";
+static NSString * kTouchInfoXKey = @"x";
+static NSString * kTouchInfoYKey = @"y";
 // Motion info dictionary keys.
-static NSString *kMotionInfoMotionsKey = @"motions";
-static NSString *kMotionInfoAvgAccelerationKey = @"accelerationAvg";
-static NSString *kMotionInfoAvgRotationKey = @"rotationAvg";
+static NSString * kMotionInfoMotionsKey = @"motions";
+static NSString * kMotionInfoAvgAccelerationKey = @"accelerationAvg";
+static NSString * kMotionInfoAvgRotationKey = @"rotationAvg";
 
 @interface DOMStrengthGestureRecognizer : UIGestureRecognizer
 
@@ -26,11 +26,11 @@ static NSString *kMotionInfoAvgRotationKey = @"rotationAvg";
 @property (nonatomic, readonly) CGFloat strength;
 
 /**
- *  Returns an array of dictionaries each 
+ *  Returns an array of dictionaries each
  *  contianing information on a particular touch
- *  throughot its phases. For example a quick tap will return an 
+ *  throughot its phases. For example a quick tap will return an
  *  array with 2 elements, one for UITouchPhaseBegan and one for
- *  UITouchPhaseEnded. In contrast a moving touch will contain more 
+ *  UITouchPhaseEnded. In contrast a moving touch will contain more
  *  elements with the addition of UITouchPhaseMoved phases.
  *
  *  @param touch The touch who's information is requested.
@@ -40,7 +40,7 @@ static NSString *kMotionInfoAvgRotationKey = @"rotationAvg";
 - (NSArray *)allPhasesInfoForTouch:(UITouch *)touch;
 /**
  *  Returns a dictionary with 3 elements: an array of CMDeviceMotion
- *  objects which can be accessed via kMotionInfoMotionsKey, the 
+ *  objects which can be accessed via kMotionInfoMotionsKey, the
  *  average acceleration accessed via kMotionInfoAvgAccelerationKey,
  *  and the average rotation accessed via kMotionInfoAvgRotationKey.
  *

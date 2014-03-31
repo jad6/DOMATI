@@ -22,8 +22,8 @@
 @property (nonatomic, retain) NSNumber * rotationAvg;
 @property (nonatomic, retain) NSNumber * xDetla;
 @property (nonatomic, retain) NSNumber * yDelta;
-@property (nonatomic, retain) NSSet *rawMotionData;
-@property (nonatomic, retain) NSSet *rawTouchData;
+@property (nonatomic, retain) NSSet * rawMotionData;
+@property (nonatomic, retain) NSSet * rawTouchData;
 @end
 
 @interface DOMTouchData (CoreDataGeneratedAccessors)

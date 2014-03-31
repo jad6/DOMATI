@@ -10,7 +10,7 @@
 
 @interface DOMSegmentCell : DOMTableViewCell
 
-@property (nonatomic, weak) IBOutlet UILabel *textLabel;
-@property (nonatomic, weak) IBOutlet UISegmentedControl *segmentedControl;
+@property (nonatomic, weak) IBOutlet UILabel * textLabel;
+@property (nonatomic, weak) IBOutlet UISegmentedControl * segmentedControl;
 
 @end

@@ -11,11 +11,11 @@
 @interface DOMCalibrationPresenter : NSObject
 
 + (void)showCalibrationFromController:(UIViewController *)controller
-                  withTransitionStyle:(UIModalTransitionStyle)style
-                           completion:(void (^)())completionBlock;
+    withTransitionStyle:(UIModalTransitionStyle)style
+    completion:(void (^)())completionBlock;
 
 + (void)showCalibrationFromController:(UIViewController *)controller
-                           completion:(void (^)())completionBlock;
+    completion:(void (^)())completionBlock;
 
 + (void)pushCalibrationFromController:(UIViewController *)controller;
 

@@ -11,7 +11,7 @@
 
 @interface DOMPreviewItem : NSObject <QLPreviewItem>
 
-@property (strong, nonatomic) NSString *documentTitle;
-@property (strong, nonatomic) NSURL *localURL;
+@property (strong, nonatomic) NSString * documentTitle;
+@property (strong, nonatomic) NSURL * localURL;
 
 @end

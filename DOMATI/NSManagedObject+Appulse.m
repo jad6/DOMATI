@@ -11,32 +11,39 @@
 @implementation NSManagedObject (Appulse)
 
 + (id)newEntity:(NSString *)entity
-      inContext:(NSManagedObjectContext *)context
+    inContext:(NSManagedObjectContext *)context
     idAttribute:(NSString *)attribute
-          value:(id)value
-       onInsert:(void (^)(id object))insertBlock
+    value:(id)value
+    onInsert:(void (^)(id object))insertBlock
 {
     id returnedObject = nil;
-        
-    NSFetchRequest *fs = [NSFetchRequest fetchRequestWithEntityName:entity];
+
+    NSFetchRequest * fs = [NSFetchRequest fetchRequestWithEntityName:entity];
+
     fs.predicate = [NSPredicate predicateWithFormat:@"%K = %@", attribute, value];
-    
-    if ([context countForFetchRequest:fs error:nil] == 0) {
+
+    if ([context countForFetchRequest:fs error:nil] == 0)
+    {
         returnedObject = [[self alloc] initWithEntity:[self entityInContext:context] insertIntoManagedObjectContext:context];
         [returnedObject setValue:value forKey:attribute];
-        
+
         if (insertBlock)
+        {
             insertBlock(returnedObject);
-        
+        }
+
         return returnedObject;
-    } else {
+    }
+    else
+    {
         fs.fetchLimit = 1;
         id foundObject = [self findFirstByAttribute:attribute value:value inContext:context];
-        
-        if (insertBlock) {
+
+        if (insertBlock)
+        {
             insertBlock(foundObject);
         }
-        
+
         return foundObject;
     }
 }
@@ -47,32 +54,35 @@
 }
 
 + (NSArray *)findAllByAttribute:(NSString *)attribute
-                     value:(id)value
-                 inContext:(NSManagedObjectContext *)context
+    value:(id)value
+    inContext:(NSManagedObjectContext *)context
 {
-    return [self fetchRequest:^(NSFetchRequest *fs) {
-        fs.predicate = [NSPredicate predicateWithFormat:@"%K = %@", attribute, value];
-    } inContext:context];
+    return [self fetchRequest:^(NSFetchRequest * fs) {
+                fs.predicate = [NSPredicate predicateWithFormat:@"%K = %@", attribute, value];
+            } inContext:context];
 }
 
 + (id)findFirstByAttribute:(NSString *)attribute
-                       value:(id)value
-                   inContext:(NSManagedObjectContext *)context
+    value:(id)value
+    inContext:(NSManagedObjectContext *)context
 {
-    id object = [[self fetchRequest:^(NSFetchRequest *fs) {
-        fs.predicate = [NSPredicate predicateWithFormat:@"%K = %@", attribute, value];
-        fs.fetchLimit = 1;
-    } inContext:context] lastObject];
+    id object = [[self fetchRequest:^(NSFetchRequest * fs) {
+                      fs.predicate = [NSPredicate predicateWithFormat:@"%K = %@", attribute, value];
+                      fs.fetchLimit = 1;
+                  } inContext:context] lastObject];
 
     return object;
 }
 
-+ (NSArray *)fetchRequest:(void (^)(NSFetchRequest *fs))fetchRequestBlock
-                inContext:(NSManagedObjectContext *)context
++ (NSArray *)fetchRequest:(void (^)(NSFetchRequest * fs))fetchRequestBlock
+    inContext:(NSManagedObjectContext *)context
 {
-    NSFetchRequest *fs = [self fetchRequestInContext:context];
+    NSFetchRequest * fs = [self fetchRequestInContext:context];
+
     if (fetchRequestBlock)
+    {
         fetchRequestBlock(fs);
+    }
     return [context executeFetchRequest:fs error:nil];
 }
 
@@ -91,7 +101,8 @@
 
 + (NSFetchRequest *)fetchRequestInContext:(NSManagedObjectContext *)context
 {
-    NSFetchRequest *fs = [[NSFetchRequest alloc] init];
+    NSFetchRequest * fs = [[NSFetchRequest alloc] init];
+
     fs.entity = [[self class] entityInContext:context];
     return fs;
 }
@@ -106,16 +117,18 @@
  */
 + (NSNumber *)localIdentifier
 {
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    if (![defaults valueForKey:DEFAULTS_NEGATIVE_IDENTIFIER]) {
+    NSUserDefaults * defaults = [NSUserDefaults standardUserDefaults];
+
+    if (![defaults valueForKey:DEFAULTS_NEGATIVE_IDENTIFIER])
+    {
         [defaults setValue:@(-1) forKey:DEFAULTS_NEGATIVE_IDENTIFIER];
     }
-    
+
     NSInteger decrementNumber = [[defaults valueForKey:DEFAULTS_NEGATIVE_IDENTIFIER] integerValue];
     decrementNumber--;
     [defaults setObject:@(decrementNumber) forKey:DEFAULTS_NEGATIVE_IDENTIFIER];
     [defaults synchronize];
-    
+
     return @(decrementNumber);
 }
 

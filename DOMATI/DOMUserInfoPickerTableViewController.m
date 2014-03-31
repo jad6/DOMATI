@@ -12,7 +12,7 @@
 
 @interface DOMUserInfoPickerTableViewController ()
 
-@property (nonatomic, strong) DOMPickerHandler *currentPickerHandler;
+@property (nonatomic, strong) DOMPickerHandler * currentPickerHandler;
 
 @end
 
@@ -25,12 +25,12 @@
 
 - (void)reloadPicker
 {
-    NSIndexPath *pickerIndexPath = self.pickerIndexPath;
-    
+    NSIndexPath * pickerIndexPath = self.pickerIndexPath;
+
     // Get the cell above the picker.
-    UITableViewCell *headerCell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:(pickerIndexPath.row - 1) inSection:pickerIndexPath.section]];
-    DOMPickerCell *pickerCell = (DOMPickerCell *)[self.tableView cellForRowAtIndexPath:pickerIndexPath];
-    
+    UITableViewCell * headerCell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:(pickerIndexPath.row - 1) inSection:pickerIndexPath.section]];
+    DOMPickerCell * pickerCell = (DOMPickerCell *)[self.tableView cellForRowAtIndexPath:pickerIndexPath];
+
     [self populatePicker:pickerCell.picker
              atIndexPath:pickerIndexPath
               headerCell:headerCell];
@@ -47,7 +47,8 @@
  */
 - (void)setDetailText:(NSString *)text undisclosed:(BOOL)undisclosed
 {
-    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:self.activeCellIndexPath];
+    UITableViewCell * cell = [self.tableView cellForRowAtIndexPath:self.activeCellIndexPath];
+
     cell.detailTextLabel.text = (undisclosed) ? [DOMPickerHandler undisclosedValue] : text;
 }
 
@@ -62,32 +63,36 @@
  *  @param headerCell The cell above the picker.
  */
 - (void)populatePicker:(UIPickerView *)picker
-           atIndexPath:(NSIndexPath *)indexPath
-            headerCell:(UITableViewCell *)headerCell
+    atIndexPath:(NSIndexPath *)indexPath
+    headerCell:(UITableViewCell *)headerCell
 {
-    DOMPickerHandler *currentHandler = nil;
-    if (indexPath.section == 0 && indexPath.row == 2) {
+    DOMPickerHandler * currentHandler = nil;
+
+    if (indexPath.section == 0 && indexPath.row == 2)
+    {
         // Set the year from the possible existing detail value.
         NSInteger year = ([headerCell.detailTextLabel.text isEqualToString:[DOMPickerHandler undisclosedValue]]) ? 1990 : [DOMYearsPickerHandler yearForTitile:headerCell.detailTextLabel.text];
-        
-        DOMYearsPickerHandler *yearsHandler = [[DOMYearsPickerHandler alloc] init];
+
+        DOMYearsPickerHandler * yearsHandler = [[DOMYearsPickerHandler alloc] init];
         [yearsHandler populatedPicker:picker
                       withInitialYear:year
                              delegate:self];
-        
+
         currentHandler = yearsHandler;
-    } else if (indexPath.section == 2) {
+    }
+    else if (indexPath.section == 2)
+    {
         // Set the occupation from the possible existing detail value.
-        NSString *initialOccupation = ([headerCell.detailTextLabel.text isEqualToString:[DOMPickerHandler undisclosedValue]]) ? nil : headerCell.detailTextLabel.text;
-        
-        DOMOccupationPickerHandler *occupationHandler = [[DOMOccupationPickerHandler alloc] init];
+        NSString * initialOccupation = ([headerCell.detailTextLabel.text isEqualToString:[DOMPickerHandler undisclosedValue]]) ? nil : headerCell.detailTextLabel.text;
+
+        DOMOccupationPickerHandler * occupationHandler = [[DOMOccupationPickerHandler alloc] init];
         [occupationHandler populatedPicker:picker
                      withInitialOccupation:initialOccupation
                                   delegate:self];
-        
+
         currentHandler = occupationHandler;
     }
-    
+
     self.currentPickerHandler = currentHandler;
 }
 
@@ -96,36 +101,37 @@
 - (void)pickerView:(UIPickerView *)pickerView didChangeYear:(NSInteger)year;
 {
     BOOL undisclosed = (year <= 0);
-    
+
     [self setDetailText:[DOMYearsPickerHandler titleForYear:year]
             undisclosed:undisclosed];
-    
+
     self.user.birthYear = year;
 }
 
 - (void)pickerView:(UIPickerView *)pickerView didChangeOccupation:(NSString *)occupation
 {
     BOOL undisclosed = (occupation == nil);
-    
+
     [self setDetailText:occupation
             undisclosed:undisclosed];
-    
+
     self.user.occupation = occupation;
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField withCellType:(DOMTextFieldCellType)type
 {
     CGFloat value = (CGFLOAT_IS_DOUBLE) ? [textField.text doubleValue] : [textField.text floatValue];
-    
-    switch (type) {
+
+    switch (type)
+    {
         case DOMTextFieldCellTypeHeight:
             self.user.height = value;
             break;
-            
+
         case DOMTextFieldCellTypeWeight:
             self.user.weight = value;
             break;
-            
+
         default:
             break;
     }

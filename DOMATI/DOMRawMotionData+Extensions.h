@@ -15,7 +15,7 @@
 @interface DOMRawMotionData (Extensions) <DOMRawData>
 
 + (instancetype)rawMotionDataInContext:(NSManagedObjectContext *)context
-                      fromDeviceMotion:(CMDeviceMotion *)deviceMotion;
+    fromDeviceMotion:(CMDeviceMotion *)deviceMotion;
 
 - (NSDictionary *)postDictionary;
 

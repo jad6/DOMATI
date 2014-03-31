@@ -17,25 +17,26 @@
 @implementation DOMYearsPickerHandler
 
 - (void)populatedPicker:(UIPickerView *)pickerView
-        withInitialYear:(NSInteger)year
-               delegate:(id<DOMYearsPickerHandlerDelegate>)delegate
+    withInitialYear:(NSInteger)year
+    delegate:(id<DOMYearsPickerHandlerDelegate>)delegate
 {
     pickerView.delegate = self;
     pickerView.dataSource = self;
     self.pickerView = pickerView;
-    
+
     self.delegate = delegate;
-    
+
     [self selectYear:year animated:NO];
 }
 
 - (NSInteger)currentYear
 {
-    if (!self->_currentYear) {
-        NSDateComponents *comps = [[NSCalendar currentCalendar] components:NSYearCalendarUnit fromDate:[NSDate date]];
+    if (!self->_currentYear)
+    {
+        NSDateComponents * comps = [[NSCalendar currentCalendar] components:NSYearCalendarUnit fromDate:[NSDate date]];
         self->_currentYear = [comps year];
     }
-    
+
     return self->_currentYear;
 }
 
@@ -45,12 +46,13 @@
 {
     self.selectedYear = year;
     NSInteger row = [self rowForYear:self.selectedYear];
-    
+
     [self.pickerView selectRow:row
                    inComponent:0
                       animated:animated];
-    
-    if ([self.delegate respondsToSelector:@selector(pickerView:didChangeYear:)]) {
+
+    if ([self.delegate respondsToSelector:@selector(pickerView:didChangeYear:)])
+    {
         [self.delegate pickerView:self.pickerView didChangeYear:self.selectedYear];
     }
 }
@@ -107,26 +109,28 @@
 #pragma mark - Picker delegate
 
 - (UIView *)pickerView:(UIPickerView *)pickerView
-            viewForRow:(NSInteger)row
-          forComponent:(NSInteger)component
-           reusingView:(UIView *)view
+    viewForRow:(NSInteger)row
+    forComponent:(NSInteger)component
+    reusingView:(UIView *)view
 {
-    UILabel *label = (UILabel *)[super pickerView:pickerView
-                                       viewForRow:row
-                                     forComponent:component
-                                      reusingView:view];
-    
-    if (row > 0) {
+    UILabel * label = (UILabel *)[super pickerView:pickerView
+                                        viewForRow:row
+                                      forComponent:component
+                                       reusingView:view];
+
+    if (row > 0)
+    {
         label.text = [[self class] titleForYear:[self yearFromRow:row]];
     }
-    
+
     return label;
 }
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
-{    
+{
     self.selectedYear = [self yearFromRow:row];
-    if ([self.delegate respondsToSelector:@selector(pickerView:didChangeYear:)]) {
+    if ([self.delegate respondsToSelector:@selector(pickerView:didChangeYear:)])
+    {
         [self.delegate pickerView:self.pickerView didChangeYear:self.selectedYear];
     }
 }

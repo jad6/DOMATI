@@ -28,6 +28,6 @@
 @property (nonatomic, retain) NSNumber * userAccelZ;
 @property (nonatomic, retain) NSNumber * yaw;
 @property (nonatomic, retain) NSNumber * timestamp;
-@property (nonatomic, retain) DOMTouchData *touchData;
+@property (nonatomic, retain) DOMTouchData * touchData;
 
 @end

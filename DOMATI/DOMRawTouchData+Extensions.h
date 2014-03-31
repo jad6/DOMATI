@@ -13,7 +13,7 @@
 @interface DOMRawTouchData (Extensions) <DOMRawData>
 
 + (instancetype)rawTouchDataInContext:(NSManagedObjectContext *)context
-                        fromTouchInfo:(NSDictionary *)touchInfo;
+    fromTouchInfo:(NSDictionary *)touchInfo;
 
 - (NSDictionary *)postDictionary;
 

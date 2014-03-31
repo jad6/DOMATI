@@ -17,7 +17,8 @@
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
-    if (self) {
+    if (self)
+    {
         // Custom initialization
     }
     return self;
@@ -29,7 +30,7 @@
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
- 
+
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
@@ -63,8 +64,8 @@
  */
 - (BOOL)hasPickerForIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:(indexPath.row + 1) inSection:indexPath.section]];
-    
+    UITableViewCell * cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:(indexPath.row + 1) inSection:indexPath.section]];
+
     return [cell isKindOfClass:[self pickerCellClass]];
 }
 
@@ -96,15 +97,16 @@
  */
 - (void)removePicker
 {
-    if (self.pickerIndexPath) {
+    if (self.pickerIndexPath)
+    {
         self.activeCellIndexPath = nil;
-        
-        NSIndexPath *datePickerIndexPathCopy = [self.pickerIndexPath copy];
+
+        NSIndexPath * datePickerIndexPathCopy = [self.pickerIndexPath copy];
         self.pickerIndexPath = nil;
-        
-        UITableViewCell *inactiveCell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:(datePickerIndexPathCopy.row - 1) inSection:datePickerIndexPathCopy.section]];
+
+        UITableViewCell * inactiveCell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:(datePickerIndexPathCopy.row - 1) inSection:datePickerIndexPathCopy.section]];
         inactiveCell.detailTextLabel.textColor = DETAIL_TEXT_COLOR;
-        
+
         [self.tableView deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:datePickerIndexPathCopy.row inSection:datePickerIndexPathCopy.section]]
                               withRowAnimation:UITableViewRowAnimationFade];
     }
@@ -118,22 +120,25 @@
 - (void)toggleDatePickerForSelectedIndexPath:(NSIndexPath *)indexPath
 {
     [self.tableView beginUpdates];
-    
-    NSArray *indexPaths = @[[NSIndexPath indexPathForRow:(indexPath.row + 1) inSection:indexPath.section]];
-    
+
+    NSArray * indexPaths = @[[NSIndexPath indexPathForRow:(indexPath.row + 1) inSection:indexPath.section]];
+
     // Check if 'indexPath' has an attached picker below it
-    if ([self hasPickerForIndexPath:indexPath]) {
+    if ([self hasPickerForIndexPath:indexPath])
+    {
         // Found a picker below it, so remove it
         [self.tableView deleteRowsAtIndexPaths:indexPaths
                               withRowAnimation:UITableViewRowAnimationFade];
-    } else {
+    }
+    else
+    {
         self.activeCellIndexPath = indexPath;
-        
+
         // Didn't find a picker below it, so we should insert it
         [self.tableView insertRowsAtIndexPaths:indexPaths
                               withRowAnimation:UITableViewRowAnimationFade];
     }
-    
+
     [self.tableView endUpdates];
 }
 
@@ -147,34 +152,37 @@
 {
     // Display the picker inline with the table content
     [self.tableView beginUpdates];
-    
+
     // Indicates if the picker is below "indexPath", help determine
     // which row to reveal.
     BOOL before = NO;
-    if ([self hasInlineDatePickerInSection:indexPath.section]) {
+    if ([self hasInlineDatePickerInSection:indexPath.section])
+    {
         before = self.pickerIndexPath.row < indexPath.row;
     }
-    
+
     BOOL sameCellClicked = (self.pickerIndexPath.row - 1 == indexPath.row);
-    
+
     [self removePicker];
-    
-    if (!sameCellClicked) {
+
+    if (!sameCellClicked)
+    {
         // Hide the old picker and display the new one
         NSInteger rowToReveal = (before ? indexPath.row - 1 : indexPath.row);
-        NSIndexPath *indexPathToReveal = [NSIndexPath indexPathForRow:rowToReveal inSection:indexPath.section];
-        
+        NSIndexPath * indexPathToReveal = [NSIndexPath indexPathForRow:rowToReveal inSection:indexPath.section];
+
         [self toggleDatePickerForSelectedIndexPath:indexPathToReveal];
         self.pickerIndexPath = [NSIndexPath indexPathForRow:indexPathToReveal.row + 1 inSection:indexPath.section];
     }
-    
+
     // Always deselect the row containing the start or end date
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
+
     [self.tableView endUpdates];
-    
+
     // Update picker.
-    if (self.pickerIndexPath) {
+    if (self.pickerIndexPath)
+    {
         [self reloadPicker];
     }
 }

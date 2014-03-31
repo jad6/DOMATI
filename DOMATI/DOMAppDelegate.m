@@ -22,26 +22,27 @@
 {
     // Override point for customization after application launch.
     self.window.tintColor = DOMATI_COLOR;
-    
+
     // This is done so that upon launch the User data is pulled from iCloud.
     [DOMUser refreshCurrentUser];
-        
+
     // Handle the local notifications.
-    UILocalNotification *localNotif = [launchOptions objectForKey:UIApplicationLaunchOptionsLocalNotificationKey];
+    UILocalNotification * localNotif = [launchOptions objectForKey:UIApplicationLaunchOptionsLocalNotificationKey];
     [DOMLocalNotificationHelper handleLaunchLocalNotification:localNotif];
     // If the badge was showing remove it.
     [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
-    
+
     // Set the appearance of the app.
     [DOMThemeManager customiseAppAppearance];
     // Set up Core Data.
     [[DOMCoreDataManager sharedManager] setupCoreData];
-    
+
     // Only attempt uploads at launch once the user has been sycned.
-    if ([DOMUser currentUser].identifier > 0) {
+    if ([DOMUser currentUser].identifier > 0)
+    {
         [[DOMRequestOperationManager sharedManager] uploadDataWhenPossible];
     }
-    
+
     return YES;
 }
 
@@ -53,7 +54,7 @@
 
 - (void)applicationDidEnterBackground:(UIApplication *)application
 {
-    // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
+    // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
 }
 
