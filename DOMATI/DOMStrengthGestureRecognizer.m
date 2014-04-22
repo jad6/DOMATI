@@ -55,7 +55,9 @@
 
 @implementation DOMStrengthGestureRecognizer
 
-- (id)initWithTarget:(id)target action:(SEL)action
+- (instancetype)initWithTarget:(id)target
+                        action:(SEL)action
+                         error:(NSError *__autoreleasing *)error
 {
     self = [super initWithTarget:target action:action];
     if (self)
@@ -70,14 +72,27 @@
                       });
 
         DOMMotionManager *motionManager = [DOMMotionManager sharedManager];
-        [motionManager startListening];
-
+        [motionManager startListening:error];
+        
         self.motionManager = motionManager;
     }
     return self;
 }
 
-- (id)init
+- (instancetype)initWithTarget:(id)target action:(SEL)action
+{
+    NSError *error = nil;
+    self = [self initWithTarget:target action:action error:nil];
+    
+    if (error)
+    {
+        [error handle];
+    }
+    
+    return self;
+}
+
+- (instancetype)init
 {
     return [self initWithTarget:nil action:nil];
 }
@@ -240,18 +255,18 @@
                               CMDeviceMotion *motion = currentMotionItem.deviceMotion;
                               [motions addObject:motion];
 
-                          // Good old pythagorus to get an abstract measure of
-                          // the combined acceleration on the device.
+                              // Good old pythagorus to get an abstract measure of
+                              // the combined acceleration on the device.
                               CMAcceleration acc = motion.userAcceleration;
                               totalAcceleration += sqrt(acc.x * acc.x + acc.y * acc.y + acc.z * acc.z);
 
-                          // Using pythagorus on rotation values gives a
-                          // scalar value which can be used to determine the
-                          // level of rotation of a touch.
+                              // Using pythagorus on rotation values gives a
+                              // scalar value which can be used to determine the
+                              // level of rotation of a touch.
                               CMRotationRate rot = motion.rotationRate;
                               totalRotation += sqrt(rot.x * rot.x + rot.y * rot.y + rot.z * rot.z);
 
-                          // Iterate the pointer to the next linked list item.
+                              // Iterate the pointer to the next linked list item.
                               currentMotionItem = [currentMotionItem nextObject];
                           }
 

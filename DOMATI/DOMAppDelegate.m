@@ -32,11 +32,12 @@
 
 #import "DOMCoreDataManager.h"
 #import "DOMThemeManager.h"
+
+#if DATA_GATHERING
 #import "DOMRequestOperationManager.h"
-
 #import "DOMUser.h"
-
 #import "DOMLocalNotificationHelper.h"
+#endif
 
 @implementation DOMAppDelegate
 
@@ -45,12 +46,6 @@
     // Override point for customization after application launch.
     self.window.tintColor = DOMATI_COLOR;
 
-    // This is done so that upon launch the User data is pulled from iCloud.
-    [DOMUser refreshCurrentUser];
-
-    // Handle the local notifications.
-    UILocalNotification *localNotif = [launchOptions objectForKey:UIApplicationLaunchOptionsLocalNotificationKey];
-    [DOMLocalNotificationHelper handleLaunchLocalNotification:localNotif];
     // If the badge was showing remove it.
     [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
 
@@ -58,13 +53,33 @@
     [DOMThemeManager customiseAppAppearance];
     // Set up Core Data.
     [[DOMCoreDataManager sharedManager] setupCoreData];
-
+    
+    NSString *storyboardName = nil;
+#if DATA_GATHERING
+    if (IPAD)
+        storyboardName = @"Data_Gather_iPad";
+    else
+        storyboardName = @"Data_Gather_iPhone";
+    
+    // This is done so that upon launch the User data is pulled from iCloud.
+    [DOMUser refreshCurrentUser];
+    
+    // Handle the local notifications.
+    UILocalNotification *localNotif = [launchOptions objectForKey:UIApplicationLaunchOptionsLocalNotificationKey];
+    [DOMLocalNotificationHelper handleLaunchLocalNotification:localNotif];
+    
     // Only attempt uploads at launch once the user has been sycned.
     if ([DOMUser currentUser].identifier > 0)
-    {
         [[DOMRequestOperationManager sharedManager] uploadDataWhenPossible];
-    }
-
+#else
+    if (IPAD)
+        storyboardName = @"Main_iPad";
+    else
+        storyboardName = @"Main_iPhone";
+#endif
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:storyboardName bundle:nil];
+    self.window.rootViewController = [storyboard instantiateInitialViewController];
+    
     return YES;
 }
 

@@ -12,7 +12,7 @@
 
 @implementation DOMMotionItem
 
-- (id)initWithDeviceMotion:(CMDeviceMotion *)deviceMotion
+- (instancetype)initWithDeviceMotion:(CMDeviceMotion *)deviceMotion
 {
     self = [super init];
     if (self)

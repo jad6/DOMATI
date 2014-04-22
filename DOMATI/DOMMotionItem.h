@@ -16,6 +16,6 @@
 
 @property (nonatomic) NSTimeInterval timestamp;
 
-- (id)initWithDeviceMotion:(CMDeviceMotion *)deviceMotion;
+- (instancetype)initWithDeviceMotion:(CMDeviceMotion *)deviceMotion;
 
 @end

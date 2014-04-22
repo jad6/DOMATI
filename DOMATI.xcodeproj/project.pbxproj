@@ -11,7 +11,7 @@
 		05050EAE18BF4F04000724F0 /* DOMRawMotionData.m in Sources */ = {isa = PBXBuildFile; fileRef = 05050EAD18BF4F04000724F0 /* DOMRawMotionData.m */; };
 		05050EB118BF507E000724F0 /* DOMTouchData.m in Sources */ = {isa = PBXBuildFile; fileRef = 05050EB018BF507E000724F0 /* DOMTouchData.m */; };
 		05050EB418BF628E000724F0 /* DOMDataRecordingStrengthGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 05050EB318BF628E000724F0 /* DOMDataRecordingStrengthGestureRecognizer.m */; };
-		05084EA7181FECD500FFFB93 /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 05084EA6181FECD500FFFB93 /* MainStoryboard_iPad.storyboard */; };
+		05084EA7181FECD500FFFB93 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 05084EA6181FECD500FFFB93 /* Main_iPad.storyboard */; };
 		05087D701824DE8300219AA7 /* DOMTouchData+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 05087D6F1824DE8300219AA7 /* DOMTouchData+Extension.m */; };
 		05098F1817B62859009D4FF5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05098F1717B62859009D4FF5 /* Foundation.framework */; };
 		05098F1A17B62859009D4FF5 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05098F1917B62859009D4FF5 /* CoreGraphics.framework */; };
@@ -25,15 +25,16 @@
 		05098F3317B62859009D4FF5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05098F1B17B62859009D4FF5 /* UIKit.framework */; };
 		05098F3B17B62859009D4FF5 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 05098F3917B62859009D4FF5 /* InfoPlist.strings */; };
 		05098F3D17B62859009D4FF5 /* DOMATITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 05098F3C17B62859009D4FF5 /* DOMATITests.m */; };
-		05098F4717B62BC8009D4FF5 /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 05098F4617B62BC8009D4FF5 /* MainStoryboard_iPhone.storyboard */; };
-		05098F4817B62BC8009D4FF5 /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 05098F4617B62BC8009D4FF5 /* MainStoryboard_iPhone.storyboard */; };
-		05098F4B17B62CF8009D4FF5 /* DOMObjectModelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05098F4A17B62CF8009D4FF5 /* DOMObjectModelViewController.m */; };
-		05098F4C17B62CF8009D4FF5 /* DOMObjectModelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05098F4A17B62CF8009D4FF5 /* DOMObjectModelViewController.m */; };
+		05098F4717B62BC8009D4FF5 /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 05098F4617B62BC8009D4FF5 /* Main_iPhone.storyboard */; };
+		05098F4817B62BC8009D4FF5 /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 05098F4617B62BC8009D4FF5 /* Main_iPhone.storyboard */; };
 		05098F4E17B62D42009D4FF5 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05098F4D17B62D42009D4FF5 /* GLKit.framework */; };
 		05098F5017B62D48009D4FF5 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05098F4F17B62D48009D4FF5 /* OpenGLES.framework */; };
 		05098F5317B62F7D009D4FF5 /* DOMInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05098F5217B62F7D009D4FF5 /* DOMInfoViewController.m */; };
 		05098F5417B62F7D009D4FF5 /* DOMInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05098F5217B62F7D009D4FF5 /* DOMInfoViewController.m */; };
 		05098F5A17B63820009D4FF5 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05098F5917B63820009D4FF5 /* MessageUI.framework */; };
+		050A7E001906000100C5468D /* Data_Gather_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 050A7DFF1906000100C5468D /* Data_Gather_iPhone.storyboard */; };
+		050A7E021906076300C5468D /* Data_Gather_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 050A7E011906076300C5468D /* Data_Gather_iPad.storyboard */; };
+		050A7E0519060B3600C5468D /* DOMMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 050A7E0419060B3600C5468D /* DOMMainViewController.m */; };
 		050A8F40189CCBE30073E487 /* DOMCalibrationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 050A8F3F189CCBE30073E487 /* DOMCalibrationViewController.m */; };
 		050ACB15189A4DAC006F74DD /* DOMRequestOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 050ACB14189A4DAC006F74DD /* DOMRequestOperationManager.m */; };
 		050ACB1A189A4F41006F74DD /* Network.plist in Resources */ = {isa = PBXBuildFile; fileRef = 050ACB19189A4F41006F74DD /* Network.plist */; };
@@ -44,7 +45,6 @@
 		05430128181D23ED0077435C /* DOMThemeResources.m in Sources */ = {isa = PBXBuildFile; fileRef = 05430127181D23ED0077435C /* DOMThemeResources.m */; };
 		0543012B181D55660077435C /* DOMTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0543012A181D55660077435C /* DOMTableViewCell.m */; };
 		05430131181D5B3A0077435C /* DOMNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05430130181D5B3A0077435C /* DOMNavigationController.m */; };
-		05457F96183104A2005CDEC4 /* DOMCalibrationPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 05457F95183104A2005CDEC4 /* DOMCalibrationPresenter.m */; };
 		054BA47717B778CB005532CE /* DOMCalibrationExpiryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 054BA47617B778CB005532CE /* DOMCalibrationExpiryViewController.m */; };
 		054BA47817B778CB005532CE /* DOMCalibrationExpiryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 054BA47617B778CB005532CE /* DOMCalibrationExpiryViewController.m */; };
 		054C30A317B7363000ABC9CF /* DOMCalibrationDataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 054C30A217B7363000ABC9CF /* DOMCalibrationDataViewController.m */; };
@@ -90,12 +90,6 @@
 		05C702FA189C9BC200E0AC35 /* DOMOccupationPickerHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 05C702F9189C9BC200E0AC35 /* DOMOccupationPickerHandler.m */; };
 		05C702FC189C9BE700E0AC35 /* Occupations.plist in Resources */ = {isa = PBXBuildFile; fileRef = 05C702FB189C9BE700E0AC35 /* Occupations.plist */; };
 		05CD6CF118B9EA25003E3512 /* NSObject+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 05CD6CF018B9EA25003E3512 /* NSObject+Extensions.m */; };
-		05CDCD1F17BA0B7F00BA12E3 /* DOMGroupSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05CDCD1E17BA0B7F00BA12E3 /* DOMGroupSelectionViewController.m */; };
-		05CDCD2017BA0B7F00BA12E3 /* DOMGroupSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05CDCD1E17BA0B7F00BA12E3 /* DOMGroupSelectionViewController.m */; };
-		05CDCD2217BA0D3C00BA12E3 /* Groups.plist in Resources */ = {isa = PBXBuildFile; fileRef = 05CDCD2117BA0D3C00BA12E3 /* Groups.plist */; };
-		05CDCD2317BA0D3C00BA12E3 /* Groups.plist in Resources */ = {isa = PBXBuildFile; fileRef = 05CDCD2117BA0D3C00BA12E3 /* Groups.plist */; };
-		05CDCD2917BA107800BA12E3 /* DOMFingerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 05CDCD2817BA107800BA12E3 /* DOMFingerCell.m */; };
-		05CDCD2A17BA107800BA12E3 /* DOMFingerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 05CDCD2817BA107800BA12E3 /* DOMFingerCell.m */; };
 		05D273D7181E657C0005E31E /* DOMTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 05D273D6181E657C0005E31E /* DOMTableView.m */; };
 		05D273DA181E65930005E31E /* DOMNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 05D273D9181E65930005E31E /* DOMNavigationBar.m */; };
 		05D273DF181E67110005E31E /* UITextView+Sharing.m in Sources */ = {isa = PBXBuildFile; fileRef = 05D273DE181E67110005E31E /* UITextView+Sharing.m */; };
@@ -126,7 +120,7 @@
 		05050EB018BF507E000724F0 /* DOMTouchData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DOMTouchData.m; sourceTree = "<group>"; };
 		05050EB218BF628E000724F0 /* DOMDataRecordingStrengthGestureRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DOMDataRecordingStrengthGestureRecognizer.h; sourceTree = "<group>"; };
 		05050EB318BF628E000724F0 /* DOMDataRecordingStrengthGestureRecognizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DOMDataRecordingStrengthGestureRecognizer.m; sourceTree = "<group>"; };
-		05084EA6181FECD500FFFB93 /* MainStoryboard_iPad.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
+		05084EA6181FECD500FFFB93 /* Main_iPad.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main_iPad.storyboard; sourceTree = "<group>"; };
 		05084EA8181FF27B00FFFB93 /* sharedHeaders.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sharedHeaders.h; sourceTree = "<group>"; };
 		05087D6E1824DE8300219AA7 /* DOMTouchData+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "DOMTouchData+Extension.h"; sourceTree = "<group>"; };
 		05087D6F1824DE8300219AA7 /* DOMTouchData+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "DOMTouchData+Extension.m"; sourceTree = "<group>"; };
@@ -146,14 +140,16 @@
 		05098F3817B62859009D4FF5 /* DOMATITests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "DOMATITests-Info.plist"; sourceTree = "<group>"; };
 		05098F3A17B62859009D4FF5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		05098F3C17B62859009D4FF5 /* DOMATITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DOMATITests.m; sourceTree = "<group>"; };
-		05098F4617B62BC8009D4FF5 /* MainStoryboard_iPhone.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
-		05098F4917B62CF8009D4FF5 /* DOMObjectModelViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DOMObjectModelViewController.h; sourceTree = "<group>"; };
-		05098F4A17B62CF8009D4FF5 /* DOMObjectModelViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DOMObjectModelViewController.m; sourceTree = "<group>"; };
+		05098F4617B62BC8009D4FF5 /* Main_iPhone.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main_iPhone.storyboard; sourceTree = "<group>"; };
 		05098F4D17B62D42009D4FF5 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
 		05098F4F17B62D48009D4FF5 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		05098F5117B62F7D009D4FF5 /* DOMInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DOMInfoViewController.h; sourceTree = "<group>"; };
 		05098F5217B62F7D009D4FF5 /* DOMInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DOMInfoViewController.m; sourceTree = "<group>"; };
 		05098F5917B63820009D4FF5 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		050A7DFF1906000100C5468D /* Data_Gather_iPhone.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Data_Gather_iPhone.storyboard; sourceTree = "<group>"; };
+		050A7E011906076300C5468D /* Data_Gather_iPad.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Data_Gather_iPad.storyboard; sourceTree = "<group>"; };
+		050A7E0319060B3600C5468D /* DOMMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DOMMainViewController.h; sourceTree = "<group>"; };
+		050A7E0419060B3600C5468D /* DOMMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DOMMainViewController.m; sourceTree = "<group>"; };
 		050A8F3E189CCBE30073E487 /* DOMCalibrationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DOMCalibrationViewController.h; sourceTree = "<group>"; };
 		050A8F3F189CCBE30073E487 /* DOMCalibrationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DOMCalibrationViewController.m; sourceTree = "<group>"; };
 		050ACB13189A4DAC006F74DD /* DOMRequestOperationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DOMRequestOperationManager.h; sourceTree = "<group>"; };
@@ -173,8 +169,6 @@
 		0543012A181D55660077435C /* DOMTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DOMTableViewCell.m; sourceTree = "<group>"; };
 		0543012F181D5B3A0077435C /* DOMNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DOMNavigationController.h; sourceTree = "<group>"; };
 		05430130181D5B3A0077435C /* DOMNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DOMNavigationController.m; sourceTree = "<group>"; };
-		05457F94183104A2005CDEC4 /* DOMCalibrationPresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DOMCalibrationPresenter.h; sourceTree = "<group>"; };
-		05457F95183104A2005CDEC4 /* DOMCalibrationPresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DOMCalibrationPresenter.m; sourceTree = "<group>"; };
 		054BA47517B778CB005532CE /* DOMCalibrationExpiryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DOMCalibrationExpiryViewController.h; sourceTree = "<group>"; };
 		054BA47617B778CB005532CE /* DOMCalibrationExpiryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DOMCalibrationExpiryViewController.m; sourceTree = "<group>"; };
 		054C30A117B7363000ABC9CF /* DOMCalibrationDataViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DOMCalibrationDataViewController.h; sourceTree = "<group>"; };
@@ -240,11 +234,6 @@
 		05C702FB189C9BE700E0AC35 /* Occupations.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Occupations.plist; sourceTree = "<group>"; };
 		05CD6CEF18B9EA25003E3512 /* NSObject+Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Extensions.h"; sourceTree = "<group>"; };
 		05CD6CF018B9EA25003E3512 /* NSObject+Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Extensions.m"; sourceTree = "<group>"; };
-		05CDCD1D17BA0B7F00BA12E3 /* DOMGroupSelectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DOMGroupSelectionViewController.h; sourceTree = "<group>"; };
-		05CDCD1E17BA0B7F00BA12E3 /* DOMGroupSelectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DOMGroupSelectionViewController.m; sourceTree = "<group>"; };
-		05CDCD2117BA0D3C00BA12E3 /* Groups.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Groups.plist; sourceTree = "<group>"; };
-		05CDCD2717BA107800BA12E3 /* DOMFingerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DOMFingerCell.h; sourceTree = "<group>"; };
-		05CDCD2817BA107800BA12E3 /* DOMFingerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DOMFingerCell.m; sourceTree = "<group>"; };
 		05D273D5181E657C0005E31E /* DOMTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DOMTableView.h; sourceTree = "<group>"; };
 		05D273D6181E657C0005E31E /* DOMTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DOMTableView.m; sourceTree = "<group>"; };
 		05D273D8181E65930005E31E /* DOMNavigationBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DOMNavigationBar.h; sourceTree = "<group>"; };
@@ -341,16 +330,10 @@
 				05A00DFA189CEF7200532878 /* DOMATI.entitlements */,
 				05098F2617B62859009D4FF5 /* DOMAppDelegate.h */,
 				05098F2717B62859009D4FF5 /* DOMAppDelegate.m */,
-				05098F4617B62BC8009D4FF5 /* MainStoryboard_iPhone.storyboard */,
-				05084EA6181FECD500FFFB93 /* MainStoryboard_iPad.storyboard */,
-				054BA47417B7789D005532CE /* Views & Controllers */,
-				058FFC0A17D9FBCE008ECB1B /* Event Handling */,
-				05CDCD2417BA101E00BA12E3 /* Others */,
-				056D2BFE1897D43800C5910A /* Model */,
-				050ACB12189A4D9F006F74DD /* Network */,
-				05577B4817B789B7007802E6 /* Resources */,
+				050A7E0719060B8600C5468D /* Demo */,
+				050A7E0619060B7D00C5468D /* Data Gathering */,
+				050A7E0A19060C7B00C5468D /* Shared */,
 				05098F1E17B62859009D4FF5 /* Supporting Files */,
-				05098F2917B62859009D4FF5 /* Images.xcassets */,
 			);
 			path = DOMATI;
 			sourceTree = "<group>";
@@ -385,6 +368,59 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		050A7E0619060B7D00C5468D /* Data Gathering */ = {
+			isa = PBXGroup;
+			children = (
+				050A7DFF1906000100C5468D /* Data_Gather_iPhone.storyboard */,
+				050A7E011906076300C5468D /* Data_Gather_iPad.storyboard */,
+				050A7E0B19060D1600C5468D /* Views & Controllers */,
+				050ACB12189A4D9F006F74DD /* Network */,
+				050A7E0919060C4F00C5468D /* Resources */,
+			);
+			name = "Data Gathering";
+			sourceTree = "<group>";
+		};
+		050A7E0719060B8600C5468D /* Demo */ = {
+			isa = PBXGroup;
+			children = (
+				05098F4617B62BC8009D4FF5 /* Main_iPhone.storyboard */,
+				05084EA6181FECD500FFFB93 /* Main_iPad.storyboard */,
+				054BA47417B7789D005532CE /* Views & Controllers */,
+			);
+			name = Demo;
+			sourceTree = "<group>";
+		};
+		050A7E0919060C4F00C5468D /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				050ACB19189A4F41006F74DD /* Network.plist */,
+				05BD579818B48824003FE71B /* UserInfoTable.plist */,
+				05C702FB189C9BE700E0AC35 /* Occupations.plist */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		050A7E0A19060C7B00C5468D /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				058FFC0A17D9FBCE008ECB1B /* Event Handling */,
+				051A8E2A1830C7ED007F9DCD /* Calibration */,
+				05CDCD2417BA101E00BA12E3 /* Others */,
+				056D2BFE1897D43800C5910A /* Model */,
+				05577B4817B789B7007802E6 /* Resources */,
+			);
+			name = Shared;
+			sourceTree = "<group>";
+		};
+		050A7E0B19060D1600C5468D /* Views & Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				056D2BF81896444400C5910A /* Welcome */,
+				05BD579A18B48A24003FE71B /* User Info */,
+			);
+			name = "Views & Controllers";
+			sourceTree = "<group>";
+		};
 		050ACB12189A4D9F006F74DD /* Network */ = {
 			isa = PBXGroup;
 			children = (
@@ -399,7 +435,6 @@
 			children = (
 				050A8F3E189CCBE30073E487 /* DOMCalibrationViewController.h */,
 				050A8F3F189CCBE30073E487 /* DOMCalibrationViewController.m */,
-				052DEBCE1835DE20009DEEF4 /* Presenter */,
 			);
 			name = Calibration;
 			sourceTree = "<group>";
@@ -436,15 +471,6 @@
 				05B9B20018BF8C25006D24B8 /* UIDevice+Extension.m */,
 			);
 			name = Categories;
-			sourceTree = "<group>";
-		};
-		052DEBCE1835DE20009DEEF4 /* Presenter */ = {
-			isa = PBXGroup;
-			children = (
-				05457F94183104A2005CDEC4 /* DOMCalibrationPresenter.h */,
-				05457F95183104A2005CDEC4 /* DOMCalibrationPresenter.m */,
-			);
-			name = Presenter;
 			sourceTree = "<group>";
 		};
 		052DEBCF1835DE2F009DEEF4 /* Picker Handlers */ = {
@@ -497,12 +523,8 @@
 		054BA47417B7789D005532CE /* Views & Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				05098F4917B62CF8009D4FF5 /* DOMObjectModelViewController.h */,
-				05098F4A17B62CF8009D4FF5 /* DOMObjectModelViewController.m */,
-				056D2BF81896444400C5910A /* Welcome */,
-				05BD579A18B48A24003FE71B /* User Info */,
-				051A8E2A1830C7ED007F9DCD /* Calibration */,
-				05CDCD2617BA104D00BA12E3 /* Group Selection */,
+				050A7E0319060B3600C5468D /* DOMMainViewController.h */,
+				050A7E0419060B3600C5468D /* DOMMainViewController.m */,
 				058FFC0917D9FBB3008ECB1B /* Info Menu */,
 			);
 			name = "Views & Controllers";
@@ -522,11 +544,8 @@
 		05577B4817B789B7007802E6 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				050ACB19189A4F41006F74DD /* Network.plist */,
-				05C702FB189C9BE700E0AC35 /* Occupations.plist */,
-				05CDCD2117BA0D3C00BA12E3 /* Groups.plist */,
+				05098F2917B62859009D4FF5 /* Images.xcassets */,
 				05A939EF18AB1AD80047F4CD /* CalibrationStates.plist */,
-				05BD579818B48824003FE71B /* UserInfoTable.plist */,
 				05C4C65F182F118A00E45F9D /* Project Proposal.pdf */,
 			);
 			name = Resources;
@@ -651,18 +670,11 @@
 			name = Helpers;
 			sourceTree = "<group>";
 		};
-		05B1FBDE18AC53630049095F /* Subclasses */ = {
+		05BD579A18B48A24003FE71B /* User Info */ = {
 			isa = PBXGroup;
 			children = (
 				05B1FBDB18AC53600049095F /* DOMPickerTableViewController.h */,
 				05B1FBDC18AC53600049095F /* DOMPickerTableViewController.m */,
-			);
-			name = Subclasses;
-			sourceTree = "<group>";
-		};
-		05BD579A18B48A24003FE71B /* User Info */ = {
-			isa = PBXGroup;
-			children = (
 				05B1FBDF18AC58BF0049095F /* DOMUserInfoPickerTableViewController.h */,
 				05B1FBE018AC58BF0049095F /* DOMUserInfoPickerTableViewController.m */,
 				051A8E271830C7EA007F9DCD /* DOMUserInfoViewController.h */,
@@ -682,7 +694,6 @@
 				05577B5117B78B61007802E6 /* Quick Look */,
 				0525D8D717B8C89F00E91CB6 /* Categories */,
 				05B1FBDA18AC53420049095F /* Helpers */,
-				05B1FBDE18AC53630049095F /* Subclasses */,
 			);
 			name = Others;
 			sourceTree = "<group>";
@@ -695,25 +706,6 @@
 				05D273E5181E79330005E31E /* Expiry */,
 			);
 			name = "Calibration Data";
-			sourceTree = "<group>";
-		};
-		05CDCD2617BA104D00BA12E3 /* Group Selection */ = {
-			isa = PBXGroup;
-			children = (
-				05CDCD1D17BA0B7F00BA12E3 /* DOMGroupSelectionViewController.h */,
-				05CDCD1E17BA0B7F00BA12E3 /* DOMGroupSelectionViewController.m */,
-				05CDCD2B17BA107B00BA12E3 /* Cells */,
-			);
-			name = "Group Selection";
-			sourceTree = "<group>";
-		};
-		05CDCD2B17BA107B00BA12E3 /* Cells */ = {
-			isa = PBXGroup;
-			children = (
-				05CDCD2717BA107800BA12E3 /* DOMFingerCell.h */,
-				05CDCD2817BA107800BA12E3 /* DOMFingerCell.m */,
-			);
-			name = Cells;
 			sourceTree = "<group>";
 		};
 		05D273DB181E659C0005E31E /* Theme */ = {
@@ -866,16 +858,17 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				05098F4717B62BC8009D4FF5 /* MainStoryboard_iPhone.storyboard in Resources */,
+				05098F4717B62BC8009D4FF5 /* Main_iPhone.storyboard in Resources */,
 				05098F2217B62859009D4FF5 /* InfoPlist.strings in Resources */,
-				05084EA7181FECD500FFFB93 /* MainStoryboard_iPad.storyboard in Resources */,
+				05084EA7181FECD500FFFB93 /* Main_iPad.storyboard in Resources */,
 				05C4C660182F118A00E45F9D /* Project Proposal.pdf in Resources */,
 				05098F2A17B62859009D4FF5 /* Images.xcassets in Resources */,
 				050ACB1A189A4F41006F74DD /* Network.plist in Resources */,
 				05C702FC189C9BE700E0AC35 /* Occupations.plist in Resources */,
+				050A7E021906076300C5468D /* Data_Gather_iPad.storyboard in Resources */,
 				05BD579918B48824003FE71B /* UserInfoTable.plist in Resources */,
-				05CDCD2217BA0D3C00BA12E3 /* Groups.plist in Resources */,
 				05A939F018AB1AD80047F4CD /* CalibrationStates.plist in Resources */,
+				050A7E001906000100C5468D /* Data_Gather_iPhone.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -883,8 +876,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				05098F4817B62BC8009D4FF5 /* MainStoryboard_iPhone.storyboard in Resources */,
-				05CDCD2317BA0D3C00BA12E3 /* Groups.plist in Resources */,
+				05098F4817B62BC8009D4FF5 /* Main_iPhone.storyboard in Resources */,
 				05098F3B17B62859009D4FF5 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -933,19 +925,16 @@
 				05098F2417B62859009D4FF5 /* main.m in Sources */,
 				05C702F1189C8D8A00E0AC35 /* DOMYearsPickerHandler.m in Sources */,
 				0543012B181D55660077435C /* DOMTableViewCell.m in Sources */,
-				05CDCD2917BA107800BA12E3 /* DOMFingerCell.m in Sources */,
 				05098F5317B62F7D009D4FF5 /* DOMInfoViewController.m in Sources */,
 				05050EA818BF4F03000724F0 /* DOMRawTouchData.m in Sources */,
 				054C30A317B7363000ABC9CF /* DOMCalibrationDataViewController.m in Sources */,
 				0530641A18ABBD9A00ECB21D /* NSDate+Helper.m in Sources */,
 				05D273DA181E65930005E31E /* DOMNavigationBar.m in Sources */,
-				05098F4B17B62CF8009D4FF5 /* DOMObjectModelViewController.m in Sources */,
 				054EAD2218BA2F9E00AD9D31 /* LLItem.m in Sources */,
 				05430128181D23ED0077435C /* DOMThemeResources.m in Sources */,
 				05B1FBE418AC9BE10049095F /* UIApplication+Extensions.m in Sources */,
 				05C702FA189C9BC200E0AC35 /* DOMOccupationPickerHandler.m in Sources */,
 				0555262D1838BA9900659796 /* DOMGenderSegmentCell.m in Sources */,
-				05457F96183104A2005CDEC4 /* DOMCalibrationPresenter.m in Sources */,
 				05D273D7181E657C0005E31E /* DOMTableView.m in Sources */,
 				05563B80182492CA00952A9E /* DOMStrengthGestureRecognizer.m in Sources */,
 				05430131181D5B3A0077435C /* DOMNavigationController.m in Sources */,
@@ -979,7 +968,7 @@
 				05A5FD6D183A2F8F000F57C4 /* DOMCircleTouchView.m in Sources */,
 				05050EAE18BF4F04000724F0 /* DOMRawMotionData.m in Sources */,
 				05050EB118BF507E000724F0 /* DOMTouchData.m in Sources */,
-				05CDCD1F17BA0B7F00BA12E3 /* DOMGroupSelectionViewController.m in Sources */,
+				050A7E0519060B3600C5468D /* DOMMainViewController.m in Sources */,
 				0530641D18ABC02100ECB21D /* DOMLocalNotificationHelper.m in Sources */,
 				054C30A817B7366800ABC9CF /* DOMCalibrationMonthsViewController.m in Sources */,
 				05D273DF181E67110005E31E /* UITextView+Sharing.m in Sources */,
@@ -995,10 +984,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				05098F5417B62F7D009D4FF5 /* DOMInfoViewController.m in Sources */,
-				05098F4C17B62CF8009D4FF5 /* DOMObjectModelViewController.m in Sources */,
-				05CDCD2A17BA107800BA12E3 /* DOMFingerCell.m in Sources */,
 				054BA47817B778CB005532CE /* DOMCalibrationExpiryViewController.m in Sources */,
-				05CDCD2017BA0B7F00BA12E3 /* DOMGroupSelectionViewController.m in Sources */,
 				058FFC2717DA0AE0008ECB1B /* DOMCoreDataManager.m in Sources */,
 				054C30A417B7363000ABC9CF /* DOMCalibrationDataViewController.m in Sources */,
 				05577B5017B78B5D007802E6 /* DOMPreviewItem.m in Sources */,
@@ -1122,6 +1108,11 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "DOMATI/DOMATI-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"COCOAPODS=1",
+					"DATA_GATHERING=0",
+				);
 				INFOPLIST_FILE = "DOMATI/DOMATI-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1142,6 +1133,11 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Jad Osseiran (GGB7WW5V29)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "DOMATI/DOMATI-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"COCOAPODS=1",
+					"DATA_GATHERING=0",
+				);
 				INFOPLIST_FILE = "DOMATI/DOMATI-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";

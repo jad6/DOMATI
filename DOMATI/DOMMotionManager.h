@@ -52,8 +52,12 @@
  *  the calling object is no longer interested in device motions.
  *  Failure to do so will result in the manager always recording
  *  motion data.
+ *
+ *  @param error The error pointer to get populated if there is an error.
+ *
+ *  @return True if the motion manager can start listening to motion events.
  */
-- (void)startListening;
+- (BOOL)startListening:(NSError *__autoreleasing *)error;
 /**
  *  Decrements the number of listeners that the manager keeps track
  *  of. If after calling this methid the manager listener count is

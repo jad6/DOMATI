@@ -34,8 +34,10 @@
 
 #import "DOMCircleTouchView.h"
 
+#if DATA_GATHERING
 #import "DOMRequestOperationManager.h"
 #import "DOMLocalNotificationHelper.h"
+#endif
 
 #define MIN_TOUCH_SETS_WANTED 3
 #define ANIMATION_DURATION    0.3
@@ -63,37 +65,6 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor blackColor];
 
-    // Add the strength gesture recognizer to the circle view.
-    DOMDataRecordingStrengthGestureRecognizer *strengthGR = [[DOMDataRecordingStrengthGestureRecognizer alloc] initWithTarget:self action:@selector(tapDetected:)];
-    [self.circleTouchView addGestureRecognizer:strengthGR];
-    self.strengthGR = strengthGR;
-
-    __weak __typeof(self) weakSelf = self;
-    [strengthGR setCoreDataSaveCompletionBlock:^{
-         __strong __typeof(weakSelf) strongSelf = weakSelf;
-
-         if (strongSelf.state >= DOMCalibrationStateFinal &&
-             !strongSelf.strengthGR.saving)
-         {
-
-             // Attempt to upload the new (and possibly old data).
-             [[DOMRequestOperationManager sharedManager] uploadDataWhenPossibleWithCompletion:^(BOOL success) {
-                  NSDictionary *stateInfo = self.statesInformation[DOMCalibrationStateFinal];
-
-                  if (success)
-                  {
-                      self.topLabel.text = stateInfo[@"topText"];
-                  }
-                  else
-                  {
-                      self.topLabel.text = @"Thank you, your touch & device motion data will be uploaded when you are next connected to the Internet and re-launch the app.";
-                  }
-
-                  self.bottomLabel.text = stateInfo[@"bottomText"];
-              } showHudInView:strongSelf.view];
-         }
-     }];
-
     self.statesInformation = [[NSArray alloc] initWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"CalibrationStates" withExtension:@"plist"]];
 
     // Set the initial states.
@@ -105,6 +76,8 @@
 {
     [super viewDidAppear:animated];
 
+    [self setupStrengthRecognizer];
+    
     // Used so the view controller responds to the device shakes.
     [self becomeFirstResponder];
 }
@@ -119,6 +92,7 @@
     [self setViewForState:state
                  animated:(state != DOMCalibrationStateInitial)];
 
+#if DATA_GATHERING
     // Handle the final state.
     if (state == DOMCalibrationStateFinal)
     {
@@ -138,6 +112,7 @@
         [defaults setObject:@(numTouchSets) forKey:DEFAULTS_TOUCH_SETS_RECORDED];
         [defaults synchronize];
     }
+#endif
 }
 
 - (BOOL)canBecomeFirstResponder
@@ -173,6 +148,55 @@
 }
 
 #pragma mark - Logic
+
+- (void)setupStrengthRecognizer
+{
+    // Add the strength gesture recognizer to the circle view.
+    NSError *error = nil;
+    DOMDataRecordingStrengthGestureRecognizer *strengthGR = [[DOMDataRecordingStrengthGestureRecognizer alloc] initWithTarget:self action:@selector(tapDetected:) error:&error];
+    
+    if (error)
+    {
+        [error handle];
+        
+        [self.navigationController popViewControllerAnimated:YES];
+        return;
+    }
+    
+    [self.circleTouchView addGestureRecognizer:strengthGR];
+    self.strengthGR = strengthGR;
+    
+    __weak __typeof(self) weakSelf = self;
+    [strengthGR setCoreDataSaveCompletionBlock:^{
+        __strong __typeof(weakSelf) strongSelf = weakSelf;
+        
+        if (strongSelf.state >= DOMCalibrationStateFinal &&
+            !strongSelf.strengthGR.saving)
+        {
+#if DATA_GATHERING
+            // Attempt to upload the new (and possibly old data).
+            [[DOMRequestOperationManager sharedManager] uploadDataWhenPossibleWithCompletion:^(BOOL success) {
+                NSDictionary *stateInfo = strongSelf.statesInformation[DOMCalibrationStateFinal];
+                
+                if (success)
+                {
+                    strongSelf.topLabel.text = stateInfo[@"topText"];
+                }
+                else
+                {
+                    strongSelf.topLabel.text = @"Thank you, your touch & device motion data will be uploaded when you are next connected to the Internet and re-launch the app.";
+                }
+                
+                strongSelf.bottomLabel.text = stateInfo[@"bottomText"];
+            } showHudInView:strongSelf.view];
+#else
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [strongSelf dismissViewControllerAnimated:YES completion:nil];
+            });
+#endif
+        }
+    }];
+}
 
 /**
  *  Sets text on a pass label.
@@ -261,8 +285,13 @@
 
     if (state == DOMCalibrationStateFinal)
     {
+#if DATA_GATHERING
         topText = @"Thank you, touch & device motion data is being uploaded.";
         bottomText = nil;
+#else
+        topText = @"Calibration Complete";
+        bottomText = @"This view will dismiss automatically";
+#endif
     }
 
     [self setAlpha:circleTouchAlpha

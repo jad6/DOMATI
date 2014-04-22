@@ -35,6 +35,7 @@
 @interface DOMMotionManager () {
     // The backgorund queue for the saving of the motion data.
     dispatch_queue_t listQueue;
+    NSError *__autoreleasing *startingError;
 }
 
 /// The pointers for the head and tail of the linked list.
@@ -84,12 +85,7 @@ static NSTimeInterval kUpdateInterval = 1 / 100.0;
             // Turn on the motion sensing if possible.
             if (![self isDeviceMotionActive])
             {
-                NSError *error = nil;
-                [self startDeviceMotion:&error];
-                if (error)
-                {
-                    [error handle];
-                }
+                [self startDeviceMotion:self->startingError];
             }
         }
 
@@ -99,9 +95,13 @@ static NSTimeInterval kUpdateInterval = 1 / 100.0;
 
 #pragma mark - Logic
 
-- (void)startListening
+- (BOOL)startListening:(NSError *__autoreleasing *)error
 {
+    self->startingError = error;
+    
     self.numListeners++;
+    
+    return self->startingError != nil;
 }
 
 - (void)stopListening

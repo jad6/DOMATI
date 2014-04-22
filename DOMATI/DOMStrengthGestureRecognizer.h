@@ -47,6 +47,10 @@ static NSString *kMotionInfoAvgRotationKey = @"rotationAvg";
 /// The strength of the touch(es).
 @property (nonatomic, readonly) CGFloat strength;
 
+- (instancetype)initWithTarget:(id)target
+                        action:(SEL)action
+                         error:(NSError *__autoreleasing *)error;
+
 /**
  *  Returns an array of dictionaries each
  *  contianing information on a particular touch

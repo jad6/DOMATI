@@ -53,9 +53,11 @@
 
 @implementation DOMDataRecordingStrengthGestureRecognizer
 
-- (id)initWithTarget:(id)target action:(SEL)action
+- (instancetype)initWithTarget:(id)target
+                        action:(SEL)action
+                         error:(NSError *__autoreleasing *)error
 {
-    self = [super initWithTarget:target action:action];
+    self = [super initWithTarget:target action:action error:error];
     if (self)
     {
         self.currentState = DOMCalibrationStateNone;
@@ -63,11 +65,6 @@
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changedState:) name:kCalibrationStateChangeNotificationName object:nil];
     }
     return self;
-}
-
-- (id)init
-{
-    return [self initWithTarget:nil action:nil];
 }
 
 - (void)dealloc
