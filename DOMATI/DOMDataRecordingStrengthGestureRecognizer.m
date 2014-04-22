@@ -63,6 +63,8 @@
         self.currentState = DOMCalibrationStateNone;
         // Listen to the changes of claibration strengths.
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changedState:) name:kCalibrationStateChangeNotificationName object:nil];
+        
+        self.automaticallyResetDataBuffers = NO;
     }
     return self;
 }
@@ -99,8 +101,8 @@
     for (UITouch *touch in touches)
     {
         // Get the information from the super class.
-        NSArray *touchAllPhasesInfo = [self allPhasesInfoForTouch:touch];
-        NSDictionary *motionsInfo = [self motionsInfoForTouch:touch];
+        NSDictionary *touchesInfo = [[self touchesInfoForTouch:touch] copy];
+        NSDictionary *motionsInfo = [[self motionsInfoForTouch:touch] copy];
 
         // Increment the number of saves as we are about to do one.
         self.numberOfCoreDataSaves++;
@@ -114,10 +116,9 @@
                   [self setDeviceMotionsInfo:motionsInfo
                                  onTouchData:touchData
                                    inContext:threadContext];
-
-                  [self setTouchAllPhasesInfo:touchAllPhasesInfo
-                                  onTouchData:touchData
-                                    inContext:threadContext];
+                  [self setTouchInfo:touchesInfo
+                         onTouchData:touchData
+                           inContext:threadContext];
               } inContext:threadContext];
 
              // Save the thread contexts
@@ -130,82 +131,53 @@
          }];
     }
 
+    for (UITouch *touch in touches)
+    {
+        [self resetDataBufferForTouch:touch];
+    }
+    
     // All the saves have completed, call the saving block on
     // the main queue.
     dispatch_group_notify(savingGroup, dispatch_get_main_queue(), ^{
-                              if (self.saveDataCompletionBlock)
-                              {
-                                  self.saveDataCompletionBlock();
-                              }
-                          });
+        
+        if (self.saveDataCompletionBlock)
+        {
+            self.saveDataCompletionBlock();
+        }
+    });
 }
 
 /**
  *  Calculates the touch data attributes which are given from the
  *  touches info form all its phases.
  *
- *  @param touchAllPhasesInfo A touch's info in all its stages.
+ *  @param touchInfo          A touch's info.
  *  @param touchData          The touch data on which to save data on.
  *  @param context            The context in which to save the data.
  */
-- (void)setTouchAllPhasesInfo:(NSArray *)touchAllPhasesInfo
-                  onTouchData:(DOMTouchData *)touchData
-                    inContext:(NSManagedObjectContext *)context
+- (void)setTouchInfo:(NSDictionary *)touchInfo
+         onTouchData:(DOMTouchData *)touchData
+           inContext:(NSManagedObjectContext *)context
 {
-    // Need the start and end times to calculate duration
-    NSTimeInterval startTimestamp = 0.0;
-    NSTimeInterval endTimestamp = 0.0;
-
-    // Used to calculate the x & y deltas.
-    CGFloat startX = 0.0;
-    CGFloat endX = 0.0;
-    CGFloat startY = 0.0;
-    CGFloat endY = 0.0;
-
-    // Variable to store the maximum radius found for the touch.
-    CGFloat maxRadius = (CGFLOAT_IS_DOUBLE) ? DBL_MIN : FLT_MIN;
-
+    NSArray *touchAllPhasesInfo = touchInfo[kTouchInfoAllPhasesKey];
     // Enumerate through each of the touch's phase info.
-    for (NSDictionary *touchInfo in touchAllPhasesInfo)
+    for (NSDictionary *touchPhaseInfo in touchAllPhasesInfo)
     {
-        // Save the start variables on UITouchPhaseBegan and the end
-        // variables on UITouchPhaseEnded.
-        if ([touchInfo[kTouchInfoPhaseKey] integerValue] == UITouchPhaseBegan)
-        {
-            startTimestamp = [touchInfo[kTouchInfoTimestampKey] doubleValue];
-
-            startX = (CGFLOAT_IS_DOUBLE) ? [touchInfo[kTouchInfoXKey] doubleValue] : [touchInfo[kTouchInfoXKey] floatValue];
-            startY = (CGFLOAT_IS_DOUBLE) ? [touchInfo[kTouchInfoYKey] doubleValue] : [touchInfo[kTouchInfoYKey] floatValue];
-        }
-        else if ([touchInfo[kTouchInfoPhaseKey] integerValue] == UITouchPhaseEnded)
-        {
-            endTimestamp = [touchInfo[kTouchInfoTimestampKey] doubleValue];
-
-            endX = (CGFLOAT_IS_DOUBLE) ? [touchInfo[kTouchInfoXKey] doubleValue] : [touchInfo[kTouchInfoXKey] floatValue];
-            endY = (CGFLOAT_IS_DOUBLE) ? [touchInfo[kTouchInfoYKey] doubleValue] : [touchInfo[kTouchInfoYKey] floatValue];
-        }
-
-        // Get the current touch radius.
-        CGFloat radius = (CGFLOAT_IS_DOUBLE) ? [touchInfo[kTouchInfoRadiusKey] doubleValue] : [touchInfo[kTouchInfoRadiusKey] floatValue];
-        // Save it if it is the new maximum.
-        if (radius > maxRadius)
-        {
-            maxRadius = radius;
-        }
-
         // Create a raw touch data object in the context from
         // the touch info.
-        DOMRawTouchData *rawData = [DOMRawTouchData rawTouchDataInContext:context fromTouchInfo:touchInfo];
+        DOMRawTouchData *rawData = [DOMRawTouchData rawTouchDataInContext:context fromTouchInfo:touchPhaseInfo];
         // Set the relationship between touchData & rawData.
         [touchData addRawTouchDataObject:rawData];
     }
 
     // Set the calculated variables to the touch data object.
+    touchData.xDetla = touchInfo[kTouchInfoDeltaXKey];
+    touchData.yDelta = touchInfo[kTouchInfoDeltaYKey];
+    touchData.maxRadius = touchInfo[kTouchInfoMaxRadiusKey];
+    touchData.duration = touchInfo[kTouchInfoDurationKey];
+#if DATA_GATHERING
     touchData.calibrationStrength = @(self.currentState);
-    touchData.xDetla = @(ABS(endX - startX));
-    touchData.yDelta = @(ABS(endY - startY));
-    touchData.maxRadius = @(maxRadius);
-    touchData.duration = @(endTimestamp - startTimestamp);
+#endif
 }
 
 /**

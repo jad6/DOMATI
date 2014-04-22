@@ -32,11 +32,11 @@
 #import <CoreMotion/CMDeviceMotion.h>
 
 // Touch info dictionary keys.
-static NSString *kTouchInfoPhaseKey = @"phase";
-static NSString *kTouchInfoTimestampKey = @"timestamp";
-static NSString *kTouchInfoRadiusKey = @"radius";
-static NSString *kTouchInfoXKey = @"x";
-static NSString *kTouchInfoYKey = @"y";
+static NSString *kTouchInfoAllPhasesKey = @"allPhasesTouchInfo";
+static NSString *kTouchInfoMaxRadiusKey = @"maxRadius";
+static NSString *kTouchInfoDeltaYKey = @"deltaY";
+static NSString *kTouchInfoDeltaXKey = @"deltaX";
+static NSString *kTouchInfoDurationKey = @"duration";
 // Motion info dictionary keys.
 static NSString *kMotionInfoMotionsKey = @"motions";
 static NSString *kMotionInfoAvgAccelerationKey = @"accelerationAvg";
@@ -47,23 +47,18 @@ static NSString *kMotionInfoAvgRotationKey = @"rotationAvg";
 /// The strength of the touch(es).
 @property (nonatomic, readonly) CGFloat strength;
 
+/// Setting this flag to no will mean that the subclass is responsible
+/// for clearing the buffer data associated with a touch.
+///
+/// By default this property is YES and clears at the end of
+/// touchesEnded:withEvents:.
+@property (nonatomic) BOOL automaticallyResetDataBuffers;
+
 - (instancetype)initWithTarget:(id)target
                         action:(SEL)action
                          error:(NSError *__autoreleasing *)error;
 
-/**
- *  Returns an array of dictionaries each
- *  contianing information on a particular touch
- *  throughot its phases. For example a quick tap will return an
- *  array with 2 elements, one for UITouchPhaseBegan and one for
- *  UITouchPhaseEnded. In contrast a moving touch will contain more
- *  elements with the addition of UITouchPhaseMoved phases.
- *
- *  @param touch The touch who's information is requested.
- *
- *  @return return The array containing the touch's info.
- */
-- (NSArray *)allPhasesInfoForTouch:(UITouch *)touch;
+- (NSDictionary *)touchesInfoForTouch:(UITouch *)touch;
 /**
  *  Returns a dictionary with 3 elements: an array of CMDeviceMotion
  *  objects which can be accessed via kMotionInfoMotionsKey, the
@@ -75,6 +70,8 @@ static NSString *kMotionInfoAvgRotationKey = @"rotationAvg";
  *  @return return The dictionary containing the motions info.
  */
 - (NSDictionary *)motionsInfoForTouch:(UITouch *)touch;
+
+- (void)resetDataBufferForTouch:(UITouch *)touch;
 
 /**
  *  Resets the linked list in the motion manager in an attempt to

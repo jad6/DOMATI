@@ -37,7 +37,6 @@
 		050A7E0519060B3600C5468D /* DOMMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 050A7E0419060B3600C5468D /* DOMMainViewController.m */; };
 		050A8F40189CCBE30073E487 /* DOMCalibrationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 050A8F3F189CCBE30073E487 /* DOMCalibrationViewController.m */; };
 		050ACB15189A4DAC006F74DD /* DOMRequestOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 050ACB14189A4DAC006F74DD /* DOMRequestOperationManager.m */; };
-		050ACB1A189A4F41006F74DD /* Network.plist in Resources */ = {isa = PBXBuildFile; fileRef = 050ACB19189A4F41006F74DD /* Network.plist */; };
 		051A8E291830C7EA007F9DCD /* DOMUserInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 051A8E281830C7EA007F9DCD /* DOMUserInfoViewController.m */; };
 		051A8E341830CB52007F9DCD /* DOMPickerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 051A8E331830CB52007F9DCD /* DOMPickerCell.m */; };
 		0530641A18ABBD9A00ECB21D /* NSDate+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 0530641918ABBD9A00ECB21D /* NSDate+Helper.m */; };
@@ -74,6 +73,7 @@
 		058FFC2B17DA0B43008ECB1B /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 058FFC2A17DA0B43008ECB1B /* CoreData.framework */; };
 		0598D8CE1824F040007A526F /* UITouch+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 0598D8CD1824F040007A526F /* UITouch+Extension.m */; };
 		0599C56D17E58AD800F708C6 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0599C56C17E58AD800F708C6 /* CoreMotion.framework */; };
+		059D11EC19062798005FB4E3 /* Network.plist in Resources */ = {isa = PBXBuildFile; fileRef = 059D11EB19062798005FB4E3 /* Network.plist */; };
 		059F3689182494B700927A2A /* DOMMotionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 059F3688182494B700927A2A /* DOMMotionManager.m */; };
 		059F368E18249D0900927A2A /* DOMErrors.m in Sources */ = {isa = PBXBuildFile; fileRef = 059F368D18249D0900927A2A /* DOMErrors.m */; };
 		05A5FD6D183A2F8F000F57C4 /* DOMCircleTouchView.m in Sources */ = {isa = PBXBuildFile; fileRef = 05A5FD6C183A2F8F000F57C4 /* DOMCircleTouchView.m */; };
@@ -154,7 +154,6 @@
 		050A8F3F189CCBE30073E487 /* DOMCalibrationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DOMCalibrationViewController.m; sourceTree = "<group>"; };
 		050ACB13189A4DAC006F74DD /* DOMRequestOperationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DOMRequestOperationManager.h; sourceTree = "<group>"; };
 		050ACB14189A4DAC006F74DD /* DOMRequestOperationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DOMRequestOperationManager.m; sourceTree = "<group>"; };
-		050ACB19189A4F41006F74DD /* Network.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Network.plist; sourceTree = "<group>"; };
 		051A8E271830C7EA007F9DCD /* DOMUserInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DOMUserInfoViewController.h; sourceTree = "<group>"; };
 		051A8E281830C7EA007F9DCD /* DOMUserInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DOMUserInfoViewController.m; sourceTree = "<group>"; };
 		051A8E321830CB52007F9DCD /* DOMPickerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DOMPickerCell.h; sourceTree = "<group>"; };
@@ -205,6 +204,7 @@
 		0598D8CC1824F040007A526F /* UITouch+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITouch+Extension.h"; sourceTree = "<group>"; };
 		0598D8CD1824F040007A526F /* UITouch+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITouch+Extension.m"; sourceTree = "<group>"; };
 		0599C56C17E58AD800F708C6 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
+		059D11EB19062798005FB4E3 /* Network.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Network.plist; sourceTree = "<group>"; };
 		059F3687182494B700927A2A /* DOMMotionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DOMMotionManager.h; sourceTree = "<group>"; };
 		059F3688182494B700927A2A /* DOMMotionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DOMMotionManager.m; sourceTree = "<group>"; };
 		059F368C18249D0900927A2A /* DOMErrors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DOMErrors.h; sourceTree = "<group>"; };
@@ -393,7 +393,7 @@
 		050A7E0919060C4F00C5468D /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				050ACB19189A4F41006F74DD /* Network.plist */,
+				059D11EB19062798005FB4E3 /* Network.plist */,
 				05BD579818B48824003FE71B /* UserInfoTable.plist */,
 				05C702FB189C9BE700E0AC35 /* Occupations.plist */,
 			);
@@ -863,9 +863,9 @@
 				05084EA7181FECD500FFFB93 /* Main_iPad.storyboard in Resources */,
 				05C4C660182F118A00E45F9D /* Project Proposal.pdf in Resources */,
 				05098F2A17B62859009D4FF5 /* Images.xcassets in Resources */,
-				050ACB1A189A4F41006F74DD /* Network.plist in Resources */,
 				05C702FC189C9BE700E0AC35 /* Occupations.plist in Resources */,
 				050A7E021906076300C5468D /* Data_Gather_iPad.storyboard in Resources */,
+				059D11EC19062798005FB4E3 /* Network.plist in Resources */,
 				05BD579918B48824003FE71B /* UserInfoTable.plist in Resources */,
 				05A939F018AB1AD80047F4CD /* CalibrationStates.plist in Resources */,
 				050A7E001906000100C5468D /* Data_Gather_iPhone.storyboard in Resources */,
@@ -1104,8 +1104,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = DOMATI/DOMATI.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Jad Osseiran (SCC6WVZ543)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Jad Osseiran (SCC6WVZ543)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "DOMATI/DOMATI-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -1116,7 +1116,7 @@
 				INFOPLIST_FILE = "DOMATI/DOMATI-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "D251C669-7A09-4568-859A-D5DA726B3E75";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
@@ -1129,8 +1129,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = DOMATI/DOMATI.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Jad Osseiran (GGB7WW5V29)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Jad Osseiran (SCC6WVZ543)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Jad Osseiran (SCC6WVZ543)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "DOMATI/DOMATI-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -1141,7 +1141,7 @@
 				INFOPLIST_FILE = "DOMATI/DOMATI-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "D251C669-7A09-4568-859A-D5DA726B3E75";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};

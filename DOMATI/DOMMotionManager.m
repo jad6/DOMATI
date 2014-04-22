@@ -186,7 +186,7 @@ static NSTimeInterval kUpdateInterval = 1 / 100.0;
 {
     // Only stop the sensors if they were already active and no
     // other classes are using the manager.
-    if ([self isDeviceMotionActive] && self.numListeners == 0)
+    if ([self isDeviceMotionActive])
     {
         [self stopDeviceMotionUpdates];
 
