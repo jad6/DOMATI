@@ -32,7 +32,8 @@
 
 #import "DOMErrors.h"
 
-@interface DOMMotionManager () {
+@interface DOMMotionManager ()
+{
     // The backgorund queue for the saving of the motion data.
     dispatch_queue_t listQueue;
     NSError *__autoreleasing *startingError;

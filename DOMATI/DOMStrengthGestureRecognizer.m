@@ -39,7 +39,8 @@
 
 #import "DOMErrors.h"
 
-@interface DOMStrengthGestureRecognizer () {
+@interface DOMStrengthGestureRecognizer ()
+{
     /// The queue running on a different thread to process the data.
     dispatch_queue_t dataProcessingQueue;
 }
