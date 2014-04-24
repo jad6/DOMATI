@@ -55,6 +55,8 @@ static CGFloat const kRotLowerNormal = 0.1585;
 static CGFloat const kRotUpperNormal = 0.458;
 static CGFloat const kRotUpperHard = 1.0;
 
+static NSTimeInterval const kMaxAcceptableDuration = 1.2;
+
 @interface DOMStrengthGestureRecognizer ()
 {
     /// The queue running on a different thread to process the data.
@@ -223,22 +225,27 @@ static CGFloat const kRotUpperHard = 1.0;
     __block CGFloat strength = 0.0;
     
     dispatch_sync(self->dataProcessingQueue, ^{
-        
         NSString *pointerKey = [touch pointerString];
         
-        CGFloat avgAcceleration = TO_CGFLOAT(self.motionsInfo[pointerKey][kMotionInfoAvgAccelerationKey]);
-        NSArray *accelerationBoundries = @[@(kAccLowerSoft), @(kAccLowerNormal),
-                                           @(kAccUpperNormal), @(kAccUpperHard)];
-        CGFloat acceleration = [self standardisedValueFromValue:avgAcceleration boundaries:accelerationBoundries];
-        
-        CGFloat avgRotation = TO_CGFLOAT(self.motionsInfo[pointerKey][kMotionInfoAvgRotationKey]);
-        NSArray *rotationBoundaries = @[@(kRotLowerSoft), @(kRotLowerNormal),
-                                        @(kRotUpperNormal), @(kRotUpperHard)];
-        CGFloat rotation = [self standardisedValueFromValue:avgRotation boundaries:rotationBoundaries];
-        
-        strength = (rotation + acceleration) / 2.0;
-        //
-        //    CGFloat duration = TO_CGFLOAT(self.touchesInfo[pointerKey][kTouchInfoDurationKey]);
+        CGFloat duration = TO_CGFLOAT(self.touchesInfo[pointerKey][kTouchInfoDurationKey]);
+        if (duration > kMaxAcceptableDuration)
+        {
+            strength = -1.0;
+        }
+        else
+        {
+            CGFloat avgAcceleration = TO_CGFLOAT(self.motionsInfo[pointerKey][kMotionInfoAvgAccelerationKey]);
+            NSArray *accelerationBoundries = @[@(kAccLowerSoft), @(kAccLowerNormal),
+                                               @(kAccUpperNormal), @(kAccUpperHard)];
+            CGFloat acceleration = [self standardisedValueFromValue:avgAcceleration boundaries:accelerationBoundries];
+            
+            CGFloat avgRotation = TO_CGFLOAT(self.motionsInfo[pointerKey][kMotionInfoAvgRotationKey]);
+            NSArray *rotationBoundaries = @[@(kRotLowerSoft), @(kRotLowerNormal),
+                                            @(kRotUpperNormal), @(kRotUpperHard)];
+            CGFloat rotation = [self standardisedValueFromValue:avgRotation boundaries:rotationBoundaries];
+            
+            strength = (rotation + acceleration) / 2.0;
+        }
     });
     
     return strength;
@@ -441,15 +448,6 @@ static CGFloat const kRotUpperHard = 1.0;
     // The touch has ended and reset the linked list if the motion
     // manager is not using for anything else.
     [self.motionManager resetLinkedListIfPossible];
-
-    for (UITouch *touch in touches)
-    {
-        NSString *key = [touch pointerString];
-        NSDictionary *touchMotionsInfo = self.motionsInfo[key];
-        NSDictionary *touchTouchesInfo = self.touchesInfo[key];
-        
-        NSLog(@"Acc: %@, Rot: %@, Duration: %@, Rad: %@", touchMotionsInfo[kMotionInfoAvgAccelerationKey], touchMotionsInfo[kMotionInfoAvgRotationKey], touchTouchesInfo[kTouchInfoDurationKey], touchTouchesInfo[kTouchInfoMaxRadiusKey]);
-    }
     
     self.strength = [self strengthForTouch:[touches anyObject]];
     
@@ -464,7 +462,7 @@ static CGFloat const kRotUpperHard = 1.0;
     // Set the gesture recogniser to a recognised state.
     if (self.state == UIGestureRecognizerStatePossible)
     {
-        self.state = UIGestureRecognizerStateRecognized;
+        self.state = (self.strength == -1.0) ? UIGestureRecognizerStateFailed : UIGestureRecognizerStateRecognized;
     }
 }
 

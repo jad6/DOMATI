@@ -54,8 +54,8 @@
 {
     [super viewDidLoad];
 
-    self.textView.backgroundColor = BACKGROUND_COLOR;
-    self.textView.textColor = TEXT_COLOR;
+    self.textView.backgroundColor = [UIColor backgroundColor];
+    self.textView.textColor = [UIColor textColor];
 }
 
 - (void)didReceiveMemoryWarning

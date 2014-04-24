@@ -29,7 +29,19 @@
 
 #import "DOMMainViewController.h"
 
-#import "DOMStrengthGestureRecognizer.h"
+#import "DOMCircleView.h"
+
+static NSString *const kBottomCollisionBoundaryIdentifer = @"Bottom Boundary";
+
+@interface DOMMainViewController () <DOMCircleViewDelegate, UICollisionBehaviorDelegate>
+
+@property (nonatomic, weak) IBOutlet UIButton *infoButton;
+
+@property (nonatomic, strong) NSTimer *timer;
+
+@property (nonatomic, strong) UIDynamicAnimator *animator;
+
+@end
 
 @implementation DOMMainViewController
 
@@ -37,13 +49,28 @@
 {
     [super viewDidLoad];
     
-    NSError *error = nil;
-    DOMStrengthGestureRecognizer *strengthGR = [[DOMStrengthGestureRecognizer alloc] initWithTarget:self action:@selector(strengthTapAction:) error:&error];
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:0.75
+                                                  target:self
+                                                selector:@selector(dropNewCircleAction:)
+                                                userInfo:nil
+                                                 repeats:YES];
     
-    if (error)
-        [error handle];
-    else
-        [self.view addGestureRecognizer:strengthGR];
+    UIDynamicAnimator *animator = [[UIDynamicAnimator alloc] initWithReferenceView:self.view];
+
+    UIGravityBehavior *gravityBehavior = [[UIGravityBehavior alloc] init];
+    gravityBehavior.magnitude = 0.2f;
+    [animator addBehavior:gravityBehavior];
+    
+    UICollisionBehavior *collisionBehavior = [[UICollisionBehavior alloc] init];
+    [collisionBehavior addBoundaryWithIdentifier:kBottomCollisionBoundaryIdentifer fromPoint:CGPointMake(0.0, CGRectGetMaxY(self.view.frame)) toPoint:CGPointMake(CGRectGetMaxX(self.view.frame), CGRectGetMaxY(self.view.frame))];
+    [animator addBehavior:collisionBehavior];
+    
+    UIDynamicItemBehavior *itemBehavior = [[UIDynamicItemBehavior alloc] init];
+    [itemBehavior setElasticity:0.0];
+    [animator addBehavior:itemBehavior];
+    [collisionBehavior setCollisionDelegate:self];
+    
+    self.animator = animator;
 }
 
 #pragma mark - Status Bar
@@ -55,24 +82,72 @@
 
 #pragma mark - Actions
 
-- (void)strengthTapAction:(DOMStrengthGestureRecognizer *)strengthGR
+- (void)dropNewCircleAction:(id)sender
 {
-    CGFloat strength = strengthGR.strength;
+    CGRect circleFrame = [self frameForNewCircleView];
+    DOMCircleViewType randomType = [self randomCircleType];
+    DOMCircleView *circleView = [[DOMCircleView alloc] initWithFrame:circleFrame andType:randomType delegate:self];
     
-    NSLog(@"strength: %f", strength);
+    [self.view insertSubview:circleView belowSubview:self.infoButton];
     
-    if (strength <= 0.33)
+    UIDynamicAnimator *animator = self.animator;
+    
+    for (id behaviour in animator.behaviors)
     {
-        NSLog(@"SOFT");
+        if ([behaviour respondsToSelector:@selector(addItem:)])
+            [(UIGravityBehavior *)behaviour addItem:circleView];
     }
-    else if (strength > 0.33 && strength <= 0.66)
-    {
-        NSLog(@"MEDIUM");
-    }
-    else if (strength > 0.66)
-    {
-        NSLog(@"HARD");
-    }
+}
+
+#pragma mark - Logic
+
+- (DOMCircleViewType)randomCircleType
+{
+    return arc4random_uniform(3);
+}
+
+- (CGRect)frameForNewCircleView
+{
+    CGSize size = CGSizeMake(80.0f, 80.0f);
+    NSUInteger randomX = arc4random_uniform(self.view.frame.size.width - size.width);
+    
+    return CGRectMake(randomX, 20.0f, size.width, size.height);
+}
+
+- (void)removeCircleView:(DOMCircleView *)circleView
+{
+    __block DOMCircleView *subview = circleView;
+    [UIView animateWithDuration:0.3 animations:^{
+        
+        subview.alpha = 0.0;
+    } completion:^(BOOL finished) {
+        for (id behaviour in self.animator.behaviors)
+        {
+            if ([behaviour respondsToSelector:@selector(removeItem:)])
+                [(UIGravityBehavior *)behaviour removeItem:subview];
+        }
+        
+        [subview removeFromSuperview];
+        subview = nil;
+    }];
+}
+
+#pragma mark - Circle View
+
+- (void)circleView:(DOMCircleView *)circleView
+      didGetTapped:(BOOL)validTap
+{
+    if (validTap)
+        [self removeCircleView:circleView];
+}
+
+#pragma mark - Collision
+
+- (void)collisionBehavior:(UICollisionBehavior *)behavior
+      endedContactForItem:(id<UIDynamicItem>)item
+   withBoundaryIdentifier:(id<NSCopying>)identifier
+{
+    [self removeCircleView:(DOMCircleView *)item];
 }
 
 @end

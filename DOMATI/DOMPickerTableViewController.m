@@ -117,7 +117,7 @@
         self.pickerIndexPath = nil;
 
         UITableViewCell *inactiveCell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:(datePickerIndexPathCopy.row - 1) inSection:datePickerIndexPathCopy.section]];
-        inactiveCell.detailTextLabel.textColor = DETAIL_TEXT_COLOR;
+        inactiveCell.detailTextLabel.textColor = [UIColor detailTextColor];
 
         [self.tableView deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:datePickerIndexPathCopy.row inSection:datePickerIndexPathCopy.section]]
                               withRowAnimation:UITableViewRowAnimationFade];

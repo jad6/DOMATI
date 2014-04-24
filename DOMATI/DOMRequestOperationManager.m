@@ -109,7 +109,7 @@
                  if (self.hudView)
                  {
                      hud = [MBProgressHUD showHUDAddedTo:self.hudView animated:YES];
-                     hud.color = [DOMATI_COLOR colorWithAlphaComponent:0.5];
+                     hud.color = [[UIColor domatiColor] colorWithAlphaComponent:0.5];
                      hud.labelText = @"Uploading Data...";
                  }
 

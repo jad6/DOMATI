@@ -1,9 +1,9 @@
 //
-//  DOMThemeManager.m
+//  UIColor+DOMATI.h
 //  DOMATI
 //
-//  Created by Jad Osseiran on 27/10/2013.
-//  Copyright (c) 2013 Jad. All rights reserved.
+//  Created by Jad Osseiran on 24/04/2014.
+//  Copyright (c) 2014 Jad. All rights reserved.
 //
 //  Redistribution and use in source and binary forms, with or without
 //  modification, are permitted provided that the following conditions are met:
@@ -28,43 +28,18 @@
 //  ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 //  POSSIBILITY OF SUCH DAMAGE.
 
-#import "DOMThemeManager.h"
+#import <UIKit/UIKit.h>
 
-#import "DOMThemeResources.h"
+@interface UIColor (DOMATI)
 
-#import "DOMTableViewCell.h"
-#import "DOMTableView.h"
-#import "DOMNavigationBar.h"
++ (UIColor *)domatiColor;
++ (UIColor *)backgroundColor;
++ (UIColor *)selectionColor;
++ (UIColor *)textColor;
++ (UIColor *)detailTextColor;
 
-@implementation DOMThemeManager
-
-+ (id<DOMTheme>)sharedTheme
-{
-    static __DISPATCH_ONCE__ id singletonObject = nil;
-
-    static dispatch_once_t onceToken;
-
-    dispatch_once(&onceToken, ^{
-                      // Create and return the theme: (This line should change in the future to change the theme)
-                      singletonObject = [[DOMThemeResources alloc] init];
-                  });
-
-    return singletonObject;
-}
-
-+ (void)customiseAppAppearance
-{
-    [[UIToolbar appearance] setBarTintColor:[UIColor backgroundColor]];
-    [[DOMNavigationBar appearance] setBarTintColor:[UIColor backgroundColor]];
-    NSDictionary *navAttributes = @{ NSForegroundColorAttributeName : [UIColor textColor] };
-    [[DOMNavigationBar appearance] setTitleTextAttributes:navAttributes];
-
-    [[DOMTableView appearance] setBackgroundColor:[UIColor backgroundColor]];
-    [[DOMTableViewCell appearance] setBackgroundColor:[UIColor backgroundColor]];
-
-    [[UIPickerView appearance] setBackgroundColor:[UIColor backgroundColor]];
-
-    [[UITextField appearance] setKeyboardAppearance:UIKeyboardAppearanceDark];
-}
++ (UIColor *)softCircleColor;
++ (UIColor *)normalCircleColor;
++ (UIColor *)hardCircleColor;
 
 @end

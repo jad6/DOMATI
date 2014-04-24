@@ -46,7 +46,7 @@
     self.textField.delegate = self;
     self.textField.keyboardType = UIKeyboardTypeDecimalPad;
     self.textField.textAlignment = NSTextAlignmentRight;
-    self.textField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:self.textField.placeholder attributes:@{ NSForegroundColorAttributeName: DETAIL_TEXT_COLOR }];
+    self.textField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:self.textField.placeholder attributes:@{ NSForegroundColorAttributeName: [UIColor detailTextColor] }];
 }
 
 #pragma mark - Text Field Delegate
@@ -58,12 +58,12 @@
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
-    textField.textColor = DOMATI_COLOR;
+    textField.textColor = [UIColor domatiColor];
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField
 {
-    textField.textColor = DETAIL_TEXT_COLOR;
+    textField.textColor = [UIColor detailTextColor];
 
     if ([self.delegate respondsToSelector:@selector(textFieldDidEndEditing:withCellType:)])
     {

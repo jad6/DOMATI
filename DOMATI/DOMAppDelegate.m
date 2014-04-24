@@ -44,7 +44,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
-    self.window.tintColor = DOMATI_COLOR;
+    self.window.tintColor = [UIColor domatiColor];
 
     // If the badge was showing remove it.
     [UIApplication sharedApplication].applicationIconBadgeNumber = 0;

@@ -51,7 +51,7 @@
     [super viewDidLoad];
 
     self.title = @"DOMATI";
-    self.feedbackCell.textLabel.textColor = DOMATI_COLOR;
+    self.feedbackCell.textLabel.textColor = [UIColor domatiColor];
 }
 
 - (void)viewWillAppear:(BOOL)animated

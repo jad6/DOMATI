@@ -16,4 +16,5 @@
 
     #import "sharedHeaders.h"
     #import "NSError+Extension.h"
+    #import "UIColor+DOMATI.h"
 #endif

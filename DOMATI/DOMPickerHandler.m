@@ -84,7 +84,7 @@
 
     label.backgroundColor = [UIColor clearColor];
     label.textAlignment = NSTextAlignmentCenter;
-    label.textColor = TEXT_COLOR;
+    label.textColor = [UIColor textColor];
     label.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:18];
 
     if (row == 0)

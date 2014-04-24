@@ -40,9 +40,9 @@
 {
     [super viewDidLoad];
 
-    self.navigationBar.barTintColor = BACKGROUND_COLOR;
+    self.navigationBar.barTintColor = [UIColor backgroundColor];
     self.navigationBar.translucent = NO;
-    NSDictionary *navAttributes = @{ NSForegroundColorAttributeName : TEXT_COLOR };
+    NSDictionary *navAttributes = @{ NSForegroundColorAttributeName : [UIColor textColor] };
     [self.navigationBar setTitleTextAttributes:navAttributes];
 }
 

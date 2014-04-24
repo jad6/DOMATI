@@ -422,7 +422,7 @@ static NSInteger kUndisclosedAlertTag = 10;
     }
 
     // Set the selected row's detail label to the app tint color.
-    cell.detailTextLabel.textColor = ([indexPath isEqual:self.activeCellIndexPath]) ? DOMATI_COLOR : DETAIL_TEXT_COLOR;
+    cell.detailTextLabel.textColor = ([indexPath isEqual:self.activeCellIndexPath]) ? [UIColor domatiColor] : [UIColor detailTextColor];
 }
 
 #pragma mark - Scroll View

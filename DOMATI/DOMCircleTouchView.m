@@ -148,7 +148,7 @@ static CGFloat kOuterCirclePadding = 1.0;
 
 - (void)drawOuterCircle:(CGRect)rect inContext:(CGContextRef)ctx
 {
-    CGContextSetStrokeColor(ctx, CGColorGetComponents(DOMATI_COLOR.CGColor));
+    CGContextSetStrokeColor(ctx, CGColorGetComponents([UIColor domatiColor].CGColor));
 
     CGRect outerCircleFrame = CGRectMake(rect.origin.x + kOuterCirclePadding,
                                          rect.origin.y + kOuterCirclePadding,
@@ -173,7 +173,7 @@ static CGFloat kOuterCirclePadding = 1.0;
 
     self.innerCircleFrame = innerCircleFrame;
 
-    CGContextSetFillColor(ctx, CGColorGetComponents(DOMATI_COLOR.CGColor));
+    CGContextSetFillColor(ctx, CGColorGetComponents([UIColor domatiColor].CGColor));
     CGContextAddEllipseInRect(ctx, innerCircleFrame);
     CGContextFillPath(ctx);
 

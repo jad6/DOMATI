@@ -1,13 +1,11 @@
+//  DOMCircleView.h
 //
-//  DOMThemeManager.m
-//  DOMATI
-//
-//  Created by Jad Osseiran on 27/10/2013.
-//  Copyright (c) 2013 Jad. All rights reserved.
+//  Created by Jad on 24/04/2014.
+//  Copyright (c) 2014 Jad. All rights reserved.
 //
 //  Redistribution and use in source and binary forms, with or without
 //  modification, are permitted provided that the following conditions are met:
-//
+// 
 //  Redistributions of source code must retain the above copyright notice, this
 //  list of conditions and the following disclaimer. Redistributions in binary
 //  form must reproduce the above copyright notice, this list of conditions and
@@ -15,7 +13,7 @@
 //  provided with the distribution. Neither the name of the nor the names of
 //  its contributors may be used to endorse or promote products derived from
 //  this software without specific prior written permission.
-//
+// 
 //  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
 //  AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
 //  IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
@@ -28,43 +26,32 @@
 //  ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 //  POSSIBILITY OF SUCH DAMAGE.
 
-#import "DOMThemeManager.h"
+#import <UIKit/UIKit.h>
 
-#import "DOMThemeResources.h"
+typedef NS_ENUM(NSInteger, DOMCircleViewType) {
+    DOMCircleViewTypeSoft,
+    DOMCircleViewTypeNormal,
+    DOMCircleViewTypeHard
+};
 
-#import "DOMTableViewCell.h"
-#import "DOMTableView.h"
-#import "DOMNavigationBar.h"
+@class DOMCircleView;
 
-@implementation DOMThemeManager
+@protocol DOMCircleViewDelegate <NSObject>
 
-+ (id<DOMTheme>)sharedTheme
-{
-    static __DISPATCH_ONCE__ id singletonObject = nil;
+@optional
+- (void)circleView:(DOMCircleView *)circleView
+      didGetTapped:(BOOL)validTap;
 
-    static dispatch_once_t onceToken;
+@end
 
-    dispatch_once(&onceToken, ^{
-                      // Create and return the theme: (This line should change in the future to change the theme)
-                      singletonObject = [[DOMThemeResources alloc] init];
-                  });
+@interface DOMCircleView : UIView
 
-    return singletonObject;
-}
+@property (nonatomic, weak) id<DOMCircleViewDelegate> delegate;
 
-+ (void)customiseAppAppearance
-{
-    [[UIToolbar appearance] setBarTintColor:[UIColor backgroundColor]];
-    [[DOMNavigationBar appearance] setBarTintColor:[UIColor backgroundColor]];
-    NSDictionary *navAttributes = @{ NSForegroundColorAttributeName : [UIColor textColor] };
-    [[DOMNavigationBar appearance] setTitleTextAttributes:navAttributes];
+@property (nonatomic, readonly) DOMCircleViewType type;
 
-    [[DOMTableView appearance] setBackgroundColor:[UIColor backgroundColor]];
-    [[DOMTableViewCell appearance] setBackgroundColor:[UIColor backgroundColor]];
-
-    [[UIPickerView appearance] setBackgroundColor:[UIColor backgroundColor]];
-
-    [[UITextField appearance] setKeyboardAppearance:UIKeyboardAppearanceDark];
-}
+- (instancetype)initWithFrame:(CGRect)frame
+                      andType:(DOMCircleViewType)type
+                     delegate:(id<DOMCircleViewDelegate>)delegate;
 
 @end

@@ -90,6 +90,9 @@
 		05C702FA189C9BC200E0AC35 /* DOMOccupationPickerHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 05C702F9189C9BC200E0AC35 /* DOMOccupationPickerHandler.m */; };
 		05C702FC189C9BE700E0AC35 /* Occupations.plist in Resources */ = {isa = PBXBuildFile; fileRef = 05C702FB189C9BE700E0AC35 /* Occupations.plist */; };
 		05CD6CF118B9EA25003E3512 /* NSObject+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 05CD6CF018B9EA25003E3512 /* NSObject+Extensions.m */; };
+		05CDB82919092E080098E96E /* DOMCircleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 05CDB82819092E080098E96E /* DOMCircleView.m */; };
+		05CDB82B19092E190098E96E /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05CDB82A19092E190098E96E /* QuartzCore.framework */; };
+		05CDB82E19092FA90098E96E /* UIColor+DOMATI.m in Sources */ = {isa = PBXBuildFile; fileRef = 05CDB82D19092FA90098E96E /* UIColor+DOMATI.m */; };
 		05D273D7181E657C0005E31E /* DOMTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 05D273D6181E657C0005E31E /* DOMTableView.m */; };
 		05D273DA181E65930005E31E /* DOMNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 05D273D9181E65930005E31E /* DOMNavigationBar.m */; };
 		05D273DF181E67110005E31E /* UITextView+Sharing.m in Sources */ = {isa = PBXBuildFile; fileRef = 05D273DE181E67110005E31E /* UITextView+Sharing.m */; };
@@ -234,6 +237,11 @@
 		05C702FB189C9BE700E0AC35 /* Occupations.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Occupations.plist; sourceTree = "<group>"; };
 		05CD6CEF18B9EA25003E3512 /* NSObject+Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Extensions.h"; sourceTree = "<group>"; };
 		05CD6CF018B9EA25003E3512 /* NSObject+Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Extensions.m"; sourceTree = "<group>"; };
+		05CDB82719092E080098E96E /* DOMCircleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DOMCircleView.h; sourceTree = "<group>"; };
+		05CDB82819092E080098E96E /* DOMCircleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DOMCircleView.m; sourceTree = "<group>"; };
+		05CDB82A19092E190098E96E /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		05CDB82C19092FA90098E96E /* UIColor+DOMATI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+DOMATI.h"; sourceTree = "<group>"; };
+		05CDB82D19092FA90098E96E /* UIColor+DOMATI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+DOMATI.m"; sourceTree = "<group>"; };
 		05D273D5181E657C0005E31E /* DOMTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DOMTableView.h; sourceTree = "<group>"; };
 		05D273D6181E657C0005E31E /* DOMTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DOMTableView.m; sourceTree = "<group>"; };
 		05D273D8181E65930005E31E /* DOMNavigationBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DOMNavigationBar.h; sourceTree = "<group>"; };
@@ -260,6 +268,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				05CDB82B19092E190098E96E /* QuartzCore.framework in Frameworks */,
 				0599C56D17E58AD800F708C6 /* CoreMotion.framework in Frameworks */,
 				058FFC2B17DA0B43008ECB1B /* CoreData.framework in Frameworks */,
 				05577B4C17B78A9A007802E6 /* QuickLook.framework in Frameworks */,
@@ -309,6 +318,7 @@
 		05098F1617B62859009D4FF5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				05CDB82A19092E190098E96E /* QuartzCore.framework */,
 				0599C56C17E58AD800F708C6 /* CoreMotion.framework */,
 				058FFC2A17DA0B43008ECB1B /* CoreData.framework */,
 				05577B4B17B78A9A007802E6 /* QuickLook.framework */,
@@ -469,6 +479,8 @@
 				05AB7A341883B39900FDCBE6 /* NSError+Extension.m */,
 				05B9B1FF18BF8C25006D24B8 /* UIDevice+Extension.h */,
 				05B9B20018BF8C25006D24B8 /* UIDevice+Extension.m */,
+				05CDB82C19092FA90098E96E /* UIColor+DOMATI.h */,
+				05CDB82D19092FA90098E96E /* UIColor+DOMATI.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -525,6 +537,8 @@
 			children = (
 				050A7E0319060B3600C5468D /* DOMMainViewController.h */,
 				050A7E0419060B3600C5468D /* DOMMainViewController.m */,
+				05CDB82719092E080098E96E /* DOMCircleView.h */,
+				05CDB82819092E080098E96E /* DOMCircleView.m */,
 				058FFC0917D9FBB3008ECB1B /* Info Menu */,
 			);
 			name = "Views & Controllers";
@@ -952,6 +966,7 @@
 				0567AB0E189BE6E300BB74AF /* DOMTextFieldCell.m in Sources */,
 				051A8E291830C7EA007F9DCD /* DOMUserInfoViewController.m in Sources */,
 				05B1FBE118AC58BF0049095F /* DOMUserInfoPickerTableViewController.m in Sources */,
+				05CDB82919092E080098E96E /* DOMCircleView.m in Sources */,
 				05087D701824DE8300219AA7 /* DOMTouchData+Extension.m in Sources */,
 				056D2BF71896444100C5910A /* DOMWelcomeViewController.m in Sources */,
 				05098F2817B62859009D4FF5 /* DOMAppDelegate.m in Sources */,
@@ -968,6 +983,7 @@
 				05A5FD6D183A2F8F000F57C4 /* DOMCircleTouchView.m in Sources */,
 				05050EAE18BF4F04000724F0 /* DOMRawMotionData.m in Sources */,
 				05050EB118BF507E000724F0 /* DOMTouchData.m in Sources */,
+				05CDB82E19092FA90098E96E /* UIColor+DOMATI.m in Sources */,
 				050A7E0519060B3600C5468D /* DOMMainViewController.m in Sources */,
 				0530641D18ABC02100ECB21D /* DOMLocalNotificationHelper.m in Sources */,
 				054C30A817B7366800ABC9CF /* DOMCalibrationMonthsViewController.m in Sources */,

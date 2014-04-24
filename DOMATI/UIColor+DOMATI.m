@@ -1,9 +1,9 @@
 //
-//  DOMThemeManager.m
+//  UIColor+DOMATI.m
 //  DOMATI
 //
-//  Created by Jad Osseiran on 27/10/2013.
-//  Copyright (c) 2013 Jad. All rights reserved.
+//  Created by Jad Osseiran on 24/04/2014.
+//  Copyright (c) 2014 Jad. All rights reserved.
 //
 //  Redistribution and use in source and binary forms, with or without
 //  modification, are permitted provided that the following conditions are met:
@@ -28,43 +28,48 @@
 //  ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 //  POSSIBILITY OF SUCH DAMAGE.
 
-#import "DOMThemeManager.h"
+#import "UIColor+DOMATI.h"
 
-#import "DOMThemeResources.h"
+@implementation UIColor (DOMATI)
 
-#import "DOMTableViewCell.h"
-#import "DOMTableView.h"
-#import "DOMNavigationBar.h"
-
-@implementation DOMThemeManager
-
-+ (id<DOMTheme>)sharedTheme
++ (UIColor *)domatiColor
 {
-    static __DISPATCH_ONCE__ id singletonObject = nil;
-
-    static dispatch_once_t onceToken;
-
-    dispatch_once(&onceToken, ^{
-                      // Create and return the theme: (This line should change in the future to change the theme)
-                      singletonObject = [[DOMThemeResources alloc] init];
-                  });
-
-    return singletonObject;
+    return [UIColor orangeColor];
 }
 
-+ (void)customiseAppAppearance
++ (UIColor *)backgroundColor
 {
-    [[UIToolbar appearance] setBarTintColor:[UIColor backgroundColor]];
-    [[DOMNavigationBar appearance] setBarTintColor:[UIColor backgroundColor]];
-    NSDictionary *navAttributes = @{ NSForegroundColorAttributeName : [UIColor textColor] };
-    [[DOMNavigationBar appearance] setTitleTextAttributes:navAttributes];
+    return [UIColor colorWithRed:30.0f / 255.0f green:30.0f / 255.0f blue:30.0f / 255.0f alpha:1.0f];
+}
 
-    [[DOMTableView appearance] setBackgroundColor:[UIColor backgroundColor]];
-    [[DOMTableViewCell appearance] setBackgroundColor:[UIColor backgroundColor]];
++ (UIColor *)selectionColor
+{
+    return [UIColor darkGrayColor];
+}
 
-    [[UIPickerView appearance] setBackgroundColor:[UIColor backgroundColor]];
++ (UIColor *)textColor
+{
+    return [UIColor whiteColor];
+}
 
-    [[UITextField appearance] setKeyboardAppearance:UIKeyboardAppearanceDark];
++ (UIColor *)detailTextColor
+{
+    return [UIColor lightGrayColor];
+}
+
++ (UIColor *)softCircleColor
+{
+    return [UIColor colorWithRed:37.0f / 255.0f green:169.0f / 255.0f blue:77.0f / 255.0f alpha:1.0f];
+}
+
++ (UIColor *)normalCircleColor
+{
+    return [UIColor colorWithRed:23.0f / 255.0f green:125.0f / 255.0f blue:248.0f / 255.0f alpha:1.0f];
+}
+
++ (UIColor *)hardCircleColor
+{
+    return [UIColor colorWithRed:152.0f / 255.0f green:49.0f / 255.0f blue:89.0f / 255.0f alpha:1.0f];
 }
 
 @end

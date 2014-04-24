@@ -36,7 +36,7 @@
 {
     [super awakeFromNib];
 
-    self.titleLabel.textColor = TEXT_COLOR;
+    self.titleLabel.textColor = [UIColor textColor];
 }
 
 - (IBAction)setGender:(UISegmentedControl *)segmentedControl

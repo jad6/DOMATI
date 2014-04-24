@@ -48,11 +48,11 @@
     [super awakeFromNib];
 
     UIView *backgroundView = [[UIView alloc] initWithFrame:self.frame];
-    backgroundView.backgroundColor = SELECTION_COLOR;
+    backgroundView.backgroundColor = [UIColor selectionColor];
     self.selectedBackgroundView = backgroundView;
 
-    self.textLabel.textColor = TEXT_COLOR;
-    self.detailTextLabel.textColor = DETAIL_TEXT_COLOR;
+    self.textLabel.textColor = [UIColor textColor];
+    self.detailTextLabel.textColor = [UIColor detailTextColor];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
