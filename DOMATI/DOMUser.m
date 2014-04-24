@@ -215,7 +215,7 @@ static NSString *kHeightKey = @"DOMUserHeightKey";
     if (!self->_weight)
     {
         NSNumber *weight = [self.keyStore objectForKey:kWeightKey];
-        self->_weight = (CGFLOAT_IS_DOUBLE) ? [weight doubleValue] : [weight floatValue];
+        self->_weight = TO_CGFLOAT(weight);
     }
 
     return self->_weight;
@@ -236,7 +236,7 @@ static NSString *kHeightKey = @"DOMUserHeightKey";
     if (!self->_height)
     {
         NSNumber *height = [self.keyStore objectForKey:kHeightKey];
-        self->_height = (CGFLOAT_IS_DOUBLE) ? [height doubleValue] : [height floatValue];
+        self->_height = TO_CGFLOAT(height);
     }
 
     return self->_height;

@@ -31,6 +31,8 @@
 #ifndef DOMATI_sharedHeaders_h
 #define DOMATI_sharedHeaders_h
 
+#define TO_CGFLOAT(x) (CGFLOAT_IS_DOUBLE) ? [x doubleValue] : [x floatValue] 
+
 #define IPAD ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad)
 #define IPHONE ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone)
 #define FIRST_LAUNCH ![[NSUserDefaults standardUserDefaults] boolForKey:@"DOMAlreadyLaunched"]

@@ -35,15 +35,8 @@
 - (CGFloat)radius
 {
     CGFloat radius = 0.0;
-
-    if (CGFLOAT_IS_DOUBLE)
-    {
-        radius = [[self valueForKey:@"pathMajorRadius"] doubleValue];
-    }
-    else
-    {
-        radius = [[self valueForKey:@"pathMajorRadius"] floatValue];
-    }
+    
+    radius = TO_CGFLOAT([self valueForKey:@"pathMajorRadius"]);
 
     return radius;
 }

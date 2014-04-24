@@ -142,7 +142,7 @@
 
 - (void)textFieldDidEndEditing:(UITextField *)textField withCellType:(DOMTextFieldCellType)type
 {
-    CGFloat value = (CGFLOAT_IS_DOUBLE) ? [textField.text doubleValue] : [textField.text floatValue];
+    CGFloat value = TO_CGFLOAT(textField.text);
 
     switch (type)
     {

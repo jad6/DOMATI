@@ -44,8 +44,7 @@ static CGFloat kOuterCirclePadding = 1.0;
 
 #pragma mark - Public
 
-- (id)    initWithFrame:(CGRect)frame
-    circleTouchStrength:(DOMCircleTouchStrength)circleTouchStrength
+- (id)initWithFrame:(CGRect)frame circleTouchStrength:(DOMCircleTouchStrength)circleTouchStrength
 {
     self = [super initWithFrame:frame];
     if (self)

@@ -29,13 +29,50 @@
 
 #import "DOMMainViewController.h"
 
+#import "DOMStrengthGestureRecognizer.h"
+
 @implementation DOMMainViewController
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    
+    NSError *error = nil;
+    DOMStrengthGestureRecognizer *strengthGR = [[DOMStrengthGestureRecognizer alloc] initWithTarget:self action:@selector(strengthTapAction:) error:&error];
+    
+    if (error)
+        [error handle];
+    else
+        [self.view addGestureRecognizer:strengthGR];
+}
 
 #pragma mark - Status Bar
 
 - (UIStatusBarStyle)preferredStatusBarStyle
 {
     return UIStatusBarStyleLightContent;
+}
+
+#pragma mark - Actions
+
+- (void)strengthTapAction:(DOMStrengthGestureRecognizer *)strengthGR
+{
+    CGFloat strength = strengthGR.strength;
+    
+    NSLog(@"strength: %f", strength);
+    
+    if (strength <= 0.33)
+    {
+        NSLog(@"SOFT");
+    }
+    else if (strength > 0.33 && strength <= 0.66)
+    {
+        NSLog(@"MEDIUM");
+    }
+    else if (strength > 0.66)
+    {
+        NSLog(@"HARD");
+    }
 }
 
 @end

@@ -44,7 +44,13 @@ static NSString *kMotionInfoAvgRotationKey = @"rotationAvg";
 
 @interface DOMStrengthGestureRecognizer : UIGestureRecognizer
 
-/// The strength of the touch(es).
+/// The strength of the touch(es). This value is ranged from 0.0 to 1.0.
+///
+/// [0.0, 0.33] is a soft touch.
+///
+/// (0.33, 0.66] is a normal touch.
+///
+/// (0.66, 1.0] is a hard touch.
 @property (nonatomic, readonly) CGFloat strength;
 
 /// Setting this flag to no will mean that the subclass is responsible

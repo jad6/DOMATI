@@ -45,6 +45,16 @@ static NSString *kTouchInfoRadiusKey = @"radius";
 static NSString *kTouchInfoXKey = @"x";
 static NSString *kTouchInfoYKey = @"y";
 
+static CGFloat const kAccLowerSoft = 0.0;
+static CGFloat const kAccLowerNormal = 0.0525;
+static CGFloat const kAccUpperNormal = 0.1505;
+static CGFloat const kAccUpperHard = 1.0;
+
+static CGFloat const kRotLowerSoft = 0.0;
+static CGFloat const kRotLowerNormal = 0.1585;
+static CGFloat const kRotUpperNormal = 0.458;
+static CGFloat const kRotUpperHard = 1.0;
+
 @interface DOMStrengthGestureRecognizer ()
 {
     /// The queue running on a different thread to process the data.
@@ -174,6 +184,68 @@ static NSString *kTouchInfoYKey = @"y";
     return CGPointMake(viewOrigin.x + location.x, viewOrigin.y + location.y);
 }
 
+- (CGFloat)standardisedValueFromValue:(CGFloat)value
+                           boundaries:(NSArray *)boundaries
+{
+    NSSortDescriptor *sortOrder = [NSSortDescriptor sortDescriptorWithKey:@"self" ascending:YES];
+    boundaries = [boundaries sortedArrayUsingDescriptors:@[sortOrder]];
+    
+    NSUInteger numBoundaries = [boundaries count];
+    if (numBoundaries <= 2)
+        return value;
+    
+    CGFloat minBoundary = TO_CGFLOAT([boundaries firstObject]);
+    CGFloat maxBoundary = TO_CGFLOAT([boundaries lastObject]);
+    CGFloat sizeFactor = maxBoundary / (float)(numBoundaries - 1);
+    
+    if (value < minBoundary)
+        return minBoundary;
+    if (value > maxBoundary)
+        return maxBoundary;
+    
+    CGFloat standardisedValue = 0.0f;
+    for (NSInteger i = 1; i < [boundaries count]; i++)
+    {
+        CGFloat upperBoundary = TO_CGFLOAT(boundaries[i]);
+        CGFloat lowerBoundary = TO_CGFLOAT(boundaries[i-1]);
+        if (value > lowerBoundary && value <= upperBoundary)
+        {
+            standardisedValue = ((i - 1) * sizeFactor) + ((value / upperBoundary) * sizeFactor);
+            break;
+        }
+    }
+    
+    return standardisedValue;
+}
+
+- (CGFloat)strengthForTouch:(UITouch *)touch
+{
+    __block CGFloat strength = 0.0;
+    
+    dispatch_sync(self->dataProcessingQueue, ^{
+        
+        NSString *pointerKey = [touch pointerString];
+        
+        CGFloat avgAcceleration = TO_CGFLOAT(self.motionsInfo[pointerKey][kMotionInfoAvgAccelerationKey]);
+        NSArray *accelerationBoundries = @[@(kAccLowerSoft), @(kAccLowerNormal),
+                                           @(kAccUpperNormal), @(kAccUpperHard)];
+        CGFloat acceleration = [self standardisedValueFromValue:avgAcceleration boundaries:accelerationBoundries];
+        
+        CGFloat avgRotation = TO_CGFLOAT(self.motionsInfo[pointerKey][kMotionInfoAvgRotationKey]);
+        NSArray *rotationBoundaries = @[@(kRotLowerSoft), @(kRotLowerNormal),
+                                        @(kRotUpperNormal), @(kRotUpperHard)];
+        CGFloat rotation = [self standardisedValueFromValue:avgRotation boundaries:rotationBoundaries];
+        
+        strength = (rotation + acceleration) / 2.0;
+        //
+        //    CGFloat duration = TO_CGFLOAT(self.touchesInfo[pointerKey][kTouchInfoDurationKey]);
+    });
+    
+    return strength;
+}
+
+#pragma mark - Storing & Processing
+
 - (void)processTouchesInfo:(NSSet *)touches
 {
     dispatch_sync(self->dataProcessingQueue, ^{
@@ -204,19 +276,19 @@ static NSString *kTouchInfoYKey = @"y";
                 {
                     startTimestamp = [touchPhaseInfo[kTouchInfoTimestampKey] doubleValue];
                     
-                    startX = (CGFLOAT_IS_DOUBLE) ? [touchPhaseInfo[kTouchInfoXKey] doubleValue] : [touchPhaseInfo[kTouchInfoXKey] floatValue];
-                    startY = (CGFLOAT_IS_DOUBLE) ? [touchPhaseInfo[kTouchInfoYKey] doubleValue] : [touchPhaseInfo[kTouchInfoYKey] floatValue];
+                    startX = TO_CGFLOAT(touchPhaseInfo[kTouchInfoXKey]);
+                    startY = TO_CGFLOAT(touchPhaseInfo[kTouchInfoYKey]);
                 }
                 else if ([touchPhaseInfo[kTouchInfoPhaseKey] integerValue] == UITouchPhaseEnded)
                 {
                     endTimestamp = [touchPhaseInfo[kTouchInfoTimestampKey] doubleValue];
                     
-                    endX = (CGFLOAT_IS_DOUBLE) ? [touchPhaseInfo[kTouchInfoXKey] doubleValue] : [touchPhaseInfo[kTouchInfoXKey] floatValue];
-                    endY = (CGFLOAT_IS_DOUBLE) ? [touchPhaseInfo[kTouchInfoYKey] doubleValue] : [touchPhaseInfo[kTouchInfoYKey] floatValue];
+                    endX = TO_CGFLOAT(touchPhaseInfo[kTouchInfoXKey]);
+                    endY = TO_CGFLOAT(touchPhaseInfo[kTouchInfoYKey]);
                 }
                 
                 // Get the current touch radius.
-                CGFloat radius = (CGFLOAT_IS_DOUBLE) ? [touchPhaseInfo[kTouchInfoRadiusKey] doubleValue] : [touchPhaseInfo[kTouchInfoRadiusKey] floatValue];
+                CGFloat radius = TO_CGFLOAT(touchPhaseInfo[kTouchInfoRadiusKey]);
                 // Save it if it is the new maximum.
                 if (radius > maxRadius)
                 {
@@ -370,6 +442,17 @@ static NSString *kTouchInfoYKey = @"y";
     // manager is not using for anything else.
     [self.motionManager resetLinkedListIfPossible];
 
+    for (UITouch *touch in touches)
+    {
+        NSString *key = [touch pointerString];
+        NSDictionary *touchMotionsInfo = self.motionsInfo[key];
+        NSDictionary *touchTouchesInfo = self.touchesInfo[key];
+        
+        NSLog(@"Acc: %@, Rot: %@, Duration: %@, Rad: %@", touchMotionsInfo[kMotionInfoAvgAccelerationKey], touchMotionsInfo[kMotionInfoAvgRotationKey], touchTouchesInfo[kTouchInfoDurationKey], touchTouchesInfo[kTouchInfoMaxRadiusKey]);
+    }
+    
+    self.strength = [self strengthForTouch:[touches anyObject]];
+    
     if (self.automaticallyResetDataBuffers)
     {
         for (UITouch *touch in touches)
@@ -377,7 +460,7 @@ static NSString *kTouchInfoYKey = @"y";
             [self resetDataBufferForTouch:touch];
         }
     }
-        
+    
     // Set the gesture recogniser to a recognised state.
     if (self.state == UIGestureRecognizerStatePossible)
     {
