@@ -32,8 +32,6 @@
 
 #import "DOMStrengthGestureRecognizer.h"
 
-#import "DOMPassiveMotionManager.h"
-
 #import "NSObject+Extensions.h"
 #import "UITouch+Extension.h"
 
@@ -78,6 +76,7 @@ static NSTimeInterval const kMaxAcceptableDuration = 1.2;
 
 - (instancetype)initWithTarget:(id)target
                         action:(SEL)action
+                 motionManager:(DOMPassiveMotionManager *)motionManager
                          error:(NSError *__autoreleasing *)error
 {
     self = [super initWithTarget:target action:action];
@@ -95,9 +94,7 @@ static NSTimeInterval const kMaxAcceptableDuration = 1.2;
             self.motionItems = [[NSMutableDictionary alloc] init];
         });
 
-        DOMPassiveMotionManager *motionManager = [[DOMPassiveMotionManager alloc] init];
         [motionManager startListening:error];
-        
         self.motionManager = motionManager;
     }
     return self;
@@ -106,7 +103,10 @@ static NSTimeInterval const kMaxAcceptableDuration = 1.2;
 - (instancetype)initWithTarget:(id)target action:(SEL)action
 {
     NSError *error = nil;
-    self = [self initWithTarget:target action:action error:nil];
+    self = [self initWithTarget:target
+                         action:action
+                  motionManager:[[DOMPassiveMotionManager alloc] init]
+                          error:nil];
     
     if (error)
     {

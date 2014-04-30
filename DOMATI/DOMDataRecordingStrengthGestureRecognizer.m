@@ -56,8 +56,12 @@
 - (instancetype)initWithTarget:(id)target
                         action:(SEL)action
                          error:(NSError *__autoreleasing *)error
+                 motionManager:(DOMPassiveMotionManager *)motionManager
 {
-    self = [super initWithTarget:target action:action error:error];
+    self = [super initWithTarget:target
+                          action:action
+                   motionManager:motionManager
+                           error:error];
     if (self)
     {
         self.currentState = DOMCalibrationStateNone;

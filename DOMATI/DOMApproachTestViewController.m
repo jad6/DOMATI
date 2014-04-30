@@ -149,8 +149,9 @@ static CGFloat const kHardDuration = 0.1831;
         [self updateLabelWithValue:count
                        forStrength:strength
                          algorithm:DOMAproachAlgorithmActive];
-        
-        [self activeApproachSimulationForStrength:(strength + 1) motionManager:motionManager completion:completionBlock];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self activeApproachSimulationForStrength:(strength + 1) motionManager:motionManager completion:completionBlock];
+        });
     });
 }
 
@@ -200,7 +201,9 @@ static CGFloat const kHardDuration = 0.1831;
                        forStrength:strength
                          algorithm:DOMAproachAlgorithmPassive];
         
-        [self passiveApproachSimulationForStrength:(strength + 1) motionManager:motionManager completion:completionBlock];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self passiveApproachSimulationForStrength:(strength + 1) motionManager:motionManager completion:completionBlock];
+        });
     });
 }
 

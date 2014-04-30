@@ -41,6 +41,7 @@
 - (instancetype)initWithFrame:(CGRect)frame
                       andType:(DOMCircleViewType)type
                      delegate:(id<DOMCircleViewDelegate>)delegate
+                motionManager:(DOMPassiveMotionManager *)motionManager
 {
     self = [super initWithFrame:frame];
     if (self)
@@ -51,7 +52,7 @@
         self.type = type;
         self.delegate = delegate;
         
-        DOMStrengthGestureRecognizer *strengthGR = [[DOMStrengthGestureRecognizer alloc] initWithTarget:self action:@selector(tapRegistered:)];
+        DOMStrengthGestureRecognizer *strengthGR = [[DOMStrengthGestureRecognizer alloc] initWithTarget:self action:@selector(tapRegistered:) motionManager:motionManager error:nil];
         [self addGestureRecognizer:strengthGR];
     }
     return self;
@@ -61,14 +62,16 @@
 {
     return [self initWithFrame:frame
                        andType:DOMCircleViewTypeNormal
-                      delegate:nil];
+                      delegate:nil
+                 motionManager:[[DOMPassiveMotionManager alloc] init]];
 }
 
 - (instancetype)init
 {
     return [self initWithFrame:CGRectZero
                        andType:DOMCircleViewTypeNormal
-                      delegate:nil];
+                      delegate:nil
+                 motionManager:[[DOMPassiveMotionManager alloc] init]];
 }
 
 #pragma mark - Getters & Setters

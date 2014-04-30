@@ -58,10 +58,10 @@
     [self enqueueDeviceMotion:deviceMotion];
 }
 
-- (void)resetDataStructureIfPossible
+- (BOOL)resetDataStructureIfPossible
 {
     // Free up some memory if you can.
-    [self resetLinkedListIfPossible];
+    return [self resetLinkedListIfPossible];
 }
 
 #pragma mark - Linked List

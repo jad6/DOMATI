@@ -44,6 +44,11 @@ static NSTimeInterval kUpdateInterval = 1 / 100.0;
 
 @implementation DOMMotionManager
 
+- (void)dealloc
+{
+    
+}
+
 - (void)setNumListeners:(NSInteger)numListeners
 {
     if (self->_numListeners != numListeners)
@@ -76,9 +81,9 @@ static NSTimeInterval kUpdateInterval = 1 / 100.0;
     
 }
 
-- (void)resetDataStructureIfPossible
+- (BOOL)resetDataStructureIfPossible
 {
-    
+    return NO;
 }
 
 #pragma mark - Logic

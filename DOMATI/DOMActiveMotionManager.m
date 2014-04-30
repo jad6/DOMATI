@@ -56,9 +56,9 @@
     }
 }
 
-- (void)resetDataStructureIfPossible
+- (BOOL)resetDataStructureIfPossible
 {
-    [self resetArrayIfPossible];
+    return [self resetArrayIfPossible];
 }
 
 #pragma mark - Storing

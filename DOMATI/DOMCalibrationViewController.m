@@ -34,6 +34,8 @@
 
 #import "DOMCircleTouchView.h"
 
+#import "DOMMotionManager.h"
+
 #if DATA_GATHERING
 #import "DOMRequestOperationManager.h"
 #import "DOMLocalNotificationHelper.h"
@@ -49,6 +51,8 @@
 @property (nonatomic, weak) IBOutlet UILabel *topLabel, *bottomLabel;
 
 @property (nonatomic, strong) DOMDataRecordingStrengthGestureRecognizer *strengthGR;
+
+@property (nonatomic, strong) DOMPassiveMotionManager *motionManager;
 
 // An array to store information about wach states.
 @property (nonatomic, strong) NSArray *statesInformation;
@@ -70,6 +74,8 @@
     // Set the initial states.
     self.circleTouchView.circleTouchStrength = DOMCircleTouchStrengthModerate;
     self.state = DOMCalibrationStateInitial;
+    
+    self.motionManager = [[DOMPassiveMotionManager alloc] init];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -153,7 +159,7 @@
 {
     // Add the strength gesture recognizer to the circle view.
     NSError *error = nil;
-    DOMDataRecordingStrengthGestureRecognizer *strengthGR = [[DOMDataRecordingStrengthGestureRecognizer alloc] initWithTarget:self action:@selector(tapDetected:) error:&error];
+    DOMDataRecordingStrengthGestureRecognizer *strengthGR = [[DOMDataRecordingStrengthGestureRecognizer alloc] initWithTarget:self action:@selector(tapDetected:) motionManager:self.motionManager error:&error];
     
     if (error)
     {

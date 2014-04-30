@@ -31,6 +31,8 @@
 #import <UIKit/UIKit.h>
 #import <CoreMotion/CMDeviceMotion.h>
 
+#import "DOMPassiveMotionManager.h"
+
 // Touch info dictionary keys.
 static NSString *kTouchInfoAllPhasesKey = @"allPhasesTouchInfo";
 static NSString *kTouchInfoMaxRadiusKey = @"maxRadius";
@@ -62,6 +64,7 @@ static NSString *kMotionInfoAvgRotationKey = @"rotationAvg";
 
 - (instancetype)initWithTarget:(id)target
                         action:(SEL)action
+                 motionManager:(DOMPassiveMotionManager *)motionManager
                          error:(NSError *__autoreleasing *)error;
 
 - (NSDictionary *)touchesInfoForTouch:(UITouch *)touch;

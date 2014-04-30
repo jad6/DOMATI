@@ -28,6 +28,8 @@
 
 #import <UIKit/UIKit.h>
 
+#import "DOMPassiveMotionManager.h"
+
 typedef NS_ENUM(NSInteger, DOMCircleViewType) {
     DOMCircleViewTypeSoft,
     DOMCircleViewTypeNormal,
@@ -53,6 +55,7 @@ typedef NS_ENUM(NSInteger, DOMCircleViewType) {
 
 - (instancetype)initWithFrame:(CGRect)frame
                       andType:(DOMCircleViewType)type
-                     delegate:(id<DOMCircleViewDelegate>)delegate;
+                     delegate:(id<DOMCircleViewDelegate>)delegate
+                motionManager:(DOMPassiveMotionManager *)motionManager;
 
 @end

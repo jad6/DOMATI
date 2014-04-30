@@ -65,6 +65,6 @@
 
 - (void)handleMotionObjectUpdate:(CMDeviceMotion *)deviceMotion;
 
-- (void)resetDataStructureIfPossible;
+- (BOOL)resetDataStructureIfPossible;
 
 @end

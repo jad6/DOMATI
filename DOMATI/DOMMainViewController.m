@@ -31,6 +31,7 @@
 
 #import "DOMInfoViewController.h"
 
+#import "DOMMotionManager.h"
 #import "DOMCircleView.h"
 
 static NSString *const kBottomCollisionBoundaryIdentifer = @"Bottom Boundary";
@@ -39,6 +40,8 @@ static NSString *const kBottomCollisionBoundaryIdentifer = @"Bottom Boundary";
 
 @property (nonatomic, weak) IBOutlet UIButton *infoButton;
 @property (nonatomic, weak) IBOutlet UILabel *debugLabel;
+
+@property (nonatomic, strong) DOMPassiveMotionManager *motionManager;
 
 @property (nonatomic, strong) NSTimer *timer;
 
@@ -74,6 +77,18 @@ static NSString *const kBottomCollisionBoundaryIdentifer = @"Bottom Boundary";
     [self startTimer];
 }
 
+#pragma mark - Setters & Getters
+
+- (DOMPassiveMotionManager *)motionManager
+{
+    if (!self->_motionManager)
+    {
+        self->_motionManager = [[DOMPassiveMotionManager alloc] init];
+    }
+    
+    return self->_motionManager;
+}
+
 #pragma mark - Segues
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -98,7 +113,7 @@ static NSString *const kBottomCollisionBoundaryIdentifer = @"Bottom Boundary";
 {
     CGRect circleFrame = [self frameForNewCircleView];
     DOMCircleViewType randomType = [self randomCircleType];
-    DOMCircleView *circleView = [[DOMCircleView alloc] initWithFrame:circleFrame andType:randomType delegate:self];
+    DOMCircleView *circleView = [[DOMCircleView alloc] initWithFrame:circleFrame andType:randomType delegate:self motionManager:self.motionManager];
     
     [self.view insertSubview:circleView belowSubview:self.infoButton];
     
@@ -114,6 +129,12 @@ static NSString *const kBottomCollisionBoundaryIdentifer = @"Bottom Boundary";
 - (IBAction)infoAction:(id)sender
 {
     [self stopTimer];
+    
+    self.motionManager = nil;
+    
+    UILabel *debugLabel = self.debugLabel;
+    debugLabel.text = @"0.00";
+    debugLabel.textColor = [UIColor whiteColor];
 }
 
 #pragma mark - Timer
