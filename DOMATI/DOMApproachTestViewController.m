@@ -104,7 +104,7 @@ static CGFloat const kHardDuration = 0.1831;
                  forStrength:(DOMApproachTestStrength)strength
                    algorithm:(DOMAproachAlgorithm)algorithm
 {
-    NSUInteger originIdx = (algorithm == DOMAproachAlgorithmPassive) ? 3 : 0;
+    NSUInteger originIdx = (algorithm == DOMAproachAlgorithmActive) ? 3 : 0;
     NSUInteger detailLabelIdx =  strength + originIdx;
     UILabel *detailLabel = self.detailLabels[detailLabelIdx];
     detailLabel.text = [[NSString alloc] initWithFormat:@"%lu objects", (unsigned long)value];
@@ -143,14 +143,8 @@ static CGFloat const kHardDuration = 0.1831;
         NSUInteger endIdx = [motionManager currentMotionIndexWithTouchPhase:UITouchPhaseEnded];
         
         NSUInteger count = endIdx - startIdx;
-        
-//        NSLog(@"ARRAY COUNT %i", [[motionManager currentMotions] count]);
-//        NSLog(@"start %i, end %i, count %i", startIdx, endIdx, count);
-        
+
         [motionManager stopListening];
-//        NSLog(@"ARRAY COUNT %i", [[motionManager currentMotions] count]);
-        
-//        NSLog(@"----");
 
         [self updateLabelWithValue:count
                        forStrength:strength
@@ -237,8 +231,8 @@ static CGFloat const kHardDuration = 0.1831;
 
 - (void)runSimulationCompletion:(void (^)(void))completionBlock
 {
-    [self runActiveApproachSimulation:^{
-        [self runPassiveApproachSimulation:^{
+    [self runPassiveApproachSimulation:^{
+        [self runActiveApproachSimulation:^{
             if (completionBlock)
             {
                 completionBlock();
