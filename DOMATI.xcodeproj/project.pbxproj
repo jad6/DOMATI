@@ -7,9 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		05050EA818BF4F03000724F0 /* DOMRawTouchData.m in Sources */ = {isa = PBXBuildFile; fileRef = 05050EA718BF4F03000724F0 /* DOMRawTouchData.m */; };
-		05050EAE18BF4F04000724F0 /* DOMRawMotionData.m in Sources */ = {isa = PBXBuildFile; fileRef = 05050EAD18BF4F04000724F0 /* DOMRawMotionData.m */; };
-		05050EB118BF507E000724F0 /* DOMTouchData.m in Sources */ = {isa = PBXBuildFile; fileRef = 05050EB018BF507E000724F0 /* DOMTouchData.m */; };
 		05050EB418BF628E000724F0 /* DOMDataRecordingStrengthGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 05050EB318BF628E000724F0 /* DOMDataRecordingStrengthGestureRecognizer.m */; };
 		05084EA7181FECD500FFFB93 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 05084EA6181FECD500FFFB93 /* Main_iPad.storyboard */; };
 		05087D701824DE8300219AA7 /* DOMTouchData+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 05087D6F1824DE8300219AA7 /* DOMTouchData+Extension.m */; };
@@ -37,6 +34,9 @@
 		050A7E0519060B3600C5468D /* DOMMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 050A7E0419060B3600C5468D /* DOMMainViewController.m */; };
 		050A8F40189CCBE30073E487 /* DOMCalibrationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 050A8F3F189CCBE30073E487 /* DOMCalibrationViewController.m */; };
 		050ACB15189A4DAC006F74DD /* DOMRequestOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 050ACB14189A4DAC006F74DD /* DOMRequestOperationManager.m */; };
+		050C8C5F190A6F35008F31B6 /* DOMRawMotionData.m in Sources */ = {isa = PBXBuildFile; fileRef = 050C8C5E190A6F35008F31B6 /* DOMRawMotionData.m */; };
+		050C8C62190A6F36008F31B6 /* DOMRawTouchData.m in Sources */ = {isa = PBXBuildFile; fileRef = 050C8C61190A6F36008F31B6 /* DOMRawTouchData.m */; };
+		050C8C65190A6F36008F31B6 /* DOMTouchData.m in Sources */ = {isa = PBXBuildFile; fileRef = 050C8C64190A6F36008F31B6 /* DOMTouchData.m */; };
 		051A8E291830C7EA007F9DCD /* DOMUserInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 051A8E281830C7EA007F9DCD /* DOMUserInfoViewController.m */; };
 		051A8E341830CB52007F9DCD /* DOMPickerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 051A8E331830CB52007F9DCD /* DOMPickerCell.m */; };
 		0530641A18ABBD9A00ECB21D /* NSDate+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 0530641918ABBD9A00ECB21D /* NSDate+Helper.m */; };
@@ -76,6 +76,10 @@
 		059D11EC19062798005FB4E3 /* Network.plist in Resources */ = {isa = PBXBuildFile; fileRef = 059D11EB19062798005FB4E3 /* Network.plist */; };
 		059F3689182494B700927A2A /* DOMMotionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 059F3688182494B700927A2A /* DOMMotionManager.m */; };
 		059F368E18249D0900927A2A /* DOMErrors.m in Sources */ = {isa = PBXBuildFile; fileRef = 059F368D18249D0900927A2A /* DOMErrors.m */; };
+		05A0B0BE190FB44900AC0BBD /* DOMSwitchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 05A0B0BD190FB44900AC0BBD /* DOMSwitchCell.m */; };
+		05A0B0C1190FB79000AC0BBD /* DOMApproachTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05A0B0C0190FB79000AC0BBD /* DOMApproachTestViewController.m */; };
+		05A0B0C5190FC31200AC0BBD /* DOMPassiveMotionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 05A0B0C4190FC31200AC0BBD /* DOMPassiveMotionManager.m */; };
+		05A0B0C8190FC31F00AC0BBD /* DOMActiveMotionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 05A0B0C7190FC31F00AC0BBD /* DOMActiveMotionManager.m */; };
 		05A5FD6D183A2F8F000F57C4 /* DOMCircleTouchView.m in Sources */ = {isa = PBXBuildFile; fileRef = 05A5FD6C183A2F8F000F57C4 /* DOMCircleTouchView.m */; };
 		05A939F018AB1AD80047F4CD /* CalibrationStates.plist in Resources */ = {isa = PBXBuildFile; fileRef = 05A939EF18AB1AD80047F4CD /* CalibrationStates.plist */; };
 		05AB7A351883B39900FDCBE6 /* NSError+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 05AB7A341883B39900FDCBE6 /* NSError+Extension.m */; };
@@ -115,12 +119,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		05050EA618BF4F03000724F0 /* DOMRawTouchData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DOMRawTouchData.h; sourceTree = "<group>"; };
-		05050EA718BF4F03000724F0 /* DOMRawTouchData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DOMRawTouchData.m; sourceTree = "<group>"; };
-		05050EAC18BF4F04000724F0 /* DOMRawMotionData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DOMRawMotionData.h; sourceTree = "<group>"; };
-		05050EAD18BF4F04000724F0 /* DOMRawMotionData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DOMRawMotionData.m; sourceTree = "<group>"; };
-		05050EAF18BF507E000724F0 /* DOMTouchData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DOMTouchData.h; sourceTree = "<group>"; };
-		05050EB018BF507E000724F0 /* DOMTouchData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DOMTouchData.m; sourceTree = "<group>"; };
 		05050EB218BF628E000724F0 /* DOMDataRecordingStrengthGestureRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DOMDataRecordingStrengthGestureRecognizer.h; sourceTree = "<group>"; };
 		05050EB318BF628E000724F0 /* DOMDataRecordingStrengthGestureRecognizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DOMDataRecordingStrengthGestureRecognizer.m; sourceTree = "<group>"; };
 		05084EA6181FECD500FFFB93 /* Main_iPad.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main_iPad.storyboard; sourceTree = "<group>"; };
@@ -157,6 +155,12 @@
 		050A8F3F189CCBE30073E487 /* DOMCalibrationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DOMCalibrationViewController.m; sourceTree = "<group>"; };
 		050ACB13189A4DAC006F74DD /* DOMRequestOperationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DOMRequestOperationManager.h; sourceTree = "<group>"; };
 		050ACB14189A4DAC006F74DD /* DOMRequestOperationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DOMRequestOperationManager.m; sourceTree = "<group>"; };
+		050C8C5D190A6F35008F31B6 /* DOMRawMotionData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DOMRawMotionData.h; sourceTree = "<group>"; };
+		050C8C5E190A6F35008F31B6 /* DOMRawMotionData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DOMRawMotionData.m; sourceTree = "<group>"; };
+		050C8C60190A6F36008F31B6 /* DOMRawTouchData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DOMRawTouchData.h; sourceTree = "<group>"; };
+		050C8C61190A6F36008F31B6 /* DOMRawTouchData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DOMRawTouchData.m; sourceTree = "<group>"; };
+		050C8C63190A6F36008F31B6 /* DOMTouchData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DOMTouchData.h; sourceTree = "<group>"; };
+		050C8C64190A6F36008F31B6 /* DOMTouchData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DOMTouchData.m; sourceTree = "<group>"; };
 		051A8E271830C7EA007F9DCD /* DOMUserInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DOMUserInfoViewController.h; sourceTree = "<group>"; };
 		051A8E281830C7EA007F9DCD /* DOMUserInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DOMUserInfoViewController.m; sourceTree = "<group>"; };
 		051A8E321830CB52007F9DCD /* DOMPickerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DOMPickerCell.h; sourceTree = "<group>"; };
@@ -213,6 +217,14 @@
 		059F368C18249D0900927A2A /* DOMErrors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DOMErrors.h; sourceTree = "<group>"; };
 		059F368D18249D0900927A2A /* DOMErrors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DOMErrors.m; sourceTree = "<group>"; };
 		05A00DFA189CEF7200532878 /* DOMATI.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = DOMATI.entitlements; sourceTree = "<group>"; };
+		05A0B0BC190FB44900AC0BBD /* DOMSwitchCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DOMSwitchCell.h; sourceTree = "<group>"; };
+		05A0B0BD190FB44900AC0BBD /* DOMSwitchCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DOMSwitchCell.m; sourceTree = "<group>"; };
+		05A0B0BF190FB79000AC0BBD /* DOMApproachTestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DOMApproachTestViewController.h; sourceTree = "<group>"; };
+		05A0B0C0190FB79000AC0BBD /* DOMApproachTestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DOMApproachTestViewController.m; sourceTree = "<group>"; };
+		05A0B0C3190FC31200AC0BBD /* DOMPassiveMotionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DOMPassiveMotionManager.h; sourceTree = "<group>"; };
+		05A0B0C4190FC31200AC0BBD /* DOMPassiveMotionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DOMPassiveMotionManager.m; sourceTree = "<group>"; };
+		05A0B0C6190FC31F00AC0BBD /* DOMActiveMotionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DOMActiveMotionManager.h; sourceTree = "<group>"; };
+		05A0B0C7190FC31F00AC0BBD /* DOMActiveMotionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DOMActiveMotionManager.m; sourceTree = "<group>"; };
 		05A5FD6B183A2F8F000F57C4 /* DOMCircleTouchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DOMCircleTouchView.h; sourceTree = "<group>"; };
 		05A5FD6C183A2F8F000F57C4 /* DOMCircleTouchView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DOMCircleTouchView.m; sourceTree = "<group>"; };
 		05A939EF18AB1AD80047F4CD /* CalibrationStates.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = CalibrationStates.plist; sourceTree = "<group>"; };
@@ -507,6 +519,8 @@
 				051A8E331830CB52007F9DCD /* DOMPickerCell.m */,
 				055526281838BA0500659796 /* DOMSegmentCell.h */,
 				055526291838BA0500659796 /* DOMSegmentCell.m */,
+				05A0B0BC190FB44900AC0BBD /* DOMSwitchCell.h */,
+				05A0B0BD190FB44900AC0BBD /* DOMSwitchCell.m */,
 			);
 			name = "Table Cells";
 			sourceTree = "<group>";
@@ -610,6 +624,7 @@
 			children = (
 				05098F5117B62F7D009D4FF5 /* DOMInfoViewController.h */,
 				05098F5217B62F7D009D4FF5 /* DOMInfoViewController.m */,
+				05A0B0C2190FB79D00AC0BBD /* Algorithm Approach */,
 				05D273E7181E79680005E31E /* Documents */,
 				05CDCD2517BA104400BA12E3 /* Calibration Data */,
 			);
@@ -631,12 +646,12 @@
 		058FFC3417DA1424008ECB1B /* Managed Objects */ = {
 			isa = PBXGroup;
 			children = (
-				05050EAF18BF507E000724F0 /* DOMTouchData.h */,
-				05050EB018BF507E000724F0 /* DOMTouchData.m */,
-				05050EAC18BF4F04000724F0 /* DOMRawMotionData.h */,
-				05050EAD18BF4F04000724F0 /* DOMRawMotionData.m */,
-				05050EA618BF4F03000724F0 /* DOMRawTouchData.h */,
-				05050EA718BF4F03000724F0 /* DOMRawTouchData.m */,
+				050C8C63190A6F36008F31B6 /* DOMTouchData.h */,
+				050C8C64190A6F36008F31B6 /* DOMTouchData.m */,
+				050C8C60190A6F36008F31B6 /* DOMRawTouchData.h */,
+				050C8C61190A6F36008F31B6 /* DOMRawTouchData.m */,
+				050C8C5D190A6F35008F31B6 /* DOMRawMotionData.h */,
+				050C8C5E190A6F35008F31B6 /* DOMRawMotionData.m */,
 				059F36B61824DCC300927A2A /* Categories */,
 			);
 			name = "Managed Objects";
@@ -647,6 +662,10 @@
 			children = (
 				059F3687182494B700927A2A /* DOMMotionManager.h */,
 				059F3688182494B700927A2A /* DOMMotionManager.m */,
+				05A0B0C3190FC31200AC0BBD /* DOMPassiveMotionManager.h */,
+				05A0B0C4190FC31200AC0BBD /* DOMPassiveMotionManager.m */,
+				05A0B0C6190FC31F00AC0BBD /* DOMActiveMotionManager.h */,
+				05A0B0C7190FC31F00AC0BBD /* DOMActiveMotionManager.m */,
 			);
 			name = Motion;
 			sourceTree = "<group>";
@@ -662,6 +681,15 @@
 				05DD75FB18BCBC1500A261CD /* DOMRawTouchData+Extensions.m */,
 			);
 			name = Categories;
+			sourceTree = "<group>";
+		};
+		05A0B0C2190FB79D00AC0BBD /* Algorithm Approach */ = {
+			isa = PBXGroup;
+			children = (
+				05A0B0BF190FB79000AC0BBD /* DOMApproachTestViewController.h */,
+				05A0B0C0190FB79000AC0BBD /* DOMApproachTestViewController.m */,
+			);
+			name = "Algorithm Approach";
 			sourceTree = "<group>";
 		};
 		05A5FD6E183A2F93000F57C4 /* Circle Touch */ = {
@@ -940,10 +968,11 @@
 				05C702F1189C8D8A00E0AC35 /* DOMYearsPickerHandler.m in Sources */,
 				0543012B181D55660077435C /* DOMTableViewCell.m in Sources */,
 				05098F5317B62F7D009D4FF5 /* DOMInfoViewController.m in Sources */,
-				05050EA818BF4F03000724F0 /* DOMRawTouchData.m in Sources */,
 				054C30A317B7363000ABC9CF /* DOMCalibrationDataViewController.m in Sources */,
+				050C8C62190A6F36008F31B6 /* DOMRawTouchData.m in Sources */,
 				0530641A18ABBD9A00ECB21D /* NSDate+Helper.m in Sources */,
 				05D273DA181E65930005E31E /* DOMNavigationBar.m in Sources */,
+				05A0B0C1190FB79000AC0BBD /* DOMApproachTestViewController.m in Sources */,
 				054EAD2218BA2F9E00AD9D31 /* LLItem.m in Sources */,
 				05430128181D23ED0077435C /* DOMThemeResources.m in Sources */,
 				05B1FBE418AC9BE10049095F /* UIApplication+Extensions.m in Sources */,
@@ -960,6 +989,7 @@
 				054C30AC17B7368200ABC9CF /* DOMCalibrationMothDetailViewController.m in Sources */,
 				05C702F7189C8DF500E0AC35 /* DOMPickerHandler.m in Sources */,
 				05DD75F918BCBAB800A261CD /* DOMRawMotionData+Extensions.m in Sources */,
+				05A0B0C8190FC31F00AC0BBD /* DOMActiveMotionManager.m in Sources */,
 				050A8F40189CCBE30073E487 /* DOMCalibrationViewController.m in Sources */,
 				058FFC2617DA0AE0008ECB1B /* DOMCoreDataManager.m in Sources */,
 				058FFC0517D9FAE1008ECB1B /* DOMATI.xcdatamodeld in Sources */,
@@ -970,6 +1000,7 @@
 				05087D701824DE8300219AA7 /* DOMTouchData+Extension.m in Sources */,
 				056D2BF71896444100C5910A /* DOMWelcomeViewController.m in Sources */,
 				05098F2817B62859009D4FF5 /* DOMAppDelegate.m in Sources */,
+				05A0B0C5190FC31200AC0BBD /* DOMPassiveMotionManager.m in Sources */,
 				050ACB15189A4DAC006F74DD /* DOMRequestOperationManager.m in Sources */,
 				051A8E341830CB52007F9DCD /* DOMPickerCell.m in Sources */,
 				059F368E18249D0900927A2A /* DOMErrors.m in Sources */,
@@ -981,10 +1012,11 @@
 				05050EB418BF628E000724F0 /* DOMDataRecordingStrengthGestureRecognizer.m in Sources */,
 				05B1FBDD18AC53600049095F /* DOMPickerTableViewController.m in Sources */,
 				05A5FD6D183A2F8F000F57C4 /* DOMCircleTouchView.m in Sources */,
-				05050EAE18BF4F04000724F0 /* DOMRawMotionData.m in Sources */,
-				05050EB118BF507E000724F0 /* DOMTouchData.m in Sources */,
 				05CDB82E19092FA90098E96E /* UIColor+DOMATI.m in Sources */,
+				050C8C5F190A6F35008F31B6 /* DOMRawMotionData.m in Sources */,
+				050C8C65190A6F36008F31B6 /* DOMTouchData.m in Sources */,
 				050A7E0519060B3600C5468D /* DOMMainViewController.m in Sources */,
+				05A0B0BE190FB44900AC0BBD /* DOMSwitchCell.m in Sources */,
 				0530641D18ABC02100ECB21D /* DOMLocalNotificationHelper.m in Sources */,
 				054C30A817B7366800ABC9CF /* DOMCalibrationMonthsViewController.m in Sources */,
 				05D273DF181E67110005E31E /* UITextView+Sharing.m in Sources */,
@@ -1120,8 +1152,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = DOMATI/DOMATI.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Jad Osseiran (SCC6WVZ543)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Jad Osseiran (SCC6WVZ543)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "DOMATI/DOMATI-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -1132,7 +1164,7 @@
 				INFOPLIST_FILE = "DOMATI/DOMATI-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "E138AE60-C89F-4790-A12D-6EC94E82FB67";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
@@ -1145,8 +1177,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = DOMATI/DOMATI.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Jad Osseiran (SCC6WVZ543)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Jad Osseiran (SCC6WVZ543)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "DOMATI/DOMATI-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -1157,7 +1189,7 @@
 				INFOPLIST_FILE = "DOMATI/DOMATI-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "E138AE60-C89F-4790-A12D-6EC94E82FB67";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};

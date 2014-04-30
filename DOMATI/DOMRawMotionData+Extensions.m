@@ -49,15 +49,6 @@
                 object.rotationRateX = @(deviceMotion.rotationRate.x);
                 object.rotationRateY = @(deviceMotion.rotationRate.y);
                 object.rotationRateZ = @(deviceMotion.rotationRate.z);
-
-                object.quaternionX = @(deviceMotion.attitude.quaternion.x);
-                object.quaternionY = @(deviceMotion.attitude.quaternion.y);
-                object.quaternionZ = @(deviceMotion.attitude.quaternion.z);
-                object.quaternionW = @(deviceMotion.attitude.quaternion.w);
-
-                object.roll = @(deviceMotion.attitude.roll);
-                object.yaw = @(deviceMotion.attitude.yaw);
-                object.pitch = @(deviceMotion.attitude.pitch);
             }];
 }
 
@@ -72,15 +63,6 @@
     dictionary[@"rotation_rate_x"] = self.rotationRateX;
     dictionary[@"rotation_rate_y"] = self.rotationRateY;
     dictionary[@"rotation_rate_z"] = self.rotationRateZ;
-
-    dictionary[@"quaternion_x"] = self.quaternionX;
-    dictionary[@"quaternion_y"] = self.quaternionY;
-    dictionary[@"quaternion_z"] = self.quaternionZ;
-    dictionary[@"quaternion_w"] = self.quaternionW;
-
-    dictionary[@"roll"] = self.roll;
-    dictionary[@"pitch"] = self.pitch;
-    dictionary[@"yaw"] = self.yaw;
 
     dictionary[@"touch_datum_id"] = self.touchData.identifier;
 

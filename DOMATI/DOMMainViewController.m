@@ -29,11 +29,13 @@
 
 #import "DOMMainViewController.h"
 
+#import "DOMInfoViewController.h"
+
 #import "DOMCircleView.h"
 
 static NSString *const kBottomCollisionBoundaryIdentifer = @"Bottom Boundary";
 
-@interface DOMMainViewController () <DOMCircleViewDelegate, UICollisionBehaviorDelegate>
+@interface DOMMainViewController () <DOMInfoViewControllerDelegate, DOMCircleViewDelegate, UICollisionBehaviorDelegate>
 
 @property (nonatomic, weak) IBOutlet UIButton *infoButton;
 
@@ -49,12 +51,6 @@ static NSString *const kBottomCollisionBoundaryIdentifer = @"Bottom Boundary";
 {
     [super viewDidLoad];
     
-    self.timer = [NSTimer scheduledTimerWithTimeInterval:0.75
-                                                  target:self
-                                                selector:@selector(dropNewCircleAction:)
-                                                userInfo:nil
-                                                 repeats:YES];
-    
     UIDynamicAnimator *animator = [[UIDynamicAnimator alloc] initWithReferenceView:self.view];
 
     UIGravityBehavior *gravityBehavior = [[UIGravityBehavior alloc] init];
@@ -62,15 +58,28 @@ static NSString *const kBottomCollisionBoundaryIdentifer = @"Bottom Boundary";
     [animator addBehavior:gravityBehavior];
     
     UICollisionBehavior *collisionBehavior = [[UICollisionBehavior alloc] init];
-    [collisionBehavior addBoundaryWithIdentifier:kBottomCollisionBoundaryIdentifer fromPoint:CGPointMake(0.0, CGRectGetMaxY(self.view.frame)) toPoint:CGPointMake(CGRectGetMaxX(self.view.frame), CGRectGetMaxY(self.view.frame))];
+    collisionBehavior.translatesReferenceBoundsIntoBoundary = YES;
     [animator addBehavior:collisionBehavior];
     
     UIDynamicItemBehavior *itemBehavior = [[UIDynamicItemBehavior alloc] init];
-    [itemBehavior setElasticity:0.0];
+    itemBehavior.elasticity = 0.0f;
     [animator addBehavior:itemBehavior];
     [collisionBehavior setCollisionDelegate:self];
     
     self.animator = animator;
+    
+    [self startTimer];
+}
+
+#pragma mark - Segues
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"Info Segue"])
+    {
+        DOMInfoViewController *infoVC = (DOMInfoViewController *)[segue.destinationViewController topViewController];
+        infoVC.delegate = self;
+    }
 }
 
 #pragma mark - Status Bar
@@ -99,6 +108,28 @@ static NSString *const kBottomCollisionBoundaryIdentifer = @"Bottom Boundary";
     }
 }
 
+- (IBAction)infoAction:(id)sender
+{
+    [self stopTimer];
+}
+
+#pragma mark - Timer
+
+- (void)startTimer
+{
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0
+                                                  target:self
+                                                selector:@selector(dropNewCircleAction:)
+                                                userInfo:nil
+                                                 repeats:YES];
+}
+
+- (void)stopTimer
+{
+    [self.timer invalidate];
+    self.timer = nil;
+}
+
 #pragma mark - Logic
 
 - (DOMCircleViewType)randomCircleType
@@ -109,7 +140,7 @@ static NSString *const kBottomCollisionBoundaryIdentifer = @"Bottom Boundary";
 - (CGRect)frameForNewCircleView
 {
     CGSize size = CGSizeMake(80.0f, 80.0f);
-    NSUInteger randomX = arc4random_uniform(self.view.frame.size.width - size.width);
+    NSUInteger randomX = arc4random_uniform(self.view.bounds.size.width - size.width);
     
     return CGRectMake(randomX, 20.0f, size.width, size.height);
 }
@@ -148,6 +179,15 @@ static NSString *const kBottomCollisionBoundaryIdentifer = @"Bottom Boundary";
    withBoundaryIdentifier:(id<NSCopying>)identifier
 {
     [self removeCircleView:(DOMCircleView *)item];
+}
+
+#pragma mark - Info
+
+- (void)infoVCDidAskToDismiss:(DOMInfoViewController *)infoVC
+{
+    [self dismissViewControllerAnimated:YES completion:^{
+        [self startTimer];
+    }];
 }
 
 @end

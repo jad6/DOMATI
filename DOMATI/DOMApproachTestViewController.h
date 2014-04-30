@@ -1,13 +1,11 @@
+//  DOMApproachTestViewController.h
 //
-//  DOMMotionManager.h
-//  DOMATI
-//
-//  Created by Jad Osseiran on 2/11/2013.
-//  Copyright (c) 2013 Jad. All rights reserved.
+//  Created by Jad on 29/04/2014.
+//  Copyright (c) 2014 Jad. All rights reserved.
 //
 //  Redistribution and use in source and binary forms, with or without
 //  modification, are permitted provided that the following conditions are met:
-//
+// 
 //  Redistributions of source code must retain the above copyright notice, this
 //  list of conditions and the following disclaimer. Redistributions in binary
 //  form must reproduce the above copyright notice, this list of conditions and
@@ -15,7 +13,7 @@
 //  provided with the distribution. Neither the name of the nor the names of
 //  its contributors may be used to endorse or promote products derived from
 //  this software without specific prior written permission.
-//
+// 
 //  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
 //  AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
 //  IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
@@ -28,43 +26,8 @@
 //  ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 //  POSSIBILITY OF SUCH DAMAGE.
 
-#import <Foundation/Foundation.h>
-#import <CoreMotion/CoreMotion.h>
+#import <UIKit/UIKit.h>
 
-#import "DOMMotionItem.h"
-
-@interface DOMMotionManager : CMMotionManager
-
-/// The number of activies which the motion manager is giving data to.
-@property (nonatomic) NSInteger numActivities;
-/// The number of objects which are listening to the motion manager.
-@property (nonatomic) NSInteger numListeners;
-
-/**
- *  Adds to the number of listeners on the manager. If there are
- *  no listeners prior to this call the manager will start the
- *  device motion.
- *
- *  You should ALWAYS balance this call by calling stopListening
- *  the calling object is no longer interested in device motions.
- *  Failure to do so will result in the manager always recording
- *  motion data.
- *
- *  @param error The error pointer to get populated if there is an error.
- *
- *  @return True if the motion manager can start listening to motion events.
- */
-- (BOOL)startListening:(NSError *__autoreleasing *)error;
-/**
- *  Decrements the number of listeners that the manager keeps track
- *  of. If after calling this methid the manager listener count is
- *  zero then device motions will cease to be recorded until another
- *  object calls startListening.
- */
-- (void)stopListening;
-
-- (void)handleMotionObjectUpdate:(CMDeviceMotion *)deviceMotion;
-
-- (void)resetDataStructureIfPossible;
+@interface DOMApproachTestViewController : UITableViewController
 
 @end

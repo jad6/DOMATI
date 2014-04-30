@@ -32,7 +32,7 @@
 
 #import "DOMStrengthGestureRecognizer.h"
 
-#import "DOMMotionManager.h"
+#import "DOMPassiveMotionManager.h"
 
 #import "NSObject+Extensions.h"
 #import "UITouch+Extension.h"
@@ -63,7 +63,7 @@ static NSTimeInterval const kMaxAcceptableDuration = 1.2;
     dispatch_queue_t dataProcessingQueue;
 }
 
-@property (nonatomic, strong) DOMMotionManager *motionManager;
+@property (nonatomic, strong) DOMPassiveMotionManager *motionManager;
 
 @property (nonatomic, strong) NSMutableDictionary *touchesInfo;
 @property (nonatomic, strong) NSMutableDictionary *allPhasesTouchesInfo;
@@ -95,7 +95,7 @@ static NSTimeInterval const kMaxAcceptableDuration = 1.2;
             self.motionItems = [[NSMutableDictionary alloc] init];
         });
 
-        DOMMotionManager *motionManager = [DOMMotionManager sharedManager];
+        DOMPassiveMotionManager *motionManager = [[DOMPassiveMotionManager alloc] init];
         [motionManager startListening:error];
         
         self.motionManager = motionManager;
@@ -141,7 +141,7 @@ static NSTimeInterval const kMaxAcceptableDuration = 1.2;
 
 - (void)resetMotionCache
 {
-    [self.motionManager resetLinkedListIfPossible];
+    [self.motionManager resetDataStructureIfPossible];
 }
 
 - (NSDictionary *)touchesInfoForTouch:(UITouch *)touch
@@ -330,7 +330,7 @@ static NSTimeInterval const kMaxAcceptableDuration = 1.2;
             // Get the tail for the linked list on touches began.
             if (touch.phase == UITouchPhaseBegan)
             {
-                self.motionItems[pointerKey] = [[DOMMotionManager sharedManager] lastMotionItemWithTouchPhase:UITouchPhaseBegan];
+                self.motionItems[pointerKey] = [self.motionManager lastMotionItemWithTouchPhase:UITouchPhaseBegan];
             }
             
             // Retreive the touch location on the scren.
@@ -374,7 +374,7 @@ static NSTimeInterval const kMaxAcceptableDuration = 1.2;
             // Set a new pointer to enumerate with.
             DOMMotionItem *currentMotionItem = headMotionItem;
             // Get the new tail from the linked list.
-            DOMMotionItem *tailMotionItem = [[DOMMotionManager sharedManager] lastMotionItemWithTouchPhase:UITouchPhaseEnded];
+            DOMMotionItem *tailMotionItem = [self.motionManager lastMotionItemWithTouchPhase:UITouchPhaseEnded];
             
             // We have a stored scope reference to the head of the
             // linked list, therefore we can remove it from our
@@ -447,7 +447,7 @@ static NSTimeInterval const kMaxAcceptableDuration = 1.2;
 
     // The touch has ended and reset the linked list if the motion
     // manager is not using for anything else.
-    [self.motionManager resetLinkedListIfPossible];
+    [self.motionManager resetDataStructureIfPossible];
     
     self.strength = [self strengthForTouch:[touches anyObject]];
     

@@ -100,7 +100,6 @@
     dictionary[@"x_delta"] = self.xDetla;
     dictionary[@"y_delta"] = self.yDelta;
     dictionary[@"cali_strength"] = self.calibrationStrength;
-    dictionary[@"group"] = self.group;
 
     dictionary[@"device"] = [[UIDevice currentDevice] model];
     dictionary[@"device_model"] = [[UIDevice currentDevice] modelDetailed];

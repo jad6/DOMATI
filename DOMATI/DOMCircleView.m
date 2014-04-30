@@ -51,13 +51,8 @@
         self.type = type;
         self.delegate = delegate;
         
-        NSError *error = nil;
-        DOMStrengthGestureRecognizer *strengthGR = [[DOMStrengthGestureRecognizer alloc] initWithTarget:self action:@selector(tapRegistered:) error:&error];
-        
-        if (error)
-            [error handle];
-        else
-            [self addGestureRecognizer:strengthGR];
+        DOMStrengthGestureRecognizer *strengthGR = [[DOMStrengthGestureRecognizer alloc] initWithTarget:self action:@selector(tapRegistered:)];
+        [self addGestureRecognizer:strengthGR];
     }
     return self;
 }

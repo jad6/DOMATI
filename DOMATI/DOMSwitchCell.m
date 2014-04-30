@@ -1,13 +1,11 @@
-//
-//  UIColor+DOMATI.m
-//  DOMATI
-//
-//  Created by Jad Osseiran on 24/04/2014.
+//  DOMSwitchCell.m
+// 
+//  Created by Jad on 29/04/2014.
 //  Copyright (c) 2014 Jad. All rights reserved.
 //
 //  Redistribution and use in source and binary forms, with or without
 //  modification, are permitted provided that the following conditions are met:
-//
+// 
 //  Redistributions of source code must retain the above copyright notice, this
 //  list of conditions and the following disclaimer. Redistributions in binary
 //  form must reproduce the above copyright notice, this list of conditions and
@@ -15,7 +13,7 @@
 //  provided with the distribution. Neither the name of the nor the names of
 //  its contributors may be used to endorse or promote products derived from
 //  this software without specific prior written permission.
-//
+// 
 //  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
 //  AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
 //  IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
@@ -24,52 +22,32 @@
 //  CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
 //  SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
 //  INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-//  CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+//  CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
 //  ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 //  POSSIBILITY OF SUCH DAMAGE.
 
-#import "UIColor+DOMATI.h"
+#import "DOMSwitchCell.h"
 
-@implementation UIColor (DOMATI)
+@implementation DOMSwitchCell
 
-+ (UIColor *)domatiColor
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
-    return [UIColor orangeColor];
+    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+    if (self)
+    {
+        [self awakeFromNib];
+    }
+    return self;
 }
 
-+ (UIColor *)backgroundColor
+- (void)awakeFromNib
 {
-    return [UIColor colorWithRed:30.0f / 255.0f green:30.0f / 255.0f blue:30.0f / 255.0f alpha:1.0f];
-}
-
-+ (UIColor *)selectionColor
-{
-    return [UIColor darkGrayColor];
-}
-
-+ (UIColor *)textColor
-{
-    return [UIColor whiteColor];
-}
-
-+ (UIColor *)detailTextColor
-{
-    return [UIColor lightGrayColor];
-}
-
-+ (UIColor *)softCircleColor
-{
-    return [UIColor colorWithRed:13.0f / 255.0f green:181.0f / 255.0f blue:69.0f / 255.0f alpha:1.0f];
-}
-
-+ (UIColor *)normalCircleColor
-{
-    return [UIColor colorWithRed:0.0f / 255.0f green:122.0f / 255.0f blue:255.0f / 255.0f alpha:1.0f];
-}
-
-+ (UIColor *)hardCircleColor
-{
-    return [UIColor colorWithRed:255.0f / 255.0f green:45.0f / 255.0f blue:85.0f / 255.0f alpha:1.0f];
+    [super awakeFromNib];
+    
+    self.titleLabel.textColor = [UIColor textColor];
+    self.switchView.tintColor = [UIColor selectionColor];
+    self.switchView.onTintColor = [UIColor domatiColor];
+    self.switchView.thumbTintColor = [UIColor detailTextColor];
 }
 
 @end

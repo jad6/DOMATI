@@ -30,6 +30,16 @@
 
 #import <UIKit/UIKit.h>
 
+@class DOMInfoViewController;
+
+@protocol DOMInfoViewControllerDelegate <NSObject>
+
+- (void)infoVCDidAskToDismiss:(DOMInfoViewController *)infoVC;
+
+@end
+
 @interface DOMInfoViewController : UITableViewController
+
+@property (nonatomic, weak) id<DOMInfoViewControllerDelegate> delegate;
 
 @end

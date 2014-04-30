@@ -1,13 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="3401" systemVersion="13C64" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="5064" systemVersion="13C1021" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="DOMRawMotionData" representedClassName="DOMRawMotionData" syncable="YES">
         <attribute name="identifier" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
-        <attribute name="pitch" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
-        <attribute name="quaternionW" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
-        <attribute name="quaternionX" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
-        <attribute name="quaternionY" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
-        <attribute name="quaternionZ" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
-        <attribute name="roll" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="rotationRateX" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="rotationRateY" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="rotationRateZ" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
@@ -15,7 +9,6 @@
         <attribute name="userAccelX" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="userAccelY" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="userAccelZ" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
-        <attribute name="yaw" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <relationship name="touchData" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DOMTouchData" inverseName="rawMotionData" inverseEntity="DOMTouchData" syncable="YES"/>
     </entity>
     <entity name="DOMRawTouchData" representedClassName="DOMRawTouchData" syncable="YES">
@@ -31,7 +24,6 @@
         <attribute name="accelerationAvg" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="calibrationStrength" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="duration" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
-        <attribute name="group" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="identifier" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="maxRadius" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="rotationAvg" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
@@ -41,8 +33,8 @@
         <relationship name="rawTouchData" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="DOMRawTouchData" inverseName="touchData" inverseEntity="DOMRawTouchData" syncable="YES"/>
     </entity>
     <elements>
-        <element name="DOMRawMotionData" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="DOMRawTouchData" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="DOMTouchData" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="DOMRawMotionData" positionX="-2" positionY="-297" width="128" height="180"/>
+        <element name="DOMRawTouchData" positionX="0" positionY="-99" width="128" height="150"/>
+        <element name="DOMTouchData" positionX="-182" positionY="-193" width="128" height="193"/>
     </elements>
 </model>

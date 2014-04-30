@@ -85,7 +85,10 @@
 
 - (IBAction)doneAction:(id)sender
 {
-    [self dismissViewControllerAnimated:YES completion:nil];
+    if ([self.delegate respondsToSelector:@selector(infoVCDidAskToDismiss:)])
+    {
+        [self.delegate infoVCDidAskToDismiss:self];
+    }
 }
 
 #pragma mark - Feedback

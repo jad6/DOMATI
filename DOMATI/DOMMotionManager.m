@@ -34,18 +34,8 @@
 
 @interface DOMMotionManager ()
 {
-    // The backgorund queue for the saving of the motion data.
-    dispatch_queue_t listQueue;
     NSError *__autoreleasing *startingError;
 }
-
-/// The pointers for the head and tail of the linked list.
-@property (nonatomic, strong) DOMMotionItem *headMotionItem, *tailMotionItem;
-
-/// The number of activies which the motion manager is giving data to.
-@property (nonatomic) NSInteger numActivities;
-/// The number of objects which are listening to the motion manager.
-@property (nonatomic) NSInteger numListeners;
 
 @end
 
@@ -54,26 +44,13 @@ static NSTimeInterval kUpdateInterval = 1 / 100.0;
 
 @implementation DOMMotionManager
 
-+ (instancetype)sharedManager
-{
-    static __DISPATCH_ONCE__ DOMMotionManager *singletonObject = nil;
-
-    static dispatch_once_t onceToken;
-
-    dispatch_once(&onceToken, ^{
-                      singletonObject = [[self alloc] init];
-                      // Create a serial queue so that we esure the objects get processed
-                      // as first in first sevrved.
-                      singletonObject->listQueue = dispatch_queue_create("list_queue", DISPATCH_QUEUE_SERIAL);
-                  });
-
-    return singletonObject;
-}
-
 - (void)setNumListeners:(NSInteger)numListeners
 {
     if (self->_numListeners != numListeners)
     {
+        NSInteger previousNumListeners = self->_numListeners;
+        self->_numListeners = numListeners;
+        
         // If the new value for the number of listeners is zero stop
         // recording the device motions. However if the listener added
         //  is brings the count from 0 to 1 then start the sensors.
@@ -81,7 +58,7 @@ static NSTimeInterval kUpdateInterval = 1 / 100.0;
         {
             [self stopDeviceMotion];
         }
-        else if (numListeners == 1 && self->_numListeners == 0)
+        else if (numListeners == 1 && previousNumListeners == 0)
         {
             // Turn on the motion sensing if possible.
             if (![self isDeviceMotionActive])
@@ -89,9 +66,19 @@ static NSTimeInterval kUpdateInterval = 1 / 100.0;
                 [self startDeviceMotion:self->startingError];
             }
         }
-
-        self->_numListeners = numListeners;
     }
+}
+
+#pragma mark - Abstract Methods
+
+- (void)handleMotionObjectUpdate:(CMDeviceMotion *)deviceMotion
+{
+    
+}
+
+- (void)resetDataStructureIfPossible
+{
+    
 }
 
 #pragma mark - Logic
@@ -108,25 +95,6 @@ static NSTimeInterval kUpdateInterval = 1 / 100.0;
 - (void)stopListening
 {
     self.numListeners--;
-}
-
-- (BOOL)resetLinkedListIfPossible
-{
-    __block BOOL didReset = NO;
-
-    dispatch_sync(self->listQueue, ^{
-                      // Make sure no activities and listeners are currently using
-                      // the motion manager.
-                      if (self.numActivities == 0 && self.numListeners == 0)
-                      {
-                      // Set the head to be the tail hereby dropping all the
-                      // previously saved objects.
-                          self.headMotionItem = self.tailMotionItem;
-                          didReset = YES;
-                      }
-                  });
-
-    return didReset;
 }
 
 /**
@@ -165,7 +133,7 @@ static NSTimeInterval kUpdateInterval = 1 / 100.0;
                               withHandler:^(CMDeviceMotion *motion, NSError *error) {
          if (!error)
          {
-             [self enqueueDeviceMotion:motion];
+             [self handleMotionObjectUpdate:motion];
          }
          else
          {
@@ -186,64 +154,14 @@ static NSTimeInterval kUpdateInterval = 1 / 100.0;
 {
     // Only stop the sensors if they were already active and no
     // other classes are using the manager.
-    if ([self isDeviceMotionActive])
+    if ([self isDeviceMotionActive] &&
+        self.numListeners == 0 &&
+        self.numActivities == 0)
     {
         [self stopDeviceMotionUpdates];
-
-        // Free up some memory if you can.
-        [self resetLinkedListIfPossible];
+        
+        [self resetDataStructureIfPossible];
     }
 }
-
-#pragma mark - Linked List
-
-/**
- *  Enqueues the given device motion to the linked list. This method
- *  works on the list queue thead.
- *
- *  @param deviceMotion The motion to enqueue.
- */
-- (void)enqueueDeviceMotion:(CMDeviceMotion *)deviceMotion
-{
-    dispatch_sync(self->listQueue, ^{
-                      DOMMotionItem *motionItem = [[DOMMotionItem alloc] initWithDeviceMotion:deviceMotion];
-
-                      if (!self.headMotionItem)
-                      {
-                          // Initialise the linked list pointers.
-                          self.headMotionItem = motionItem;
-                          self.tailMotionItem = motionItem;
-                      }
-                      else
-                      {
-                          self.tailMotionItem = [self.tailMotionItem insertObjectAfter:motionItem];
-                      }
-                  });
-}
-
-- (DOMMotionItem *)lastMotionItemWithTouchPhase:(UITouchPhase)phase;
-{
-    __block DOMMotionItem *motionItem = nil;
-    dispatch_barrier_sync(self->listQueue, ^{
-                              // Update the activity tracker.
-                              if (phase == UITouchPhaseEnded)
-                              {
-                                  self.numActivities--;
-                              }
-                              else if (phase == UITouchPhaseBegan)
-                              {
-                                  self.numActivities++;
-                              }
-
-                              motionItem = self.tailMotionItem;
-                          });
-    return motionItem;
-}
-
-- (DOMMotionItem *)lastMotionItem
-{
-    return [self lastMotionItemWithTouchPhase:UITouchPhaseCancelled];
-}
-
 
 @end
