@@ -41,6 +41,7 @@
 #define KEYSTORE_CALI_EXPR_INDEX @"DOMCalibrationExipryIndex"
 #define KEYSTORE_CALI_EXPR_TEXT @"DOMCalibrationExipryText"
 
+#define DEFAULTS_DEBUG_STRENGTH @"DOMDebugStrength"
 #define DEFAULTS_SKIP_TO_CALI @"DOMSkipToCalibration"
 #define DEFAULTS_TOUCH_SETS_RECORDED @"DOMNumTouchSetsRecorded"
 #define DEFAULTS_NEGATIVE_IDENTIFIER @"DOMNegativeIdentifierKey"

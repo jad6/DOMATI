@@ -167,7 +167,7 @@
                                             <segue destination="OQX-nf-aRd" kind="push" id="ZNT-6V-jQv"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" id="HI0-OT-rgp" customClass="DOMSwitchCell">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" id="HI0-OT-rgp" customClass="DOMSwitchCell">
                                         <rect key="frame" x="0.0" y="459" width="540" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="HI0-OT-rgp" id="YLo-t6-u1o">
@@ -189,6 +189,9 @@
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="onTintColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <color key="thumbTintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <connections>
+                                                        <action selector="debugSwitchAction:" destination="LFR-zr-cPj" eventType="valueChanged" id="WbS-ED-1dW"/>
+                                                    </connections>
                                                 </switch>
                                             </subviews>
                                             <constraints>
@@ -243,6 +246,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="calibrationExpiryCell" destination="yY1-kl-nXl" id="j8Z-z6-q4o"/>
+                        <outlet property="debugSwitch" destination="r1y-xn-mmO" id="hSA-NH-bfe"/>
                         <outlet property="feedbackCell" destination="QgB-so-VuK" id="48D-sn-anY"/>
                         <outlet property="projectProposalCell" destination="A93-V9-gC9" id="5nL-X9-juR"/>
                     </connections>
@@ -641,15 +645,25 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
                                     <segue destination="wJs-Pa-OGe" kind="modal" identifier="Info Segue" modalPresentationStyle="formSheet" id="anH-cL-vab"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.00" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ezP-tr-z25">
+                                <rect key="frame" x="20" y="975" width="56" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="29"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="irX-7V-G0f" secondAttribute="trailing" constant="20" symbolic="YES" id="DSe-n8-cBE"/>
                             <constraint firstAttribute="bottom" secondItem="irX-7V-G0f" secondAttribute="bottom" constant="20" symbolic="YES" id="lQt-MZ-VgI"/>
+                            <constraint firstItem="ezP-tr-z25" firstAttribute="leading" secondItem="5OB-7w-mib" secondAttribute="leading" constant="20" symbolic="YES" id="s7S-Hx-BLu"/>
+                            <constraint firstItem="hyl-SM-Qrb" firstAttribute="top" secondItem="ezP-tr-z25" secondAttribute="bottom" constant="14" id="wbh-3R-Lv9"/>
                         </constraints>
                     </view>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <connections>
+                        <outlet property="debugLabel" destination="ezP-tr-z25" id="OWm-eK-JcK"/>
                         <outlet property="infoButton" destination="irX-7V-G0f" id="ucf-yX-F0S"/>
                     </connections>
                 </viewController>

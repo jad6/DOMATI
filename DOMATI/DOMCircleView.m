@@ -120,9 +120,11 @@
         validTouch = (self.type == DOMCircleViewTypeHard);
     }
     
-    if ([self.delegate respondsToSelector:@selector(circleView:didGetTapped:)])
+    if ([self.delegate respondsToSelector:@selector(circleView:didGetTapped:withStrength:)])
     {
-        [self.delegate circleView:self didGetTapped:validTouch];
+        [self.delegate circleView:self
+                     didGetTapped:validTouch
+                     withStrength:strength];
     }
 }
 

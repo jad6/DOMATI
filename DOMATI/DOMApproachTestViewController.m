@@ -42,6 +42,10 @@ typedef NS_ENUM(NSInteger, DOMAproachAlgorithm) {
     DOMAproachAlgorithmPassive
 };
 
+static CGFloat const kSoftDuration = 0.0958;
+static CGFloat const kNormakDuration = 0.1112;
+static CGFloat const kHardDuration = 0.1831;
+
 @interface DOMApproachTestViewController ()
 
 @property (nonatomic, strong) id motionManager;
@@ -83,15 +87,15 @@ typedef NS_ENUM(NSInteger, DOMAproachAlgorithm) {
     switch (strength)
     {
         case DOMApproachTestStrengthSoft:
-            return 1.0;
+            return kSoftDuration;
             break;
             
         case DOMApproachTestStrengthNormal:
-            return 2.0;
+            return kNormakDuration;
             break;
             
         case DOMApproachTestStrengthHard:
-            return 3.0;
+            return kHardDuration;
             break;
     }
 }

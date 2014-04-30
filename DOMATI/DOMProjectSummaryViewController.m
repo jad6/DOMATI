@@ -34,7 +34,7 @@
 
 @interface DOMProjectSummaryViewController ()
 
-@property (weak, nonatomic) IBOutlet UITextView *textView;
+@property (nonatomic, weak) IBOutlet UITextView *textView;
 
 @end
 

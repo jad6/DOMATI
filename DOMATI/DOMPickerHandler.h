@@ -45,7 +45,7 @@
 
 @interface DOMPickerHandler : NSObject <UIPickerViewDataSource, UIPickerViewDelegate>
 
-@property (weak, nonatomic) id<DOMPickerHandlerDelegate> delegate;
+@property (nonatomic, weak) id<DOMPickerHandlerDelegate> delegate;
 
 @property (nonatomic, strong) UIPickerView *pickerView;
 /// The labels which are associated with the picker selections.

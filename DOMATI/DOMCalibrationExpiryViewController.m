@@ -32,7 +32,7 @@
 
 @interface DOMCalibrationExpiryViewController ()
 
-@property (strong, nonatomic) NSIndexPath *checkIndexPath;
+@property (nonatomic, strong) NSIndexPath *checkIndexPath;
 
 @end
 

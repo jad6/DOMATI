@@ -38,6 +38,7 @@ static NSString *const kBottomCollisionBoundaryIdentifer = @"Bottom Boundary";
 @interface DOMMainViewController () <DOMInfoViewControllerDelegate, DOMCircleViewDelegate, UICollisionBehaviorDelegate>
 
 @property (nonatomic, weak) IBOutlet UIButton *infoButton;
+@property (nonatomic, weak) IBOutlet UILabel *debugLabel;
 
 @property (nonatomic, strong) NSTimer *timer;
 
@@ -67,6 +68,8 @@ static NSString *const kBottomCollisionBoundaryIdentifer = @"Bottom Boundary";
     [collisionBehavior setCollisionDelegate:self];
     
     self.animator = animator;
+    
+    self.debugLabel.hidden = ![[NSUserDefaults standardUserDefaults] boolForKey:DEFAULTS_DEBUG_STRENGTH];
     
     [self startTimer];
 }
@@ -167,9 +170,30 @@ static NSString *const kBottomCollisionBoundaryIdentifer = @"Bottom Boundary";
 
 - (void)circleView:(DOMCircleView *)circleView
       didGetTapped:(BOOL)validTap
+      withStrength:(CGFloat)strength
 {
     if (validTap)
         [self removeCircleView:circleView];
+    
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:DEFAULTS_DEBUG_STRENGTH])
+    {
+        UILabel *debugLabel = self.debugLabel;
+        debugLabel.text = [[NSString alloc] initWithFormat:@"%.2f", strength];
+        UIColor *textColor = nil;
+        if (strength <= 0.33)
+        {
+            textColor = [UIColor softCircleColor];
+        }
+        else if (strength > 0.33 && strength <= 0.66)
+        {
+            textColor = [UIColor normalCircleColor];
+        }
+        else if (strength > 0.66)
+        {
+            textColor = [UIColor hardCircleColor];
+        }
+        debugLabel.textColor = textColor;
+    }
 }
 
 #pragma mark - Collision
@@ -188,6 +212,11 @@ static NSString *const kBottomCollisionBoundaryIdentifer = @"Bottom Boundary";
     [self dismissViewControllerAnimated:YES completion:^{
         [self startTimer];
     }];
+}
+
+- (void)infoVC:(DOMInfoViewController *)infoVC didChangeDebugSwitchValue:(BOOL)debugSwitchValue
+{
+    self.debugLabel.hidden = !debugSwitchValue;
 }
 
 @end

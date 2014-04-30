@@ -45,7 +45,7 @@
 
 @interface DOMYearsPickerHandler : DOMPickerHandler
 
-@property (weak, nonatomic) id<DOMYearsPickerHandlerDelegate> delegate;
+@property (nonatomic, weak) id<DOMYearsPickerHandlerDelegate> delegate;
 
 @property (nonatomic) NSInteger selectedYear;
 

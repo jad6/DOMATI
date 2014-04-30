@@ -28,15 +28,25 @@
                                     <segue destination="eRb-eU-bHx" kind="modal" identifier="Info Segue" id="pRC-xw-xDa"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.00" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Svp-iy-7mk">
+                                <rect key="frame" x="20" y="519" width="56" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="29"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="jaX-yF-D2I" firstAttribute="top" secondItem="Svp-iy-7mk" secondAttribute="bottom" constant="14" id="2Jb-kr-rE1"/>
                             <constraint firstAttribute="bottom" secondItem="giH-6d-BeP" secondAttribute="bottom" constant="20" symbolic="YES" id="8yy-NY-YVU"/>
+                            <constraint firstItem="Svp-iy-7mk" firstAttribute="leading" secondItem="BXv-ZC-3O8" secondAttribute="leading" constant="20" symbolic="YES" id="cJt-bW-1dx"/>
                             <constraint firstAttribute="trailing" secondItem="giH-6d-BeP" secondAttribute="trailing" constant="20" symbolic="YES" id="gol-Jf-3Ys"/>
                         </constraints>
                     </view>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <connections>
+                        <outlet property="debugLabel" destination="Svp-iy-7mk" id="LJ4-Hq-ibU"/>
                         <outlet property="infoButton" destination="giH-6d-BeP" id="o1R-MD-67W"/>
                     </connections>
                 </viewController>
@@ -207,7 +217,7 @@
                                             <segue destination="vrh-eW-1mW" kind="push" id="UZJ-VH-74j"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" id="eLi-rk-6n1" customClass="DOMSwitchCell">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" id="eLi-rk-6n1" customClass="DOMSwitchCell">
                                         <rect key="frame" x="0.0" y="459" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="eLi-rk-6n1" id="QLy-YP-auo">
@@ -229,6 +239,9 @@
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="onTintColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <color key="thumbTintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <connections>
+                                                        <action selector="debugSwitchAction:" destination="MMF-XX-Iq2" eventType="valueChanged" id="Sys-DR-DUR"/>
+                                                    </connections>
                                                 </switch>
                                             </subviews>
                                             <constraints>
@@ -283,6 +296,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="calibrationExpiryCell" destination="pKx-jd-y9f" id="coe-EZ-Iwc"/>
+                        <outlet property="debugSwitch" destination="0UY-OQ-cQh" id="2G9-Lf-yqu"/>
                         <outlet property="feedbackCell" destination="9rP-FO-k1Y" id="t7o-fz-909"/>
                         <outlet property="projectProposalCell" destination="ONO-ZW-k5V" id="0Pq-yh-nBV"/>
                     </connections>

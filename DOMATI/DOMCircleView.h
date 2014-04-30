@@ -40,7 +40,8 @@ typedef NS_ENUM(NSInteger, DOMCircleViewType) {
 
 @optional
 - (void)circleView:(DOMCircleView *)circleView
-      didGetTapped:(BOOL)validTap;
+      didGetTapped:(BOOL)validTap
+      withStrength:(CGFloat)strength;
 
 @end
 

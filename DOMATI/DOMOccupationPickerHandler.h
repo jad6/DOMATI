@@ -45,7 +45,7 @@
 
 @interface DOMOccupationPickerHandler : DOMPickerHandler
 
-@property (weak, nonatomic) id<DOMOccupationPickerHandlerDelegate> delegate;
+@property (nonatomic, weak) id<DOMOccupationPickerHandlerDelegate> delegate;
 
 @property (nonatomic) NSString *selectedOccupation;
 

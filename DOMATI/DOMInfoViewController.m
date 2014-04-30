@@ -36,11 +36,13 @@
 
 @interface DOMInfoViewController () <MFMailComposeViewControllerDelegate, QLPreviewControllerDataSource>
 
-@property (weak, nonatomic) IBOutlet UITableViewCell *feedbackCell;
-@property (weak, nonatomic) IBOutlet UITableViewCell *calibrationExpiryCell;
-@property (weak, nonatomic) IBOutlet UITableViewCell *projectProposalCell;
+@property (nonatomic, weak) IBOutlet UITableViewCell *feedbackCell;
+@property (nonatomic, weak) IBOutlet UITableViewCell *calibrationExpiryCell;
+@property (nonatomic, weak) IBOutlet UITableViewCell *projectProposalCell;
 
-@property (strong, nonatomic) DOMPreviewItem *previewItem;
+@property (nonatomic, weak) IBOutlet UISwitch *debugSwitch;
+
+@property (nonatomic, strong) DOMPreviewItem *previewItem;
 
 @end
 
@@ -52,6 +54,7 @@
 
     self.title = @"DOMATI";
     self.feedbackCell.textLabel.textColor = [UIColor domatiColor];
+    self.debugSwitch.on = [[NSUserDefaults standardUserDefaults] boolForKey:DEFAULTS_DEBUG_STRENGTH];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -88,6 +91,18 @@
     if ([self.delegate respondsToSelector:@selector(infoVCDidAskToDismiss:)])
     {
         [self.delegate infoVCDidAskToDismiss:self];
+    }
+}
+
+- (IBAction)debugSwitchAction:(UISwitch *)debugSwitch
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setBool:debugSwitch.on forKey:DEFAULTS_DEBUG_STRENGTH];
+    [defaults synchronize];
+    
+    if ([self.delegate respondsToSelector:@selector(infoVC:didChangeDebugSwitchValue:)])
+    {
+        [self.delegate infoVC:self didChangeDebugSwitchValue:debugSwitch.on];
     }
 }
 

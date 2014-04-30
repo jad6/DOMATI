@@ -36,6 +36,9 @@
 
 - (void)infoVCDidAskToDismiss:(DOMInfoViewController *)infoVC;
 
+@optional
+- (void)infoVC:(DOMInfoViewController *)infoVC didChangeDebugSwitchValue:(BOOL)debugSwitchValue;
+
 @end
 
 @interface DOMInfoViewController : UITableViewController
