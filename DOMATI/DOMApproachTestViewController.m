@@ -46,6 +46,8 @@ static CGFloat const kSoftDuration = 0.1916;
 static CGFloat const kNormakDuration = 0.2224;
 static CGFloat const kHardDuration = 0.3662;
 
+static NSTimeInterval const kBetweenDelay = 2.0;
+
 @interface DOMApproachTestViewController ()
 
 @property (nonatomic, strong) id motionManager;
@@ -149,8 +151,12 @@ static CGFloat const kHardDuration = 0.3662;
         [self updateLabelWithValue:count
                        forStrength:strength
                          algorithm:DOMAproachAlgorithmActive];
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [self activeApproachSimulationForStrength:(strength + 1) motionManager:motionManager completion:completionBlock];
+        
+        DOMApproachTestStrength nextStrength = strength + 1;
+        NSTimeInterval strengthDelay = (nextStrength > DOMApproachTestStrengthHard) ? 0.0 : kBetweenDelay;
+
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(strengthDelay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self activeApproachSimulationForStrength:nextStrength motionManager:motionManager completion:completionBlock];
         });
     });
 }
@@ -159,7 +165,7 @@ static CGFloat const kHardDuration = 0.3662;
 {
     self.motionManager = [[DOMActiveMotionManager alloc] init];
     
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(kBetweenDelay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [self activeApproachSimulationForStrength:DOMApproachTestStrengthSoft motionManager:self.motionManager completion:^{
             if (completionBlock)
             {
@@ -201,8 +207,11 @@ static CGFloat const kHardDuration = 0.3662;
                        forStrength:strength
                          algorithm:DOMAproachAlgorithmPassive];
         
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [self passiveApproachSimulationForStrength:(strength + 1) motionManager:motionManager completion:completionBlock];
+        DOMApproachTestStrength nextStrength = strength + 1;
+        NSTimeInterval strengthDelay = (nextStrength > DOMApproachTestStrengthHard) ? 0.0 : kBetweenDelay;
+        
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(strengthDelay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self passiveApproachSimulationForStrength:nextStrength motionManager:motionManager completion:completionBlock];
         });
     });
 }
@@ -218,7 +227,7 @@ static CGFloat const kHardDuration = 0.3662;
         [error handle];
     }
     
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(kBetweenDelay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [self passiveApproachSimulationForStrength:DOMApproachTestStrengthSoft motionManager:self.motionManager completion:^{
             [self.motionManager stopListening];
             
