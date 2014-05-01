@@ -25,6 +25,16 @@
 
 @implementation LLItem
 
+- (void)dealloc
+{
+    // Fixes stack overflow for a long list.
+    __block LLItem *next = self->_ll_next;
+    self->_ll_next = nil;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        next = nil;
+    });
+}
+
 - (id)nextObject
 {
     return self->_ll_next;

@@ -130,6 +130,7 @@ static NSString *const kBottomCollisionBoundaryIdentifer = @"Bottom Boundary";
 {
     [self stopTimer];
     
+    [self.motionManager resetDataStructureIfPossible];
     self.motionManager = nil;
     
     UILabel *debugLabel = self.debugLabel;

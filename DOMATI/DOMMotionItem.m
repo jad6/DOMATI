@@ -10,6 +10,12 @@
 
 #import "DOMMotionItem.h"
 
+@interface DOMMotionItem ()
+
+@property (nonatomic, strong) CMDeviceMotion *deviceMotion;
+
+@end
+
 @implementation DOMMotionItem
 
 - (instancetype)initWithDeviceMotion:(CMDeviceMotion *)deviceMotion
@@ -17,8 +23,8 @@
     self = [super init];
     if (self)
     {
-        self->_deviceMotion = deviceMotion;
-        self->_timestamp = deviceMotion.timestamp;
+        self.deviceMotion = deviceMotion;
+        self.timestamp = deviceMotion.timestamp;
     }
     return self;
 }

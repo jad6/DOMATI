@@ -77,7 +77,7 @@
         {
             //            self.tailMotionItem = nil;
             //            self.headMotionItem = nil;
-            //            self.headMotionItem = self.tailMotionItem;
+            self.headMotionItem = self.tailMotionItem;
             didReset = YES;
         }
     });

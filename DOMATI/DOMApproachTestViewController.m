@@ -42,9 +42,9 @@ typedef NS_ENUM(NSInteger, DOMAproachAlgorithm) {
     DOMAproachAlgorithmPassive
 };
 
-static CGFloat const kSoftDuration = 0.0958;
-static CGFloat const kNormakDuration = 0.1112;
-static CGFloat const kHardDuration = 0.1831;
+static CGFloat const kSoftDuration = 0.1916;
+static CGFloat const kNormakDuration = 0.2224;
+static CGFloat const kHardDuration = 0.3662;
 
 @interface DOMApproachTestViewController ()
 
