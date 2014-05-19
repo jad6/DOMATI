@@ -547,8 +547,8 @@
 			isa = PBXGroup;
 			children = (
 				058E88A6191D109D0075094E /* DOMCircleView.h */,
-				058E88A7191D109D0075094E /* DOMMainViewController.h */,
 				058E88A8191D109D0075094E /* DOMCircleView.m */,
+				058E88A7191D109D0075094E /* DOMMainViewController.h */,
 				058E88A9191D109D0075094E /* DOMMainViewController.m */,
 				058FFC0917D9FBB3008ECB1B /* Info Menu */,
 			);
@@ -785,10 +785,10 @@
 			isa = PBXGroup;
 			children = (
 				058538F2191D168B00A0E157 /* DOMCalibrationListViewController.h */,
-				058538F3191D168B00A0E157 /* DOMCalibrationMonthsViewController.h */,
-				058538F4191D168B00A0E157 /* DOMCalibrationMothDetailViewController.h */,
 				058538F5191D168B00A0E157 /* DOMCalibrationListViewController.m */,
+				058538F3191D168B00A0E157 /* DOMCalibrationMonthsViewController.h */,
 				058538F6191D168B00A0E157 /* DOMCalibrationMonthsViewController.m */,
+				058538F4191D168B00A0E157 /* DOMCalibrationMothDetailViewController.h */,
 				058538F7191D168B00A0E157 /* DOMCalibrationMothDetailViewController.m */,
 			);
 			name = Lists;

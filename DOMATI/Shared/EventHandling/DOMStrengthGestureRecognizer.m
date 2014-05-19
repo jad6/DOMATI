@@ -186,7 +186,7 @@ static NSTimeInterval const kMaxAcceptableDuration = 1.2;
     return CGPointMake(viewOrigin.x + location.x, viewOrigin.y + location.y);
 }
 
-- (CGFloat)standardisedValueFromValue:(CGFloat)value
+- (CGFloat)normalisedValueFromValue:(CGFloat)value
                            boundaries:(NSArray *)boundaries
 {
     NSSortDescriptor *sortOrder = [NSSortDescriptor sortDescriptorWithKey:@"self" ascending:YES];
@@ -205,19 +205,19 @@ static NSTimeInterval const kMaxAcceptableDuration = 1.2;
     if (value > maxBoundary)
         return maxBoundary;
     
-    CGFloat standardisedValue = 0.0f;
-    for (NSInteger i = 1; i < [boundaries count]; i++)
+    CGFloat normalisedValue = 0.0f;
+    for (NSInteger i = 1; i < numBoundaries; i++)
     {
         CGFloat upperBoundary = TO_CGFLOAT(boundaries[i]);
         CGFloat lowerBoundary = TO_CGFLOAT(boundaries[i-1]);
         if (value > lowerBoundary && value <= upperBoundary)
         {
-            standardisedValue = ((i - 1) * sizeFactor) + ((value / upperBoundary) * sizeFactor);
+            normalisedValue = ((i - 1) * sizeFactor) + ((value / upperBoundary) * sizeFactor);
             break;
         }
     }
     
-    return standardisedValue;
+    return normalisedValue;
 }
 
 - (CGFloat)strengthForTouch:(UITouch *)touch
@@ -230,19 +230,19 @@ static NSTimeInterval const kMaxAcceptableDuration = 1.2;
         CGFloat duration = TO_CGFLOAT(self.touchesInfo[pointerKey][kTouchInfoDurationKey]);
         if (duration > kMaxAcceptableDuration)
         {
-            strength = -1.0;
+            strength = -1.5;
         }
         else
         {
             CGFloat avgAcceleration = TO_CGFLOAT(self.motionsInfo[pointerKey][kMotionInfoAvgAccelerationKey]);
             NSArray *accelerationBoundries = @[@(kAccLowerSoft), @(kAccLowerNormal),
                                                @(kAccUpperNormal), @(kAccUpperHard)];
-            CGFloat acceleration = [self standardisedValueFromValue:avgAcceleration boundaries:accelerationBoundries];
+            CGFloat acceleration = [self normalisedValueFromValue:avgAcceleration boundaries:accelerationBoundries];
             
             CGFloat avgRotation = TO_CGFLOAT(self.motionsInfo[pointerKey][kMotionInfoAvgRotationKey]);
             NSArray *rotationBoundaries = @[@(kRotLowerSoft), @(kRotLowerNormal),
                                             @(kRotUpperNormal), @(kRotUpperHard)];
-            CGFloat rotation = [self standardisedValueFromValue:avgRotation boundaries:rotationBoundaries];
+            CGFloat rotation = [self normalisedValueFromValue:avgRotation boundaries:rotationBoundaries];
             
             strength = (rotation + acceleration) / 2.0;
         }

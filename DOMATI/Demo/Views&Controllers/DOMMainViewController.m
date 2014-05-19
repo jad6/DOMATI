@@ -142,7 +142,7 @@ static NSString *const kBottomCollisionBoundaryIdentifer = @"Bottom Boundary";
 
 - (void)startTimer
 {
-    self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:1.5
                                                   target:self
                                                 selector:@selector(dropNewCircleAction:)
                                                 userInfo:nil
