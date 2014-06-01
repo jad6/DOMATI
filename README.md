@@ -1,7 +1,20 @@
 # DOMATI
 
-This is the iOS part for Jad's Final Year Thesis on Dynamic Object Modelling for Advanced Touch Interactions
+This is the iOS part for Jad's Final Year Thesis on Dynamic Object Manipulation for Advanced Touch Interactions
 
-Current standard touch interactions on familiar multitouch devices such as smartphones and tablets are limited. Devices are aware of: the location of a touch on the display, the time of the interaction, the current phase (beginning, dragging, end) of the touch, and the number of repetitive interactions such as a double or triple taps. In addition to these variables, further information could be extrapolated to facilitate new ways of controlling software.
+## Abstract
+Current standard touch interactions on familiar multitouch devices such as smart- phones and tablets are limited. Using motion sensors and touch data simultaneously, new interactions can be detected to facilitate innovative ways of controlling software applications.
 
-This Final Year Project aims to enable multitouch devices to recognise 'advanced touch interactions' (standard interactions which also take into account the strength of a touch). Further, a software application will be created to model the effects of advanced touch interactions on a 3D rendered object. Strength detection algorithms combining the radius and duration of a touch along with its effect on a gyroscope and accelerometer will be researched, implemented, tested and calibrated. This project aims to significantly improve software for scientific research, open up new user interfaces, and enrich entertainment applications. 
+This Final Year Project aims to produce a user calibrated algorithm that calculates the strength of a touch on a capacitive display device. This is achieved by the use of its movements in 3D space as well as the properties of the touch. Two algorithms are designed, implemented and compared. The algorithms, named “passive” and “active”, are used to record the device’s movements. The optimal algorithm is then used on a population study to determine perceptions of soft, normal and hard touches. Using data from the study, the algorithms are calibrated to return a scalar touch strength value. According to the study perceptions of touch strength are universal thus allowing for a “one size fits all” algorithm.
+
+This algorithm has the potential to improve software for scientific research, open up new user interfaces, and enrich entertainment applications.
+
+## Mobile Application
+
+The repository can be cloned and compiled to run the application.
+
+To install the Cocoapods for this project run the ```pod install``` command.
+
+## Dissertation
+
+The paper can be viewed within the app or alternatively it can be [downloaded here](https://raw.githubusercontent.com/jad6/DOMATI-iOS/master/DOMATI/Shared/Ressources/Dissertation.pdf).
