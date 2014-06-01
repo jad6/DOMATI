@@ -2,6 +2,8 @@
 
 This is the iOS part for Jad's Final Year Thesis on Dynamic Object Manipulation for Advanced Touch Interactions
 
+![image](/Users/Jad/Desktop/domati.png)
+
 ## Abstract
 Current standard touch interactions on familiar multitouch devices such as smart- phones and tablets are limited. Using motion sensors and touch data simultaneously, new interactions can be detected to facilitate innovative ways of controlling software applications.
 
