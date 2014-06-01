@@ -83,7 +83,6 @@
 		05B1FBE418AC9BE10049095F /* UIApplication+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 05B1FBE318AC9BE10049095F /* UIApplication+Extensions.m */; };
 		05B9B20118BF8C25006D24B8 /* UIDevice+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 05B9B20018BF8C25006D24B8 /* UIDevice+Extension.m */; };
 		05BD579918B48824003FE71B /* UserInfoTable.plist in Resources */ = {isa = PBXBuildFile; fileRef = 05BD579818B48824003FE71B /* UserInfoTable.plist */; };
-		05C4C660182F118A00E45F9D /* Project Proposal.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 05C4C65F182F118A00E45F9D /* Project Proposal.pdf */; };
 		05C702F1189C8D8A00E0AC35 /* DOMYearsPickerHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 05C702F0189C8D8A00E0AC35 /* DOMYearsPickerHandler.m */; };
 		05C702F7189C8DF500E0AC35 /* DOMPickerHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 05C702F6189C8DF500E0AC35 /* DOMPickerHandler.m */; };
 		05C702FA189C9BC200E0AC35 /* DOMOccupationPickerHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 05C702F9189C9BC200E0AC35 /* DOMOccupationPickerHandler.m */; };
@@ -97,6 +96,7 @@
 		05DD75E418BC8B2600A261CD /* DOMMotionItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 05DD75E318BC8B2600A261CD /* DOMMotionItem.m */; };
 		05DD75F918BCBAB800A261CD /* DOMRawMotionData+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 05DD75F818BCBAB800A261CD /* DOMRawMotionData+Extensions.m */; };
 		05DD75FC18BCBC1500A261CD /* DOMRawTouchData+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 05DD75FB18BCBC1500A261CD /* DOMRawTouchData+Extensions.m */; };
+		05E342B0193AD76300662461 /* Dissertation.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 05E342AF193AD76300662461 /* Dissertation.pdf */; };
 		05F0780C181CC4D2006EA8B0 /* DOMThemeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 05F0780B181CC4D2006EA8B0 /* DOMThemeManager.m */; };
 		A5BF660DD26743C69D6E328A /* libPods-DOMATI.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AD90268F6126446CA72059D3 /* libPods-DOMATI.a */; };
 /* End PBXBuildFile section */
@@ -236,7 +236,6 @@
 		05B9B1FF18BF8C25006D24B8 /* UIDevice+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIDevice+Extension.h"; sourceTree = "<group>"; };
 		05B9B20018BF8C25006D24B8 /* UIDevice+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+Extension.m"; sourceTree = "<group>"; };
 		05BD579818B48824003FE71B /* UserInfoTable.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = UserInfoTable.plist; sourceTree = "<group>"; };
-		05C4C65F182F118A00E45F9D /* Project Proposal.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "Project Proposal.pdf"; sourceTree = "<group>"; };
 		05C702EF189C8D8A00E0AC35 /* DOMYearsPickerHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DOMYearsPickerHandler.h; sourceTree = "<group>"; };
 		05C702F0189C8D8A00E0AC35 /* DOMYearsPickerHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DOMYearsPickerHandler.m; sourceTree = "<group>"; };
 		05C702F5189C8DF500E0AC35 /* DOMPickerHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DOMPickerHandler.h; sourceTree = "<group>"; };
@@ -262,6 +261,7 @@
 		05DD75FA18BCBC1500A261CD /* DOMRawTouchData+Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "DOMRawTouchData+Extensions.h"; sourceTree = "<group>"; };
 		05DD75FB18BCBC1500A261CD /* DOMRawTouchData+Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "DOMRawTouchData+Extensions.m"; sourceTree = "<group>"; };
 		05DD760218BCBE7300A261CD /* DOMRawData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DOMRawData.h; sourceTree = "<group>"; };
+		05E342AF193AD76300662461 /* Dissertation.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = Dissertation.pdf; sourceTree = "<group>"; };
 		05F0780A181CC4D2006EA8B0 /* DOMThemeManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DOMThemeManager.h; sourceTree = "<group>"; };
 		05F0780B181CC4D2006EA8B0 /* DOMThemeManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DOMThemeManager.m; sourceTree = "<group>"; };
 		63A432A8A6054321847F6A3E /* Pods-DOMATI.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DOMATI.xcconfig"; path = "Pods/Pods-DOMATI.xcconfig"; sourceTree = "<group>"; };
@@ -573,7 +573,7 @@
 			children = (
 				05098F2917B62859009D4FF5 /* Images.xcassets */,
 				05A939EF18AB1AD80047F4CD /* CalibrationStates.plist */,
-				05C4C65F182F118A00E45F9D /* Project Proposal.pdf */,
+				05E342AF193AD76300662461 /* Dissertation.pdf */,
 			);
 			name = Resources;
 			path = Ressources;
@@ -916,12 +916,12 @@
 				058E88C9191D11730075094E /* Data_Gather_iPhone.storyboard in Resources */,
 				05098F2217B62859009D4FF5 /* InfoPlist.strings in Resources */,
 				058E88C8191D11730075094E /* Data_Gather_iPad.storyboard in Resources */,
-				05C4C660182F118A00E45F9D /* Project Proposal.pdf in Resources */,
 				05098F2A17B62859009D4FF5 /* Images.xcassets in Resources */,
 				05C702FC189C9BE700E0AC35 /* Occupations.plist in Resources */,
 				058E88C2191D11500075094E /* Main_iPad.storyboard in Resources */,
 				059D11EC19062798005FB4E3 /* Network.plist in Resources */,
 				05BD579918B48824003FE71B /* UserInfoTable.plist in Resources */,
+				05E342B0193AD76300662461 /* Dissertation.pdf in Resources */,
 				05A939F018AB1AD80047F4CD /* CalibrationStates.plist in Resources */,
 				058E88C3191D11500075094E /* Main_iPhone.storyboard in Resources */,
 			);

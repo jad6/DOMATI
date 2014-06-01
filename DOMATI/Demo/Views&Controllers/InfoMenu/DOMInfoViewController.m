@@ -174,8 +174,8 @@
     }
     else if ([cell isEqual:self.projectProposalCell])
     {
-        [self showDocumentWithLocalURL:[[NSBundle mainBundle] URLForResource:@"Project Proposal" withExtension:@"pdf"]
-                              andTitle:@"Project Proposal"];
+        [self showDocumentWithLocalURL:[[NSBundle mainBundle] URLForResource:@"Dissertation" withExtension:@"pdf"]
+                              andTitle:@"Dissertation"];
     }
 }
 
