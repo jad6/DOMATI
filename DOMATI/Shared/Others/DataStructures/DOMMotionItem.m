@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 Jad. All rights reserved.
 //
 
-#import <CoreMotion/CMDeviceMotion.h>
+@import CoreMotion.CMDeviceMotion;
 
 #import "DOMMotionItem.h"
 

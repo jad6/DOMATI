@@ -6,8 +6,8 @@
 //  Copyright (c) 2014 Jad. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-#import <CoreData/CoreData.h>
+@import Foundation;
+@import CoreData;
 
 @class DOMRawMotionData, DOMRawTouchData;
 

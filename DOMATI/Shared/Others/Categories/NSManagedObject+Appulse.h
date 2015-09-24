@@ -27,7 +27,7 @@
 //  ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 //  POSSIBILITY OF SUCH DAMAGE.
 
-#import <CoreData/CoreData.h>
+@import CoreData;
 
 @interface NSManagedObject (Appulse)
 

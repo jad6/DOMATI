@@ -28,7 +28,7 @@
 //  ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 //  POSSIBILITY OF SUCH DAMAGE.
 
-#import <UIKit/UIKit.h>
+@import UIKit;
 
 // The state in which the view controller is currently in.
 typedef NS_ENUM(NSInteger, DOMCalibrationState) {

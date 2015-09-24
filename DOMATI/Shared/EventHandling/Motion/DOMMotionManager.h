@@ -28,8 +28,8 @@
 //  ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 //  POSSIBILITY OF SUCH DAMAGE.
 
-#import <Foundation/Foundation.h>
-#import <CoreMotion/CoreMotion.h>
+@import Foundation;
+@import CoreMotion;
 
 #import "DOMMotionItem.h"
 

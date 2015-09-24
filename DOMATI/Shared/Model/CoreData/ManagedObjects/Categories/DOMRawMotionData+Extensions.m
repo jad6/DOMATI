@@ -28,7 +28,7 @@
 //  ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 //  POSSIBILITY OF SUCH DAMAGE.
 
-#import <CoreMotion/CMDeviceMotion.h>
+@import CoreMotion.CMDeviceMotion;
 
 #import "DOMRawMotionData+Extensions.h"
 
