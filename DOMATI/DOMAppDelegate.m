@@ -55,10 +55,7 @@
 
     NSString *storyboardName = nil;
 #if DATA_GATHERING
-    if (IPAD)
-        storyboardName = @"Data_Gather_iPad";
-    else
-        storyboardName = @"Data_Gather_iPhone";
+    storyboardName = @"Data_Gather";
 
     // This is done so that upon launch the User data is pulled from iCloud.
     [DOMUser refreshCurrentUser];
@@ -71,10 +68,7 @@
     if ([DOMUser currentUser].identifier > 0)
         [[DOMRequestOperationManager sharedManager] uploadDataWhenPossible];
 #else
-    if (IPAD)
-        storyboardName = @"Main_iPad";
-    else
-        storyboardName = @"Main_iPhone";
+    storyboardName = @"Main";
 #endif
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:storyboardName bundle:nil];
     self.window.rootViewController = [storyboard instantiateInitialViewController];

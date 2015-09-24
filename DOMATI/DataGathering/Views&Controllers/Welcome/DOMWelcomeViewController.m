@@ -84,7 +84,7 @@
     UIViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:identifier];
 
     DOMNavigationController *navController = [[DOMNavigationController alloc] initWithRootViewController:controller];
-    UIBarButtonItem *closeBarButton = [[UIBarButtonItem alloc] initWithTitle:@"Close" style:UIBarButtonItemStyleBordered target:self action:@selector(dismissAction:)];
+    UIBarButtonItem *closeBarButton = [[UIBarButtonItem alloc] initWithTitle:@"Close" style:UIBarButtonItemStylePlain target:self action:@selector(dismissAction:)];
 
     [[controller navigationItem] setLeftBarButtonItem:closeBarButton];
 
@@ -105,20 +105,6 @@
     [self presentViewControllerWithIdentifier:identifier withTitle:nil];
 }
 
-#pragma mark - Alert View
-
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
-    // If the user has selected to read the PCF present it.
-    if (buttonIndex == 1) {
-        [self pcfAction:nil];
-    }
-
-    // Carry on with the user info screen.
-    if (buttonIndex == 0) {
-        [self performSegueWithIdentifier:@"User Info Segue" sender:self];
-    }
-}
-
 #pragma mark - Actions
 
 /**
@@ -128,9 +114,21 @@
  *  @param sender the sender of the action.
  */
 - (IBAction)nextAction:(id)sender {
-    UIAlertView *pcfAV = [[UIAlertView alloc] initWithTitle:@"Consent" message:@"By selecting \"I Agree\" you agree to the terms in the Participant Consent Form (PCF) with UWA HREO ethics approval ref RA/4/1/6642 and can proceed with the app." delegate:self cancelButtonTitle:@"I Agree" otherButtonTitles:@"Show PCF", @"Cancel", nil];
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Consent" message:@"By selecting \"I Agree\" you agree to the terms in the Participant Consent Form (PCF) with UWA HREO ethics approval ref RA/4/1/6642 and can proceed with the app." preferredStyle:UIAlertControllerStyleAlert];
 
-    [pcfAV show];
+    UIAlertAction *agreeAction = [UIAlertAction actionWithTitle:@"I Agree" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+        [self performSegueWithIdentifier:@"User Info Segue" sender:self];
+    }];
+    UIAlertAction *showFormAction = [UIAlertAction actionWithTitle:@"Show PCF" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+        [self pcfAction:nil];
+    }];
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
+
+    [alertController addAction:agreeAction];
+    [alertController addAction:showFormAction];
+    [alertController addAction:cancelAction];
+
+    [self presentViewController:alertController animated:YES completion:nil];
 }
 
 /**

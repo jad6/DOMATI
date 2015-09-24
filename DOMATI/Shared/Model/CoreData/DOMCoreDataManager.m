@@ -58,13 +58,13 @@
 #pragma mark - Core Data Core
 
 - (void)flushDatabase {
-    [self.managedContext lock];
-    NSArray *stores = [self.persistentStoreCoordinator persistentStores];
-    for (NSPersistentStore *store in stores) {
-        [self.persistentStoreCoordinator removePersistentStore:store error:nil];
-        [[NSFileManager defaultManager] removeItemAtPath:store.URL.path error:nil];
-    }
-    [self.managedContext unlock];
+    [self.managedContext performBlockAndWait:^{
+        NSArray *stores = [self.persistentStoreCoordinator persistentStores];
+        for (NSPersistentStore *store in stores) {
+            [self.persistentStoreCoordinator removePersistentStore:store error:nil];
+            [[NSFileManager defaultManager] removeItemAtPath:store.URL.path error:nil];
+        }
+    }];
 
     self.managedObjectModel = nil;
     self.managedContext = nil;

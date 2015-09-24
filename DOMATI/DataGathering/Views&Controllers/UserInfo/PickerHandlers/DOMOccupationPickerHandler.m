@@ -38,6 +38,8 @@
 
 @implementation DOMOccupationPickerHandler
 
+@dynamic delegate;
+
 - (void)populatedPicker:(UIPickerView *)pickerView
   withInitialOccupation:(NSString *)occupation
                delegate:(id<DOMOccupationPickerHandlerDelegate>)delegate {

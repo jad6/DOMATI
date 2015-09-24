@@ -37,9 +37,7 @@ static NSString *DetailCellIdentifier = @"Detail Cell";
 static NSString *TextFieldCellIdentifier = @"Text Field Cell";
 static NSString *PickerCellIdentifier = @"Picker Cell";
 
-static NSInteger kUndisclosedAlertTag = 10;
-
-@interface DOMUserInfoViewController () <UIAlertViewDelegate>
+@interface DOMUserInfoViewController ()
 
 // Keep a reference to the first responder to easily resign it.
 @property (nonatomic, strong) id currentFirstResponder;
@@ -83,21 +81,19 @@ static NSInteger kUndisclosedAlertTag = 10;
         }
 
         NSString *message = [[NSString alloc] initWithFormat:@"The following fields are undisclosed: \"%@\". Please scroll down to fill them.", list];
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Undisclosed Fields" message:message preferredStyle:UIAlertControllerStyleAlert];
 
-        UIAlertView *undisclosedAV = [[UIAlertView alloc] initWithTitle:@"Undisclosed Fields" message:message delegate:self cancelButtonTitle:@"Fill Fields" otherButtonTitles:@"Ignore", nil];
-        undisclosedAV.tag = kUndisclosedAlertTag;
-        [undisclosedAV show];
+        UIAlertAction *ignoreAction = [UIAlertAction actionWithTitle:@"Ignore" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+            [self performSegueWithIdentifier:@"Calibration Segue" sender:nil];
+        }];
+        UIAlertAction *fillAction = [UIAlertAction actionWithTitle:@"Fill Fields" style:UIAlertActionStyleCancel handler:nil];
+
+        [alertController addAction:ignoreAction];
+        [alertController addAction:fillAction];
+
+        [self presentViewController:alertController animated:YES completion:nil];
     } else {
         [self performSegueWithIdentifier:@"Calibration Segue" sender:sender];
-    }
-}
-
-#pragma mark - Alert View
-
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
-    // Bring up the calibration screen upon the user's request.
-    if (alertView.tag == kUndisclosedAlertTag && buttonIndex == 1) {
-        [self performSegueWithIdentifier:@"Calibration Segue" sender:nil];
     }
 }
 

@@ -38,6 +38,8 @@
 
 @implementation DOMYearsPickerHandler
 
+@dynamic delegate;
+
 - (void)populatedPicker:(UIPickerView *)pickerView
         withInitialYear:(NSInteger)year
                delegate:(id<DOMYearsPickerHandlerDelegate>)delegate {
@@ -52,7 +54,7 @@
 
 - (NSInteger)currentYear {
     if (!self->_currentYear) {
-        NSDateComponents *comps = [[NSCalendar currentCalendar] components:NSYearCalendarUnit fromDate:[NSDate date]];
+        NSDateComponents *comps = [[NSCalendar currentCalendar] components:NSCalendarUnitYear fromDate:[NSDate date]];
         self->_currentYear = [comps year];
     }
 

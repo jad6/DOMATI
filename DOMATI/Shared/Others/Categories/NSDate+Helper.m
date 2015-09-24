@@ -35,7 +35,7 @@
 #pragma mark - Helper Methods
 
 - (NSDateComponents *)dateComponents {
-    unsigned unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit;
+    unsigned unitFlags = NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay | NSCalendarUnitHour | NSCalendarUnitMinute;
 
     return [[NSCalendar autoupdatingCurrentCalendar] components:unitFlags fromDate:self];
 }
@@ -72,7 +72,7 @@
 }
 
 - (NSInteger)daysDifferenceToDate:(NSDate *)toDate {
-    unsigned unitFlags = NSDayCalendarUnit;
+    unsigned unitFlags = NSCalendarUnitDay;
     NSDateComponents *components = [[NSCalendar currentCalendar] components:unitFlags fromDate:self toDate:toDate options:0];
 
     return [components day] + 1;
@@ -91,7 +91,7 @@
 
 - (NSDate *)endOfCurrentYear {
     // Get the number of months till the end of the year.
-    NSRange monthsRange = [[NSCalendar currentCalendar] rangeOfUnit:NSMonthCalendarUnit inUnit:NSYearCalendarUnit forDate:self];
+    NSRange monthsRange = [[NSCalendar currentCalendar] rangeOfUnit:NSCalendarUnitMonth inUnit:NSCalendarUnitYear forDate:self];
     NSInteger numMonthsInYear = monthsRange.length;
 
     // Save that last month date.
@@ -99,7 +99,7 @@
     NSDate *endMonthDate = [self dateByAddingNumberOfMonths:(numMonthsInYear - comps.month)];
 
     // Get the number of days till the end of the last month.
-    NSRange daysRange = [[NSCalendar currentCalendar] rangeOfUnit:NSDayCalendarUnit inUnit:NSMonthCalendarUnit forDate:endMonthDate];
+    NSRange daysRange = [[NSCalendar currentCalendar] rangeOfUnit:NSCalendarUnitDay inUnit:NSCalendarUnitMonth forDate:endMonthDate];
     NSInteger numDaysInMonth = daysRange.length;
 
     return [endMonthDate dateByAddingNumberOfDays:(numDaysInMonth - comps.day)];
@@ -110,7 +110,7 @@
 - (NSDate *)dayWithHour:(NSUInteger)hour
                  minute:(NSUInteger)minute
                  second:(NSUInteger)second {
-    unsigned unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit;
+    unsigned unitFlags = NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay | NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond;
     NSDateComponents *comps = [[NSCalendar currentCalendar] components:unitFlags fromDate:self];
 
     comps.hour = hour;

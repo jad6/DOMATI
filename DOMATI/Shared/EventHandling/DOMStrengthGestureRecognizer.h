@@ -29,7 +29,7 @@
 //  POSSIBILITY OF SUCH DAMAGE.
 
 @import UIKit;
-#import <CoreMotion/CMDeviceMotion.h>
+@import CoreMotion.CMDeviceMotion;
 
 #import "DOMPassiveMotionManager.h"
 

@@ -25,7 +25,6 @@
 		05098F5017B62D48009D4FF5 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05098F4F17B62D48009D4FF5 /* OpenGLES.framework */; };
 		05098F5A17B63820009D4FF5 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05098F5917B63820009D4FF5 /* MessageUI.framework */; };
 		050A8F40189CCBE30073E487 /* DOMCalibrationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 050A8F3F189CCBE30073E487 /* DOMCalibrationViewController.m */; };
-		050ACB15189A4DAC006F74DD /* DOMRequestOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 050ACB14189A4DAC006F74DD /* DOMRequestOperationManager.m */; };
 		050C8C5F190A6F35008F31B6 /* DOMRawMotionData.m in Sources */ = {isa = PBXBuildFile; fileRef = 050C8C5E190A6F35008F31B6 /* DOMRawMotionData.m */; };
 		050C8C62190A6F36008F31B6 /* DOMRawTouchData.m in Sources */ = {isa = PBXBuildFile; fileRef = 050C8C61190A6F36008F31B6 /* DOMRawTouchData.m */; };
 		050C8C65190A6F36008F31B6 /* DOMTouchData.m in Sources */ = {isa = PBXBuildFile; fileRef = 050C8C64190A6F36008F31B6 /* DOMTouchData.m */; };
@@ -59,8 +58,7 @@
 		058E88B1191D10B20075094E /* DOMApproachTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 058E88B0191D10B20075094E /* DOMApproachTestViewController.m */; };
 		058E88B4191D10BC0075094E /* DOMProjectSummaryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 058E88B3191D10BC0075094E /* DOMProjectSummaryViewController.m */; };
 		058E88C3191D11500075094E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 058E88C0191D11500075094E /* Main.storyboard */; };
-		058E88C8191D11730075094E /* Data_Gather_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 058E88C4191D11730075094E /* Data_Gather_iPad.storyboard */; };
-		058E88C9191D11730075094E /* Data_Gather_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 058E88C6191D11730075094E /* Data_Gather_iPhone.storyboard */; };
+		058E88C9191D11730075094E /* Data_Gather.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 058E88C6191D11730075094E /* Data_Gather.storyboard */; };
 		058FFC0517D9FAE1008ECB1B /* DOMATI.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 058FFC0317D9FAE1008ECB1B /* DOMATI.xcdatamodeld */; };
 		058FFC0617D9FAE1008ECB1B /* DOMATI.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 058FFC0317D9FAE1008ECB1B /* DOMATI.xcdatamodeld */; };
 		058FFC2217DA0AB0008ECB1B /* NSManagedObject+Appulse.m in Sources */ = {isa = PBXBuildFile; fileRef = 058FFC2117DA0AB0008ECB1B /* NSManagedObject+Appulse.m */; };
@@ -234,8 +232,7 @@
 		058E88B2191D10BC0075094E /* DOMProjectSummaryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DOMProjectSummaryViewController.h; sourceTree = "<group>"; };
 		058E88B3191D10BC0075094E /* DOMProjectSummaryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DOMProjectSummaryViewController.m; sourceTree = "<group>"; };
 		058E88C1191D11500075094E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = DOMATI/en.lproj/Main.storyboard; sourceTree = SOURCE_ROOT; };
-		058E88C5191D11730075094E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = DOMATI/en.lproj/Data_Gather_iPad.storyboard; sourceTree = SOURCE_ROOT; };
-		058E88C7191D11730075094E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = DOMATI/en.lproj/Data_Gather_iPhone.storyboard; sourceTree = SOURCE_ROOT; };
+		058E88C7191D11730075094E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = DOMATI/en.lproj/Data_Gather.storyboard; sourceTree = SOURCE_ROOT; };
 		058FFC0417D9FAE1008ECB1B /* DOMATI.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DOMATI.xcdatamodel; sourceTree = "<group>"; };
 		058FFC2017DA0AB0008ECB1B /* NSManagedObject+Appulse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSManagedObject+Appulse.h"; sourceTree = "<group>"; };
 		058FFC2117DA0AB0008ECB1B /* NSManagedObject+Appulse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSManagedObject+Appulse.m"; sourceTree = "<group>"; };
@@ -418,8 +415,7 @@
 		050A7E0619060B7D00C5468D /* Data Gathering */ = {
 			isa = PBXGroup;
 			children = (
-				058E88C4191D11730075094E /* Data_Gather_iPad.storyboard */,
-				058E88C6191D11730075094E /* Data_Gather_iPhone.storyboard */,
+				058E88C6191D11730075094E /* Data_Gather.storyboard */,
 				050A7E0B19060D1600C5468D /* Views & Controllers */,
 				050ACB12189A4D9F006F74DD /* Network */,
 				050A7E0919060C4F00C5468D /* Resources */,
@@ -976,9 +972,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				058E88C9191D11730075094E /* Data_Gather_iPhone.storyboard in Resources */,
+				058E88C9191D11730075094E /* Data_Gather.storyboard in Resources */,
 				05098F2217B62859009D4FF5 /* InfoPlist.strings in Resources */,
-				058E88C8191D11730075094E /* Data_Gather_iPad.storyboard in Resources */,
 				05098F2A17B62859009D4FF5 /* Images.xcassets in Resources */,
 				05C702FC189C9BE700E0AC35 /* Occupations.plist in Resources */,
 				059D11EC19062798005FB4E3 /* Network.plist in Resources */,
@@ -1043,7 +1038,6 @@
 				056D2BF71896444100C5910A /* DOMWelcomeViewController.m in Sources */,
 				05098F2817B62859009D4FF5 /* DOMAppDelegate.m in Sources */,
 				05A0B0C5190FC31200AC0BBD /* DOMPassiveMotionManager.m in Sources */,
-				050ACB15189A4DAC006F74DD /* DOMRequestOperationManager.m in Sources */,
 				058538EE191D166600A0E157 /* DOMCalibrationDataViewController.m in Sources */,
 				051A8E341830CB52007F9DCD /* DOMPickerCell.m in Sources */,
 				058E88AA191D109D0075094E /* DOMCircleView.m in Sources */,
@@ -1120,20 +1114,12 @@
 			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
-		058E88C4191D11730075094E /* Data_Gather_iPad.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				058E88C5191D11730075094E /* en */,
-			);
-			name = Data_Gather_iPad.storyboard;
-			sourceTree = "<group>";
-		};
-		058E88C6191D11730075094E /* Data_Gather_iPhone.storyboard */ = {
+		058E88C6191D11730075094E /* Data_Gather.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				058E88C7191D11730075094E /* en */,
 			);
-			name = Data_Gather_iPhone.storyboard;
+			name = Data_Gather.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
