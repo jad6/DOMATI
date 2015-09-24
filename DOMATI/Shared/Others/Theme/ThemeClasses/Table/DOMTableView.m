@@ -32,5 +32,4 @@
 
 @implementation DOMTableView
 
-
 @end

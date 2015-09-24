@@ -50,8 +50,7 @@ static NSInteger kUndisclosedAlertTag = 10;
 
 @implementation DOMUserInfoViewController
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
 
     self.user = [DOMUser currentUser];
@@ -69,22 +68,16 @@ static NSInteger kUndisclosedAlertTag = 10;
  *
  *  @param sender the sender of the action.
  */
-- (IBAction)nextAction:(id)sender
-{
+- (IBAction)nextAction:(id)sender {
     NSArray *undisclosedFields = [self undisclosedFields];
     NSUInteger undisclosedFieldsCount = [undisclosedFields count];
 
-    if (undisclosedFieldsCount > 0)
-    {
+    if (undisclosedFieldsCount > 0) {
         NSMutableString *list = [[NSMutableString alloc] init];
-        for (NSUInteger i = 0; i < undisclosedFieldsCount; i++)
-        {
-            if (i < undisclosedFieldsCount - 1)
-            {
+        for (NSUInteger i = 0; i < undisclosedFieldsCount; i++) {
+            if (i < undisclosedFieldsCount - 1) {
                 [list appendFormat:@"%@, ", undisclosedFields[i]];
-            }
-            else
-            {
+            } else {
                 [list appendFormat:@"%@", undisclosedFields[i]];
             }
         }
@@ -94,20 +87,16 @@ static NSInteger kUndisclosedAlertTag = 10;
         UIAlertView *undisclosedAV = [[UIAlertView alloc] initWithTitle:@"Undisclosed Fields" message:message delegate:self cancelButtonTitle:@"Fill Fields" otherButtonTitles:@"Ignore", nil];
         undisclosedAV.tag = kUndisclosedAlertTag;
         [undisclosedAV show];
-    }
-    else
-    {
+    } else {
         [self performSegueWithIdentifier:@"Calibration Segue" sender:sender];
     }
 }
 
 #pragma mark - Alert View
 
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-{
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     // Bring up the calibration screen upon the user's request.
-    if (alertView.tag == kUndisclosedAlertTag && buttonIndex == 1)
-    {
+    if (alertView.tag == kUndisclosedAlertTag && buttonIndex == 1) {
         [self performSegueWithIdentifier:@"Calibration Segue" sender:nil];
     }
 }
@@ -119,28 +108,22 @@ static NSInteger kUndisclosedAlertTag = 10;
  *
  *  @return array of the undisclosed fields.
  */
-- (NSArray *)undisclosedFields
-{
+- (NSArray *)undisclosedFields {
     NSMutableArray *undisclosedFields = [[NSMutableArray alloc] init];
 
-    if (self.user.gender == DOMGenderUndisclosed)
-    {
+    if (self.user.gender == DOMGenderUndisclosed) {
         [undisclosedFields addObject:@"Gender"];
     }
-    if (self.user.birthYear == 0)
-    {
+    if (self.user.birthYear == 0) {
         [undisclosedFields addObject:@"Birth Year"];
     }
-    if (self.user.height == 0.0)
-    {
+    if (self.user.height == 0.0) {
         [undisclosedFields addObject:@"Height"];
     }
-    if (self.user.weight == 0.0)
-    {
+    if (self.user.weight == 0.0) {
         [undisclosedFields addObject:@"Weight"];
     }
-    if (!self.user.occupation || [self.user.occupation isEqualToString:[DOMPickerHandler undisclosedValue]])
-    {
+    if (!self.user.occupation || [self.user.occupation isEqualToString:[DOMPickerHandler undisclosedValue]]) {
         [undisclosedFields addObject:@"Occupation"];
     }
 
@@ -152,10 +135,8 @@ static NSInteger kUndisclosedAlertTag = 10;
  *
  *  @return the result of the resignation.
  */
-- (BOOL)resignCurrentResponder
-{
-    if (!self.currentFirstResponder)
-    {
+- (BOOL)resignCurrentResponder {
+    if (!self.currentFirstResponder) {
         return NO;
     }
 
@@ -163,11 +144,9 @@ static NSInteger kUndisclosedAlertTag = 10;
 
     success = [self.currentFirstResponder resignFirstResponder];
 
-    if (success)
-    {
+    if (success) {
         // If the currentFirstResponder can be disabled, do so.
-        if ([self.currentFirstResponder respondsToSelector:@selector(setEnabled:)])
-        {
+        if ([self.currentFirstResponder respondsToSelector:@selector(setEnabled:)]) {
             [self.currentFirstResponder setEnabled:NO];
         }
 
@@ -189,11 +168,9 @@ static NSInteger kUndisclosedAlertTag = 10;
  *  @param indexPath the indexPath of the cell.
  */
 - (void)setupCell:(UITableViewCell *)cell
-     forIndexPath:(NSIndexPath *)indexPath
-{
+     forIndexPath:(NSIndexPath *)indexPath {
     // If the indexPath is the picker cell do nothing.
-    if ([indexPath isEqual:self.pickerIndexPath])
-    {
+    if ([indexPath isEqual:self.pickerIndexPath]) {
         return;
     }
 
@@ -201,14 +178,10 @@ static NSInteger kUndisclosedAlertTag = 10;
 
     NSString *text = nil;
     NSString *detailText = nil;
-    switch (indexPath.section)
-    {
-        case 0:
-        {
-            switch (indexPath.row)
-            {
-                case 0:
-                {
+    switch (indexPath.section) {
+        case 0: {
+            switch (indexPath.row) {
+                case 0: {
                     text = nil;
                     DOMGenderSegmentCell *genderCell = (DOMGenderSegmentCell *)cell;
 
@@ -220,8 +193,7 @@ static NSInteger kUndisclosedAlertTag = 10;
 
                 case 1:
                     text = @"Birth Year";
-                    if (user.birthYear > 0)
-                    {
+                    if (user.birthYear > 0) {
                         detailText = [DOMYearsPickerHandler titleForYear:user.birthYear];
                     }
                     break;
@@ -229,18 +201,15 @@ static NSInteger kUndisclosedAlertTag = 10;
             break;
         }
 
-        case 1:
-        {
+        case 1: {
             DOMTextFieldCell *textFieldCell = (DOMTextFieldCell *)cell;
 
-            switch (indexPath.row)
-            {
+            switch (indexPath.row) {
                 case 0:
                     textFieldCell.type = DOMTextFieldCellTypeHeight;
                     text = @"Height (cm)";
 
-                    if (user.height > 0)
-                    {
+                    if (user.height > 0) {
                         textFieldCell.textField.text = [[NSString alloc] initWithFormat:@"%.2f", user.height];
                     }
                     break;
@@ -249,8 +218,7 @@ static NSInteger kUndisclosedAlertTag = 10;
                     textFieldCell.type = DOMTextFieldCellTypeWeight;
                     text = @"Weight (kg)";
 
-                    if (user.weight > 0)
-                    {
+                    if (user.weight > 0) {
                         textFieldCell.textField.text = [[NSString alloc] initWithFormat:@"%.2f", user.weight];
                     }
                     break;
@@ -260,12 +228,10 @@ static NSInteger kUndisclosedAlertTag = 10;
             break;
         }
 
-        case 2:
-        {
+        case 2: {
             text = @"Occupation";
 
-            if (user.occupation)
-            {
+            if (user.occupation) {
                 detailText = user.occupation;
             }
             break;
@@ -283,24 +249,16 @@ static NSInteger kUndisclosedAlertTag = 10;
  *
  *  @return the corresponding cell identifier for the given indexPath
  */
-- (NSString *)cellIdentiferForIndexPath:(NSIndexPath *)indexPath
-{
+- (NSString *)cellIdentiferForIndexPath:(NSIndexPath *)indexPath {
     NSString *CellIdentifier = nil;
 
-    if ([indexPath isEqual:self.pickerIndexPath])
-    {
+    if ([indexPath isEqual:self.pickerIndexPath]) {
         CellIdentifier = PickerCellIdentifier;
-    }
-    else if (indexPath.section == 0 && indexPath.row == 0)
-    {
+    } else if (indexPath.section == 0 && indexPath.row == 0) {
         CellIdentifier = SegmentCellIdentifier;
-    }
-    else if (indexPath.section == 1)
-    {
+    } else if (indexPath.section == 1) {
         CellIdentifier = TextFieldCellIdentifier;
-    }
-    else
-    {
+    } else {
         CellIdentifier = DetailCellIdentifier;
     }
 
@@ -309,15 +267,12 @@ static NSInteger kUndisclosedAlertTag = 10;
 
 #pragma mark - Table view data source
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 3;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    switch (section)
-    {
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    switch (section) {
         case 0:
             return ([self hasInlineDatePickerInSection:section]) ? 3 : 2;
             break;
@@ -336,34 +291,25 @@ static NSInteger kUndisclosedAlertTag = 10;
     }
 }
 
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
-{
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     return self.headersText[section];
 }
 
-- (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section
-{
+- (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section {
     return self.footersText[section];
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if ([self.pickerIndexPath isEqual:indexPath])
-    {
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if ([self.pickerIndexPath isEqual:indexPath]) {
         return 216.0;
-    }
-    else if (indexPath.section == 0 && indexPath.row == 0)
-    {
+    } else if (indexPath.section == 0 && indexPath.row == 0) {
         return (IPAD) ? 44.0 : 88.0;
-    }
-    else
-    {
+    } else {
         return 44.0;
     }
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *CellIdentifier = nil;
 
     CellIdentifier = [self cellIdentiferForIndexPath:indexPath];
@@ -375,31 +321,25 @@ static NSInteger kUndisclosedAlertTag = 10;
     return cell;
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
 
-    if ([cell.reuseIdentifier isEqualToString:DetailCellIdentifier])
-    {
+    if ([cell.reuseIdentifier isEqualToString:DetailCellIdentifier]) {
         // A picker cell is selected, resign whoever was first responder.
         [self resignCurrentResponder];
 
         [self displayInlineDatePickerForRowAtIndexPath:indexPath];
-        [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+        [tableView reloadRowsAtIndexPaths:@[ indexPath ] withRowAnimation:UITableViewRowAnimationNone];
 
         // If we have a picker that is showing scroll to it.
-        if (self.pickerIndexPath)
-        {
+        if (self.pickerIndexPath) {
             [tableView scrollToRowAtIndexPath:self.pickerIndexPath
                              atScrollPosition:UITableViewScrollPositionMiddle
                                      animated:YES];
         }
-    }
-    else if ([cell.reuseIdentifier isEqualToString:TextFieldCellIdentifier])
-    {
+    } else if ([cell.reuseIdentifier isEqualToString:TextFieldCellIdentifier]) {
         // Remove the picker if there is one.
-        if (self.pickerIndexPath)
-        {
+        if (self.pickerIndexPath) {
             [self removePicker];
         }
 
@@ -414,10 +354,8 @@ static NSInteger kUndisclosedAlertTag = 10;
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
-- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (![cell.reuseIdentifier isEqualToString:DetailCellIdentifier])
-    {
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (![cell.reuseIdentifier isEqualToString:DetailCellIdentifier]) {
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
 
@@ -427,8 +365,7 @@ static NSInteger kUndisclosedAlertTag = 10;
 
 #pragma mark - Scroll View
 
-- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
-{
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
     [self resignCurrentResponder];
 }
 

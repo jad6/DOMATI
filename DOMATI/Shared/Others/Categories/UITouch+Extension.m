@@ -32,10 +32,9 @@
 
 @implementation UITouch (Extension)
 
-- (CGFloat)radius
-{
+- (CGFloat)radius {
     CGFloat radius = 0.0;
-    
+
     radius = TO_CGFLOAT([self valueForKey:@"pathMajorRadius"]);
 
     return radius;

@@ -36,24 +36,21 @@
 
 @implementation DOMNavigationController
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
 
     self.navigationBar.barTintColor = [UIColor backgroundColor];
     self.navigationBar.translucent = NO;
-    NSDictionary *navAttributes = @{ NSForegroundColorAttributeName : [UIColor textColor] };
+    NSDictionary *navAttributes = @{NSForegroundColorAttributeName : [UIColor textColor]};
     [self.navigationBar setTitleTextAttributes:navAttributes];
 }
 
-- (void)didReceiveMemoryWarning
-{
+- (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
-- (UIStatusBarStyle)preferredStatusBarStyle
-{
+- (UIStatusBarStyle)preferredStatusBarStyle {
     return UIStatusBarStyleLightContent;
 }
 

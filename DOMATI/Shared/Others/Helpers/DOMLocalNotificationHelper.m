@@ -34,8 +34,7 @@
 
 @implementation DOMLocalNotificationHelper
 
-+ (void)schedualLocalNotification
-{
++ (void)schedualLocalNotification {
     // Ensure that there is only ever one local notification.
     [DOMLocalNotificationHelper reset];
 
@@ -55,21 +54,18 @@
     [[UIApplication sharedApplication] scheduleLocalNotification:localNotif];
 }
 
-+ (void)handleLaunchLocalNotification:(UILocalNotification *)localNotification
-{
++ (void)handleLaunchLocalNotification:(UILocalNotification *)localNotification {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 
     [defaults setObject:@(localNotification != nil) forKey:DEFAULTS_SKIP_TO_CALI];
     [defaults synchronize];
 }
 
-+ (BOOL)didOpenFromLocalNotification
-{
++ (BOOL)didOpenFromLocalNotification {
     return [[[NSUserDefaults standardUserDefaults] objectForKey:DEFAULTS_SKIP_TO_CALI] boolValue];
 }
 
-+ (void)reset
-{
++ (void)reset {
     [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
 
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];

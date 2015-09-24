@@ -13,14 +13,14 @@
 
 @interface DOMRawMotionData : NSManagedObject
 
-@property (nonatomic, retain) NSNumber * identifier;
-@property (nonatomic, retain) NSNumber * rotationRateX;
-@property (nonatomic, retain) NSNumber * rotationRateY;
-@property (nonatomic, retain) NSNumber * rotationRateZ;
-@property (nonatomic, retain) NSNumber * timestamp;
-@property (nonatomic, retain) NSNumber * userAccelX;
-@property (nonatomic, retain) NSNumber * userAccelY;
-@property (nonatomic, retain) NSNumber * userAccelZ;
+@property (nonatomic, retain) NSNumber *identifier;
+@property (nonatomic, retain) NSNumber *rotationRateX;
+@property (nonatomic, retain) NSNumber *rotationRateY;
+@property (nonatomic, retain) NSNumber *rotationRateZ;
+@property (nonatomic, retain) NSNumber *timestamp;
+@property (nonatomic, retain) NSNumber *userAccelX;
+@property (nonatomic, retain) NSNumber *userAccelY;
+@property (nonatomic, retain) NSNumber *userAccelZ;
 @property (nonatomic, retain) DOMTouchData *touchData;
 
 @end

@@ -56,9 +56,9 @@
  *  @param occupation The initial occupation to show when the picker is shown.
  *  @param delegate   The delegate for the handler.
  */
-- (void)  populatedPicker:(UIPickerView *)pickerView
-    withInitialOccupation:(NSString *)occupation
-                 delegate:(id<DOMOccupationPickerHandlerDelegate>)delegate;
+- (void)populatedPicker:(UIPickerView *)pickerView
+  withInitialOccupation:(NSString *)occupation
+               delegate:(id<DOMOccupationPickerHandlerDelegate>)delegate;
 
 /**
  *  Select the given occupation. By default this method animates the

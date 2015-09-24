@@ -32,7 +32,6 @@
 
 @protocol DOMTheme <NSObject>
 
-
 @end
 
 @interface DOMThemeManager : NSObject

@@ -30,11 +30,11 @@
 
 #import <UIKit/UIKit.h>
 
-typedef NS_ENUM (NSInteger, DOMCircleTouchStrength) {
-    DOMCircleTouchStrengthNone          = 0,
-    DOMCircleTouchStrengthHard          = 1,
-    DOMCircleTouchStrengthModerate      = 2,
-    DOMCircleTouchStrengthSoft          = 3
+typedef NS_ENUM(NSInteger, DOMCircleTouchStrength) {
+    DOMCircleTouchStrengthNone = 0,
+    DOMCircleTouchStrengthHard = 1,
+    DOMCircleTouchStrengthModerate = 2,
+    DOMCircleTouchStrengthSoft = 3
 };
 
 @interface DOMCircleTouchView : UIView

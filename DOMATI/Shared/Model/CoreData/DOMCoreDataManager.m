@@ -43,27 +43,24 @@
 
 @implementation DOMCoreDataManager
 
-+ (instancetype)sharedManager
-{
++ (instancetype)sharedManager {
     static __DISPATCH_ONCE__ id singletonObject = nil;
 
     static dispatch_once_t onceToken;
 
     dispatch_once(&onceToken, ^{
-                      singletonObject = [[self alloc] init];
-                  });
+      singletonObject = [[self alloc] init];
+    });
 
     return singletonObject;
 }
 
 #pragma mark - Core Data Core
 
-- (void)flushDatabase
-{
+- (void)flushDatabase {
     [self.managedContext lock];
     NSArray *stores = [self.persistentStoreCoordinator persistentStores];
-    for (NSPersistentStore *store in stores)
-    {
+    for (NSPersistentStore *store in stores) {
         [self.persistentStoreCoordinator removePersistentStore:store error:nil];
         [[NSFileManager defaultManager] removeItemAtPath:store.URL.path error:nil];
     }
@@ -74,8 +71,7 @@
     self.persistentStoreCoordinator = nil;
 }
 
-- (void)setupCoreData
-{
+- (void)setupCoreData {
     // Listen to notifications when the app will lose focus and save
     // the data in that case.
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationShouldSaveContext:) name:UIApplicationDidEnterBackgroundNotification object:nil];
@@ -88,12 +84,12 @@
     NSURL *storeURL = [documentDirectoryURL URLByAppendingPathComponent:@"coredata_domati.sqlite"];
     NSError *error = nil;
     self.persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:self.managedObjectModel];
-    if (![self.persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:@{ NSMigratePersistentStoresAutomaticallyOption : @YES, NSInferMappingModelAutomaticallyOption : @YES } error:&error])
-    {
+    if (![self.persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:@{ NSMigratePersistentStoresAutomaticallyOption : @YES,
+                                                                                                                                 NSInferMappingModelAutomaticallyOption : @YES }
+                                                               error:&error]) {
     }
 
-    if (error)
-    {
+    if (error) {
         [error handle];
     }
 
@@ -101,35 +97,30 @@
     [self.managedContext setPersistentStoreCoordinator:self.persistentStoreCoordinator];
 }
 
-- (void)saveContext:(NSManagedObjectContext *)context
-{
+- (void)saveContext:(NSManagedObjectContext *)context {
     NSError *childError = nil;
 
-    if (![context save:&childError])
-    {
+    if (![context save:&childError]) {
         [childError handle];
     }
 
     // Make sure the saving finishes
     UIBackgroundTaskIdentifier task = [[UIApplication sharedApplication] beginBackgroundTaskWithExpirationHandler:nil];
     [self.managedContext performBlock:^{
-         NSError *parentError = nil;
-         if ([self.managedContext hasChanges] &&
-             ![self.managedContext save:&parentError])
-         {
-             [parentError handle];
-         }
-         [[UIApplication sharedApplication] endBackgroundTask:task];
-     }];
+      NSError *parentError = nil;
+      if ([self.managedContext hasChanges] &&
+          ![self.managedContext save:&parentError]) {
+          [parentError handle];
+      }
+      [[UIApplication sharedApplication] endBackgroundTask:task];
+    }];
 }
 
-- (void)saveMainContext
-{
+- (void)saveMainContext {
     [self saveContext:self.managedContext];
 }
 
-- (void)applicationShouldSaveContext:(NSNotification *)notification
-{
+- (void)applicationShouldSaveContext:(NSNotification *)notification {
     [self saveMainContext];
 }
 

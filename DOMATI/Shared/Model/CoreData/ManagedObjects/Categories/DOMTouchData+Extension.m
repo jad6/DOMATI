@@ -44,53 +44,47 @@
 
 #pragma mark - Logic
 
-- (NSArray *)unsyncedDataForClass:(Class)class
-{
+- (NSArray *)unsyncedDataForClass:(Class) class
+    {
     NSAssert([class isSubclassOfClass:[NSManagedObject class]], @"%@ is not a subclass of NSManagedObject", class);
 
     return [class fetchRequest:^(NSFetchRequest *fs) {
-                [fs setPredicate:[NSPredicate predicateWithFormat:@"identifier < 0 AND touchData == %@", self]];
-            } inContext:[self managedObjectContext]];
+      [fs setPredicate:[NSPredicate predicateWithFormat:@"identifier < 0 AND touchData == %@", self]];
+    } inContext:[self managedObjectContext]];
 }
 
 #pragma mark - Public
 
-+ (instancetype)touchData:(void (^)(DOMTouchData *touchData))touchDataBlock
-                inContext:(NSManagedObjectContext *)context
-{
+    + (instancetype)touchData : (void (^)(DOMTouchData *touchData))touchDataBlock
+                                inContext : (NSManagedObjectContext *)context {
     return [DOMTouchData newEntity:NSStringFromClass([DOMTouchData class])
                          inContext:context
                        idAttribute:@"identifier"
                              value:[DOMTouchData localIdentifier]
                           onInsert:^(DOMTouchData *object) {
-                if (touchDataBlock)
-                {
-                    touchDataBlock(object);
-                }
-            }];
+                            if (touchDataBlock) {
+                                touchDataBlock(object);
+                            }
+                          }];
 }
 
-+ (NSArray *)unsyncedTouchData
-{
++ (NSArray *)unsyncedTouchData {
     return [self fetchRequest:^(NSFetchRequest *fs) {
-                [fs setPredicate:[NSPredicate predicateWithFormat:@"identifier < 0"]];
-            } inContext:[DOMCoreDataManager sharedManager].managedContext];
+      [fs setPredicate:[NSPredicate predicateWithFormat:@"identifier < 0"]];
+    } inContext:[DOMCoreDataManager sharedManager].managedContext];
 }
 
-- (NSArray *)unsyncedRawMotionData
-{
+- (NSArray *)unsyncedRawMotionData {
     return [self unsyncedDataForClass:[DOMRawMotionData class]];
 }
 
-- (NSArray *)unsyncedRawTouchData
-{
+- (NSArray *)unsyncedRawTouchData {
     return [self unsyncedDataForClass:[DOMRawTouchData class]];
 }
 
 #pragma mark - Network
 
-- (NSDictionary *)postDictionary
-{
+- (NSDictionary *)postDictionary {
     NSMutableDictionary *dictionary = [[NSMutableDictionary alloc] init];
 
     dictionary[@"acceleration_avg"] = self.accelerationAvg;

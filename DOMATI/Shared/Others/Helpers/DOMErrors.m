@@ -34,8 +34,7 @@
 
 @implementation DOMErrors
 
-+ (NSError *)noDeviceMotionError
-{
++ (NSError *)noDeviceMotionError {
     NSDictionary *userInfo = @{ NSLocalizedDescriptionKey : NSLocalizedString(@"No accelerometer and gyroscope access.", nil),
                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString(@"DOMATI could not access the accelerometer and gyroscope.", nil),
                                 NSLocalizedRecoverySuggestionErrorKey : NSLocalizedString(@"Check the device's settings.", nil) };

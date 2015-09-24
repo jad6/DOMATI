@@ -56,40 +56,34 @@
 - (instancetype)initWithTarget:(id)target
                         action:(SEL)action
                          error:(NSError *__autoreleasing *)error
-                 motionManager:(DOMPassiveMotionManager *)motionManager
-{
+                 motionManager:(DOMPassiveMotionManager *)motionManager {
     self = [super initWithTarget:target
                           action:action
                    motionManager:motionManager
                            error:error];
-    if (self)
-    {
+    if (self) {
         self.currentState = DOMCalibrationStateNone;
         // Listen to the changes of claibration strengths.
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changedState:) name:kCalibrationStateChangeNotificationName object:nil];
-        
+
         self.automaticallyResetDataBuffers = NO;
     }
     return self;
 }
 
-- (void)dealloc
-{
+- (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
-- (void)setNumberOfCoreDataSaves:(NSInteger)numberOfCoreDataSaves
-{
-    if (self->_numberOfCoreDataSaves != numberOfCoreDataSaves)
-    {
+- (void)setNumberOfCoreDataSaves:(NSInteger)numberOfCoreDataSaves {
+    if (self->_numberOfCoreDataSaves != numberOfCoreDataSaves) {
         self->_numberOfCoreDataSaves = numberOfCoreDataSaves;
 
         self.saving = (numberOfCoreDataSaves != 0);
     }
 }
 
-- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
-{
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
     // Must call this first to populate allPhasesInfoForTouch: &
     // motionsInfoForTouch:
     [super touchesEnded:touches withEvent:event];
@@ -102,8 +96,7 @@
     NSManagedObjectContext *threadContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
     threadContext.parentContext = [DOMCoreDataManager sharedManager].managedContext;
 
-    for (UITouch *touch in touches)
-    {
+    for (UITouch *touch in touches) {
         // Get the information from the super class.
         NSDictionary *touchesInfo = [[self touchesInfoForTouch:touch] copy];
         NSDictionary *motionsInfo = [[self motionsInfoForTouch:touch] copy];
@@ -114,40 +107,38 @@
         dispatch_group_enter(savingGroup);
 
         [threadContext performBlock:^{
-             // Create and set the touch data objects along with
-             // its relationships.
-             [DOMTouchData touchData:^(DOMTouchData *touchData) {
-                  [self setDeviceMotionsInfo:motionsInfo
-                                 onTouchData:touchData
-                                   inContext:threadContext];
-                  [self setTouchInfo:touchesInfo
-                         onTouchData:touchData
-                           inContext:threadContext];
-              } inContext:threadContext];
+          // Create and set the touch data objects along with
+          // its relationships.
+          [DOMTouchData touchData:^(DOMTouchData *touchData) {
+            [self setDeviceMotionsInfo:motionsInfo
+                           onTouchData:touchData
+                             inContext:threadContext];
+            [self setTouchInfo:touchesInfo
+                   onTouchData:touchData
+                     inContext:threadContext];
+          } inContext:threadContext];
 
-             // Save the thread contexts
-             [[DOMCoreDataManager sharedManager] saveContext:threadContext];
+          // Save the thread contexts
+          [[DOMCoreDataManager sharedManager] saveContext:threadContext];
 
-             // We finished saving, decrement that operation.
-             self.numberOfCoreDataSaves--;
-             // Leave the group.
-             dispatch_group_leave(savingGroup);
-         }];
+          // We finished saving, decrement that operation.
+          self.numberOfCoreDataSaves--;
+          // Leave the group.
+          dispatch_group_leave(savingGroup);
+        }];
     }
 
-    for (UITouch *touch in touches)
-    {
+    for (UITouch *touch in touches) {
         [self resetDataBufferForTouch:touch];
     }
-    
+
     // All the saves have completed, call the saving block on
     // the main queue.
     dispatch_group_notify(savingGroup, dispatch_get_main_queue(), ^{
-        
-        if (self.saveDataCompletionBlock)
-        {
-            self.saveDataCompletionBlock();
-        }
+
+      if (self.saveDataCompletionBlock) {
+          self.saveDataCompletionBlock();
+      }
     });
 }
 
@@ -161,12 +152,10 @@
  */
 - (void)setTouchInfo:(NSDictionary *)touchInfo
          onTouchData:(DOMTouchData *)touchData
-           inContext:(NSManagedObjectContext *)context
-{
+           inContext:(NSManagedObjectContext *)context {
     NSArray *touchAllPhasesInfo = touchInfo[kTouchInfoAllPhasesKey];
     // Enumerate through each of the touch's phase info.
-    for (NSDictionary *touchPhaseInfo in touchAllPhasesInfo)
-    {
+    for (NSDictionary *touchPhaseInfo in touchAllPhasesInfo) {
         // Create a raw touch data object in the context from
         // the touch info.
         DOMRawTouchData *rawData = [DOMRawTouchData rawTouchDataInContext:context fromTouchInfo:touchPhaseInfo];
@@ -194,12 +183,10 @@
  */
 - (void)setDeviceMotionsInfo:(NSDictionary *)motionsInfo
                  onTouchData:(DOMTouchData *)touchData
-                   inContext:(NSManagedObjectContext *)context
-{
+                   inContext:(NSManagedObjectContext *)context {
     // Enumerate through each motion and save them as
     // DOMRawMotionData object.
-    for (CMDeviceMotion *motion in motionsInfo[kMotionInfoMotionsKey])
-    {
+    for (CMDeviceMotion *motion in motionsInfo[kMotionInfoMotionsKey]) {
         // Create a raw motion data object in the context from
         // the touch info.
         DOMRawMotionData *rawData = [DOMRawMotionData rawMotionDataInContext:context fromDeviceMotion:motion];
@@ -212,8 +199,7 @@
     touchData.accelerationAvg = motionsInfo[kMotionInfoAvgAccelerationKey];
 }
 
-- (void)setCoreDataSaveCompletionBlock:(DOMCoreDataSave)block
-{
+- (void)setCoreDataSaveCompletionBlock:(DOMCoreDataSave)block {
     self.saveDataCompletionBlock = block;
 }
 
@@ -225,8 +211,7 @@
  *
  *  @param notification The notification which triggered the call.
  */
-- (void)changedState:(NSNotification *)notification
-{
+- (void)changedState:(NSNotification *)notification {
     self.currentState = [[notification userInfo][@"state"] integerValue];
 }
 

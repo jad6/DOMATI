@@ -38,26 +38,21 @@
 
 @implementation DOMCalibrationExpiryViewController
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
 }
 
-- (void)viewWillAppear:(BOOL)animated
-{
+- (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
 
     NSIndexPath *selectedIndexPath = nil;
 
     NSUbiquitousKeyValueStore *keyStore = [NSUbiquitousKeyValueStore defaultStore];
     NSNumber *selectedIndex = [keyStore objectForKey:KEYSTORE_CALI_EXPR_INDEX];
-    if (selectedIndex)
-    {
+    if (selectedIndex) {
         selectedIndexPath = [NSIndexPath indexPathForRow:[selectedIndex integerValue] inSection:0];
         [self tableView:self.tableView didSelectRowAtIndexPath:selectedIndexPath];
-    }
-    else
-    {
+    } else {
         selectedIndexPath = [NSIndexPath indexPathForRow:0 inSection:0];
         [self tableView:self.tableView didSelectRowAtIndexPath:selectedIndexPath];
 
@@ -68,20 +63,17 @@
     self.checkIndexPath = selectedIndexPath;
 }
 
-- (void)didReceiveMemoryWarning
-{
+- (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
 #pragma mark - Logic
 
-- (NSDateComponents *)expiryDurationFromIndexPath:(NSIndexPath *)indexPath
-{
+- (NSDateComponents *)expiryDurationFromIndexPath:(NSIndexPath *)indexPath {
     NSDateComponents *duration = [[NSDateComponents alloc] init];
 
-    switch (indexPath.row)
-    {
+    switch (indexPath.row) {
         case 1:
         case 2:
         case 3:
@@ -104,14 +96,12 @@
             break;
     }
 
-
     return duration;
 }
 
 #pragma mark - Table view
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:self.checkIndexPath];
 
     cell.accessoryType = UITableViewCellAccessoryNone;

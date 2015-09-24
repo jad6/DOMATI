@@ -13,14 +13,14 @@
 
 @interface DOMTouchData : NSManagedObject
 
-@property (nonatomic, retain) NSNumber * accelerationAvg;
-@property (nonatomic, retain) NSNumber * calibrationStrength;
-@property (nonatomic, retain) NSNumber * duration;
-@property (nonatomic, retain) NSNumber * identifier;
-@property (nonatomic, retain) NSNumber * maxRadius;
-@property (nonatomic, retain) NSNumber * rotationAvg;
-@property (nonatomic, retain) NSNumber * xDetla;
-@property (nonatomic, retain) NSNumber * yDelta;
+@property (nonatomic, retain) NSNumber *accelerationAvg;
+@property (nonatomic, retain) NSNumber *calibrationStrength;
+@property (nonatomic, retain) NSNumber *duration;
+@property (nonatomic, retain) NSNumber *identifier;
+@property (nonatomic, retain) NSNumber *maxRadius;
+@property (nonatomic, retain) NSNumber *rotationAvg;
+@property (nonatomic, retain) NSNumber *xDetla;
+@property (nonatomic, retain) NSNumber *yDelta;
 @property (nonatomic, retain) NSSet *rawMotionData;
 @property (nonatomic, retain) NSSet *rawTouchData;
 @end

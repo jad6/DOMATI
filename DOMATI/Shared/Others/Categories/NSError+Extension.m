@@ -32,8 +32,7 @@
 
 @implementation NSError (Extension)
 
-- (void)handle
-{
+- (void)handle {
 #if DEBUG
     NSString *title = [[NSString alloc] initWithFormat:@"Error %li", (long)[self code]];
     NSString *message = [[NSString alloc] initWithFormat:@"%@ %@ %@", [self localizedDescription], [self localizedFailureReason], [self localizedRecoverySuggestion]];

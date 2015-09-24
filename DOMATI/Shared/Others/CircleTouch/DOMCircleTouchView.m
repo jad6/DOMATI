@@ -44,26 +44,22 @@ static CGFloat kOuterCirclePadding = 1.0;
 
 #pragma mark - Public
 
-- (id)initWithFrame:(CGRect)frame circleTouchStrength:(DOMCircleTouchStrength)circleTouchStrength
-{
+- (id)initWithFrame:(CGRect)frame circleTouchStrength:(DOMCircleTouchStrength)circleTouchStrength {
     self = [super initWithFrame:frame];
-    if (self)
-    {
+    if (self) {
         self.circleTouchStrength = circleTouchStrength;
         [self awakeFromNib];
     }
     return self;
 }
 
-- (void)awakeFromNib
-{
+- (void)awakeFromNib {
     [super awakeFromNib];
 
     self.multipleTouchEnabled = NO;
 }
 
-- (void)drawRect:(CGRect)rect
-{
+- (void)drawRect:(CGRect)rect {
     NSAssert(rect.size.width == rect.size.height, @"The given CGRect %@ is not a square. You must provide a squre for a valid DOMCircleTouchView", NSStringFromCGRect(rect));
 
     CGContextRef ctx = UIGraphicsGetCurrentContext();
@@ -73,22 +69,19 @@ static CGFloat kOuterCirclePadding = 1.0;
     [self drawInnerCircle:rect inContext:ctx];
 }
 
-- (void)setCircleTouchStrength:(DOMCircleTouchStrength)circleTouchStrength
-{
-    if (self->_circleTouchStrength != circleTouchStrength)
-    {
+- (void)setCircleTouchStrength:(DOMCircleTouchStrength)circleTouchStrength {
+    if (self->_circleTouchStrength != circleTouchStrength) {
         self->_circleTouchStrength = circleTouchStrength;
     }
 
-    [UIView animateWithDuration:0.3 animations:^{
-         [self setNeedsDisplay];
-     }];
+    [UIView animateWithDuration:0.3
+                     animations:^{
+                       [self setNeedsDisplay];
+                     }];
 }
 
-- (void)setTitle:(NSString *)title
-{
-    if (self->_title != title)
-    {
+- (void)setTitle:(NSString *)title {
+    if (self->_title != title) {
         self->_title = title;
 
         [self drawTitleLabelWithText:title];
@@ -97,12 +90,10 @@ static CGFloat kOuterCirclePadding = 1.0;
 
 #pragma mark - Logic
 
-- (NSString *)titleFromTouchStrength:(DOMCircleTouchStrength)touchStrength
-{
+- (NSString *)titleFromTouchStrength:(DOMCircleTouchStrength)touchStrength {
     NSString *title = nil;
 
-    switch (touchStrength)
-    {
+    switch (touchStrength) {
         case DOMCircleTouchStrengthSoft:
             title = @"Soft";
             break;
@@ -125,12 +116,10 @@ static CGFloat kOuterCirclePadding = 1.0;
 
 #pragma mark - Private
 
-- (void)drawTitleLabelWithText:(NSString *)text
-{
+- (void)drawTitleLabelWithText:(NSString *)text {
     UILabel *titleLabel = self.titleLabel;
 
-    if (!titleLabel)
-    {
+    if (!titleLabel) {
         titleLabel = [[UILabel alloc] init];
         titleLabel.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:17.0];
         [self addSubview:titleLabel];
@@ -146,8 +135,7 @@ static CGFloat kOuterCirclePadding = 1.0;
     self.titleLabel = titleLabel;
 }
 
-- (void)drawOuterCircle:(CGRect)rect inContext:(CGContextRef)ctx
-{
+- (void)drawOuterCircle:(CGRect)rect inContext:(CGContextRef)ctx {
     CGContextSetStrokeColor(ctx, CGColorGetComponents([UIColor domatiColor].CGColor));
 
     CGRect outerCircleFrame = CGRectMake(rect.origin.x + kOuterCirclePadding,
@@ -160,8 +148,7 @@ static CGFloat kOuterCirclePadding = 1.0;
     [outerPath stroke];
 }
 
-- (void)drawInnerCircle:(CGRect)rect inContext:(CGContextRef)ctx
-{
+- (void)drawInnerCircle:(CGRect)rect inContext:(CGContextRef)ctx {
     CGFloat padding = (rect.size.width / 5.0) * self.circleTouchStrength;
 
     CGRect innerCircleFrame = CGRectZero;
@@ -177,8 +164,7 @@ static CGFloat kOuterCirclePadding = 1.0;
     CGContextAddEllipseInRect(ctx, innerCircleFrame);
     CGContextFillPath(ctx);
 
-    if (self.title == nil)
-    {
+    if (self.title == nil) {
         [self drawTitleLabelWithText:[self titleFromTouchStrength:self.circleTouchStrength]];
     }
 }

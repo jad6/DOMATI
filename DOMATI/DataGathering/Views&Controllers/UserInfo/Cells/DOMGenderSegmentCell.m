@@ -32,19 +32,16 @@
 
 @implementation DOMGenderSegmentCell
 
-- (void)awakeFromNib
-{
+- (void)awakeFromNib {
     [super awakeFromNib];
 
     self.titleLabel.textColor = [UIColor textColor];
 }
 
-- (IBAction)setGender:(UISegmentedControl *)segmentedControl
-{
+- (IBAction)setGender:(UISegmentedControl *)segmentedControl {
     self.selectedGender = segmentedControl.selectedSegmentIndex;
 
-    if ([self.delegate respondsToSelector:@selector(segmentedControl:didChangeGender:)])
-    {
+    if ([self.delegate respondsToSelector:@selector(segmentedControl:didChangeGender:)]) {
         [self.delegate segmentedControl:self.segmentedControl didChangeGender:self.selectedGender];
     }
 }

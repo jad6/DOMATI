@@ -32,8 +32,7 @@
 
 @implementation UIApplication (Extensions)
 
-+ (NSString *)version
-{
++ (NSString *)version {
     return [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"];
 }
 
@@ -42,13 +41,11 @@
     return [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"];
 }
 
-+ (NSString *)versionInformation
-{
++ (NSString *)versionInformation {
     return [NSString stringWithFormat:@"Version: %@ (%@)", [self version], [self build]];
 }
 
-+ (void)showLoading:(BOOL)loading
-{
++ (void)showLoading:(BOOL)loading {
     [UIApplication sharedApplication].networkActivityIndicatorVisible = loading;
 }
 

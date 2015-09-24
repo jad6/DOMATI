@@ -9,7 +9,6 @@
 #import "DOMRawTouchData.h"
 #import "DOMTouchData.h"
 
-
 @implementation DOMRawTouchData
 
 @dynamic identifier;

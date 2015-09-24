@@ -56,8 +56,7 @@
 		058E88AE191D10A80075094E /* DOMInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 058E88AD191D10A80075094E /* DOMInfoViewController.m */; };
 		058E88B1191D10B20075094E /* DOMApproachTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 058E88B0191D10B20075094E /* DOMApproachTestViewController.m */; };
 		058E88B4191D10BC0075094E /* DOMProjectSummaryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 058E88B3191D10BC0075094E /* DOMProjectSummaryViewController.m */; };
-		058E88C2191D11500075094E /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 058E88BE191D11500075094E /* Main_iPad.storyboard */; };
-		058E88C3191D11500075094E /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 058E88C0191D11500075094E /* Main_iPhone.storyboard */; };
+		058E88C3191D11500075094E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 058E88C0191D11500075094E /* Main.storyboard */; };
 		058E88C8191D11730075094E /* Data_Gather_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 058E88C4191D11730075094E /* Data_Gather_iPad.storyboard */; };
 		058E88C9191D11730075094E /* Data_Gather_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 058E88C6191D11730075094E /* Data_Gather_iPhone.storyboard */; };
 		058FFC0517D9FAE1008ECB1B /* DOMATI.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 058FFC0317D9FAE1008ECB1B /* DOMATI.xcdatamodeld */; };
@@ -109,6 +108,20 @@
 			remoteGlobalIDString = 05098F1317B62859009D4FF5;
 			remoteInfo = DOMATI;
 		};
+		0540D30A1BB3805100AE9DA8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0540D3051BB3805100AE9DA8 /* MBProgressHUD.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D286A7491518C70F00E13FB8;
+			remoteInfo = "MBProgressHUD Static Library";
+		};
+		0540D30C1BB3805100AE9DA8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0540D3051BB3805100AE9DA8 /* MBProgressHUD.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 1D104D7A1ACA36CC00973364;
+			remoteInfo = "MBProgressHUD Framework";
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -154,6 +167,7 @@
 		0530641918ABBD9A00ECB21D /* NSDate+Helper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Helper.m"; sourceTree = "<group>"; };
 		0530641B18ABC02100ECB21D /* DOMLocalNotificationHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DOMLocalNotificationHelper.h; sourceTree = "<group>"; };
 		0530641C18ABC02100ECB21D /* DOMLocalNotificationHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DOMLocalNotificationHelper.m; sourceTree = "<group>"; };
+		0540D3051BB3805100AE9DA8 /* MBProgressHUD.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = MBProgressHUD.xcodeproj; path = MBProgressHUD/MBProgressHUD.xcodeproj; sourceTree = "<group>"; };
 		05430126181D23ED0077435C /* DOMThemeResources.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DOMThemeResources.h; sourceTree = "<group>"; };
 		05430127181D23ED0077435C /* DOMThemeResources.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DOMThemeResources.m; sourceTree = "<group>"; };
 		05430129181D55660077435C /* DOMTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DOMTableViewCell.h; sourceTree = "<group>"; };
@@ -197,8 +211,7 @@
 		058E88B0191D10B20075094E /* DOMApproachTestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DOMApproachTestViewController.m; sourceTree = "<group>"; };
 		058E88B2191D10BC0075094E /* DOMProjectSummaryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DOMProjectSummaryViewController.h; sourceTree = "<group>"; };
 		058E88B3191D10BC0075094E /* DOMProjectSummaryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DOMProjectSummaryViewController.m; sourceTree = "<group>"; };
-		058E88BF191D11500075094E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = DOMATI/en.lproj/Main_iPad.storyboard; sourceTree = SOURCE_ROOT; };
-		058E88C1191D11500075094E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = DOMATI/en.lproj/Main_iPhone.storyboard; sourceTree = SOURCE_ROOT; };
+		058E88C1191D11500075094E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = DOMATI/en.lproj/Main.storyboard; sourceTree = SOURCE_ROOT; };
 		058E88C5191D11730075094E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = DOMATI/en.lproj/Data_Gather_iPad.storyboard; sourceTree = SOURCE_ROOT; };
 		058E88C7191D11730075094E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = DOMATI/en.lproj/Data_Gather_iPhone.storyboard; sourceTree = SOURCE_ROOT; };
 		058FFC0417D9FAE1008ECB1B /* DOMATI.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DOMATI.xcdatamodel; sourceTree = "<group>"; };
@@ -264,7 +277,6 @@
 		05E342AF193AD76300662461 /* Dissertation.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = Dissertation.pdf; sourceTree = "<group>"; };
 		05F0780A181CC4D2006EA8B0 /* DOMThemeManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DOMThemeManager.h; sourceTree = "<group>"; };
 		05F0780B181CC4D2006EA8B0 /* DOMThemeManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DOMThemeManager.m; sourceTree = "<group>"; };
-		63A432A8A6054321847F6A3E /* Pods-DOMATI.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DOMATI.xcconfig"; path = "Pods/Pods-DOMATI.xcconfig"; sourceTree = "<group>"; };
 		AD90268F6126446CA72059D3 /* libPods-DOMATI.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-DOMATI.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -307,7 +319,6 @@
 				05098F3617B62859009D4FF5 /* DOMATITests */,
 				05098F1617B62859009D4FF5 /* Frameworks */,
 				05098F1517B62859009D4FF5 /* Products */,
-				63A432A8A6054321847F6A3E /* Pods-DOMATI.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -323,6 +334,7 @@
 		05098F1617B62859009D4FF5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0540D3051BB3805100AE9DA8 /* MBProgressHUD.xcodeproj */,
 				05CDB82A19092E190098E96E /* QuartzCore.framework */,
 				0599C56C17E58AD800F708C6 /* CoreMotion.framework */,
 				058FFC2A17DA0B43008ECB1B /* CoreData.framework */,
@@ -399,8 +411,7 @@
 		050A7E0719060B8600C5468D /* Demo */ = {
 			isa = PBXGroup;
 			children = (
-				058E88BE191D11500075094E /* Main_iPad.storyboard */,
-				058E88C0191D11500075094E /* Main_iPhone.storyboard */,
+				058E88C0191D11500075094E /* Main.storyboard */,
 				054BA47417B7789D005532CE /* Views & Controllers */,
 			);
 			path = Demo;
@@ -541,6 +552,15 @@
 				05430130181D5B3A0077435C /* DOMNavigationController.m */,
 			);
 			path = Navigation;
+			sourceTree = "<group>";
+		};
+		0540D3061BB3805100AE9DA8 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				0540D30B1BB3805100AE9DA8 /* libMBProgressHUD.a */,
+				0540D30D1BB3805100AE9DA8 /* MBProgressHUD.framework */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		054BA47417B7789D005532CE /* Views & Controllers */ = {
@@ -831,11 +851,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 05098F4017B62859009D4FF5 /* Build configuration list for PBXNativeTarget "DOMATI" */;
 			buildPhases = (
-				8AAA5317B92C48F18363D6E5 /* Check Pods Manifest.lock */,
 				05098F1017B62859009D4FF5 /* Sources */,
 				05098F1117B62859009D4FF5 /* Frameworks */,
 				05098F1217B62859009D4FF5 /* Resources */,
-				1CCB5E19B38E4655AE643056 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -871,11 +889,11 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = DOM;
-				LastUpgradeCheck = 0500;
+				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = Jad;
 				TargetAttributes = {
 					05098F1317B62859009D4FF5 = {
-						DevelopmentTeam = GGB7WW5V29;
+						DevelopmentTeam = DL393NZ5X7;
 						SystemCapabilities = {
 							com.apple.InterAppAudio = {
 								enabled = 0;
@@ -900,6 +918,12 @@
 			mainGroup = 05098F0B17B62859009D4FF5;
 			productRefGroup = 05098F1517B62859009D4FF5 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 0540D3061BB3805100AE9DA8 /* Products */;
+					ProjectRef = 0540D3051BB3805100AE9DA8 /* MBProgressHUD.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				05098F1317B62859009D4FF5 /* DOMATI */,
@@ -907,6 +931,23 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		0540D30B1BB3805100AE9DA8 /* libMBProgressHUD.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libMBProgressHUD.a;
+			remoteRef = 0540D30A1BB3805100AE9DA8 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		0540D30D1BB3805100AE9DA8 /* MBProgressHUD.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = MBProgressHUD.framework;
+			remoteRef = 0540D30C1BB3805100AE9DA8 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		05098F1217B62859009D4FF5 /* Resources */ = {
@@ -918,12 +959,11 @@
 				058E88C8191D11730075094E /* Data_Gather_iPad.storyboard in Resources */,
 				05098F2A17B62859009D4FF5 /* Images.xcassets in Resources */,
 				05C702FC189C9BE700E0AC35 /* Occupations.plist in Resources */,
-				058E88C2191D11500075094E /* Main_iPad.storyboard in Resources */,
 				059D11EC19062798005FB4E3 /* Network.plist in Resources */,
 				05BD579918B48824003FE71B /* UserInfoTable.plist in Resources */,
 				05E342B0193AD76300662461 /* Dissertation.pdf in Resources */,
 				05A939F018AB1AD80047F4CD /* CalibrationStates.plist in Resources */,
-				058E88C3191D11500075094E /* Main_iPhone.storyboard in Resources */,
+				058E88C3191D11500075094E /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -936,39 +976,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		1CCB5E19B38E4655AE643056 /* Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Pods-DOMATI-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		8AAA5317B92C48F18363D6E5 /* Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		05098F1017B62859009D4FF5 /* Sources */ = {
@@ -1078,20 +1085,12 @@
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
-		058E88BE191D11500075094E /* Main_iPad.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				058E88BF191D11500075094E /* en */,
-			);
-			name = Main_iPad.storyboard;
-			sourceTree = "<group>";
-		};
-		058E88C0191D11500075094E /* Main_iPhone.storyboard */ = {
+		058E88C0191D11500075094E /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				058E88C1191D11500075094E /* en */,
 			);
-			name = Main_iPhone.storyboard;
+			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 		058E88C4191D11730075094E /* Data_Gather_iPad.storyboard */ = {
@@ -1131,6 +1130,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -1144,7 +1144,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1176,7 +1176,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -1185,7 +1185,6 @@
 		};
 		05098F4117B62859009D4FF5 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 63A432A8A6054321847F6A3E /* Pods-DOMATI.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -1200,7 +1199,8 @@
 					"DATA_GATHERING=0",
 				);
 				INFOPLIST_FILE = "DOMATI/DOMATI-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.jadosseiran.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1210,13 +1210,12 @@
 		};
 		05098F4217B62859009D4FF5 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 63A432A8A6054321847F6A3E /* Pods-DOMATI.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = DOMATI/DOMATI.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "DOMATI/DOMATI-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -1225,7 +1224,8 @@
 					"DATA_GATHERING=0",
 				);
 				INFOPLIST_FILE = "DOMATI/DOMATI-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.jadosseiran.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1249,6 +1249,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "DOMATITests/DOMATITests-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.jadosseiran.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
@@ -1267,6 +1268,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "DOMATI/DOMATI-Prefix.pch";
 				INFOPLIST_FILE = "DOMATITests/DOMATITests-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.jadosseiran.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;

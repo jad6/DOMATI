@@ -1,11 +1,11 @@
 //  DOMApproachTestViewController.m
-// 
+//
 //  Created by Jad on 29/04/2014.
 //  Copyright (c) 2014 Jad. All rights reserved.
 //
 //  Redistribution and use in source and binary forms, with or without
 //  modification, are permitted provided that the following conditions are met:
-// 
+//
 //  Redistributions of source code must retain the above copyright notice, this
 //  list of conditions and the following disclaimer. Redistributions in binary
 //  form must reproduce the above copyright notice, this list of conditions and
@@ -13,7 +13,7 @@
 //  provided with the distribution. Neither the name of the nor the names of
 //  its contributors may be used to endorse or promote products derived from
 //  this software without specific prior written permission.
-// 
+//
 //  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
 //  AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
 //  IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
@@ -22,7 +22,7 @@
 //  CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
 //  SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
 //  INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-//  CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
+//  CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
 //  ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 //  POSSIBILITY OF SUCH DAMAGE.
 
@@ -58,44 +58,39 @@ static NSTimeInterval const kBetweenDelay = 2.0;
 
 @implementation DOMApproachTestViewController
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
-    
+
     self.title = @"Approaches";
-    
+
     UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
     [refreshControl addTarget:self action:@selector(refreshAction:) forControlEvents:UIControlEventValueChanged];
     refreshControl.tintColor = [UIColor textColor];
     self.refreshControl = refreshControl;
-    
-    for (UILabel *detailLabel in self.detailLabels)
-    {
+
+    for (UILabel *detailLabel in self.detailLabels) {
         detailLabel.text = @"Loading";
     }
 }
 
-- (void)viewDidAppear:(BOOL)animated
-{
+- (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    
+
     [self refreshAction:self.refreshControl];
 }
 
 #pragma mark - Logic
 
-- (NSTimeInterval)timeDurationForStrength:(DOMApproachTestStrength)strength
-{
-    switch (strength)
-    {
+- (NSTimeInterval)timeDurationForStrength:(DOMApproachTestStrength)strength {
+    switch (strength) {
         case DOMApproachTestStrengthSoft:
             return kSoftDuration;
             break;
-            
+
         case DOMApproachTestStrengthNormal:
             return kNormakDuration;
             break;
-            
+
         case DOMApproachTestStrengthHard:
             return kHardDuration;
             break;
@@ -104,164 +99,153 @@ static NSTimeInterval const kBetweenDelay = 2.0;
 
 - (void)updateLabelWithValue:(NSUInteger)value
                  forStrength:(DOMApproachTestStrength)strength
-                   algorithm:(DOMAproachAlgorithm)algorithm
-{
+                   algorithm:(DOMAproachAlgorithm)algorithm {
     NSUInteger originIdx = (algorithm == DOMAproachAlgorithmActive) ? 3 : 0;
-    NSUInteger detailLabelIdx =  strength + originIdx;
+    NSUInteger detailLabelIdx = strength + originIdx;
     UILabel *detailLabel = self.detailLabels[detailLabelIdx];
     detailLabel.text = [[NSString alloc] initWithFormat:@"%lu objects", (unsigned long)value];
     detailLabel.textColor = [UIColor domatiColor];
     [detailLabel sizeToFit];
-    
+
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        detailLabel.textColor = [UIColor detailTextColor];
+      detailLabel.textColor = [UIColor detailTextColor];
     });
 }
 
 #pragma mark - Active Approach
 
 - (void)activeApproachSimulationForStrength:(DOMApproachTestStrength)strength
-                               motionManager:(DOMActiveMotionManager *)motionManager
-                                  completion:(void (^)(void))completionBlock
-{
-    if (strength > DOMApproachTestStrengthHard && completionBlock)
-    {
+                              motionManager:(DOMActiveMotionManager *)motionManager
+                                 completion:(void (^)(void))completionBlock {
+    if (strength > DOMApproachTestStrengthHard && completionBlock) {
         completionBlock();
         return;
     }
-    
+
     NSError *error = nil;
     [motionManager startListening:&error];
-    if (error)
-    {
+    if (error) {
         [error handle];
     }
-    
+
     NSUInteger startIdx = [motionManager currentMotionIndexWithTouchPhase:UITouchPhaseBegan];
-    
+
     NSTimeInterval delay = [self timeDurationForStrength:strength];
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        
-        NSUInteger endIdx = [motionManager currentMotionIndexWithTouchPhase:UITouchPhaseEnded];
-        
-        NSUInteger count = endIdx - startIdx;
 
-        [motionManager stopListening];
+      NSUInteger endIdx = [motionManager currentMotionIndexWithTouchPhase:UITouchPhaseEnded];
 
-        [self updateLabelWithValue:count
-                       forStrength:strength
-                         algorithm:DOMAproachAlgorithmActive];
-        
-        DOMApproachTestStrength nextStrength = strength + 1;
-        NSTimeInterval strengthDelay = (nextStrength > DOMApproachTestStrengthHard) ? 0.0 : kBetweenDelay;
+      NSUInteger count = endIdx - startIdx;
 
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(strengthDelay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [self activeApproachSimulationForStrength:nextStrength motionManager:motionManager completion:completionBlock];
-        });
+      [motionManager stopListening];
+
+      [self updateLabelWithValue:count
+                     forStrength:strength
+                       algorithm:DOMAproachAlgorithmActive];
+
+      DOMApproachTestStrength nextStrength = strength + 1;
+      NSTimeInterval strengthDelay = (nextStrength > DOMApproachTestStrengthHard) ? 0.0 : kBetweenDelay;
+
+      dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(strengthDelay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self activeApproachSimulationForStrength:nextStrength motionManager:motionManager completion:completionBlock];
+      });
     });
 }
 
-- (void)runActiveApproachSimulation:(void (^)(void))completionBlock
-{
+- (void)runActiveApproachSimulation:(void (^)(void))completionBlock {
     self.motionManager = [[DOMActiveMotionManager alloc] init];
-    
+
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(kBetweenDelay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [self activeApproachSimulationForStrength:DOMApproachTestStrengthSoft motionManager:self.motionManager completion:^{
-            if (completionBlock)
-            {
-                completionBlock();
-            }
-        }];
+      [self activeApproachSimulationForStrength:DOMApproachTestStrengthSoft
+                                  motionManager:self.motionManager
+                                     completion:^{
+                                       if (completionBlock) {
+                                           completionBlock();
+                                       }
+                                     }];
     });
 }
 
 #pragma mark - Passive Approach
 
 - (void)passiveApproachSimulationForStrength:(DOMApproachTestStrength)strength
-                    motionManager:(DOMPassiveMotionManager *)motionManager
-                       completion:(void (^)(void))completionBlock
-{
-    if (strength > DOMApproachTestStrengthHard && completionBlock)
-    {
+                               motionManager:(DOMPassiveMotionManager *)motionManager
+                                  completion:(void (^)(void))completionBlock {
+    if (strength > DOMApproachTestStrengthHard && completionBlock) {
         completionBlock();
         return;
     }
-    
+
     DOMMotionItem *headMotionItem = [motionManager lastMotionItemWithTouchPhase:UITouchPhaseBegan];
 
     NSTimeInterval delay = [self timeDurationForStrength:strength];
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        DOMMotionItem *currentMotionItem = headMotionItem;
-        DOMMotionItem *tailMotionItem = [motionManager lastMotionItemWithTouchPhase:UITouchPhaseEnded];
-        
-        NSUInteger count = 0;
-        while (currentMotionItem != tailMotionItem)
-        {
-            count++;
-            
-            // Iterate the pointer to the next linked list item.
-            currentMotionItem = [currentMotionItem nextObject];
-        }
-        
-        [self updateLabelWithValue:count
-                       forStrength:strength
-                         algorithm:DOMAproachAlgorithmPassive];
-        
-        DOMApproachTestStrength nextStrength = strength + 1;
-        NSTimeInterval strengthDelay = (nextStrength > DOMApproachTestStrengthHard) ? 0.0 : kBetweenDelay;
-        
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(strengthDelay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [self passiveApproachSimulationForStrength:nextStrength motionManager:motionManager completion:completionBlock];
-        });
+      DOMMotionItem *currentMotionItem = headMotionItem;
+      DOMMotionItem *tailMotionItem = [motionManager lastMotionItemWithTouchPhase:UITouchPhaseEnded];
+
+      NSUInteger count = 0;
+      while (currentMotionItem != tailMotionItem) {
+          count++;
+
+          // Iterate the pointer to the next linked list item.
+          currentMotionItem = [currentMotionItem nextObject];
+      }
+
+      [self updateLabelWithValue:count
+                     forStrength:strength
+                       algorithm:DOMAproachAlgorithmPassive];
+
+      DOMApproachTestStrength nextStrength = strength + 1;
+      NSTimeInterval strengthDelay = (nextStrength > DOMApproachTestStrengthHard) ? 0.0 : kBetweenDelay;
+
+      dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(strengthDelay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self passiveApproachSimulationForStrength:nextStrength motionManager:motionManager completion:completionBlock];
+      });
     });
 }
 
-- (void)runPassiveApproachSimulation:(void (^)(void))completionBlock
-{
+- (void)runPassiveApproachSimulation:(void (^)(void))completionBlock {
     self.motionManager = [[DOMPassiveMotionManager alloc] init];
-    
+
     NSError *error = nil;
     [self.motionManager startListening:&error];
-    if (error)
-    {
+    if (error) {
         [error handle];
     }
-    
+
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(kBetweenDelay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [self passiveApproachSimulationForStrength:DOMApproachTestStrengthSoft motionManager:self.motionManager completion:^{
-            [self.motionManager stopListening];
-            
-            if (completionBlock)
-            {
-                completionBlock();
-            }
-        }];
+      [self passiveApproachSimulationForStrength:DOMApproachTestStrengthSoft
+                                   motionManager:self.motionManager
+                                      completion:^{
+                                        [self.motionManager stopListening];
+
+                                        if (completionBlock) {
+                                            completionBlock();
+                                        }
+                                      }];
     });
 }
 
 #pragma mark - Simulation
 
-- (void)runSimulationCompletion:(void (^)(void))completionBlock
-{
+- (void)runSimulationCompletion:(void (^)(void))completionBlock {
     [self runPassiveApproachSimulation:^{
-        [self runActiveApproachSimulation:^{
-            if (completionBlock)
-            {
-                completionBlock();
-            }
-            self.motionManager = nil;
-        }];
+      [self runActiveApproachSimulation:^{
+        if (completionBlock) {
+            completionBlock();
+        }
+        self.motionManager = nil;
+      }];
     }];
 }
 
 #pragma mark - Actions
 
-- (void)refreshAction:(UIRefreshControl *)refreshControl
-{
+- (void)refreshAction:(UIRefreshControl *)refreshControl {
     [refreshControl beginRefreshing];
-    
+
     [self runSimulationCompletion:^{
-        [refreshControl endRefreshing];
+      [refreshControl endRefreshing];
     }];
 }
 

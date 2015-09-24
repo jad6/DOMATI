@@ -34,21 +34,18 @@
 
 @implementation NSObject (Extensions)
 
-- (NSString *)pointerString
-{
+- (NSString *)pointerString {
     return [[NSString alloc] initWithFormat:@"%p", self];
 }
 
-- (NSString *)serializedForm
-{
+- (NSString *)serializedForm {
     NSError *error = nil;
     NSData *JSONData = [NSJSONSerialization dataWithJSONObject:self
                                                        options:NSJSONWritingPrettyPrinted
                                                          error:&error];
     NSString *JSONString = nil;
 
-    if (!error)
-    {
+    if (!error) {
         JSONString = [[NSString alloc] initWithData:JSONData
                                            encoding:NSUTF8StringEncoding];
     }

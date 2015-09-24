@@ -32,8 +32,7 @@
 
 #import "DOMErrors.h"
 
-@interface DOMMotionManager ()
-{
+@interface DOMMotionManager () {
     NSError *__autoreleasing *startingError;
 }
 
@@ -44,30 +43,22 @@ static NSTimeInterval kUpdateInterval = 1 / 100.0;
 
 @implementation DOMMotionManager
 
-- (void)dealloc
-{
-    
+- (void)dealloc {
 }
 
-- (void)setNumListeners:(NSInteger)numListeners
-{
-    if (self->_numListeners != numListeners)
-    {
+- (void)setNumListeners:(NSInteger)numListeners {
+    if (self->_numListeners != numListeners) {
         NSInteger previousNumListeners = self->_numListeners;
         self->_numListeners = numListeners;
-        
+
         // If the new value for the number of listeners is zero stop
         // recording the device motions. However if the listener added
         //  is brings the count from 0 to 1 then start the sensors.
-        if (numListeners == 0)
-        {
+        if (numListeners == 0) {
             [self stopDeviceMotion];
-        }
-        else if (numListeners == 1 && previousNumListeners == 0)
-        {
+        } else if (numListeners == 1 && previousNumListeners == 0) {
             // Turn on the motion sensing if possible.
-            if (![self isDeviceMotionActive])
-            {
+            if (![self isDeviceMotionActive]) {
                 [self startDeviceMotion:self->startingError];
             }
         }
@@ -76,29 +67,24 @@ static NSTimeInterval kUpdateInterval = 1 / 100.0;
 
 #pragma mark - Abstract Methods
 
-- (void)handleMotionObjectUpdate:(CMDeviceMotion *)deviceMotion
-{
-    
+- (void)handleMotionObjectUpdate:(CMDeviceMotion *)deviceMotion {
 }
 
-- (BOOL)resetDataStructureIfPossible
-{
+- (BOOL)resetDataStructureIfPossible {
     return NO;
 }
 
 #pragma mark - Logic
 
-- (BOOL)startListening:(NSError *__autoreleasing *)error
-{
+- (BOOL)startListening:(NSError *__autoreleasing *)error {
     self->startingError = error;
-    
+
     self.numListeners++;
-    
+
     return self->startingError != nil;
 }
 
-- (void)stopListening
-{
+- (void)stopListening {
     self.numListeners--;
 }
 
@@ -108,21 +94,17 @@ static NSTimeInterval kUpdateInterval = 1 / 100.0;
  *  @param error The error which may occur when starting the sensors.
  *  @return True if the motion sensors were usccessfully turned on.
  */
-- (BOOL)startDeviceMotion:(NSError *__autoreleasing *)error
-{
+- (BOOL)startDeviceMotion:(NSError *__autoreleasing *)error {
     // Do nothing if the motion sensors are already turned on.
-    if ([self isDeviceMotionActive])
-    {
+    if ([self isDeviceMotionActive]) {
         return NO;
     }
 
     // Do not attempt to turn on the sensors if the device does not
     // have them enabled or available.
-    if (![self isDeviceMotionAvailable])
-    {
+    if (![self isDeviceMotionAvailable]) {
         // Populate the error to alert the user.
-        if (error)
-        {
+        if (error) {
             *error = [DOMErrors noDeviceMotionError];
         }
         return NO;
@@ -136,18 +118,15 @@ static NSTimeInterval kUpdateInterval = 1 / 100.0;
     // Start the device motion update.
     [self startDeviceMotionUpdatesToQueue:deviceMotionQueue
                               withHandler:^(CMDeviceMotion *motion, NSError *error) {
-         if (!error)
-         {
-             [self handleMotionObjectUpdate:motion];
-         }
-         else
-         {
-             // Something has gone wrong, log
-             // the error and stop the sensors.
-             [error handle];
-             [self stopDeviceMotion];
-         }
-     }];
+                                if (!error) {
+                                    [self handleMotionObjectUpdate:motion];
+                                } else {
+                                    // Something has gone wrong, log
+                                    // the error and stop the sensors.
+                                    [error handle];
+                                    [self stopDeviceMotion];
+                                }
+                              }];
 
     return YES;
 }
@@ -155,16 +134,14 @@ static NSTimeInterval kUpdateInterval = 1 / 100.0;
 /**
  *  Stop updating the device's motion.
  */
-- (void)stopDeviceMotion
-{
+- (void)stopDeviceMotion {
     // Only stop the sensors if they were already active and no
     // other classes are using the manager.
     if ([self isDeviceMotionActive] &&
         self.numListeners == 0 &&
-        self.numActivities == 0)
-    {
+        self.numActivities == 0) {
         [self stopDeviceMotionUpdates];
-        
+
         [self resetDataStructureIfPossible];
     }
 }

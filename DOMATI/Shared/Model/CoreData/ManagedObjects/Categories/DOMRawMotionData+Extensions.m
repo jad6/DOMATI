@@ -39,21 +39,23 @@
 @implementation DOMRawMotionData (Extensions)
 
 + (instancetype)rawMotionDataInContext:(NSManagedObjectContext *)context
-                      fromDeviceMotion:(CMDeviceMotion *)deviceMotion
-{
-    return [self newEntity:@"DOMRawMotionData" inContext:context idAttribute:@"identifier" value:[self localIdentifier] onInsert:^(DOMRawMotionData *object) {
-                object.userAccelX = @(deviceMotion.userAcceleration.x);
-                object.userAccelY = @(deviceMotion.userAcceleration.y);
-                object.userAccelZ = @(deviceMotion.userAcceleration.z);
+                      fromDeviceMotion:(CMDeviceMotion *)deviceMotion {
+    return [self newEntity:@"DOMRawMotionData"
+                 inContext:context
+               idAttribute:@"identifier"
+                     value:[self localIdentifier]
+                  onInsert:^(DOMRawMotionData *object) {
+                    object.userAccelX = @(deviceMotion.userAcceleration.x);
+                    object.userAccelY = @(deviceMotion.userAcceleration.y);
+                    object.userAccelZ = @(deviceMotion.userAcceleration.z);
 
-                object.rotationRateX = @(deviceMotion.rotationRate.x);
-                object.rotationRateY = @(deviceMotion.rotationRate.y);
-                object.rotationRateZ = @(deviceMotion.rotationRate.z);
-            }];
+                    object.rotationRateX = @(deviceMotion.rotationRate.x);
+                    object.rotationRateY = @(deviceMotion.rotationRate.y);
+                    object.rotationRateZ = @(deviceMotion.rotationRate.z);
+                  }];
 }
 
-- (NSDictionary *)postDictionary
-{
+- (NSDictionary *)postDictionary {
     NSMutableDictionary *dictionary = [[NSMutableDictionary alloc] init];
 
     dictionary[@"user_accel_x"] = self.userAccelX;

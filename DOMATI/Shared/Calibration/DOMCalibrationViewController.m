@@ -42,7 +42,7 @@
 #endif
 
 #define MIN_TOUCH_SETS_WANTED 3
-#define ANIMATION_DURATION    0.3
+#define ANIMATION_DURATION 0.3
 
 @interface DOMCalibrationViewController ()
 
@@ -64,8 +64,7 @@
 
 @implementation DOMCalibrationViewController
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor blackColor];
 
@@ -74,24 +73,21 @@
     // Set the initial states.
     self.circleTouchView.circleTouchStrength = DOMCircleTouchStrengthModerate;
     self.state = DOMCalibrationStateInitial;
-    
+
     self.motionManager = [[DOMPassiveMotionManager alloc] init];
 }
 
-- (void)viewDidAppear:(BOOL)animated
-{
+- (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
 
     [self setupStrengthRecognizer];
-    
+
     // Used so the view controller responds to the device shakes.
     [self becomeFirstResponder];
 }
 
-- (void)setState:(DOMCalibrationState)state
-{
-    if (self->_state != state)
-    {
+- (void)setState:(DOMCalibrationState)state {
+    if (self->_state != state) {
         self->_state = state;
     }
 
@@ -100,8 +96,7 @@
 
 #if DATA_GATHERING
     // Handle the final state.
-    if (state == DOMCalibrationStateFinal)
-    {
+    if (state == DOMCalibrationStateFinal) {
         // Increment the saved number of calibration the user has made
         // on the device.
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
@@ -109,8 +104,7 @@
         numTouchSets++;
 
         // If the user has not done enough calibrations setup a local notification.
-        if (numTouchSets < MIN_TOUCH_SETS_WANTED)
-        {
+        if (numTouchSets < MIN_TOUCH_SETS_WANTED) {
             [DOMLocalNotificationHelper schedualLocalNotification];
         }
 
@@ -121,14 +115,12 @@
 #endif
 }
 
-- (BOOL)canBecomeFirstResponder
-{
+- (BOOL)canBecomeFirstResponder {
     // To allow shaking events.
     return YES;
 }
 
-- (void)didReceiveMemoryWarning
-{
+- (void)didReceiveMemoryWarning {
     [self.strengthGR resetMotionCache];
 }
 
@@ -139,68 +131,60 @@
  *
  *  @param strengthGR The strength gesture recogniser.
  */
-- (void)tapDetected:(DOMStrengthGestureRecognizer *)strengthGR
-{
+- (void)tapDetected:(DOMStrengthGestureRecognizer *)strengthGR {
     NSNotification *stateNotif = [[NSNotification alloc] initWithName:kCalibrationStateChangeNotificationName object:self userInfo:@{ @"state" : @(self.state) }];
 
     [[NSNotificationCenter defaultCenter] postNotification:stateNotif];
 
     // Only move states when in the appropriate current state.
     if (self.state > DOMCalibrationStateInitial &&
-        self.state < DOMCalibrationStateFinal)
-    {
+        self.state < DOMCalibrationStateFinal) {
         self.state++;
     }
 }
 
 #pragma mark - Logic
 
-- (void)setupStrengthRecognizer
-{
+- (void)setupStrengthRecognizer {
     // Add the strength gesture recognizer to the circle view.
     NSError *error = nil;
     DOMDataRecordingStrengthGestureRecognizer *strengthGR = [[DOMDataRecordingStrengthGestureRecognizer alloc] initWithTarget:self action:@selector(tapDetected:) motionManager:self.motionManager error:&error];
-    
-    if (error)
-    {
+
+    if (error) {
         [error handle];
-        
+
         [self.navigationController popViewControllerAnimated:YES];
         return;
     }
-    
+
     [self.circleTouchView addGestureRecognizer:strengthGR];
     self.strengthGR = strengthGR;
-    
+
     __weak __typeof(self) weakSelf = self;
     [strengthGR setCoreDataSaveCompletionBlock:^{
-        __strong __typeof(weakSelf) strongSelf = weakSelf;
-        
-        if (strongSelf.state >= DOMCalibrationStateFinal &&
-            !strongSelf.strengthGR.saving)
-        {
+      __strong __typeof(weakSelf) strongSelf = weakSelf;
+
+      if (strongSelf.state >= DOMCalibrationStateFinal &&
+          !strongSelf.strengthGR.saving) {
 #if DATA_GATHERING
-            // Attempt to upload the new (and possibly old data).
-            [[DOMRequestOperationManager sharedManager] uploadDataWhenPossibleWithCompletion:^(BOOL success) {
-                NSDictionary *stateInfo = strongSelf.statesInformation[DOMCalibrationStateFinal];
-                
-                if (success)
-                {
-                    strongSelf.topLabel.text = stateInfo[@"topText"];
-                }
-                else
-                {
-                    strongSelf.topLabel.text = @"Thank you, your touch & device motion data will be uploaded when you are next connected to the Internet and re-launch the app.";
-                }
-                
-                strongSelf.bottomLabel.text = stateInfo[@"bottomText"];
-            } showHudInView:strongSelf.view];
+          // Attempt to upload the new (and possibly old data).
+          [[DOMRequestOperationManager sharedManager] uploadDataWhenPossibleWithCompletion:^(BOOL success) {
+            NSDictionary *stateInfo = strongSelf.statesInformation[DOMCalibrationStateFinal];
+
+            if (success) {
+                strongSelf.topLabel.text = stateInfo[@"topText"];
+            } else {
+                strongSelf.topLabel.text = @"Thank you, your touch & device motion data will be uploaded when you are next connected to the Internet and re-launch the app.";
+            }
+
+            strongSelf.bottomLabel.text = stateInfo[@"bottomText"];
+          } showHudInView:strongSelf.view];
 #else
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                [strongSelf.navigationController popViewControllerAnimated:YES];
-            });
+          dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [strongSelf.navigationController popViewControllerAnimated:YES];
+          });
 #endif
-        }
+      }
     }];
 }
 
@@ -213,10 +197,8 @@
  */
 - (void)setText:(NSString *)text
         onLabel:(UILabel *)label
-       animated:(BOOL)animated
-{
-    if (animated)
-    {
+       animated:(BOOL)animated {
+    if (animated) {
         CATransition *animation = [CATransition animation];
         animation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
         animation.type = kCATransitionFade;
@@ -237,25 +219,20 @@
  */
 - (void)setAlpha:(CGFloat)alpha
           onView:(UIView *)view
-        animated:(BOOL)animated
-{
-    if (animated)
-    {
-        [UIView animateWithDuration:ANIMATION_DURATION animations:^{
-             view.alpha = alpha;
-         }];
-    }
-    else
-    {
+        animated:(BOOL)animated {
+    if (animated) {
+        [UIView animateWithDuration:ANIMATION_DURATION
+                         animations:^{
+                           view.alpha = alpha;
+                         }];
+    } else {
         view.alpha = alpha;
     }
 }
 
 - (void)setTitleOnCircleView:(DOMCircleTouchView *)circleView
-                    forState:(DOMCalibrationState)state
-{
-    switch (state)
-    {
+                    forState:(DOMCalibrationState)state {
+    switch (state) {
         case DOMCalibrationStateModerateTouch:
             circleView.circleTouchStrength = DOMCircleTouchStrengthModerate;
             break;
@@ -280,8 +257,7 @@
  *  @param state    The state to change the view for.
  *  @param animated Wether the chage is animated.
  */
-- (void)setViewForState:(DOMCalibrationState)state animated:(BOOL)animated
-{
+- (void)setViewForState:(DOMCalibrationState)state animated:(BOOL)animated {
     // Get the new state info.
     NSDictionary *stateInfo = self.statesInformation[state];
 
@@ -289,8 +265,7 @@
     NSString *topText = stateInfo[@"topText"];
     NSString *bottomText = stateInfo[@"bottomText"];
 
-    if (state == DOMCalibrationStateFinal)
-    {
+    if (state == DOMCalibrationStateFinal) {
 #if DATA_GATHERING
         topText = @"Thank you, touch & device motion data is being uploaded.";
         bottomText = nil;
@@ -320,13 +295,11 @@
 
 #pragma mark - Shaking
 
-- (void)motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event
-{
+- (void)motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event {
     // If the shake was detected and the user is in the initial state
     // move to the next state.
     if (self.state == DOMCalibrationStateInitial &&
-        motion == UIEventSubtypeMotionShake)
-    {
+        motion == UIEventSubtypeMotionShake) {
         self.state = DOMCalibrationStateModerateTouch;
     }
 }

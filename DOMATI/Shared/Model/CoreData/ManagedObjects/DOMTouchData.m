@@ -10,7 +10,6 @@
 #import "DOMRawMotionData.h"
 #import "DOMRawTouchData.h"
 
-
 @implementation DOMTouchData
 
 @dynamic accelerationAvg;

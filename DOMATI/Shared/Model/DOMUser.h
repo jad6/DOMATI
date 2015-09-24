@@ -30,7 +30,7 @@
 
 #import <Foundation/Foundation.h>
 
-typedef NS_ENUM (NSInteger, DOMGender) {
+typedef NS_ENUM(NSInteger, DOMGender) {
     DOMGenderUndisclosed,
     DOMGenderMale,
     DOMGenderFemale

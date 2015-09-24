@@ -32,43 +32,35 @@
 
 @implementation UIColor (DOMATI)
 
-+ (UIColor *)domatiColor
-{
++ (UIColor *)domatiColor {
     return [UIColor orangeColor];
 }
 
-+ (UIColor *)backgroundColor
-{
++ (UIColor *)backgroundColor {
     return [UIColor colorWithRed:30.0f / 255.0f green:30.0f / 255.0f blue:30.0f / 255.0f alpha:1.0f];
 }
 
-+ (UIColor *)selectionColor
-{
++ (UIColor *)selectionColor {
     return [UIColor darkGrayColor];
 }
 
-+ (UIColor *)textColor
-{
++ (UIColor *)textColor {
     return [UIColor whiteColor];
 }
 
-+ (UIColor *)detailTextColor
-{
++ (UIColor *)detailTextColor {
     return [UIColor lightGrayColor];
 }
 
-+ (UIColor *)softCircleColor
-{
++ (UIColor *)softCircleColor {
     return [UIColor colorWithRed:13.0f / 255.0f green:181.0f / 255.0f blue:69.0f / 255.0f alpha:1.0f];
 }
 
-+ (UIColor *)normalCircleColor
-{
++ (UIColor *)normalCircleColor {
     return [UIColor colorWithRed:0.0f / 255.0f green:122.0f / 255.0f blue:255.0f / 255.0f alpha:1.0f];
 }
 
-+ (UIColor *)hardCircleColor
-{
++ (UIColor *)hardCircleColor {
     return [UIColor colorWithRed:255.0f / 255.0f green:45.0f / 255.0f blue:85.0f / 255.0f alpha:1.0f];
 }
 

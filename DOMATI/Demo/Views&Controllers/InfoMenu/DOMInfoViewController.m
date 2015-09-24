@@ -48,8 +48,7 @@
 
 @implementation DOMInfoViewController
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
 
     self.title = @"DOMATI";
@@ -57,27 +56,23 @@
     self.debugSwitch.on = [[NSUserDefaults standardUserDefaults] boolForKey:DEFAULTS_DEBUG_STRENGTH];
 }
 
-- (void)viewWillAppear:(BOOL)animated
-{
+- (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
 
     [self refreshCalibrationExpiryText];
 }
 
-- (void)didReceiveMemoryWarning
-{
+- (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
 #pragma mark - Logic
 
-- (void)refreshCalibrationExpiryText
-{
+- (void)refreshCalibrationExpiryText {
     NSString *text = [[NSUbiquitousKeyValueStore defaultStore] objectForKey:KEYSTORE_CALI_EXPR_TEXT];
 
-    if (!text)
-    {
+    if (!text) {
         text = @"Never";
     }
 
@@ -86,35 +81,29 @@
 
 #pragma mark - Actions
 
-- (IBAction)doneAction:(id)sender
-{
-    if ([self.delegate respondsToSelector:@selector(infoVCDidAskToDismiss:)])
-    {
+- (IBAction)doneAction:(id)sender {
+    if ([self.delegate respondsToSelector:@selector(infoVCDidAskToDismiss:)]) {
         [self.delegate infoVCDidAskToDismiss:self];
     }
 }
 
-- (IBAction)debugSwitchAction:(UISwitch *)debugSwitch
-{
+- (IBAction)debugSwitchAction:(UISwitch *)debugSwitch {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults setBool:debugSwitch.on forKey:DEFAULTS_DEBUG_STRENGTH];
     [defaults synchronize];
-    
-    if ([self.delegate respondsToSelector:@selector(infoVC:didChangeDebugSwitchValue:)])
-    {
+
+    if ([self.delegate respondsToSelector:@selector(infoVC:didChangeDebugSwitchValue:)]) {
         [self.delegate infoVC:self didChangeDebugSwitchValue:debugSwitch.on];
     }
 }
 
 #pragma mark - Feedback
 
-- (void)sendFeedback:(id)sender
-{
-    if ([MFMailComposeViewController canSendMail])
-    {
+- (void)sendFeedback:(id)sender {
+    if ([MFMailComposeViewController canSendMail]) {
         MFMailComposeViewController *composer = [[MFMailComposeViewController alloc] init];
         composer.mailComposeDelegate = self;
-        [composer setToRecipients:@[@"20507033@student.uwa.edu.au"]];
+        [composer setToRecipients:@[ @"20507033@student.uwa.edu.au" ]];
         [composer setSubject:@"DOMATI Feedback"];
         [composer setMessageBody:@"Something constructive right here..." isHTML:NO];
 
@@ -124,27 +113,24 @@
 
 - (void)mailComposeController:(MFMailComposeViewController *)controller
           didFinishWithResult:(MFMailComposeResult)result
-                        error:(NSError *)error
-{
-    if (error)
-    {
+                        error:(NSError *)error {
+    if (error) {
         [error handle];
     }
 
-    [self dismissViewControllerAnimated:YES completion:^{
-         [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForCell:self.feedbackCell] animated:YES];
-     }];
+    [self dismissViewControllerAnimated:YES
+                             completion:^{
+                               [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForCell:self.feedbackCell] animated:YES];
+                             }];
 }
 
 #pragma mark - Quick Look
 
-- (void)showDocumentWithLocalURL:(NSURL *)url andTitle:(NSString *)title
-{
+- (void)showDocumentWithLocalURL:(NSURL *)url andTitle:(NSString *)title {
     self.previewItem = [[DOMPreviewItem alloc] init];
     self.previewItem.localURL = url;
     self.previewItem.documentTitle = title;
-    if ([QLPreviewController canPreviewItem:self.previewItem])
-    {
+    if ([QLPreviewController canPreviewItem:self.previewItem]) {
         QLPreviewController *quickLookC = [[QLPreviewController alloc] init];
         quickLookC.dataSource = self;
 
@@ -152,8 +138,7 @@
     }
 }
 
-- (NSInteger)numberOfPreviewItemsInPreviewController:(QLPreviewController *)controller
-{
+- (NSInteger)numberOfPreviewItemsInPreviewController:(QLPreviewController *)controller {
     return 1;
 }
 
@@ -164,16 +149,12 @@
 
 #pragma mark - Table view
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     id cell = [tableView cellForRowAtIndexPath:indexPath];
 
-    if ([cell isEqual:self.feedbackCell])
-    {
+    if ([cell isEqual:self.feedbackCell]) {
         [self sendFeedback:cell];
-    }
-    else if ([cell isEqual:self.projectProposalCell])
-    {
+    } else if ([cell isEqual:self.projectProposalCell]) {
         [self showDocumentWithLocalURL:[[NSBundle mainBundle] URLForResource:@"Dissertation" withExtension:@"pdf"]
                               andTitle:@"Dissertation"];
     }
@@ -182,8 +163,7 @@
 #pragma mark - Navigation
 
 // In a story board-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
 }

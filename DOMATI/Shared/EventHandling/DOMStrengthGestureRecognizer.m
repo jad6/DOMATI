@@ -55,8 +55,7 @@ static CGFloat const kRotUpperHard = 1.0;
 
 static NSTimeInterval const kMaxAcceptableDuration = 1.2;
 
-@interface DOMStrengthGestureRecognizer ()
-{
+@interface DOMStrengthGestureRecognizer () {
     /// The queue running on a different thread to process the data.
     dispatch_queue_t dataProcessingQueue;
 }
@@ -77,21 +76,19 @@ static NSTimeInterval const kMaxAcceptableDuration = 1.2;
 - (instancetype)initWithTarget:(id)target
                         action:(SEL)action
                  motionManager:(DOMPassiveMotionManager *)motionManager
-                         error:(NSError *__autoreleasing *)error
-{
+                         error:(NSError *__autoreleasing *)error {
     self = [super initWithTarget:target action:action];
-    if (self)
-    {
+    if (self) {
         self.automaticallyResetDataBuffers = YES;
-        
+
         // Create the serial queue to ensure FIFS
         self->dataProcessingQueue = dispatch_queue_create("data_processing_queue", DISPATCH_QUEUE_SERIAL);
         dispatch_sync(self->dataProcessingQueue, ^{
-            // Initialise storing objects on the dataProcessingQueue
-            self.touchesInfo = [[NSMutableDictionary alloc] init];
-            self.allPhasesTouchesInfo = [[NSMutableDictionary alloc] init];
-            self.motionsInfo = [[NSMutableDictionary alloc] init];
-            self.motionItems = [[NSMutableDictionary alloc] init];
+          // Initialise storing objects on the dataProcessingQueue
+          self.touchesInfo = [[NSMutableDictionary alloc] init];
+          self.allPhasesTouchesInfo = [[NSMutableDictionary alloc] init];
+          self.motionsInfo = [[NSMutableDictionary alloc] init];
+          self.motionItems = [[NSMutableDictionary alloc] init];
         });
 
         [motionManager startListening:error];
@@ -100,29 +97,25 @@ static NSTimeInterval const kMaxAcceptableDuration = 1.2;
     return self;
 }
 
-- (instancetype)initWithTarget:(id)target action:(SEL)action
-{
+- (instancetype)initWithTarget:(id)target action:(SEL)action {
     NSError *error = nil;
     self = [self initWithTarget:target
                          action:action
                   motionManager:[[DOMPassiveMotionManager alloc] init]
                           error:nil];
-    
-    if (error)
-    {
+
+    if (error) {
         [error handle];
     }
-    
+
     return self;
 }
 
-- (instancetype)init
-{
+- (instancetype)init {
     return [self initWithTarget:nil action:nil];
 }
 
-- (void)dealloc
-{
+- (void)dealloc {
     // Stop recording the device motions when the gesture
     // recogniser is dealloced.
     [self.motionManager stopListening];
@@ -130,8 +123,7 @@ static NSTimeInterval const kMaxAcceptableDuration = 1.2;
 
 #pragma mark - Logic
 
-- (void)resetDataBufferForTouch:(UITouch *)touch
-{
+- (void)resetDataBufferForTouch:(UITouch *)touch {
     NSString *pointerKey = [touch pointerString];
 
     [self.motionsInfo removeObjectForKey:pointerKey];
@@ -139,32 +131,29 @@ static NSTimeInterval const kMaxAcceptableDuration = 1.2;
     [self.allPhasesTouchesInfo removeObjectForKey:pointerKey];
 }
 
-- (void)resetMotionCache
-{
+- (void)resetMotionCache {
     [self.motionManager resetDataStructureIfPossible];
 }
 
-- (NSDictionary *)touchesInfoForTouch:(UITouch *)touch
-{
+- (NSDictionary *)touchesInfoForTouch:(UITouch *)touch {
     NSString *pointerKey = [touch pointerString];
-    
+
     __block NSDictionary *touchesInfo = nil;
-    
+
     dispatch_barrier_sync(self->dataProcessingQueue, ^{
-        touchesInfo = self.touchesInfo[pointerKey];
+      touchesInfo = self.touchesInfo[pointerKey];
     });
-    
+
     return touchesInfo;
 }
 
-- (NSDictionary *)motionsInfoForTouch:(UITouch *)touch
-{
+- (NSDictionary *)motionsInfoForTouch:(UITouch *)touch {
     NSString *pointerKey = [touch pointerString];
 
     __block NSDictionary *motionsInfo = nil;
 
     dispatch_barrier_sync(self->dataProcessingQueue, ^{
-        motionsInfo = self.motionsInfo[pointerKey];
+      motionsInfo = self.motionsInfo[pointerKey];
     });
 
     return motionsInfo;
@@ -178,8 +167,7 @@ static NSTimeInterval const kMaxAcceptableDuration = 1.2;
  *
  *  @return The point of the touch in relation to the whole screen.
  */
-- (CGPoint)locationOfTouch:(UITouch *)touch onScreenForView:(UIView *)view
-{
+- (CGPoint)locationOfTouch:(UITouch *)touch onScreenForView:(UIView *)view {
     CGPoint location = [touch locationInView:self.view];
     CGPoint viewOrigin = view.frame.origin;
 
@@ -187,130 +175,114 @@ static NSTimeInterval const kMaxAcceptableDuration = 1.2;
 }
 
 - (CGFloat)normalisedValueFromValue:(CGFloat)value
-                           boundaries:(NSArray *)boundaries
-{
+                         boundaries:(NSArray *)boundaries {
     NSSortDescriptor *sortOrder = [NSSortDescriptor sortDescriptorWithKey:@"self" ascending:YES];
-    boundaries = [boundaries sortedArrayUsingDescriptors:@[sortOrder]];
-    
+    boundaries = [boundaries sortedArrayUsingDescriptors:@[ sortOrder ]];
+
     NSUInteger numBoundaries = [boundaries count];
     if (numBoundaries <= 2)
         return value;
-    
+
     CGFloat minBoundary = TO_CGFLOAT([boundaries firstObject]);
     CGFloat maxBoundary = TO_CGFLOAT([boundaries lastObject]);
     CGFloat sizeFactor = maxBoundary / (float)(numBoundaries - 1);
-    
+
     if (value < minBoundary)
         return minBoundary;
     if (value > maxBoundary)
         return maxBoundary;
-    
+
     CGFloat normalisedValue = 0.0f;
-    for (NSInteger i = 1; i < numBoundaries; i++)
-    {
+    for (NSInteger i = 1; i < numBoundaries; i++) {
         CGFloat upperBoundary = TO_CGFLOAT(boundaries[i]);
-        CGFloat lowerBoundary = TO_CGFLOAT(boundaries[i-1]);
-        if (value > lowerBoundary && value <= upperBoundary)
-        {
+        CGFloat lowerBoundary = TO_CGFLOAT(boundaries[i - 1]);
+        if (value > lowerBoundary && value <= upperBoundary) {
             normalisedValue = ((i - 1) * sizeFactor) + ((value / upperBoundary) * sizeFactor);
             break;
         }
     }
-    
+
     return normalisedValue;
 }
 
-- (CGFloat)strengthForTouch:(UITouch *)touch
-{
+- (CGFloat)strengthForTouch:(UITouch *)touch {
     __block CGFloat strength = 0.0;
-    
+
     dispatch_sync(self->dataProcessingQueue, ^{
-        NSString *pointerKey = [touch pointerString];
-        
-        CGFloat duration = TO_CGFLOAT(self.touchesInfo[pointerKey][kTouchInfoDurationKey]);
-        if (duration > kMaxAcceptableDuration)
-        {
-            strength = -1.5;
-        }
-        else
-        {
-            CGFloat avgAcceleration = TO_CGFLOAT(self.motionsInfo[pointerKey][kMotionInfoAvgAccelerationKey]);
-            NSArray *accelerationBoundries = @[@(kAccLowerSoft), @(kAccLowerNormal),
-                                               @(kAccUpperNormal), @(kAccUpperHard)];
-            CGFloat acceleration = [self normalisedValueFromValue:avgAcceleration boundaries:accelerationBoundries];
-            
-            CGFloat avgRotation = TO_CGFLOAT(self.motionsInfo[pointerKey][kMotionInfoAvgRotationKey]);
-            NSArray *rotationBoundaries = @[@(kRotLowerSoft), @(kRotLowerNormal),
-                                            @(kRotUpperNormal), @(kRotUpperHard)];
-            CGFloat rotation = [self normalisedValueFromValue:avgRotation boundaries:rotationBoundaries];
-            
-            strength = (rotation + acceleration) / 2.0;
-        }
+      NSString *pointerKey = [touch pointerString];
+
+      CGFloat duration = TO_CGFLOAT(self.touchesInfo[pointerKey][kTouchInfoDurationKey]);
+      if (duration > kMaxAcceptableDuration) {
+          strength = -1.5;
+      } else {
+          CGFloat avgAcceleration = TO_CGFLOAT(self.motionsInfo[pointerKey][kMotionInfoAvgAccelerationKey]);
+          NSArray *accelerationBoundries = @[ @(kAccLowerSoft), @(kAccLowerNormal), @(kAccUpperNormal), @(kAccUpperHard) ];
+          CGFloat acceleration = [self normalisedValueFromValue:avgAcceleration boundaries:accelerationBoundries];
+
+          CGFloat avgRotation = TO_CGFLOAT(self.motionsInfo[pointerKey][kMotionInfoAvgRotationKey]);
+          NSArray *rotationBoundaries = @[ @(kRotLowerSoft), @(kRotLowerNormal), @(kRotUpperNormal), @(kRotUpperHard) ];
+          CGFloat rotation = [self normalisedValueFromValue:avgRotation boundaries:rotationBoundaries];
+
+          strength = (rotation + acceleration) / 2.0;
+      }
     });
-    
+
     return strength;
 }
 
 #pragma mark - Storing & Processing
 
-- (void)processTouchesInfo:(NSSet *)touches
-{
+- (void)processTouchesInfo:(NSSet *)touches {
     dispatch_sync(self->dataProcessingQueue, ^{
-        for (UITouch *touch in touches)
-        {
-            NSString *pointerKey = [touch pointerString];
+      for (UITouch *touch in touches) {
+          NSString *pointerKey = [touch pointerString];
 
-            NSArray *touchAllPhasesInfo = self.allPhasesTouchesInfo[pointerKey];
-            // Need the start and end times to calculate duration
-            NSTimeInterval startTimestamp = 0.0;
-            NSTimeInterval endTimestamp = 0.0;
-            
-            // Used to calculate the x & y deltas.
-            CGFloat startX = 0.0;
-            CGFloat endX = 0.0;
-            CGFloat startY = 0.0;
-            CGFloat endY = 0.0;
-            
-            // Variable to store the maximum radius found for the touch.
-            CGFloat maxRadius = (CGFLOAT_IS_DOUBLE) ? DBL_MIN : FLT_MIN;
-            
-            // Enumerate through each of the touch's phase info.
-            for (NSDictionary *touchPhaseInfo in touchAllPhasesInfo)
-            {
-                // Save the start variables on UITouchPhaseBegan and the end
-                // variables on UITouchPhaseEnded.
-                if ([touchPhaseInfo[kTouchInfoPhaseKey] integerValue] == UITouchPhaseBegan)
-                {
-                    startTimestamp = [touchPhaseInfo[kTouchInfoTimestampKey] doubleValue];
-                    
-                    startX = TO_CGFLOAT(touchPhaseInfo[kTouchInfoXKey]);
-                    startY = TO_CGFLOAT(touchPhaseInfo[kTouchInfoYKey]);
-                }
-                else if ([touchPhaseInfo[kTouchInfoPhaseKey] integerValue] == UITouchPhaseEnded)
-                {
-                    endTimestamp = [touchPhaseInfo[kTouchInfoTimestampKey] doubleValue];
-                    
-                    endX = TO_CGFLOAT(touchPhaseInfo[kTouchInfoXKey]);
-                    endY = TO_CGFLOAT(touchPhaseInfo[kTouchInfoYKey]);
-                }
-                
-                // Get the current touch radius.
-                CGFloat radius = TO_CGFLOAT(touchPhaseInfo[kTouchInfoRadiusKey]);
-                // Save it if it is the new maximum.
-                if (radius > maxRadius)
-                {
-                    maxRadius = radius;
-                }
-            }
-            
-            NSDictionary *touchInfo = @{kTouchInfoAllPhasesKey: touchAllPhasesInfo,
-                                        kTouchInfoDeltaXKey: @(ABS(endX - startX)),
-                                        kTouchInfoDeltaYKey: @(ABS(endY - startY)),
-                                        kTouchInfoMaxRadiusKey: @(maxRadius),
-                                        kTouchInfoDurationKey: @(endTimestamp - startTimestamp)};
-            
-            self.touchesInfo[pointerKey] = touchInfo;
-        }
+          NSArray *touchAllPhasesInfo = self.allPhasesTouchesInfo[pointerKey];
+          // Need the start and end times to calculate duration
+          NSTimeInterval startTimestamp = 0.0;
+          NSTimeInterval endTimestamp = 0.0;
+
+          // Used to calculate the x & y deltas.
+          CGFloat startX = 0.0;
+          CGFloat endX = 0.0;
+          CGFloat startY = 0.0;
+          CGFloat endY = 0.0;
+
+          // Variable to store the maximum radius found for the touch.
+          CGFloat maxRadius = (CGFLOAT_IS_DOUBLE) ? DBL_MIN : FLT_MIN;
+
+          // Enumerate through each of the touch's phase info.
+          for (NSDictionary *touchPhaseInfo in touchAllPhasesInfo) {
+              // Save the start variables on UITouchPhaseBegan and the end
+              // variables on UITouchPhaseEnded.
+              if ([touchPhaseInfo[kTouchInfoPhaseKey] integerValue] == UITouchPhaseBegan) {
+                  startTimestamp = [touchPhaseInfo[kTouchInfoTimestampKey] doubleValue];
+
+                  startX = TO_CGFLOAT(touchPhaseInfo[kTouchInfoXKey]);
+                  startY = TO_CGFLOAT(touchPhaseInfo[kTouchInfoYKey]);
+              } else if ([touchPhaseInfo[kTouchInfoPhaseKey] integerValue] == UITouchPhaseEnded) {
+                  endTimestamp = [touchPhaseInfo[kTouchInfoTimestampKey] doubleValue];
+
+                  endX = TO_CGFLOAT(touchPhaseInfo[kTouchInfoXKey]);
+                  endY = TO_CGFLOAT(touchPhaseInfo[kTouchInfoYKey]);
+              }
+
+              // Get the current touch radius.
+              CGFloat radius = TO_CGFLOAT(touchPhaseInfo[kTouchInfoRadiusKey]);
+              // Save it if it is the new maximum.
+              if (radius > maxRadius) {
+                  maxRadius = radius;
+              }
+          }
+
+          NSDictionary *touchInfo = @{ kTouchInfoAllPhasesKey : touchAllPhasesInfo,
+                                       kTouchInfoDeltaXKey : @(ABS(endX - startX)),
+                                       kTouchInfoDeltaYKey : @(ABS(endY - startY)),
+                                       kTouchInfoMaxRadiusKey : @(maxRadius),
+                                       kTouchInfoDurationKey : @(endTimestamp - startTimestamp) };
+
+          self.touchesInfo[pointerKey] = touchInfo;
+      }
     });
 }
 
@@ -319,126 +291,116 @@ static NSTimeInterval const kMaxAcceptableDuration = 1.2;
  *
  *  @param touches The touches who's data we want to store.
  */
-- (void)storeTouchesInfo:(NSSet *)touches
-{
+- (void)storeTouchesInfo:(NSSet *)touches {
     // Make sure we are processing the data on a different queue.
     dispatch_sync(self->dataProcessingQueue, ^{
-        for (UITouch *touch in touches)
-        {
-            NSString *pointerKey = [touch pointerString];
-            
-            // Get the tail for the linked list on touches began.
-            if (touch.phase == UITouchPhaseBegan)
-            {
-                self.motionItems[pointerKey] = [self.motionManager lastMotionItemWithTouchPhase:UITouchPhaseBegan];
-            }
-            
-            // Retreive the touch location on the scren.
-            CGPoint touchLocation = [self locationOfTouch:touch onScreenForView:self.view];
-            
-            // Store all the relevant touch info in a dictionary.
-            NSDictionary *touchInfo = @{ kTouchInfoTimestampKey : @(touch.timestamp),
-                                         kTouchInfoXKey : @(touchLocation.x),
-                                         kTouchInfoYKey : @(touchLocation.y),
-                                         kTouchInfoPhaseKey : @(touch.phase),
-                                         kTouchInfoRadiusKey : @([touch radius]) };
-            
-            // Get the existing touch info for possible other states.
-            NSMutableArray *touchAllPhasesInfo = self.allPhasesTouchesInfo[pointerKey];
-            // If there are no other touch info states stored create
-            // an array to hold them.
-            if (!touchAllPhasesInfo)
-            {
-                touchAllPhasesInfo = [[NSMutableArray alloc] init];
-            }
-            // Store the new touch info.
-            [touchAllPhasesInfo addObject:touchInfo];
-            
-            // Store the touch info phases in the overall dictionary.
-            self.allPhasesTouchesInfo[pointerKey] = touchAllPhasesInfo;
-        }
+      for (UITouch *touch in touches) {
+          NSString *pointerKey = [touch pointerString];
+
+          // Get the tail for the linked list on touches began.
+          if (touch.phase == UITouchPhaseBegan) {
+              self.motionItems[pointerKey] = [self.motionManager lastMotionItemWithTouchPhase:UITouchPhaseBegan];
+          }
+
+          // Retreive the touch location on the scren.
+          CGPoint touchLocation = [self locationOfTouch:touch onScreenForView:self.view];
+
+          // Store all the relevant touch info in a dictionary.
+          NSDictionary *touchInfo = @{ kTouchInfoTimestampKey : @(touch.timestamp),
+                                       kTouchInfoXKey : @(touchLocation.x),
+                                       kTouchInfoYKey : @(touchLocation.y),
+                                       kTouchInfoPhaseKey : @(touch.phase),
+                                       kTouchInfoRadiusKey : @([touch radius]) };
+
+          // Get the existing touch info for possible other states.
+          NSMutableArray *touchAllPhasesInfo = self.allPhasesTouchesInfo[pointerKey];
+          // If there are no other touch info states stored create
+          // an array to hold them.
+          if (!touchAllPhasesInfo) {
+              touchAllPhasesInfo = [[NSMutableArray alloc] init];
+          }
+          // Store the new touch info.
+          [touchAllPhasesInfo addObject:touchInfo];
+
+          // Store the touch info phases in the overall dictionary.
+          self.allPhasesTouchesInfo[pointerKey] = touchAllPhasesInfo;
+      }
     });
 }
 
-- (void)storeAndProcessMotionsInfo:(NSSet *)touches
-{
+- (void)storeAndProcessMotionsInfo:(NSSet *)touches {
     // We are about to do somewhat intensive work, let's keep that away form the main queue.
     dispatch_sync(self->dataProcessingQueue, ^{
-        for (UITouch *touch in touches)
-        {
-            NSString *pointerKey = [touch pointerString];
-            
-            // The head of the linked list is the item stored when
-            // the touch was in its UITouchPhaseBegan phase.
-            DOMMotionItem *headMotionItem = self.motionItems[pointerKey];
-            // Set a new pointer to enumerate with.
-            DOMMotionItem *currentMotionItem = headMotionItem;
-            // Get the new tail from the linked list.
-            DOMMotionItem *tailMotionItem = [self.motionManager lastMotionItemWithTouchPhase:UITouchPhaseEnded];
-            
-            // We have a stored scope reference to the head of the
-            // linked list, therefore we can remove it from our
-            // class collection.
-            [self.motionItems removeObjectForKey:pointerKey];
-            
-            // Variables which will be used to calculate raw motion
-            // data attributes.
-            double totalAcceleration = 0.0;
-            double totalRotation = 0.0;
-            
-            // Allocate array to store the touch's motions.
-            NSMutableArray *motions = [[NSMutableArray alloc] init];
-            while (currentMotionItem != tailMotionItem)
-            {
-                CMDeviceMotion *motion = currentMotionItem.deviceMotion;
-                [motions addObject:motion];
-                
-                // Good old pythagorus to get an abstract measure of
-                // the combined acceleration on the device.
-                CMAcceleration acc = motion.userAcceleration;
-                totalAcceleration += sqrt(acc.x * acc.x + acc.y * acc.y + acc.z * acc.z);
-                
-                // Using pythagorus on rotation values gives a
-                // scalar value which can be used to determine the
-                // level of rotation of a touch.
-                CMRotationRate rot = motion.rotationRate;
-                totalRotation += sqrt(rot.x * rot.x + rot.y * rot.y + rot.z * rot.z);
-                
-                // Iterate the pointer to the next linked list item.
-                currentMotionItem = [currentMotionItem nextObject];
-            }
-            
-            // Work out the averages for the acceleration and rotation.
-            NSUInteger motionsCount = [motions count];
-            CGFloat avgAcceleration = (totalAcceleration / (motionsCount * 1.0));
-            CGFloat avgRotation = (totalRotation / (motionsCount * 1.0));
-            
-            // Save the values in a dictionary for future possible reference.
-            self.motionsInfo[[touch pointerString]] = @{ kMotionInfoMotionsKey : motions,
-                                                         kMotionInfoAvgAccelerationKey : @(avgAcceleration),
-                                                         kMotionInfoAvgRotationKey : @(avgRotation) };
-        }
+      for (UITouch *touch in touches) {
+          NSString *pointerKey = [touch pointerString];
+
+          // The head of the linked list is the item stored when
+          // the touch was in its UITouchPhaseBegan phase.
+          DOMMotionItem *headMotionItem = self.motionItems[pointerKey];
+          // Set a new pointer to enumerate with.
+          DOMMotionItem *currentMotionItem = headMotionItem;
+          // Get the new tail from the linked list.
+          DOMMotionItem *tailMotionItem = [self.motionManager lastMotionItemWithTouchPhase:UITouchPhaseEnded];
+
+          // We have a stored scope reference to the head of the
+          // linked list, therefore we can remove it from our
+          // class collection.
+          [self.motionItems removeObjectForKey:pointerKey];
+
+          // Variables which will be used to calculate raw motion
+          // data attributes.
+          double totalAcceleration = 0.0;
+          double totalRotation = 0.0;
+
+          // Allocate array to store the touch's motions.
+          NSMutableArray *motions = [[NSMutableArray alloc] init];
+          while (currentMotionItem != tailMotionItem) {
+              CMDeviceMotion *motion = currentMotionItem.deviceMotion;
+              [motions addObject:motion];
+
+              // Good old pythagorus to get an abstract measure of
+              // the combined acceleration on the device.
+              CMAcceleration acc = motion.userAcceleration;
+              totalAcceleration += sqrt(acc.x * acc.x + acc.y * acc.y + acc.z * acc.z);
+
+              // Using pythagorus on rotation values gives a
+              // scalar value which can be used to determine the
+              // level of rotation of a touch.
+              CMRotationRate rot = motion.rotationRate;
+              totalRotation += sqrt(rot.x * rot.x + rot.y * rot.y + rot.z * rot.z);
+
+              // Iterate the pointer to the next linked list item.
+              currentMotionItem = [currentMotionItem nextObject];
+          }
+
+          // Work out the averages for the acceleration and rotation.
+          NSUInteger motionsCount = [motions count];
+          CGFloat avgAcceleration = (totalAcceleration / (motionsCount * 1.0));
+          CGFloat avgRotation = (totalRotation / (motionsCount * 1.0));
+
+          // Save the values in a dictionary for future possible reference.
+          self.motionsInfo[[touch pointerString]] = @{ kMotionInfoMotionsKey : motions,
+                                                       kMotionInfoAvgAccelerationKey : @(avgAcceleration),
+                                                       kMotionInfoAvgRotationKey : @(avgRotation) };
+      }
     });
 }
 
 #pragma mark - Touches
 
-- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
-{
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     [super touchesBegan:touches withEvent:event];
 
     [self storeTouchesInfo:touches];
 }
 
-- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
-{
+- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
     [super touchesMoved:touches withEvent:event];
 
     [self storeTouchesInfo:touches];
 }
 
-- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
-{
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
     [super touchesEnded:touches withEvent:event];
 
     [self storeTouchesInfo:touches];
@@ -448,33 +410,28 @@ static NSTimeInterval const kMaxAcceptableDuration = 1.2;
     // The touch has ended and reset the linked list if the motion
     // manager is not using for anything else.
     [self.motionManager resetDataStructureIfPossible];
-    
+
     self.strength = [self strengthForTouch:[touches anyObject]];
-    
-    if (self.automaticallyResetDataBuffers)
-    {
-        for (UITouch *touch in touches)
-        {
+
+    if (self.automaticallyResetDataBuffers) {
+        for (UITouch *touch in touches) {
             [self resetDataBufferForTouch:touch];
         }
     }
-    
+
     // Set the gesture recogniser to a recognised state.
-    if (self.state == UIGestureRecognizerStatePossible)
-    {
+    if (self.state == UIGestureRecognizerStatePossible) {
         self.state = (self.strength == -1.0) ? UIGestureRecognizerStateFailed : UIGestureRecognizerStateRecognized;
     }
 }
 
-- (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event
-{
+- (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event {
     [super touchesCancelled:touches withEvent:event];
 
     self.state = UIGestureRecognizerStateFailed;
 }
 
-- (void)reset
-{
+- (void)reset {
     [super reset];
 }
 

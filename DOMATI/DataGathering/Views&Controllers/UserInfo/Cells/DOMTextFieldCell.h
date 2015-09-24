@@ -30,7 +30,7 @@
 
 #import "DOMTableViewCell.h"
 
-typedef NS_ENUM (NSInteger, DOMTextFieldCellType) {
+typedef NS_ENUM(NSInteger, DOMTextFieldCellType) {
     DOMTextFieldCellTypeNone,
     DOMTextFieldCellTypeHeight,
     DOMTextFieldCellTypeWeight

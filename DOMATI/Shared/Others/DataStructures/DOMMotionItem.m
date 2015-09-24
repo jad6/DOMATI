@@ -18,11 +18,9 @@
 
 @implementation DOMMotionItem
 
-- (instancetype)initWithDeviceMotion:(CMDeviceMotion *)deviceMotion
-{
+- (instancetype)initWithDeviceMotion:(CMDeviceMotion *)deviceMotion {
     self = [super init];
-    if (self)
-    {
+    if (self) {
         self.deviceMotion = deviceMotion;
         self.timestamp = deviceMotion.timestamp;
     }

@@ -38,25 +38,23 @@
 
 @implementation DOMThemeManager
 
-+ (id<DOMTheme>)sharedTheme
-{
++ (id<DOMTheme>)sharedTheme {
     static __DISPATCH_ONCE__ id singletonObject = nil;
 
     static dispatch_once_t onceToken;
 
     dispatch_once(&onceToken, ^{
-                      // Create and return the theme: (This line should change in the future to change the theme)
-                      singletonObject = [[DOMThemeResources alloc] init];
-                  });
+      // Create and return the theme: (This line should change in the future to change the theme)
+      singletonObject = [[DOMThemeResources alloc] init];
+    });
 
     return singletonObject;
 }
 
-+ (void)customiseAppAppearance
-{
++ (void)customiseAppAppearance {
     [[UIToolbar appearance] setBarTintColor:[UIColor backgroundColor]];
     [[DOMNavigationBar appearance] setBarTintColor:[UIColor backgroundColor]];
-    NSDictionary *navAttributes = @{ NSForegroundColorAttributeName : [UIColor textColor] };
+    NSDictionary *navAttributes = @{NSForegroundColorAttributeName : [UIColor textColor]};
     [[DOMNavigationBar appearance] setTitleTextAttributes:navAttributes];
 
     [[DOMTableView appearance] setBackgroundColor:[UIColor backgroundColor]];

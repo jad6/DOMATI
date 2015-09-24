@@ -34,8 +34,7 @@
 
 @implementation UIDevice (Extension)
 
-- (NSString *)modelDetailed
-{
+- (NSString *)modelDetailed {
     struct utsname systemInfo;
 
     uname(&systemInfo);

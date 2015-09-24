@@ -40,17 +40,15 @@
 
 @implementation DOMUserInfoPickerTableViewController
 
-- (Class)pickerCellClass
-{
+- (Class)pickerCellClass {
     return [DOMPickerCell class];
 }
 
-- (void)reloadPicker
-{
+- (void)reloadPicker {
     NSIndexPath *pickerIndexPath = self.pickerIndexPath;
 
     // Get the cell above the picker.
-    UITableViewCell *headerCell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:(pickerIndexPath.row - 1) inSection:pickerIndexPath.section]];
+    UITableViewCell *headerCell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:(pickerIndexPath.row - 1)inSection:pickerIndexPath.section]];
     DOMPickerCell *pickerCell = (DOMPickerCell *)[self.tableView cellForRowAtIndexPath:pickerIndexPath];
 
     [self populatePicker:pickerCell.picker
@@ -67,8 +65,7 @@
  *  @param text        the text to set on the detail label.
  *  @param undisclosed flag which indicates wether the field should be undisclosed.
  */
-- (void)setDetailText:(NSString *)text undisclosed:(BOOL)undisclosed
-{
+- (void)setDetailText:(NSString *)text undisclosed:(BOOL)undisclosed {
     UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:self.activeCellIndexPath];
 
     cell.detailTextLabel.text = (undisclosed) ? [DOMPickerHandler undisclosedValue] : text;
@@ -86,12 +83,10 @@
  */
 - (void)populatePicker:(UIPickerView *)picker
            atIndexPath:(NSIndexPath *)indexPath
-            headerCell:(UITableViewCell *)headerCell
-{
+            headerCell:(UITableViewCell *)headerCell {
     DOMPickerHandler *currentHandler = nil;
 
-    if (indexPath.section == 0 && indexPath.row == 2)
-    {
+    if (indexPath.section == 0 && indexPath.row == 2) {
         // Set the year from the possible existing detail value.
         NSInteger year = ([headerCell.detailTextLabel.text isEqualToString:[DOMPickerHandler undisclosedValue]]) ? 1990 : [DOMYearsPickerHandler yearForTitile:headerCell.detailTextLabel.text];
 
@@ -101,9 +96,7 @@
                              delegate:self];
 
         currentHandler = yearsHandler;
-    }
-    else if (indexPath.section == 2)
-    {
+    } else if (indexPath.section == 2) {
         // Set the occupation from the possible existing detail value.
         NSString *initialOccupation = ([headerCell.detailTextLabel.text isEqualToString:[DOMPickerHandler undisclosedValue]]) ? nil : headerCell.detailTextLabel.text;
 
@@ -130,8 +123,7 @@
     self.user.birthYear = year;
 }
 
-- (void)pickerView:(UIPickerView *)pickerView didChangeOccupation:(NSString *)occupation
-{
+- (void)pickerView:(UIPickerView *)pickerView didChangeOccupation:(NSString *)occupation {
     BOOL undisclosed = (occupation == nil);
 
     [self setDetailText:occupation
@@ -140,12 +132,10 @@
     self.user.occupation = occupation;
 }
 
-- (void)textFieldDidEndEditing:(UITextField *)textField withCellType:(DOMTextFieldCellType)type
-{
+- (void)textFieldDidEndEditing:(UITextField *)textField withCellType:(DOMTextFieldCellType)type {
     CGFloat value = TO_CGFLOAT(textField.text);
 
-    switch (type)
-    {
+    switch (type) {
         case DOMTextFieldCellTypeHeight:
             self.user.height = value;
             break;
@@ -159,8 +149,7 @@
     }
 }
 
-- (void)segmentedControl:(UISegmentedControl *)segmentedControl didChangeGender:(DOMGender)gender
-{
+- (void)segmentedControl:(UISegmentedControl *)segmentedControl didChangeGender:(DOMGender)gender {
     self.user.gender = gender;
 }
 
